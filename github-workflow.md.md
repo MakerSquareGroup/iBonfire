@@ -47,3 +47,5 @@
 
   [Docs] - changed the readme/gitignore
 
+  [Git] - fixed conflicts and general git workflow issues
+

@@ -24,16 +24,12 @@ app.use(function(req, res, next) {
 	next();
 });
 
-<<<<<<< 347897a2df4834a0491a92bb0af02c9dc3ae92d3
-app.get('/', function(request, response) {
-=======
 // Routes for endpoints
 app.use('api/user', userRoutes);
 // app.use('api/bonfire', bonfireRoutes);
 app.use('api/location', locationRoutes);
 
 app.get('/', (request, response) => {
->>>>>>> [Update] adding routes and backend structure
 	response.sendFile(path.resolve(__dirname, '../client', 'index.html'));
 });
 

@@ -1,15 +1,15 @@
-const express = require('express');
 const bodyParser = require('body-parser');
+const express = require('express');
 const morgan = require('morgan');
 const moment = require('moment');
 const path = require('path');
+const cors = require('cors');
 
 const app = express();
 
-//Uncomment after creating database and setting uername and password in the 
-//.env-sample file. Once that is done rename the file to just .env
-
-//const dotenv = require('dotenv');
+// Uncomment dotenv after creating  the database and setting uername 
+// and password in the .env-sample file. Once that is done rename the file to just .env
+// const dotenv = require('dotenv');
 
 app.use(bodyParser.json());
 
@@ -17,14 +17,15 @@ app.use(morgan('dev'));
 
 app.use(express.static('../client'));
 
-app.use(function(req, res, next) {
-	res.header('Access-Control-Allow-Origin', '*');
-	res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-	res.header('Access-Control-Allow-Headers', 'Content-Type, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Date, X-Api-Version, X-File-Name');
-	next();
-});
+// Using the cors npm in this way enables all cors requests
+app.use(cors());
 
-app.get('/', function(request, response) {
+// Routes for endpoints
+app.use('api/user', userRoutes);
+// app.use('api/bonfire', bonfireRoutes);
+app.use('api/location', locationRoutes);
+
+app.get('/', (request, response) => {
 	response.sendFile(path.resolve(__dirname, '../client', 'index.html'));
 });
 

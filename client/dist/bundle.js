@@ -75,7 +75,7 @@
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
-	var _App = __webpack_require__(259);
+	var _App = __webpack_require__(260);
 
 	var _App2 = _interopRequireDefault(_App);
 
@@ -28244,7 +28244,7 @@
 
 	var _redux = __webpack_require__(236);
 
-	var _exampleReducer = __webpack_require__(261);
+	var _exampleReducer = __webpack_require__(259);
 
 	var _exampleReducer2 = _interopRequireDefault(_exampleReducer);
 
@@ -28258,6 +28258,27 @@
 
 /***/ },
 /* 259 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports.default = function () {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case 'TEST':
+	      return action.payload;
+	  }
+	  return state;
+	};
+
+/***/ },
+/* 260 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28309,28 +28330,6 @@
 	}(_react2.default.Component);
 
 	exports.default = App;
-
-/***/ },
-/* 260 */,
-/* 261 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	exports.default = function () {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-	  var action = arguments[1];
-
-	  switch (action.type) {
-	    case 'TEST':
-	      return action.payload;
-	  }
-	  return state;
-	};
 
 /***/ }
 /******/ ]);

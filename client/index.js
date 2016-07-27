@@ -1,19 +1,26 @@
-import React,{ Component } from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
+import { combineReducers, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import thunk from 'redux-thunk';
+import reducer from './public/reducers';
 
-export default class Index extends Component {
+import App from './public/components/App';
 
-  render(){
-    return (
-        <div>
-          <h1>HI</h1>
-        </div>
-    )
-  }
-}
+const createStoreWithMiddleWare = applyMiddleware(thunk)(createStore);
+const store = createStoreWithMiddleWare(reducer);
+
+const router = (
+  <Provider store={store}>
+    <Router history={browserHistory}>
+      <Route path="/" component={App} />
+    </Router>
+  </Provider>
+)
 
 
 ReactDOM.render(
-  <Index />,
-  document.getElementById('app')
+  router, document.getElementById('app')
 );

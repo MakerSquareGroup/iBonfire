@@ -46,8 +46,3 @@
   }
 }
 
-    "webpack-dev-server": "^1.14.1",
-    "webpack": "^1.13.1"
-  }
-}
-

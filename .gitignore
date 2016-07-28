@@ -1,8 +1,13 @@
+//Packages
 node_modules/
 
+//Front-end
 client/dist/bundle.js
-
 .DS_Store
 
+//Back-end
+server/.env
 npm-debug.log
+server/.DS_Store
+
 

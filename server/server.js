@@ -25,7 +25,7 @@ app.use(cors());
 // app.use('api/user', userRoutes);
 // app.use('api/bonfire', bonfireRoutes);
 
-app.get('/', (request, response) => {
+app.get('*', (request, response) => {
 	response.sendFile(path.resolve(__dirname, '../client', 'index.html'));
 });
 

@@ -39,6 +39,7 @@
     "q": "^1.4.1",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
+    "react-gmaps": "^1.5.0",
     "react-loader": "^2.4.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.6.0",
@@ -48,7 +49,3 @@
     "webpack-dev-server": "^1.14.1"
   }
 }
-<<<<<<< 53a81ebcdc7ba5f9d7f46806c5b539b68868e0df
-
-=======
->>>>>>> [Update] Completed server setup, working on models

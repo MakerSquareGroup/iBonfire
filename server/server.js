@@ -29,7 +29,7 @@ app.use(function(req, res, next) {
 // // app.use('api/bonfire', bonfireRoutes);
 // app.use('api/location', locationRoutes);
 
-app.get('/', (request, response) => {
+app.get('*', (request, response) => {
 	response.sendFile(path.resolve(__dirname, '../client', 'index.html'));
 });
 

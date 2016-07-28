@@ -8,7 +8,7 @@ export default class App extends React.Component {
         <h1>It's alive!</h1>
         	<div>
         		<Link to="/Home" className="linkFont">Home</Link>
-        	</div>
+        		</div>
         {this.props.children}
       </div>
     )

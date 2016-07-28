@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {Gmaps, Marker, InfoWindow, Circle} from 'react-gmaps';
+
+import { KEY } from '../../apiKeys';
 
 const coords = {
   lat: 51.5258541,
   lng: -0.08040660000006028
 };
 
-export default class Home extends React.Component {
+export default class Home extends Component {
 	onMapCreated(map) {
     map.setOptions({
       disableDefaultUI: true
@@ -34,7 +36,7 @@ export default class Home extends React.Component {
         lng={coords.lng}
         zoom={12}
         loadingMessage={'Be happy'}
-        params={{v: '3.exp', key: 'YOUR_API_KEY'}}
+        params={{v: '3.exp', key: KEY}}
         onMapCreated={this.onMapCreated}>
         <Marker
           lat={coords.lat}

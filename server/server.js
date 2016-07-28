@@ -1,8 +1,10 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+const path = require('path');
+const cors = require('cors');
 const morgan = require('morgan');
 const moment = require('moment');
-const path = require('path');
+const db = require('./db/db.js');
+const express = require('express');
+const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -17,17 +19,11 @@ app.use(morgan('dev'));
 
 app.use(express.static('./client'));
 
-app.use(function(req, res, next) {
-	res.header('Access-Control-Allow-Origin', '*');
-	res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-	res.header('Access-Control-Allow-Headers', 'Content-Type, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Date, X-Api-Version, X-File-Name');
-	next();
-});
+app.use(cors());
 
 // Routes for endpoints
 // app.use('api/user', userRoutes);
-// // app.use('api/bonfire', bonfireRoutes);
-// app.use('api/location', locationRoutes);
+// app.use('api/bonfire', bonfireRoutes);
 
 app.get('/', (request, response) => {
 	response.sendFile(path.resolve(__dirname, '../client', 'index.html'));
@@ -35,6 +31,7 @@ app.get('/', (request, response) => {
 
 app.set('port', process.env.PORT || 8080);
 
-app.listen(app.get('port'), function() {
+app.listen(app.get('port'), () => {
+	db.ensureSchema();
 	console.log(moment().format('h:mm:ss a') + ': Server is Listening on port', app.get('port'));
 });

@@ -7,7 +7,7 @@
     "webpack-watch": "./node_modules/webpack/bin/webpack.js -w",
     "webpack": "./node_modules/webpack/bin/webpack.js",
     "express-server": "nodemon ./server/server.js",
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "start": "npm run express-server",
     "dev": "concurrently --kill-others \"npm run webpack-watch\" \"npm run express-server\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

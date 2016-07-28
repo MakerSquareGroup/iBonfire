@@ -9,6 +9,7 @@ import reducer from './public/reducers';
 
 import App from './public/components/App';
 import Login from './public/components/FBLogin';
+import Home from './public/components/Home';
 
 const createStoreWithMiddleWare = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleWare(reducer);
@@ -19,6 +20,7 @@ const router = (
       <Route path="/" component={App} >
         <IndexRoute component={Login} />
       </Route>
+      	<Route path="/Home" component={Home} />
     </Router>
   </Provider>
 )

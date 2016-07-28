@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 app.use(morgan('dev'));
 
-app.use(express.static('../client'));
+app.use(express.static('./client'));
 
 app.use(function(req, res, next) {
 	res.header('Access-Control-Allow-Origin', '*');
@@ -25,9 +25,9 @@ app.use(function(req, res, next) {
 });
 
 // Routes for endpoints
-app.use('api/user', userRoutes);
-// app.use('api/bonfire', bonfireRoutes);
-app.use('api/location', locationRoutes);
+// app.use('api/user', userRoutes);
+// // app.use('api/bonfire', bonfireRoutes);
+// app.use('api/location', locationRoutes);
 
 app.get('/', (request, response) => {
 	response.sendFile(path.resolve(__dirname, '../client', 'index.html'));

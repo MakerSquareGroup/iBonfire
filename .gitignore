@@ -6,7 +6,7 @@ client/dist/bundle.js
 .DS_Store
 
 //Back-end
-server/.env
+.env
 npm-debug.log
 server/.DS_Store
 

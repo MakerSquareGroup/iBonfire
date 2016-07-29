@@ -15,8 +15,5 @@ module.exports = {
 };
 
 
-// db_username = 'teamBlaze'
-// db_password = 'teamBlaze1234'
-
 // user     : process.env.db_username,
 // password : process.env.db_password,

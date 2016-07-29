@@ -1,4 +1,5 @@
 import FacebookLogin from 'react-facebook-login';
+import {browserHistory} from 'react-router';
 
 export const FacebookInit = () => {
 	window.fbAsyncInit = () => {
@@ -10,6 +11,7 @@ export const FacebookInit = () => {
 
       FB.getLoginStatus((response) => { 
         statusChangeCallBack(response);
+
       });
     };
 
@@ -32,6 +34,7 @@ export const CheckLoginStatus = () => {
 const statusChangeCallBack = (response) => {
     if(response.status === 'connected') {
       // this.getFriendsList();
+      browserHistory.push('/Home');
     } else if (response.status === 'not authorized') {
       console.log('Please login to Facebook');
     }

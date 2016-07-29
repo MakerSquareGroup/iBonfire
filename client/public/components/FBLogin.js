@@ -5,8 +5,11 @@ import {FacebookInit, CheckLoginStatus} from '../Actions/FacebookActions';
 
 export default class Login extends Component {
   
+  componentWillMount(){
+    
+  }
   componentDidMount() {
-    FacebookInit()
+   
   }
 
  
@@ -28,8 +31,8 @@ export default class Login extends Component {
     return (
       <div id="Login">
         <video  id="bgvid" autoPlay loop muted>
-          <source src="../media/Indoor-Market/MP4/Indoor-Market.mp4" type="video/mp4"/>
-          <source src="../media/Indoor-Market/WEBM/Indoor-Market.webm" type="video/webm"/>
+          <source src="../media/Open-Fire/MP4/Open-Fire.mp4" type="video/mp4"/>
+          <source src="../media/Open-Fire/WEBM/Open-Fire.webm" type="video/webm"/>
         </video>
         <button id="FacebookLoginButton" type="button" onClick={this.handleLoginClick}>Login</button>
         <div id="Logo">

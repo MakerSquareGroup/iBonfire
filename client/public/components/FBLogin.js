@@ -32,14 +32,17 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div id="LoginPage">
-        <div className='fb-login-button' data-max-rows='1' data-size='medium' data-show-face='false' data-auto-logout-link='false' onClick={this.handleLoginClick}></div>
+      <div id="Login">
+        <video  id="bgvid" autoPlay loop muted>
+          <source src="../media/Indoor-Market/MP4/Indoor-Market.mp4" type="video/mp4"/>
+          <source src="../media/Indoor-Market/WEBM/Indoor-Market.webm" type="video/webm"/>
+        </video>
+        <button id="FacebookLoginButton" type="button">Facebook</button>
+        <div id="Logo">
+          <img src="../media/iBonfireLogo.png"/>
+        </div>
       </div>
     )
   }
 }
-        // <FacebookLogin
-        //   appId="708986855908181"
-        //   autoLoad={true}
-        //   fields="name,email,picture"
-        //   callback={this.responseFacebook} />
+       

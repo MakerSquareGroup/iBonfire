@@ -9,7 +9,7 @@ export const FacebookInit = () => {
       });
 
       FB.getLoginStatus((response) => { 
-        this.statusChangeCallBack(response);
+        statusChangeCallBack(response);
       });
     };
 
@@ -25,7 +25,14 @@ export const FacebookInit = () => {
 
 export const CheckLoginStatus = () => {
 	FB.getLoginStatus((response) => { 
-      this.statusChangeCallBack(response);
+      statusChangeCallBack(response);
     });
 }
-
+  
+const statusChangeCallBack = (response) => {
+    if(response.status === 'connected') {
+      // this.getFriendsList();
+    } else if (response.status === 'not authorized') {
+      console.log('Please login to Facebook');
+    }
+  }

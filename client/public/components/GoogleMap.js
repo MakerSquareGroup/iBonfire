@@ -38,8 +38,8 @@ export default class GoogleMap extends Component {
 		return (
 			<div id="GoogleMap">
 				<Gmaps
-			        width={'800px'}
-			        height={'600px'}
+			        width={'100%'}
+			        height={'100%'}
 			        lat={coords.lat}
 			        lng={coords.lng}
 			        zoom={12}

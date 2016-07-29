@@ -23,6 +23,9 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 
 app.use(express.static('./client'));
+app.use(express.static(__dirname + '/../client/public'));
+
+
 
 app.use(cors());
 
@@ -30,9 +33,11 @@ app.use(cors());
 app.use('api/user', userRoutes);
 app.use('api/bonfire', bonfireRoutes);
 
-app.get('*', (request, response) => {
-	response.sendFile(path.resolve(__dirname, '../client', 'index.html'));
-});
+// app.get('*', (request, response) => {
+// 	response.sendFile(path.resolve(__dirname, '../client', 'index.html'));
+// });
+
+// app.use('*', express.static(__dirname + './client'));
 
 
 //Scraping Bullshittt

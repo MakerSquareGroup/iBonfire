@@ -1,7 +1,5 @@
 import React from 'react';
-
 import { Link } from 'react-router';
-
 import axios from 'axios';
 
 
@@ -37,17 +35,9 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div>
-<<<<<<< 253019b68946576dc1e0d18b294970a4add20184
-        <h1>It's alive!</h1>
-        	<div>
-        		<Link to="/Home" className="linkFont">Home</Link>
-        		</div>
-=======
-        <h1 onClick={this.handleClick}>It's alive!</h1>
->>>>>>> [Feature] Initiate scraping calls
-        {this.props.children}
-      </div>
+		<div>
+			{this.props.children}
+		</div>
     )
   }
 }

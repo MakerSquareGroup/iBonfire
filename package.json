@@ -4,7 +4,7 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-  "webpack-watch": "/node_modules/webpack/bin/webpack.js -w",
+    "webpack-watch": "/node_modules/webpack/bin/webpack.js -w",
     "webpack": "/node_modules/webpack/bin/webpack.js",
     "build": "webpack --env.dev --watch",
     "express-server": "nodemon ./server/server.js",
@@ -42,8 +42,8 @@
     "q": "^1.4.1",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
-    "react-gmaps": "^1.5.0",
     "react-facebook-login": "^3.1.0",
+    "react-gmaps": "^1.5.0",
     "react-loader": "^2.4.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.6.0",

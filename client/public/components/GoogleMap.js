@@ -17,8 +17,15 @@ export default class GoogleMap extends Component {
 
 	onMapCreated(map) {
 		map.setOptions({
-		disableDefaultUI: true
+			disableDefaultUI: true
 		});
+		marker = new google.maps.Marker({
+          map: map,
+          draggable: true,
+          animation: google.maps.Animation.DROP,
+          position: {lat: 59.327, lng: 18.067}
+    });
+    marker.addListener('click', toggleBounce);
 	};
 
 	onDragEnd(e) {

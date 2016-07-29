@@ -34,9 +34,44 @@ app.get('*', (request, response) => {
 	response.sendFile(path.resolve(__dirname, '../client', 'index.html'));
 });
 
+
+//Scraping Bullshittt
+var fs = require('fs');
+var request = require('request');
+var cheerio = require('cheerio');
+
+
+app.get('/scrape', function(req, res){
+	
+	url = 'https://www.facebook.com/SeanMichaeLester/friends?ref=br_rs&source_ref=pb_friends_tl';
+    request(url, function(error, response, html){
+		
+		if(!error){
+
+           var $ = cheerio.load(html);
+           $('div').each(function(index){
+           		console.log(index, "div index");
+           })
+           $('.fsl').each(function(index){
+           	console.log(index, "index");
+           })
+           $('div.fsl.fwb.fcb').each(function(index){
+           		console.log('heres a element');
+           })
+         
+       
+        }
+    })
+  
+})
+
 app.set('port', process.env.PORT || 8080);
 
 app.listen(app.get('port'), () => {
 	db.ensureSchema();
 	console.log(moment().format('h:mm:ss a') + ': Server is Listening on port', app.get('port'));
 });
+
+
+
+

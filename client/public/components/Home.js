@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Gmaps, Marker, InfoWindow, Circle} from 'react-gmaps';
 
-import { KEY } from '../../apiKeys';
+//import { KEY } from '../../apiKeys';
 
 const coords = {
   lat: 51.5258541,

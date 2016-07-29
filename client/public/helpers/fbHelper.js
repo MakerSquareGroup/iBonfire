@@ -1,7 +1,6 @@
-import FacebookLogin from 'react-facebook-login';
-import {browserHistory} from 'react-router';
+import { browserHistory } from 'react-router';
 
-export const FacebookInit = () => {
+export const facebookInit = () => {
 	window.fbAsyncInit = () => {
       FB.init({
         appId: '708986855908181',
@@ -11,7 +10,6 @@ export const FacebookInit = () => {
 
       FB.getLoginStatus((response) => { 
         statusChangeCallBack(response);
-
       });
     };
 
@@ -25,11 +23,15 @@ export const FacebookInit = () => {
 }
 
 
-export const CheckLoginStatus = () => {
+export const checkLoginStatus = () => {
 	FB.getLoginStatus((response) => { 
       statusChangeCallBack(response);
-    });
-}
+  });
+};
+
+export const facebookLogin = () => {
+  FB.login(checkLoginStatus());
+};
   
 const statusChangeCallBack = (response) => {
     if(response.status === 'connected') {

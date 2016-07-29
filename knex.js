@@ -6,11 +6,14 @@ module.exports = {
 		client: 'mysql',
 		connection: {
 			host: 'ibonfire.ryanmorrisj.com',
-			user: 'username here',
-			password: 'password here',
+			user: process.env.db_username,
+			password: process.env.db_password,
 			database: 'ibonfire',
 			charset: 'utf8'
 		}
 	}
 };
 
+
+// user     : process.env.db_username,
+// password : process.env.db_password,

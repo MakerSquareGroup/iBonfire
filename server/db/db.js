@@ -23,10 +23,8 @@ knex.ensureSchema = () => {
 				knex.schema.createTable('users', table => {
 						table.increments('id').primary();
 						table.string('username', 255);
-						table.string('password', 255);
-						table.string('latitude', 50);
-						table.string('longitude', 50);
-						table.string('location', 255);
+						table.string('FB_id', 50);
+						table.string('FB_token', 50);
 						table.timestamps();
 					})
 					.then(table => {

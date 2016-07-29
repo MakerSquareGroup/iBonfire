@@ -1,27 +1,20 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
-import FacebookLogin from 'react-facebook-login';
-import {FacebookInit, CheckLoginStatus} from '../Actions/FacebookActions';
+import { facebookInit, facebookLogin } from '../helpers/fbHelper';
 
 export default class Login extends Component {
   
   componentWillMount(){
-    
+
   }
+
   componentDidMount() {
-   
+
   }
-
- 
- 
-
-  
 
   handleLoginClick() {
-    FB.login(CheckLoginStatus());
+    facebookLogin();
   }
-
-  
 
   responseFacebook(response) {
     console.log(response);

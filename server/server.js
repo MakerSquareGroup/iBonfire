@@ -37,35 +37,35 @@ app.get('/Home', function(req,res){
   res.sendFile(path.resolve('../iBonfire/client/index.html'));
 })
 
-//Scraping Bullshittt
+//Scraping
 var fs = require('fs');
 var request = require('request');
 var cheerio = require('cheerio');
 
 
-app.get('/scrape', function(req, res){
+// app.get('/scrape', function(req, res){
 	
-	url = 'https://www.facebook.com/SeanMichaeLester/friends?ref=br_rs&source_ref=pb_friends_tl';
-    request(url, function(error, response, html){
+// 	url = 'https://www.facebook.com/SeanMichaeLester/friends?ref=br_rs&source_ref=pb_friends_tl';
+//     request(url, function(error, response, html){
 		
-		if(!error){
+// 		if(!error){
 
-           var $ = cheerio.load(html);
-           $('div').each(function(index){
-           		console.log(index, "div index");
-           })
-           $('.fsl').each(function(index){
-           	console.log(index, "index");
-           })
-           $('div.fsl.fwb.fcb').each(function(index){
-           		console.log('heres a element');
-           })
+//            var $ = cheerio.load(html);
+//            $('div').each(function(index){
+//            		console.log(index, "div index");
+//            })
+//            $('.fsl').each(function(index){
+//            	console.log(index, "index");
+//            })
+//            $('div.fsl.fwb.fcb').each(function(index){
+//            		console.log('heres a element');
+//            })
          
        
-        }
-    })
+//         }
+//     })
   
-})
+// })
 
 app.set('port', process.env.PORT || 8080);
 

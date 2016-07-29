@@ -1,5 +1,5 @@
-// const Q = require('q');
-const User = require('../module/userModule.js');
+const User = require('../models/userModel.js');
+const Q = require('q');
 
 module.exports = {
 	'/': {

@@ -10,13 +10,7 @@ export default class Login extends Component {
   }
 
  
-  statusChangeCallBack(response) {
-    if(response.status === 'connected') {
-      this.getFriendsList();
-    } else if (response.status === 'not authorized') {
-      console.log('Please login to Facebook');
-    }
-  }
+ 
 
   
 
@@ -37,7 +31,7 @@ export default class Login extends Component {
           <source src="../media/Indoor-Market/MP4/Indoor-Market.mp4" type="video/mp4"/>
           <source src="../media/Indoor-Market/WEBM/Indoor-Market.webm" type="video/webm"/>
         </video>
-        <button id="FacebookLoginButton" type="button">Facebook</button>
+        <button id="FacebookLoginButton" type="button" onClick={this.handleLoginClick}>Login</button>
         <div id="Logo">
           <img src="../media/iBonfireLogo.png"/>
         </div>

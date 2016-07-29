@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router';
 import axios from 'axios';
 
-import FacebookLogin from 'react-facebook-login';
 import { facebookInit } from '../helpers/fbHelper';
 
 
@@ -11,7 +10,8 @@ export default class App extends React.Component {
 		super(props);
 		this.state = {
 
-		}
+		};
+    
 		this.handleClick = this.handleClick.bind(this);
 	}
 

@@ -5,11 +5,12 @@ module.exports = {
 	development: {
 		client: 'mysql',
 		connection: {
-			host: '*URL GOES HERE*',
-			user: process.env.db_username,
-			password: process.env.db_password,
-			database: 'Bonefire',
+			host: 'ibonfire.ryanmorrisj.com',
+			user: 'username here',
+			password: 'password here',
+			database: 'ibonfire',
 			charset: 'utf8'
 		}
 	}
 };
+

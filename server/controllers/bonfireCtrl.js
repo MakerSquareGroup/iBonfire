@@ -1,6 +1,6 @@
-// const url = require('url');
-const User = require('../model/userModel.js');
-const Bonfire = require('..model/bonfireModel.js');
+const Bonfire = require('../models/bonfireModel.js');
+const User = require('../models/userModel.js');
+const url = require('url');
 
 module.exports = {
 	'/': {
@@ -24,7 +24,7 @@ module.exports = {
 			console.log('Recieved POST at api/bonfire');
 			console.log('Creating bonfire');
 
-			let newBonfire = {
+			var newBonfire = {
 				name: req.body.name,
 				latitude: req.body.latitude,
 				longitude: req.body.longitude,

@@ -33,12 +33,9 @@ app.use(cors());
 app.use('api/user', userRoutes);
 app.use('api/bonfire', bonfireRoutes);
 
-// app.get('*', (request, response) => {
-// 	response.sendFile(path.resolve(__dirname, '../client', 'index.html'));
-// });
-
-// app.use('*', express.static(__dirname + './client'));
-
+app.get('/Home', function(req,res){
+  res.sendFile(path.resolve('../client/public/index.html'));
+})
 
 //Scraping Bullshittt
 var fs = require('fs');

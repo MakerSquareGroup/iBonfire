@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router';
 import axios from 'axios';
 
+import FacebookLogin from 'react-facebook-login';
+import {FacebookInit, CheckLoginStatus} from '../Actions/FacebookActions';
+
 
 export default class App extends React.Component {
 	constructor(props){
@@ -10,6 +13,10 @@ export default class App extends React.Component {
 
 		}
 		this.handleClick = this.handleClick.bind(this);
+	}
+
+	componentWillMount(){
+		FacebookInit()
 	}
   	
   handleClick(){

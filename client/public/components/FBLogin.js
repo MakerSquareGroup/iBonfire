@@ -5,8 +5,11 @@ import {FacebookInit, CheckLoginStatus} from '../Actions/FacebookActions';
 
 export default class Login extends Component {
   
+  componentWillMount(){
+    
+  }
   componentDidMount() {
-    FacebookInit()
+   
   }
 
  

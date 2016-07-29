@@ -4,52 +4,58 @@ import FacebookLogin from 'react-facebook-login';
 
 export default class Login extends Component {
   componentDidMount() {
-    window.fbAsyncInit = function() {
+    window.fbAsyncInit = () => {
       FB.init({
         appId: '708986855908181',
         xfbml: true,
         version: 'v2.7'
       });
 
-      FB.getLoginStatus(function(response) { 
+      FB.getLoginStatus((response) => { 
         this.statusChangeCallBack(response);
-      }.bind(this));
-    }.bind(this);
+      });
+    };
 
-    (function(d, s, id) {
+    ((d, s, id) => {
        var js, fjs = d.getElementsByTagName(s)[0];
        if (d.getElementById(id)) {return;}
        js = d.createElement(s); js.id = id;
        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=708986855908181";;
        fjs.parentNode.insertBefore(js, fjs);
-     } (document, 'script', 'facebook-jssdk'));
+     })(document, 'script', 'facebook-jssdk');
   }
 
   testAPI() {
     console.log("Welcome! Getting your information...");
-    FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
+    FB.api('/me', (response) => {
+      // console.log('Successful login for: ' + response.name);
     });
   }
 
   statusChangeCallBack(response) {
-    console.log('statusChangeCallBack');
-    console.log(response);
+    // console.log('statusChangeCallBack');
+    // console.log(response);
     if(response.status === 'connected') {
-      this.testAPI();
+      this.getFriendsList();
     } else if (response.status === 'not authorized') {
       console.log('Please login to Facebook');
     }
   }
 
   checkLoginStatus() {
-    FB.getLoginStatus(function(response) { 
+    FB.getLoginStatus((response) => { 
       this.statusChangeCallBack(response);
-    }.bind(this));
+    });
   }
 
   handleClick() {
     FB.login(this.checkLoginStatus());
+  }
+
+  getFriendsList() {
+    FB.api('me/friends', (response) => {
+      console.log(response);
+    }, {scope: 'user_friends'});
   }
 
   responseFacebook(response) {

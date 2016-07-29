@@ -1,12 +1,10 @@
 const controllers = require('../controllers/bonfireCtrl.js');
 const router = require('express').Router();
 
-for (let route in controllers) {
+for (var route in controllers) {
 	router.route(route)
 		.get(controllers[route].get)
-		.post(controllers[route].post)
-		.put(controllers[route].put)
-		.delete(controllers[route].delete);
+		.post(controllers[route].post);
 }
 
 module.exports = router;

@@ -4,8 +4,8 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "webpack-watch": "/node_modules/webpack/bin/webpack.js -w",
-    "webpack": "/node_modules/webpack/bin/webpack.js",
+    "webpack-watch": "./node_modules/webpack/bin/webpack.js -w",
+    "webpack": "./node_modules/webpack/bin/webpack.js",
     "build": "webpack --env.dev --watch",
     "express-server": "nodemon ./server/server.js",
     "start": "npm run express-server",

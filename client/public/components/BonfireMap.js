@@ -28,6 +28,7 @@ export default class BonfireMap extends Component {
 			    >
 
 			      <Marker
+			      	position={{lat: -25.363882, lng: 131.044922}}
 			        {...this.state.marker}
 			        onRightclick={this.handleMarkerRightclick}
 			      />

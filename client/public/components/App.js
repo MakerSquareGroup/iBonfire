@@ -15,7 +15,7 @@ export default class App extends Component {
 		this.handleClick = this.handleClick.bind(this);
 	}
 
-	componentWillMount(){
+	componentDidMount(){
 		facebookInit();
 	}
   	

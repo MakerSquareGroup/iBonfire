@@ -9,7 +9,7 @@ export default class Login extends Component {
   }
 
   componentDidMount() {
-    checkLoginStatus();
+    facebookInit();
   }
 
   handleLoginClick() {

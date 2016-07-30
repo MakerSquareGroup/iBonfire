@@ -5,7 +5,7 @@ module.exports = {
 	'/': {
 		get: (req, res) => {
 			console.log("Received GET at /api/user/");
-			res.end("Received GET at /api/user");
+			res.send("Received GET at /api/user");
 		},
 		post: (req, res) => {
 			console.log("Received POST at /api/user/");

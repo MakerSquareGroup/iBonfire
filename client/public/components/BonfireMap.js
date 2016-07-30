@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 // import {Gmaps, Marker, InfoWindow, Circle} from 'react-gmaps';
 import {GoogleMapLoader, GoogleMap, Marker} from "react-google-maps";
-import { KEY } from '../../apiKeys';
+// import { KEY } from '../../apiKeys';
 
 // const coords = {
 //   lat: 51.5258541,
@@ -71,36 +71,27 @@ export default class BonfireMap extends Component {
 
 	render(){
 		return (
-			<div>
-				<section style={{height: "100%"}}>
-		      <GoogleMapLoader
-		        containerElement={
-		          <div
-		            {...props.containerElementProps}
-		            style={{
-		              height: "100%",
-		            }}
-		          />
-		        }
-		        googleMapElement={
-		          <GoogleMap
-		            ref={(map) => console.log(map)}
-		            defaultZoom={3}
-		            defaultCenter={{ lat: -25.363882, lng: 131.044922 }}
-		            onClick={props.onMapClick}
-		          >
-		            {props.markers.map((marker, index) => {
-		              return (
-		                <Marker
-		                  {...marker}
-		                  onRightclick={() => props.onMarkerRightclick(index)} />
-		              );
-		            })}
-		          </GoogleMap>
-		        }
-		      />
-		    </section>
-	    </div>
+
+				<GoogleMapLoader
+				  containerElement={
+				    <div {...this.props} style={{ height: "100%" }} />
+				  }
+				  googleMapElement={
+				    <GoogleMap
+				      ref={googleMap => {
+				        googleMap && console.log(`Zoom: ${ googleMap.getZoom() }`);
+				      }}
+				      defaultZoom={3}
+				      defaultCenter={{lat: -25.363882, lng: 131.044922}}
+				      // onClick={this.handleMapClick}
+				    >
+				      <Marker
+				        {...this.state.marker}
+				        onRightclick={this.handleMarkerRightclick}
+				      />
+				    </GoogleMap>
+				  }
+				/>
     )
 	}
 }

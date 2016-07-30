@@ -33,7 +33,7 @@ app.use(cors());
 app.use('api/user', userRoutes);
 app.use('api/bonfire', bonfireRoutes);
 
-app.get('/Home', function(req,res){
+app.get('*', function(req,res){
   res.sendFile(path.resolve('../iBonfire/client/index.html'));
 })
 

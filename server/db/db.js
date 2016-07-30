@@ -36,7 +36,7 @@ knex.ensureSchema = () => {
 		knex.schema.hasTable('bonfire')
 		.then(exists => {
 			if (!exists) {
-				knex.schema.createTable('bonefire', table => {
+				knex.schema.createTable('bonfire', table => {
 						table.increments('id').primary();
 						table.string('name', 50);
 						table.string('latitude', 50);

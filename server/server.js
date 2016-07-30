@@ -30,11 +30,11 @@ app.use(express.static(__dirname + '/../client/public'));
 app.use(cors());
 
 // Routes for endpoints
-app.use('api/user', userRoutes);
-app.use('api/bonfire', bonfireRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/bonfire', bonfireRoutes);
 
-app.get('*', function(req,res){
-  res.sendFile(path.resolve('../iBonfire/client/index.html'));
+app.get('/', function(req,res){
+  res.sendFile(path.resolve('client', 'index.html'));
 })
 
 //Scraping

@@ -19,9 +19,8 @@ const router = (
     <Router history={browserHistory}>
       <Route path="/" component={App} >
         <IndexRoute component={Login} />
-        <Route path="/Home" component={Home} />
+        <Route path="Home" component={Home} />
       </Route>
-      	
     </Router>
   </Provider>
 )

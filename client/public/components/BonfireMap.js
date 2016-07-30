@@ -5,6 +5,13 @@ export default class BonfireMap extends Component {
 	constructor(props){
 		super(props)
 		this.state = { 
+			markers: [{
+				position: {
+					lat: -25.363882,
+					lng: 131.044922
+				}
+
+			}]
 		}
 	}
 
@@ -28,8 +35,9 @@ export default class BonfireMap extends Component {
 			    >
 
 			      <Marker
-			      	position={{lat: -25.363882, lng: 131.044922}}
-			        {...this.state.marker}
+			      	position={this.state.markers[0].position}
+			      	defaultAnimation={2}
+			        // {...this.state.markers}
 			        onRightclick={this.handleMarkerRightclick}
 			      />
 

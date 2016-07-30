@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import GoogleMap from './GoogleMap';
+import BonfireMap from './BonfireMap';
 import DragAndDrop from './DragAndDrop';
 
 
@@ -7,8 +7,7 @@ export default class Home extends Component {
 	render() {
     return (
       <div id="Home">
-        <GoogleMap/>
-  
+        <BonfireMap/>
       </div>
     );
   }

@@ -10,10 +10,28 @@ export default class BonfireMap extends Component {
 					lat: -25.363882,
 					lng: 131.044922
 				}
+			},
+			{
+				position: {
+					lat: -25.98098,
+					lng: 131.044922
+				}
 
 			}]
 		}
 	}
+
+
+	// handleMapClick(event) {
+	// 	console.log(event.latLng.lat())
+	// 	let lat = event.latLng.lat();
+	// 	let long = event.latLng.lng()
+	// 	// let { markers } = this.state
+	// 	// console.log(this.state, 'state from didMOunt')
+	// 	this.setState({
+	// 		markers: [...this.state.markers, { position: { lat, long } } ]
+	// 	})
+	// }
 
 	render(){
 		return (
@@ -31,11 +49,17 @@ export default class BonfireMap extends Component {
 			      }}
 			      defaultZoom={3}
 			      defaultCenter={{lat: -25.363882, lng: 131.044922}}
-			      // onClick={this.handleMapClick}
+			      // onClick={this.handleMapClick.bind(this)}
 			    >
 
 			      <Marker
 			      	position={this.state.markers[0].position}
+			      	defaultAnimation={2}
+			        // {...this.state.markers}
+			        onRightclick={this.handleMarkerRightclick}
+			      />
+			       <Marker
+			      	position={this.state.markers[1].position}
 			      	defaultAnimation={2}
 			        // {...this.state.markers}
 			        onRightclick={this.handleMarkerRightclick}

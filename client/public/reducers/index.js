@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
 import exampleReducer from './exampleReducer';
+import markerReducer from './markerReducer';
 
 const rootReducer = combineReducers({
-  exampleReducer
+  markers: markerReducer
 })
 
 export default rootReducer;

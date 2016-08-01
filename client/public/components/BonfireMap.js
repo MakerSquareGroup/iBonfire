@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {GoogleMapLoader, GoogleMap, Marker} from "react-google-maps";
+import { browserHistory } from 'react-router';
+import { GoogleMapLoader, GoogleMap, Marker } from "react-google-maps";
 
 
 export default class BonfireMap extends Component {
@@ -22,6 +23,11 @@ export default class BonfireMap extends Component {
 		}
 	}
 
+	componentDidMount() {
+		if(!window.isLoaded) {
+			browserHistory.push('/');
+		}
+	}
 
 	handleMapClick(event) {
 		// console.log(event.latLng.lat())

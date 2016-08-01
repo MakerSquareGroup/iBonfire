@@ -3,16 +3,27 @@ import { browserHistory } from 'react-router';
 import { facebookInit, facebookLogin, checkLoginStatus } from '../helpers/fbHelper';
 
 export default class Login extends Component {
-  
-  componentWillMount(){
-    // checkLoginStatus();
+  componentDidMount() {
+    if(!window.isLoaded) {
+      facebookInit();
+    } else {
+      checkLoginStatus();
+    }
   }
 
-  componentDidMount() {
-    facebookInit();
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
   }
 
   handleLoginClick() {
+    if(!window.isLoaded) {
+      facebookInit()
+      .then(() => {
+        console.log("get in the then");
+        facebookLogin();
+      });
+    }
+
     facebookLogin();
   }
 

@@ -25,7 +25,6 @@ export default class BonfireMap extends Component {
 			position: { lat: lat, lng: long }
 		}
 		this.props.addMarker(markerObject);
-		console.log(this.state, 'state WHAT ARE YOU?????')
 	}
 
 	renderMarkers() {

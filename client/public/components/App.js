@@ -6,7 +6,7 @@ import { facebookInit } from '../helpers/fbHelper';
 
 
 export default class App extends Component {
-	constructor(props){
+	constructor(props) {
 		super(props);
 		this.state = {
 
@@ -15,11 +15,13 @@ export default class App extends Component {
 		this.handleClick = this.handleClick.bind(this);
 	}
 
-	componentDidMount(){
-		facebookInit();
+	componentDidMount() {
+    if(!window.isLoaded) {
+      facebookInit();
+    }
 	}
   	
-  handleClick(){
+  handleClick() {
   	// console.log('call axios');
   	// axios({
 	  //   method : 'GET',

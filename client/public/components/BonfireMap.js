@@ -22,16 +22,34 @@ export default class BonfireMap extends Component {
 	}
 
 
-	// handleMapClick(event) {
-	// 	console.log(event.latLng.lat())
-	// 	let lat = event.latLng.lat();
-	// 	let long = event.latLng.lng()
-	// 	// let { markers } = this.state
-	// 	// console.log(this.state, 'state from didMOunt')
-	// 	this.setState({
-	// 		markers: [...this.state.markers, { position: { lat, long } } ]
-	// 	})
-	// }
+	handleMapClick(event) {
+		// console.log(event.latLng.lat())
+		let lat = event.latLng.lat();
+		let long = event.latLng.lng();
+		// return(
+		// 	<Marker
+		// 		position={{lat: lat, lng: long}}
+		// 	  defaultAnimation={2}
+		// 	  />
+		// 	)
+		// let { markers } = this.state
+		// console.log(this.state, 'state from didMOunt')
+		this.setState({
+			markers: [...this.state.markers, { position: { lat: lat, lng: long } } ]
+		})
+		console.log(this.state, 'state WHAT ARE YOU?????')
+	}
+
+	renderMarkers() {
+		return this.state.markers.map(function(marker) {
+				return (
+					<Marker
+					position={marker.position}
+	      	defaultAnimation={2}
+					/>
+			)
+		})
+	}
 
 	render(){
 		return (
@@ -49,7 +67,7 @@ export default class BonfireMap extends Component {
 			      }}
 			      defaultZoom={3}
 			      defaultCenter={{lat: -25.363882, lng: 131.044922}}
-			      // onClick={this.handleMapClick.bind(this)}
+			      onClick={this.handleMapClick.bind(this)}
 			    >
 
 			      <Marker
@@ -64,6 +82,7 @@ export default class BonfireMap extends Component {
 			        // {...this.state.markers}
 			        onRightclick={this.handleMarkerRightclick}
 			      />
+			      {this.renderMarkers()}
 
 			    </GoogleMap>
 			  }

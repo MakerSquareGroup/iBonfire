@@ -33,8 +33,8 @@ export const facebookInit = () => {
 
 
 export const checkLoginStatus = () => {
-	FB.getLoginStatus((response) => { 
-      statusChangeCallBack(response);
+	FB.getLoginStatus((response) => {
+    statusChangeCallBack(response);
   });
 };
 
@@ -42,13 +42,14 @@ export const facebookLogin = () => {
   FB.login((response) => {
     if(response.authResponse) {
       browserHistory.push('/Home');
-      FB.api('/me', (response) => {
+      FB.api('/me', 'get', { fields:'id,name,gender,link'}, (response) => {
+        let picture = `http://graph.facebook.com/${response.id}/picture?type=large`
         console.log("Thanks for logging in, " + response.name);
       });
     }
   });
 };
-  
+
 const statusChangeCallBack = (response) => {
     if(response.status === 'connected') {
       browserHistory.push('/Home');
@@ -56,4 +57,4 @@ const statusChangeCallBack = (response) => {
       console.log('Please login to Facebook');
       browserHistory.push('/');
     }
-  }
+}

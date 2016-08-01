@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {GoogleMapLoader, GoogleMap, Marker} from "react-google-maps";
 
+
 export default class BonfireMap extends Component {
 	constructor(props){
 		super(props)
@@ -75,10 +76,14 @@ export default class BonfireMap extends Component {
 			      	defaultAnimation={2}
 			        // {...this.state.markers}
 			        onRightclick={this.handleMarkerRightclick}
+			        icon="../media/BonFire.png"
+			        // icon: tentIcon,
 			      />
 			       <Marker
 			      	position={this.state.markers[1].position}
 			      	defaultAnimation={2}
+			      	icon="../media/BonFire.png"
+			      	optimized={false}
 			        // {...this.state.markers}
 			        onRightclick={this.handleMarkerRightclick}
 			      />

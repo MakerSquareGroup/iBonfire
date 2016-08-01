@@ -13,13 +13,6 @@ export default class BonfireMap extends Component {
 					lat: -25.363882,
 					lng: 131.044922
 				}
-			},
-			{
-				position: {
-					lat: -25.98098,
-					lng: 131.044922
-				}
-
 			}]
 		}
 	}

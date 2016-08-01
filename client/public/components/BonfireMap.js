@@ -42,11 +42,13 @@ export default class BonfireMap extends Component {
 	}
 
 	renderMarkers() {
-		return this.state.markers.map(function(marker) {
+		return this.state.markers.map(function(marker, index) {
 				return (
 					<Marker
+					icon="../media/BonFire.png"
 					position={marker.position}
 	      	defaultAnimation={2}
+	      	key={index}
 					/>
 			)
 		})
@@ -70,23 +72,6 @@ export default class BonfireMap extends Component {
 			      defaultCenter={{lat: -25.363882, lng: 131.044922}}
 			      onClick={this.handleMapClick.bind(this)}
 			    >
-
-			      <Marker
-			      	position={this.state.markers[0].position}
-			      	defaultAnimation={2}
-			        // {...this.state.markers}
-			        onRightclick={this.handleMarkerRightclick}
-			        icon="../media/BonFire.png"
-			        // icon: tentIcon,
-			      />
-			       <Marker
-			      	position={this.state.markers[1].position}
-			      	defaultAnimation={2}
-			      	icon="../media/BonFire.png"
-			      	optimized={false}
-			        // {...this.state.markers}
-			        onRightclick={this.handleMarkerRightclick}
-			      />
 			      {this.renderMarkers()}
 
 			    </GoogleMap>

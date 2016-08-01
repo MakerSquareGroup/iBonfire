@@ -8,7 +8,7 @@ module.exports = {
 			console.log('Recieved GET at /api/bonfire');
 			console.log('Sending all bonfires');
 
-			Bonfire.findAllBonfires(req, res)
+			Bonfire.findAllBonfire()
 				.then((bonfires) => {
 					if (bonfires.length === 0) {
 						console.log('There are no bonfires');

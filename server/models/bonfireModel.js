@@ -2,7 +2,7 @@ const db = require('../db/db.js');
 
 const Bonfire = module.exports;
 
-Bonfire.findAllBonfires = (req, res) => {
+Bonfire.findAllBonfire = (req, res) => {
 	return db('bonfires')
 		.then(rows => {
 			return rows;
@@ -17,6 +17,16 @@ Bonfire.findBonfireById = id => {
 			return rows[0];
 		});
 };
+
+Bonfire.findBonfireByLocation = (latitude, longitude) => {
+	return db('bonefire').where({
+			latitude: latitude,
+			longitude: longitude
+		}).limit(1)
+		.then(rows => {
+			return rows[0]
+		});
+}
 
 Bonfire.createBonfire = function(attr) {
 	return new Promise(function(resolve, reject) {

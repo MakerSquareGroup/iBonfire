@@ -11,15 +11,17 @@ import App from './public/components/App';
 import Login from './public/components/FBLogin';
 import Home from './public/components/Home';
 
+import InitFB from './public/components/auth/InitFB';
+
 const createStoreWithMiddleWare = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleWare(reducer);
 
 const router = (
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={App} >
-        <IndexRoute component={Login} />
-        <Route path="Home" component={Home} />
+      <Route path="/" component={InitFB(App)} >
+        <IndexRoute component={InitFB(Login)} />
+        <Route path="Home" component={InitFB(Home)} />
       </Route>
     </Router>
   </Provider>
@@ -28,3 +30,4 @@ const router = (
 ReactDOM.render(
   router, document.getElementById('app')
 );
+

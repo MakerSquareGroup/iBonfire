@@ -4,26 +4,10 @@ import { facebookInit, facebookLogin, checkLoginStatus } from '../helpers/fbHelp
 
 export default class Login extends Component {
   componentDidMount() {
-    if(!window.isLoaded) {
-      facebookInit();
-    } else {
-      checkLoginStatus();
-    }
-  }
 
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
   }
 
   handleLoginClick() {
-    if(!window.isLoaded) {
-      facebookInit()
-      .then(() => {
-        console.log("get in the then");
-        facebookLogin();
-      });
-    }
-
     facebookLogin();
   }
 

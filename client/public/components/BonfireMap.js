@@ -3,59 +3,40 @@ import { browserHistory } from 'react-router';
 import { GoogleMapLoader, GoogleMap, Marker } from "react-google-maps";
 import { facebookLogout, facebookInit } from '../helpers/fbHelper';
 
+import { connect } from 'react-redux';
+import * as actions from '../actions/index';
 
 export default class BonfireMap extends Component {
 	constructor(props){
 		super(props)
 		this.state = { 
-			markers: [{
-				position: {
-					lat: -25.363882,
-					lng: 131.044922
-				}
-			}]
+			
 		}
 	}
 
 	componentWillMount() {
-		// if(localStorage.token) {
-			// if(!window.isLoaded) {
-			// 	facebookInit();
-			// }
-		// }
 
-		// if(!localStorage.token) {
-		// 	browserHistory.push('/')
-		// }
 	}
 
 	handleMapClick(event) {
-		// console.log(event.latLng.lat())
 		let lat = event.latLng.lat();
 		let long = event.latLng.lng();
-		// return(
-		// 	<Marker
-		// 		position={{lat: lat, lng: long}}
-		// 	  defaultAnimation={2}
-		// 	  />
-		// 	)
-		// let { markers } = this.state
-		// console.log(this.state, 'state from didMOunt')
-		this.setState({
-			markers: [...this.state.markers, { position: { lat: lat, lng: long } } ]
-		})
+		let markerObject = {
+			position: { lat: lat, lng: long }
+		}
+		this.props.addMarker(markerObject);
 		console.log(this.state, 'state WHAT ARE YOU?????')
 	}
 
 	renderMarkers() {
-		return this.state.markers.map(function(marker, index) {
-				return (
-					<Marker
-					icon="../media/BonFire.png"
-					position={marker.position}
-	      	defaultAnimation={2}
-	      	key={index}
-					/>
+		return this.props.markers.map(function(marker, index) {
+			return (
+				<Marker
+				icon="../media/BonFire.png"
+				position={marker.position}
+      	defaultAnimation={2}
+      	key={index}
+				/>
 			)
 		})
 	}
@@ -93,3 +74,11 @@ export default class BonfireMap extends Component {
     )
 	}
 }
+
+const mapStateToProps = state => {
+	return {
+		markers: state.markers
+	}
+}
+
+export default connect(mapStateToProps, actions)(BonfireMap);

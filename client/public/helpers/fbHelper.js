@@ -14,7 +14,6 @@ export const facebookInit = () => {
     window.isLoaded = true;
 
     FB.getLoginStatus((response) => {
-      console.log(response, "getLoginStatus");
       if(!response.authResponse) {
         browserHistory.push('/');
       }
@@ -49,6 +48,13 @@ export const facebookLogin = () => {
     }
   });
 };
+
+export const facebookLogout = () => {
+  FB.logout((response) => {
+    console.log("Logging out...", response);
+    browserHistory.push('/');
+  });
+}
 
 const statusChangeCallBack = (response) => {
     if(response.status === 'connected') {

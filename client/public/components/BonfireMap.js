@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { browserHistory } from 'react-router';
 import { GoogleMapLoader, GoogleMap, Marker } from "react-google-maps";
+import { facebookLogout, facebookInit } from '../helpers/fbHelper';
 
 
 export default class BonfireMap extends Component {
@@ -23,10 +24,16 @@ export default class BonfireMap extends Component {
 		}
 	}
 
-	componentDidMount() {
-		if(!window.isLoaded) {
-			browserHistory.push('/');
-		}
+	componentWillMount() {
+		// if(localStorage.token) {
+			// if(!window.isLoaded) {
+			// 	facebookInit();
+			// }
+		// }
+
+		// if(!localStorage.token) {
+		// 	browserHistory.push('/')
+		// }
 	}
 
 	handleMapClick(event) {
@@ -60,6 +67,13 @@ export default class BonfireMap extends Component {
 		})
 	}
 
+	logout() {
+		if(!window.isLoaded) {
+			facebookInit();
+		}
+		facebookLogout();
+	}
+
 	render(){
 		return (
 			<GoogleMapLoader
@@ -81,7 +95,7 @@ export default class BonfireMap extends Component {
 			      {this.renderMarkers()}
 
 			    </GoogleMap>
-			  }
+		  	}
 			/>
     )
 	}

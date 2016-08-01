@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import axios from 'axios';
+import { browserHistory } from 'react-router';
 
 import { facebookInit } from '../helpers/fbHelper';
 
@@ -15,12 +16,6 @@ export default class App extends Component {
 		this.handleClick = this.handleClick.bind(this);
 	}
 
-	componentDidMount() {
-    if(!window.isLoaded) {
-      facebookInit();
-    }
-	}
-  	
   handleClick() {
   	// console.log('call axios');
   	// axios({

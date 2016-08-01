@@ -14,7 +14,7 @@ import Home from './public/components/Home';
 import InitFB from './public/components/auth/InitFB';
 
 const createStoreWithMiddleWare = applyMiddleware(thunk)(createStore);
-const store = createStoreWithMiddleWare(reducer);
+const store = createStoreWithMiddleWare(reducer, window.devToolsExtension ? window.devToolsExtension() : f => f);
 
 const router = (
   <Provider store={store}>

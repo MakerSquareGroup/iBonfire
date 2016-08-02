@@ -52,7 +52,7 @@ export default class BonfireMap extends Component {
 			<GoogleMapLoader
 
 			  containerElement={
-			    <div {...this.props} style={{ height: "100%" }} />
+			    <div style={{ height: "100%" }} />
 			  }
 
 			  googleMapElement={

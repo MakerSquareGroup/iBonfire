@@ -7,14 +7,26 @@ import { connect } from 'react-redux';
 import * as actions from '../actions/index';
 
 export default class BonfireMap extends Component {
-	constructor(props){
+	constructor(props) {
 		super(props)
+		console.log(props);
 		this.state = { 
-			
+			location: {
+				lat: this.props.location.lat, 
+				lng: this.props.location.lng
+			}
 		}
 	}
 
 	componentWillMount() {
+		this.props.getLocation();
+	}
+
+	componentWillReceiveProps(nextProps) {
+		this.props.getLocation();
+	}
+
+	componentDidUpdate() {
 
 	}
 
@@ -28,7 +40,7 @@ export default class BonfireMap extends Component {
 	}
 
 	renderMarkers() {
-		return this.props.markers.map(function(marker, index) {
+		return this.props.markers.map((marker, index) => {
 			return (
 				<Marker
 				icon="../media/BonFire.png"
@@ -47,7 +59,7 @@ export default class BonfireMap extends Component {
 		facebookLogout();
 	}
 
-	render(){
+	render() {
 		return (
 			<GoogleMapLoader
 			  containerElement={
@@ -60,8 +72,8 @@ export default class BonfireMap extends Component {
 			      ref={googleMap => {
 			        googleMap && console.log(`Zoom: ${ googleMap.getZoom() }`);
 			      }}
-			      defaultZoom={3}
-			      defaultCenter={{lat: -25.363882, lng: 131.044922}}
+			      defaultZoom={10}
+			      center={this.state.location}
 			      onClick={this.handleMapClick.bind(this)}
 			    >
 			      {this.renderMarkers()}
@@ -75,7 +87,9 @@ export default class BonfireMap extends Component {
 
 const mapStateToProps = state => {
 	return {
-		markers: state.markers
+		markers: state.markers,
+		users: state.users,
+		location: state.location
 	}
 }
 

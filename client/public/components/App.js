@@ -22,6 +22,10 @@ export default class App extends Component {
 		this.handleClick = this.handleClick.bind(this);
 	}
 
+  componentWillMount() {
+    this.props.getLocation();
+  }
+
   handleClick() {
   	// console.log('call axios');
   	// axios({
@@ -50,6 +54,16 @@ export default class App extends Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    markers: state.markers,
+    users: state.users,
+    location: state.location
+  }
+}
+
+export default connect(mapStateToProps, actions)(App);
 
 
 

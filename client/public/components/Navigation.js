@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import DownArrowIcon from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
 import Avatar from 'material-ui/Avatar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -8,7 +8,7 @@ import MenuItem from 'material-ui/MenuItem';
 import { facebookLogout } from '../helpers/fbHelper';
 
 
-export default class Navigation extends React.Component {
+export default class Navigation extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {

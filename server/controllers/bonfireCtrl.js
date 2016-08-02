@@ -25,7 +25,7 @@ module.exports = {
 
 			var newBonfire = {
 				name: req.body.name,
-				description: req.bod.description,
+				description: req.body.description,
 				latitude: req.body.latitude,
 				longitude: req.body.longitude,
 				location: req.body.location,
@@ -38,7 +38,7 @@ module.exports = {
 						console.log('Bonfire is already blazing!');
 						res.end('Bonfire is already blazing!');
 					} else {
-						Bonfire.createTable(newBonfire)
+						Bonfire.createBonfire(newBonfire)
 							.then((result) => {
 								console.log('Result from bonfire controller createTable', result);
 								res.send(result);
@@ -74,7 +74,7 @@ module.exports = {
 			var getParams = checkParamsBonfire(req.params.bonfire_specs);
 
 			if (Array.isArray(getParams)) {
-				Bonfire.findrBonfireByLocation(getParams[0], getParams[1])
+				Bonfire.findBonfireByLocation(getParams[0], getParams[1])
 					.then((bonfire) => {
 						if (!bonfire) {
 							console.log('Bonfire at ' + getParams + ' does not exist!');
@@ -134,5 +134,3 @@ seperateLatLongBonfire = getParams => {
 
 	return coords;
 };
-
-

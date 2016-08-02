@@ -5,16 +5,22 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import IconButton from 'material-ui/IconButton/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
+import { facebookLogout } from '../helpers/fbHelper';
 
 
 export default class Navigation extends React.Component {
-	constructor(props){
+	constructor(props) {
 		super(props);
 		this.state = {
 
 		}
 	}
-	render(){
+
+	logout() {
+		facebookLogout();
+	}
+
+	render() {
 		return (
 			<div id="Navigation">
 					<div id="NavLogo">
@@ -32,16 +38,13 @@ export default class Navigation extends React.Component {
 					      anchorOrigin={{horizontal: 'right', vertical: 'top'}}
 					      targetOrigin={{horizontal: 'right', vertical: 'top'}}
 							>
-					    <MenuItem>
+					    <MenuItem onClick={this.logout}>
 								Log Out
 							</MenuItem>
 					    </IconMenu>
 				    </MuiThemeProvider>
 			    </div>
-			    
-		  	</div>
-
-
+			</div>
 		)
 	}
 	

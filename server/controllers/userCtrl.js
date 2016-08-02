@@ -86,7 +86,7 @@ module.exports = {
 			} else {
 				User.findUserById(getParams)
 					.then((user) => {
-						if (!user) {
+					if (!user) {
 							console.log('User with Facebook ID ' + getParams + ' does not exist!');
 							res.end('User with Facebook ID' + getParams + ' does not exist!');
 						} else {

@@ -11,7 +11,7 @@ knex.wipeDatabase = () => {
 		.then(() => {
 			return knex('bonfire').truncate();
 		});
-		console.log("Welp, you done did it now...No more data")
+	console.log("Welp, you done did it now...No more data")
 };
 
 // The ensureSchema function builds the schema for the db
@@ -61,5 +61,3 @@ knex.ensureSchema = () => {
 		})
 	]);
 };
-
-

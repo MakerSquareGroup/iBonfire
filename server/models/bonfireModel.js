@@ -18,6 +18,16 @@ Bonfire.findBonfireById = id => {
 		});
 };
 
+Bonfire.findBonfireByLocation = (latitude, longitude) => {
+	return db('bonefire').where({
+			latitude: latitude,
+			longitude: longitude
+		}).limit(1)
+		.then(rows => {
+			return rows[0]
+		});
+}
+
 Bonfire.createBonfire = function(attr) {
 	return new Promise(function(resolve, reject) {
 		return db('bonfire').insert(attr)

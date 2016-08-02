@@ -10,7 +10,7 @@ const app = express();
 //Uncomment after creating database and setting uername and password in the 
 //.env-sample file. Once that is done rename the file to just .env
 
-const dotenv = require('dotenv');
+const dotenv = require('dotenv').config();
 
 const db = require('./db/db.js');
 

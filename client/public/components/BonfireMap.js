@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router';
 import { GoogleMapLoader, GoogleMap, Marker } from "react-google-maps";
 import { facebookLogout, facebookInit } from '../helpers/fbHelper';
 
+import BonfireModel from './BonfireModel';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
 
@@ -43,6 +44,7 @@ export default class BonfireMap extends Component {
 	}
 
 	renderMarkers() {
+		console.log('in renderMarkers')
 		return this.props.markers.map((marker, index) => {
 			return (
 				<Marker
@@ -80,6 +82,8 @@ export default class BonfireMap extends Component {
 			      onClick={this.handleMapClick.bind(this)}
 			    >
 			      {this.renderMarkers()}
+
+						<BonfireModel />
 
 			    </GoogleMap>
 		  	}

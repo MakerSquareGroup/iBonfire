@@ -6,17 +6,19 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 export default () => {
   return (
     <div id="bonfireModel">
-      <MuiThemeProvider>
-        <TextField
-          hintText="City/State"
-        />
-      </MuiThemeProvider>  
-      <br/>
-      <MuiThemeProvider>
-        <TextField
-          hintText="City/State"
-        />
-      </MuiThemeProvider>          
+      <div id="modelTextBox">
+        <MuiThemeProvider>
+          <TextField
+            hintText="City/State"
+          />
+        </MuiThemeProvider>  
+        <br/>
+        <MuiThemeProvider>
+          <TextField
+            hintText="City/State"
+          />
+        </MuiThemeProvider>  
+      </div>        
     </div>
   )
 }

@@ -17,8 +17,19 @@
   flex-direction: column;
 }
 
+#modelTextBox {
+	background: white;
+	margin-right: 50%;
+}
+
 #bonfireModel {
-	background-color: white;
+	display: flex;
+	flex-direction: column;
+  justify-content: center;
+	min-height: 100vh;
+	text-align: center;
+	margin-left: 36%;
+	/*background-color: white;*/
 	position: relative;
 	z-index: 100;
 }

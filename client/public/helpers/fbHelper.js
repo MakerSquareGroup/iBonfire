@@ -1,4 +1,5 @@
 import { browserHistory } from 'react-router';
+import * as actions from '../actions/index';
 
 export const facebookInit = () => {
   window.isLoaded = false;
@@ -44,6 +45,7 @@ export const facebookLogin = () => {
       FB.api('/me', 'get', { fields:'id,name,gender,link'}, (response) => {
         let picture = `http://graph.facebook.com/${response.id}/picture?type=large`
         console.log("Thanks for logging in, " + response.name);
+        actions.addUser(response, picture);
       });
     }
   });

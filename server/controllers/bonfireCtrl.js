@@ -136,11 +136,3 @@ seperateLatLongBonfire = getParams => {
 };
 
 
-var postmanbonfire = {
-	"name": "Ryan's",
-	"description": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTObsbvRGTJUXbhzLkABpz25DUm9L37LV05xAsUpeT8hI4I49Lj",
-	"latitude": "32.024212",
-	"longitude": "-118.496475",
-	"location": "santa monica",
-	"id_Users": "115548485"
-}

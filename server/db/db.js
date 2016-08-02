@@ -22,9 +22,13 @@ knex.ensureSchema = () => {
 			if (!exists) {
 				knex.schema.createTable('users', table => {
 						table.increments('id').primary();
-						table.string('username', 255);
+						table.string('name', 50);
+						table.string('latitude', 50);
+						table.string('longitude', 50);
+						table.string('location', 255);
 						table.string('FB_id', 50);
-						table.string('FB_token', 50);
+						table.string('FB_img', 150);
+						table.string('FB_timeline', 150);
 						table.timestamps();
 					})
 					.then(table => {
@@ -39,6 +43,7 @@ knex.ensureSchema = () => {
 				knex.schema.createTable('bonfire', table => {
 						table.increments('id').primary();
 						table.string('name', 50);
+						table.string('description', 255);
 						table.string('latitude', 50);
 						table.string('longitude', 50);
 						table.string('location', 255);
@@ -52,3 +57,5 @@ knex.ensureSchema = () => {
 		})
 	]);
 };
+
+

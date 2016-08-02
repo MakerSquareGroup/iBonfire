@@ -2,7 +2,7 @@ const db = require('../db/db.js');
 
 const Bonfire = module.exports;
 
-Bonfire.findAllBonfire = (req, res) => {
+Bonfire.findAllBonfires = (req, res) => {
 	return db('bonfires')
 		.then(rows => {
 			return rows;

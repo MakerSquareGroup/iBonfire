@@ -32,7 +32,6 @@ export default class BonfireMap extends Component {
 				}
 			});
 		}
-	}
 
 	handleMapClick(event) {
 		let lat = event.latLng.lat();
@@ -44,6 +43,7 @@ export default class BonfireMap extends Component {
 	}
 
 	renderMarkers() {
+		console.log('in renderMarkers')
 		return this.props.markers.map((marker, index) => {
 			return (
 				<Marker

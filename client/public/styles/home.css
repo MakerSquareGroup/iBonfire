@@ -19,7 +19,7 @@
 
 #modelTextBox {
 	background: white;
-	margin-right: 50%;
+	width: 350px
 }
 
 #bonfireModel {
@@ -28,9 +28,10 @@
   justify-content: center;
 	min-height: 100vh;
 	text-align: center;
-	margin-left: 36%;
+	margin-right: 35%;
+	margin-left: 33%;
 	/*background-color: white;*/
-	position: relative;
+	position: fixed;
 	z-index: 100;
 }
 

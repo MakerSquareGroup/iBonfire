@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'react-redux';
+import * as actions from '../actions/index';
 
 import { facebookInit } from '../helpers/fbHelper';
 
@@ -44,3 +47,6 @@ export default class App extends Component {
     )
   }
 }
+
+
+

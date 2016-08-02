@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import { facebookInit, facebookLogin, checkLoginStatus } from '../helpers/fbHelper';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'react-redux';
+import * as actions from '../actions/index';
 
-export default class Login extends Component {
+class Login extends Component {
   componentDidMount() {
 
   }
@@ -30,4 +33,16 @@ export default class Login extends Component {
     )
   }
 }
-       
+
+function mapStateToProps(state) {
+  return {
+    markers: state,
+    users: state.users
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actions, dispatch);
+}
+
+export default connect(mapStateToProps, actions)(Login);

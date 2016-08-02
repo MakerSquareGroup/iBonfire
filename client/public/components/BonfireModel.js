@@ -9,13 +9,7 @@ export default () => {
       <div id="modelTextBox">
         <MuiThemeProvider>
           <TextField
-            hintText="City/State"
-          />
-        </MuiThemeProvider>  
-        <br/>
-        <MuiThemeProvider>
-          <TextField
-            hintText="City/State"
+            hintText="Description"
           />
         </MuiThemeProvider>  
       </div>        

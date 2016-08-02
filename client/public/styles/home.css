@@ -18,20 +18,22 @@
 }
 
 #modelTextBox {
-	background: white;
-	width: 350px
+	border: solid #FEFEFA 10px;
+	border-radius: 25px;
+	background: #FEFEFA;
+	width: 350px;
+}
+
+#hide {
+	visibility: hidden;
 }
 
 #bonfireModel {
-	display: flex;
-	flex-direction: column;
-  justify-content: center;
-	min-height: 100vh;
+	position: absolute;
 	text-align: center;
-	margin-right: 35%;
-	margin-left: 33%;
-	/*background-color: white;*/
-	position: fixed;
-	z-index: 100;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	z-index: 1000;
 }
 

@@ -32,6 +32,7 @@ export default class BonfireMap extends Component {
 				}
 			});
 		}
+	}
 
 	handleMapClick(event) {
 		let lat = event.latLng.lat();

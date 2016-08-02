@@ -22,10 +22,6 @@ export default class App extends Component {
 		this.handleClick = this.handleClick.bind(this);
 	}
 
-  componentWillMount() {
-    this.props.getLocation();
-  }
-
   handleClick() {
   	// console.log('call axios');
   	// axios({

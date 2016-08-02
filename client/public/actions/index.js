@@ -1,7 +1,9 @@
 import axios from 'axios';
+import { browserHistory } from 'react-router';
 
 export const ADD_MARKER = 'ADD_MARKER';
 export const ADD_USER = 'ADD_USER';
+export const GET_LOCATION = 'GET_LOCATION';
 
 export function addMarker(data) {
   // console.log(data, 'what is dispatch')
@@ -34,5 +36,29 @@ export function addUser(user, picture) {
         user: userObject
       })
     });
+  }
+}
+
+export function getLocation() {
+  if(navigator.geolocation) {
+    const location = new Promise((resolve, reject) => {
+      return navigator.geolocation.getCurrentPosition((position) => {
+        let pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        browserHistory.push('/');
+        resolve(pos);
+      });
+    });
+
+    return (dispatch) => {
+      return location.then((position) => {
+        dispatch({
+          type: GET_LOCATION,
+          position: position
+        })
+      });
+    }
   }
 }

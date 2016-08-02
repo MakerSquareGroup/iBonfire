@@ -37,7 +37,8 @@ class Login extends Component {
 function mapStateToProps(state) {
   return {
     markers: state,
-    users: state.users
+    users: state.users,
+    location: state.location
   };
 }
 

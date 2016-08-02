@@ -11,6 +11,7 @@ knex.wipeDatabase = () => {
 		.then(() => {
 			return knex('bonfire').truncate();
 		});
+		console.log("Welp, you done did it now...No more data")
 };
 
 // The ensureSchema function builds the schema for the db
@@ -29,6 +30,8 @@ knex.ensureSchema = () => {
 						table.string('FB_id', 50);
 						table.string('FB_img', 150);
 						table.string('FB_timeline', 150);
+						table.timestamp('created_by_User_at').defaultTo(knex.fn.now());
+						table.integer('id_Bonfires').unsigned().references('id').inTable('bonfires');
 						table.timestamps();
 					})
 					.then(table => {
@@ -37,16 +40,17 @@ knex.ensureSchema = () => {
 			}
 		}),
 
-		knex.schema.hasTable('bonfire')
+		knex.schema.hasTable('bonfires')
 		.then(exists => {
 			if (!exists) {
-				knex.schema.createTable('bonfire', table => {
+				knex.schema.createTable('bonfires', table => {
 						table.increments('id').primary();
 						table.string('name', 50);
 						table.string('description', 255);
 						table.string('latitude', 50);
 						table.string('longitude', 50);
 						table.string('location', 255);
+						table.timestamp('created_by_User_at').defaultTo(knex.fn.now());
 						table.integer('id_Users').unsigned().references('id').inTable('users');
 						table.timestamps();
 					})

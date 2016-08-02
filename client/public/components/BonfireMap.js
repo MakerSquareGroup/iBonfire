@@ -18,16 +18,19 @@ export default class BonfireMap extends Component {
 		}
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		this.props.getLocation();
 	}
 
 	componentWillReceiveProps(nextProps) {
-		this.props.getLocation();
-	}
-
-	componentDidUpdate() {
-
+		if(this.props.location.lat !== nextProps.location.lat || this.props.location.lng !== nextProps.location.lng) {
+			this.setState({
+				location: {
+					lat: nextProps.location.lat,
+					lng: nextProps.location.lng
+				}
+			});
+		}
 	}
 
 	handleMapClick(event) {

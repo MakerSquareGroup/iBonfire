@@ -6,10 +6,6 @@ import { bindActionCreators } from 'react-redux';
 import * as actions from '../actions/index';
 
 class Login extends Component {
-  componentDidMount() {
-
-  }
-
   handleLoginClick() {
     facebookLogin();
   }

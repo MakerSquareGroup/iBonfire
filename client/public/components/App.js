@@ -8,6 +8,9 @@ import * as actions from '../actions/index';
 
 import { facebookInit } from '../helpers/fbHelper';
 
+import injectTapEventPlugin from "react-tap-event-plugin";
+injectTapEventPlugin();
+
 
 export default class App extends Component {
 	constructor(props) {

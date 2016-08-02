@@ -10,7 +10,7 @@ Bonfire.findAllBonfires = (req, res) => {
 };
 
 Bonfire.findBonfireById = id => {
-	return db('bonfire').where({
+	return db('bonfires').where({
 			id: id
 		}).limit(1)
 		.then(rows => {
@@ -19,7 +19,7 @@ Bonfire.findBonfireById = id => {
 };
 
 Bonfire.findBonfireByLocation = (latitude, longitude) => {
-	return db('bonefire').where({
+	return db('bonefires').where({
 			latitude: latitude,
 			longitude: longitude
 		}).limit(1)
@@ -30,7 +30,7 @@ Bonfire.findBonfireByLocation = (latitude, longitude) => {
 
 Bonfire.createBonfire = function(attr) {
 	return new Promise(function(resolve, reject) {
-		return db('bonfire').insert(attr)
+		return db('bonfires').insert(attr)
 			.then(function(result) {
 				attr.id = result[0];
 				resolve(attr);

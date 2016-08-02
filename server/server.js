@@ -25,8 +25,6 @@ app.use(morgan('dev'));
 app.use(express.static('./client'));
 app.use(express.static(__dirname + '/../client/public'));
 
-
-
 app.use(cors());
 
 // Routes for endpoints

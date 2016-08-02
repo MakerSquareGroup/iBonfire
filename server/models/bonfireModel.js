@@ -19,7 +19,7 @@ Bonfire.findBonfireById = id => {
 };
 
 Bonfire.findBonfireByLocation = (latitude, longitude) => {
-	return db('bonefires').where({
+	return db('bonfires').where({
 			latitude: latitude,
 			longitude: longitude
 		}).limit(1)

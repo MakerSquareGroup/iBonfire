@@ -13,6 +13,6 @@
 .gm-style-mtc {
   display: flex;
   justify-content: flex-end;
-  min-height: 95vh;
+  min-height: 93vh;
   flex-direction: column;
 }

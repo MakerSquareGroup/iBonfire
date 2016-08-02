@@ -50,7 +50,6 @@ export default class BonfireMap extends Component {
 	render(){
 		return (
 			<GoogleMapLoader
-
 			  containerElement={
 			    <div style={{ height: "100%" }} />
 			  }

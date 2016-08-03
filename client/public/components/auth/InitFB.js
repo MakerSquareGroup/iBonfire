@@ -7,7 +7,7 @@ export default (CheckedComponent) => {
   return class InitFB extends Component {
     componentWillMount() {
       if(!window.isLoaded) {
-        console.log("loading facebook SDK");
+        console.log("Loading Facebook SDK");
         facebookInit();
       }
     }

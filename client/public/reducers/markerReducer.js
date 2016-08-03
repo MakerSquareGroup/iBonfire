@@ -13,8 +13,6 @@ const INITIAL_STATE = [
 export default function(state = INITIAL_STATE, action) {
   switch(action.type){
     case ADD_MARKER:
-      console.log(state, 'state in the markerReducer')
-      console.log('ADD_MARKER action received with payload of : ',action.payload )
       return [...state, action.payload];
   }
   return state;

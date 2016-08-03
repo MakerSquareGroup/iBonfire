@@ -13,9 +13,12 @@ class BonfireModal extends Component {
       name: ''
     }
   }
-
   descriptionBox(event) {
-    console.log(event.target, 'what is event.target')
+    if(event.keyCode === 13) {
+      this.setState({
+        name: ''
+      })
+    }
     // i need to send the description to my actions
     // once my description is in my actions i need to link it up with long/lat of the pin that was dropped to an object with 
     // description. And I need to send that object to the db. 
@@ -25,9 +28,7 @@ class BonfireModal extends Component {
   }
 
   render() {
-    console.log('this.props.changeClass', this.props.changeClass);
     return (
-
       <div id={this.props.changeClass.bonfireModal}>
         <div id={this.props.changeClass.modelTextBox}>
           <MuiThemeProvider>
@@ -35,7 +36,7 @@ class BonfireModal extends Component {
               hintText="Description"
               value={this.state.name}
               onChange={e => this.setState({name: e.target.value})}
-              onKeyDown={this.descriptionBox}
+              onKeyDown={this.descriptionBox.bind(this)}
             />
           </MuiThemeProvider>  
         </div>        
@@ -45,7 +46,6 @@ class BonfireModal extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log('state in mapstatetoprops', state.changeClassName);
   return {
     changeClass: state.changeClass
   }

@@ -14,7 +14,7 @@ class Navigation extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			term: "Please enter a location"
+			term: "Please enter a City/State"
 		}
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
@@ -22,6 +22,7 @@ class Navigation extends Component {
 	handleSubmit(event) {
 		event.preventDefault();
 		this.props.searchAction(this.state.term);
+		this.setState({term: "Please enter a City/State"});
 	}
 
 	logout() {
@@ -37,12 +38,13 @@ class Navigation extends Component {
       			</div>
 
 		   		<div id="SearchBar">
-			      <form id="demo-2" onSubmit={this.handleSubmit}>
+			      <form id="demo-2" 
+			      onSubmit={this.handleSubmit}>
 			        <input 
 			        type="search" 
 			        placeholder="Search"
 			        value={this.state.term}
-			        onChange={(event)=> this.setState({ term: event.target.value })}
+			        onChange={(event) => this.setState({ term: event.target.value })}
 			        />
 			      </form>
 			    </div>
@@ -56,14 +58,14 @@ class Navigation extends Component {
 						>
 					    <MenuItem onClick={this.logout}>
 								Log Out
-							</MenuItem>
+						</MenuItem>
 					    </IconMenu>
 				    </MuiThemeProvider>
 			    </div>
+			    
 			</div>
 		)
 	}
-	
 }
 
 const mapStateToProps = state => {

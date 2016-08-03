@@ -45,11 +45,11 @@ knex.ensureSchema = () => {
 			if (!exists) {
 				knex.schema.createTable('bonfires', table => {
 						table.increments('id').primary();
-						table.string('name', 50);
+						table.string('tags', 50);
 						table.string('description', 255);
 						table.string('latitude', 50);
 						table.string('longitude', 50);
-						table.string('location', 255);
+						table.string('cityState', 255);
 						table.timestamp('created_by_User_at').defaultTo(knex.fn.now());
 						table.integer('id_Users').unsigned().references('id').inTable('users');
 						table.timestamps();

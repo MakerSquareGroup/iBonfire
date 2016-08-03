@@ -10,14 +10,16 @@ class BonfireModal extends Component {
     super(props)
 
     this.state = {
-      name: ''
+      name: '',
+      tag: ''
     }
   }
   descriptionBox(event) {
     if(event.keyCode === 13) {
       this.props.changeClassName(true)
       this.setState({
-        name: ''
+        name: '',
+        tag: ''
       })
     }
     // i need to send the description to my actions
@@ -40,7 +42,16 @@ class BonfireModal extends Component {
                 onChange={e => this.setState({name: e.target.value})}
                 onKeyDown={this.descriptionBox.bind(this)}
               />
-            </MuiThemeProvider>  
+            </MuiThemeProvider> 
+              <br/>
+            <MuiThemeProvider>
+              <TextField
+                hintText="Tag"
+                value={this.state.tag}
+                onChange={e => this.setState({tag: e.target.value})}
+                onKeyDown={this.descriptionBox.bind(this)}
+              />
+            </MuiThemeProvider>   
           </div>        
         </div>
       </div>

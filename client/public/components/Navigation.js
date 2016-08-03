@@ -12,8 +12,14 @@ export default class Navigation extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-
+			term: "Please enter a location"
 		}
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	handleSubmit(event) {
+		console.log(this.state.term, "GET IN MY SUBMIT!!!!");
+		event.preventDefault();
 	}
 
 	logout() {
@@ -27,8 +33,13 @@ export default class Navigation extends Component {
         		<img src="../media/iBonfireLogo.png"/>
       		</div>
 		   		<div id="SearchBar">
-			      <form id="demo-2">
-			        <input type="search" placeholder="Search"/>
+			      <form id="demo-2" onSubmit={this.handleSubmit}>
+			        <input 
+			        type="search" 
+			        placeholder="Search"
+			        value={this.state.term}
+			        onChange={(event)=> this.setState({ term: event.target.value })}
+			        />
 			      </form>
 			    </div>
 			    <div id="DropDown">

@@ -6,9 +6,11 @@ import IconButton from 'material-ui/IconButton/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import { facebookLogout } from '../helpers/fbHelper';
+import { connect } from 'react-redux';
+import * as actions from '../actions/index';
 
 
-export default class Navigation extends Component {
+class Navigation extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -18,8 +20,8 @@ export default class Navigation extends Component {
 	}
 
 	handleSubmit(event) {
-		console.log(this.state.term, "GET IN MY SUBMIT!!!!");
 		event.preventDefault();
+		this.props.searchAction(this.state.term);
 	}
 
 	logout() {
@@ -29,9 +31,11 @@ export default class Navigation extends Component {
 	render() {
 		return (
 			<div id="Navigation">
-					<div id="NavLogo">
-        		<img src="../media/iBonfireLogo.png"/>
-      		</div>
+
+				<div id="NavLogo">
+        			<img src="../media/iBonfireLogo.png"/>
+      			</div>
+
 		   		<div id="SearchBar">
 			      <form id="demo-2" onSubmit={this.handleSubmit}>
 			        <input 
@@ -42,13 +46,14 @@ export default class Navigation extends Component {
 			        />
 			      </form>
 			    </div>
+
 			    <div id="DropDown">
 				    <MuiThemeProvider>
 					    <IconMenu
 					      iconButtonElement={<IconButton><DownArrowIcon style={{'width':'100px','height':'100px'}} color={'white'}/></IconButton>}
 					      anchorOrigin={{horizontal: 'right', vertical: 'top'}}
 					      targetOrigin={{horizontal: 'right', vertical: 'top'}}
-							>
+						>
 					    <MenuItem onClick={this.logout}>
 								Log Out
 							</MenuItem>
@@ -60,3 +65,11 @@ export default class Navigation extends Component {
 	}
 	
 }
+
+const mapStateToProps = state => {
+	return {
+		term: state.term
+	}
+}
+
+export default connect(mapStateToProps, actions)(Navigation);

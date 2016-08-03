@@ -12,10 +12,10 @@ const rootReducer = combineReducers({
   markers: markerReducer,
   users: userReducer,
   location: locationReducer,
-  changeClass: changeClassReducer 
+  changeClass: changeClassReducer,
   searchUserInputReducer: searchUserInputReducer,
   convertLocation: convertLocationReducer,
-  convertCoords: convertLocationReducer
+  convertCoords: convertCoordsReducer
 });
 
 export default rootReducer;

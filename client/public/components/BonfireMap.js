@@ -48,7 +48,7 @@ class BonfireMap extends Component {
 		});
 
 		this.props.addMarker(markerObject);
-		this.props.changeClassName();
+		this.props.changeBonfireModalClassName("fadeIn");
 	}
 
 	renderMarkers() {

@@ -15,9 +15,14 @@ class BonfireModal extends Component {
       cityState: ''
     }
   }
+
+  componentDidMount(){
+    this.props.changeBonfireModalClassName("fadeOut")
+  }
+
   descriptionBox(event) {
     if(event.keyCode === 13) {
-      this.props.changeClassName(true)
+      this.props.changeBonfireModalClassName("fadeOut")
       this.setState({
         description: '',
         tag: '',
@@ -44,8 +49,8 @@ class BonfireModal extends Component {
 
   render() {
     return (
-      <div id={this.props.changeClass.hidden || this.props.changeClass.showModal}>
-        <div id={this.props.changeClass.bonfireModal}>
+        <div className={this.props.changeClass.bonfireModal}>
+          <h id="CreateBonfireHeader">Create New Bonfire</h>
           <div id={this.props.changeClass.modelTextBox}>
             <MuiThemeProvider>
               <TextField
@@ -66,6 +71,7 @@ class BonfireModal extends Component {
             <MuiThemeProvider>
               <TextField
                 hintText="Description"
+<<<<<<< fb0f866fafbce1edc34edee3a76b63b09c56a247
                 value={this.state.description}
                 onChange={e => this.setState({description: e.target.value})}
                 onKeyDown={this.descriptionBox.bind(this)}
@@ -73,8 +79,40 @@ class BonfireModal extends Component {
             </MuiThemeProvider> 
               <br/>
           </div>        
+=======
+                hintStyle={{'color':'white'}}
+                inputStyle={{'color':'white', 'fontFamily':'Raleway','fontWeight':'400'}}
+                value={this.state.name}
+                onChange={e => this.setState({name: e.target.value})}
+                onKeyDown={this.descriptionBox.bind(this)}
+              />
+            </MuiThemeProvider>  
+            <MuiThemeProvider>
+              <TextField
+                hintText="City, Location"
+                hintStyle={{'color':'white'}}
+                inputStyle={{'color':'white', 'fontFamily':'Raleway','fontWeight':'400'}}
+                value={this.state.name}
+                onChange={e => this.setState({name: e.target.value})}
+                onKeyDown={this.descriptionBox.bind(this)}
+              />
+            </MuiThemeProvider>  
+            <MuiThemeProvider>
+              <TextField
+                hintText="Tags"
+                hintStyle={{'color':'white'}}
+                inputStyle={{'color':'white', 'fontFamily':'Raleway','fontWeight':'400'}}
+                value={this.state.name}
+                onChange={e => this.setState({name: e.target.value})}
+                onKeyDown={this.descriptionBox.bind(this)}
+              />
+            </MuiThemeProvider>  
+          </div>   
+          <div id="CreateBonfireImage">
+            
+          </div>
+>>>>>>> [Pull] Start initial template for create bonfire model
         </div>
-      </div>
     )
   }
 }

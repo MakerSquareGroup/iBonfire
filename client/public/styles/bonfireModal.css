@@ -1,0 +1,65 @@
+#CreateBonfireImage {
+	width:100px;
+	height:100px;
+	background-image: url('../media/Fire-512.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	opacity: 0.8;
+	cursor: pointer;
+}
+
+#CreateBonfireImage:hover{
+	opacity: 1.0;
+}
+
+#CreateBonfireHeader {
+	font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  color: white;
+  font-size: 40px;
+}
+
+
+#modelTextBox {
+	background: transparent;
+	width: 100%;
+}
+
+
+
+.bonfireModal {
+	height: 400px;
+	width: 400px;
+	position: absolute;
+	text-align: center;
+	top: 55%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	z-index: 10000;
+	visibility: hidden;
+	animation: 1000ms fadeIn ease-in-out forwards;
+  -webkit-animation: 1000ms fadeIn ease-in-out forwards;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 2%;
+  justify-content: space-around;
+}
+
+.hidden {
+	visibility: hidden;
+}
+
+@keyframes fadeIn {
+    0% {
+    		visibility: hidden;
+        background: rgba(0,0,0,0.0);
+    }
+   
+    100% {
+    		visibility: visible;
+        background: rgba(0,0,0,0.5);
+
+    }
+}

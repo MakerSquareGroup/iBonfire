@@ -124,9 +124,9 @@ export function searchAction(searchValue) {
         console.log(response, 'Error inside searchAction in Actions');
       });
   });
-
   return (dispatch) => {
     return convertedLocation.then((coords) => {
+      console.log(coords);
       dispatch({
         type: SEARCH_USER_INPUT,
         coords: coords

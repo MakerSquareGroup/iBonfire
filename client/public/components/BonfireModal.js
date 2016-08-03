@@ -15,6 +15,7 @@ class BonfireModal extends Component {
   }
   descriptionBox(event) {
     if(event.keyCode === 13) {
+      this.props.changeClassName(true)
       this.setState({
         name: ''
       })

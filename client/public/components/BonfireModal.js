@@ -8,7 +8,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 class BonfireModal extends Component {
   constructor(props) {
     super(props)
-    console.log(this.props, 'what is the props in de beginning')
+    console.log(this.props.changeClass, 'what is the props in de beginning')
 
     this.state = {
       // hidden: 'hidden'
@@ -17,6 +17,7 @@ class BonfireModal extends Component {
   }
 
   render() {
+    console.log('this.props.changeClass', this.props.changeClass);
     return (
 
       <div id={this.props.changeClass}>
@@ -33,8 +34,9 @@ class BonfireModal extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log('state in mapstatetoprops', state.changeClassName);
   return {
-    changeClass: state.changeClassName
+    changeClass: state.changeClass
   }
 }
 

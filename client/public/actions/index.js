@@ -47,8 +47,8 @@ export function addMarker(data) {
   })
 }
 
-export function changeClassName(boollean) {
-  if(boollean === true) {
+export function changeBonfireModalClassName(animation) {
+  if(animation === "fadeOut") {
     return ({
       type: CHANGE_CLASSNAME,
       payload:
@@ -62,19 +62,22 @@ export function changeClassName(boollean) {
       }
     })
   }
-  return ({
-    type: CHANGE_CLASSNAME,
 
-    payload: 
-    { 
-      class: 
-         { 
-           bonfireModal: 'bonfireModal', 
-           modelTextBox: 'modelTextBox',
-           showModal: 'showModal'
-         }
-    }
-  })
+  if(animation === "fadeIn"){
+    return ({
+      type: CHANGE_CLASSNAME,
+      payload: 
+      { 
+        class: 
+           { 
+             bonfireModal: 'bonfireModal', 
+             modelTextBox: 'modelTextBox',
+             showModal: 'showModal'
+           }
+      }
+    })
+  }
+
 }
 
 export function addUser(user, picture) {

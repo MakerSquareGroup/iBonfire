@@ -38,6 +38,7 @@ export function changeClassName(boollean) {
   }
   return ({
     type: CHANGE_CLASSNAME,
+
     payload: 
     { 
       class: 
@@ -100,12 +101,38 @@ export function getLocation() {
   }
 }
 
-// searchAction('test');
-// searchAction is called by the search form in the navbar and takes in an address, uses the convertLocationToCoords
-// to convert the location to latitude and longitude, then re-centers the map on that location
+// searchAction is called by the search form in the navbar and takes in an address to convert it to
+// latitude and longitude coordinates to recenter map on 
 
 export function searchAction(searchValue) {
-  console.log(searchValue, "THIS IS THE SEARCH VALUE")
+  const convertedLocation = new Promise((resolve, reject) => {
+    let response;
+    let coords;
+    resolve(axios.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + searchValue + '&sensor=true'))
+      .then((payload) => {
+        response = payload.data.results[0].geometry.location;
+        coords = {
+          latitude: response.lat,
+          longitude: response.lng
+        };
+
+        return {
+          data: coords
+        }
+      })
+      .catch((response) => {
+        console.log(response, 'Error inside searchAction in Actions');
+      });
+  });
+
+  return (dispatch) => {
+    return convertedLocation.then((coords) => {
+      dispatch({
+        type: SEARCH_USER_INPUT,
+        coords: coords
+      });
+    });
+  };
 };
 
 // convertCoordsToLocation takes in a latitude and longitude and returns an address
@@ -116,16 +143,16 @@ export function convertCoordsToLocation(latlng) {
   const apiCall = new Promise((resolve, reject) => {
     let response;
     let address;
-    resolve(axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latlng + '&sensor=true')
-        .then((payload) => {
-          response = payload.data.results[0].formatted_address;
-          address = {
-            location: response
-          };
-          return {
-            data: address
-          };
-        }))
+    resolve(axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latlng + '&sensor=true'))
+      .then((payload) => {
+        response = payload.data.results[0].formatted_address;
+        address = {
+          location: response
+        };
+        return {
+          data: address
+        };
+      })
       .catch((response) => {
         console.log(response, 'Error inside convertCoordsToLocation in Actions');
       });
@@ -149,17 +176,17 @@ export function convertLocationToCoords(location) {
   const apiCall = new Promise((resolve, reject) => {
     let response;
     let coords;
-    resolve(axios.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + location + '&sensor=true')
-        .then((payload) => {
-          response = payload.data.results[0].geometry.location;
-          coords = {
-            latitude: response.lat,
-            longitude: response.lng
-          };
-          return {
-            data: coords
-          }
-        }))
+    resolve(axios.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + location + '&sensor=true'))
+      .then((payload) => {
+        response = payload.data.results[0].geometry.location;
+        coords = {
+          latitude: response.lat,
+          longitude: response.lng
+        };
+        return {
+          data: coords
+        }
+      })
       .catch((response) => {
         console.log(response, 'Error inside convertLocationToCoords in Actions');
       });

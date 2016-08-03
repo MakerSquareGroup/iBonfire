@@ -14,7 +14,7 @@ class Navigation extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			term: "Please enter a location"
+			term: "Please enter a City/State"
 		}
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
@@ -56,14 +56,14 @@ class Navigation extends Component {
 						>
 					    <MenuItem onClick={this.logout}>
 								Log Out
-							</MenuItem>
+						</MenuItem>
 					    </IconMenu>
 				    </MuiThemeProvider>
 			    </div>
+			    
 			</div>
 		)
 	}
-	
 }
 
 const mapStateToProps = state => {

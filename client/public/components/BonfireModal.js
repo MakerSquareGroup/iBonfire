@@ -11,7 +11,8 @@ class BonfireModal extends Component {
 
     this.state = {
       description: '',
-      tag: ''
+      tag: '',
+      cityState: ''
     }
   }
   descriptionBox(event) {
@@ -19,7 +20,8 @@ class BonfireModal extends Component {
       this.props.changeClassName(true)
       this.setState({
         description: '',
-        tag: ''
+        tag: '',
+        cityState: ''
       })
     }
     // i need to send the description to my actions
@@ -27,11 +29,15 @@ class BonfireModal extends Component {
     // description. And I need to send that object to the db. 
 
     // hitting enter also needs to clear the textbox by reseting the classname to hidden and reset state to an empty string
-    
+    // console.log(this.props.markers[this.props.markers.length - 1].position.lat, 'what are the markers')
+    // console.log(this.props.markers[this.props.markers.length - 1].position.lng, 'what are the markers')
     // this.props.sendDescription({
     //   modal: {
     //     description: this.state.description,
-    //     tag: this.state.tag
+    //     tags: this.state.tag,
+    //     cityState: this.state.cityState,
+    //     lat: this.props.markers[this.props.markers.length - 1].position.lat,
+    //     lng: this.props.markers[this.props.markers.length - 1].position.lng
     //   }
     // })
   }
@@ -43,6 +49,22 @@ class BonfireModal extends Component {
           <div id={this.props.changeClass.modelTextBox}>
             <MuiThemeProvider>
               <TextField
+                hintText="Tag"
+                value={this.state.tag}
+                onChange={e => this.setState({tag: e.target.value})}
+                onKeyDown={this.descriptionBox.bind(this)}
+              />
+            </MuiThemeProvider>
+            <MuiThemeProvider>
+              <TextField
+                hintText="City, State"
+                value={this.state.cityState}
+                onChange={e => this.setState({cityState: e.target.value})}
+                onKeyDown={this.descriptionBox.bind(this)}
+              />
+            </MuiThemeProvider>    
+            <MuiThemeProvider>
+              <TextField
                 hintText="Description"
                 value={this.state.description}
                 onChange={e => this.setState({description: e.target.value})}
@@ -50,14 +72,6 @@ class BonfireModal extends Component {
               />
             </MuiThemeProvider> 
               <br/>
-            <MuiThemeProvider>
-              <TextField
-                hintText="Tag"
-                value={this.state.tag}
-                onChange={e => this.setState({tag: e.target.value})}
-                onKeyDown={this.descriptionBox.bind(this)}
-              />
-            </MuiThemeProvider>   
           </div>        
         </div>
       </div>
@@ -67,7 +81,8 @@ class BonfireModal extends Component {
 
 const mapStateToProps = state => {
   return {
-    changeClass: state.changeClass
+    changeClass: state.changeClass,
+    markers: state.markers
   }
 }
 

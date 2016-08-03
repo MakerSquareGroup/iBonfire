@@ -11,7 +11,15 @@ export const SEARCH_USER_INPUT = 'SEARCH_USER_INPUT';
 
 
 export function sendDescription(modalObj) {
-  
+  // return function(dispatch) {
+  // axios.post('/someRoute', modalObj)
+  //   .then(function(response) {
+
+  //   })
+  //   .catch(function(err) {
+  //     console.log(err: 'error in sendDescription action');
+  //   })
+  // }
 }
 
 export function addMarker(data) {

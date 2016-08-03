@@ -54,6 +54,8 @@ class BonfireModal extends Component {
           <div id={this.props.changeClass.modelTextBox}>
             <MuiThemeProvider>
               <TextField
+              hintStyle={{'color':'white'}}
+                inputStyle={{'color':'white','fontFamily':'raleway','fontWeight':'300'}}
                 hintText="Tag"
                 value={this.state.tag}
                 onChange={e => this.setState({tag: e.target.value})}
@@ -62,6 +64,8 @@ class BonfireModal extends Component {
             </MuiThemeProvider>
             <MuiThemeProvider>
               <TextField
+                inputStyle={{'color':'white','fontFamily':'raleway','fontWeight':'300'}}
+                hintStyle={{'color':'white'}}
                 hintText="City, State"
                 value={this.state.cityState}
                 onChange={e => this.setState({cityState: e.target.value})}
@@ -70,48 +74,18 @@ class BonfireModal extends Component {
             </MuiThemeProvider>    
             <MuiThemeProvider>
               <TextField
+              inputStyle={{'color':'white','fontFamily':'raleway','fontWeight':'300'}}
+              hintStyle={{'color':'white'}}
                 hintText="Description"
-<<<<<<< fb0f866fafbce1edc34edee3a76b63b09c56a247
                 value={this.state.description}
                 onChange={e => this.setState({description: e.target.value})}
                 onKeyDown={this.descriptionBox.bind(this)}
               />
-            </MuiThemeProvider> 
-              <br/>
-          </div>        
-=======
-                hintStyle={{'color':'white'}}
-                inputStyle={{'color':'white', 'fontFamily':'Raleway','fontWeight':'400'}}
-                value={this.state.name}
-                onChange={e => this.setState({name: e.target.value})}
-                onKeyDown={this.descriptionBox.bind(this)}
-              />
-            </MuiThemeProvider>  
-            <MuiThemeProvider>
-              <TextField
-                hintText="City, Location"
-                hintStyle={{'color':'white'}}
-                inputStyle={{'color':'white', 'fontFamily':'Raleway','fontWeight':'400'}}
-                value={this.state.name}
-                onChange={e => this.setState({name: e.target.value})}
-                onKeyDown={this.descriptionBox.bind(this)}
-              />
-            </MuiThemeProvider>  
-            <MuiThemeProvider>
-              <TextField
-                hintText="Tags"
-                hintStyle={{'color':'white'}}
-                inputStyle={{'color':'white', 'fontFamily':'Raleway','fontWeight':'400'}}
-                value={this.state.name}
-                onChange={e => this.setState({name: e.target.value})}
-                onKeyDown={this.descriptionBox.bind(this)}
-              />
-            </MuiThemeProvider>  
-          </div>   
+            </MuiThemeProvider>
+          </div>
           <div id="CreateBonfireImage">
             
           </div>
->>>>>>> [Pull] Start initial template for create bonfire model
         </div>
     )
   }

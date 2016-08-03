@@ -34,6 +34,10 @@ class BonfireMap extends Component {
 	// 	}
 	// }
 
+	findLocation() {
+
+	}
+
 	handleMapClick(event) {
 		let lat = event.latLng.lat();
 		let long = event.latLng.lng();

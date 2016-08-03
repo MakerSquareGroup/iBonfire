@@ -61,7 +61,6 @@ export function getLocation() {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-        // browserHistory.push('/');
         resolve(pos);
       });
     });

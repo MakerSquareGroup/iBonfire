@@ -4,16 +4,20 @@ import { browserHistory } from 'react-router';
 export const ADD_MARKER = 'ADD_MARKER';
 export const ADD_USER = 'ADD_USER';
 export const GET_LOCATION = 'GET_LOCATION';
+export const CHANGE_CLASSNAME = 'CHANGE_CLASSNAME';
 
 export function addMarker(data) {
-  // console.log(data, 'what is dispatch')
-  // return function (dispatch) {
-  //   axios()
-  // }
   return ({
       type: ADD_MARKER, 
       payload: data 
     })
+}
+
+export function changeClassName() {
+  return ({
+    type: CHANGE_CLASSNAME,
+    payload: {bonfireModal: 'bonfireModal'}
+  })
 }
 
 export function addUser(user, picture) {
@@ -47,7 +51,7 @@ export function getLocation() {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-        browserHistory.push('/');
+        // browserHistory.push('/');
         resolve(pos);
       });
     });

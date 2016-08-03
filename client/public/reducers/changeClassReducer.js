@@ -11,7 +11,7 @@ export default function(state = INITIAL_STATE, action) {
     case CHANGE_CLASSNAME:
       console.log(state, 'STATE IN REDUCER CLASNAME')
       console.log('this is being returned:', action.payload.bonfireModal);
-      return action.payload.bonfireModal;
+      return action.payload.class;
   }
   console.log(state, 'sstate in jibfdjdksfbj');
   return state;

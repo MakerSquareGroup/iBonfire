@@ -8,23 +8,34 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 class BonfireModal extends Component {
   constructor(props) {
     super(props)
-    console.log(this.props.changeClass, 'what is the props in de beginning')
 
     this.state = {
-      // hidden: 'hidden'
-      // bonfireModal: 'bonfireModal'
+      name: ''
     }
+  }
+
+  descriptionBox(event) {
+    console.log(event.target, 'what is event.target')
+    // i need to send the description to my actions
+    // once my description is in my actions i need to link it up with long/lat of the pin that was dropped to an object with 
+    // description. And I need to send that object to the db. 
+
+    // hitting enter also needs to clear the textbox by reseting the classname to hidden and reset state to an empty string
+    // this.props.
   }
 
   render() {
     console.log('this.props.changeClass', this.props.changeClass);
     return (
 
-      <div id={this.props.changeClass}>
-        <div id='modelTextBox'>
+      <div id={this.props.changeClass.bonfireModal}>
+        <div id={this.props.changeClass.modelTextBox}>
           <MuiThemeProvider>
             <TextField
               hintText="Description"
+              value={this.state.name}
+              onChange={e => this.setState({name: e.target.value})}
+              onKeyDown={this.descriptionBox}
             />
           </MuiThemeProvider>  
         </div>        

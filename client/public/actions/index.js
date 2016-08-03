@@ -74,8 +74,9 @@ export function getLocation() {
       });
     }
   }
+}
 
-searchAction('test');
+// searchAction('test');
 
 // searchAction is called by the search form in the navbar and takes in an address, uses the convertLocationToCoords
 // to convert the location to latitude and longitude, then re-centers the map on that location

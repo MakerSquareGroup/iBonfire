@@ -82,7 +82,7 @@ class BonfireMap extends Component {
 			      ref={googleMap => {
 			        googleMap && console.log(`Zoom: ${ googleMap.getZoom() }`);
 			      }}
-			      defaultZoom={10}
+			      defaultZoom={5}
 			      center={this.state.location}
 			      onClick={this.handleMapClick.bind(this)}
 			    >

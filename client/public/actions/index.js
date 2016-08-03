@@ -20,16 +20,13 @@ export function addMarker(data) {
 }
 
 export function changeClassName() {
-  console.log('inside changeCLassName action creator', CHANGE_CLASSNAME);
   return ({
     type: CHANGE_CLASSNAME,
     payload: 
     { 
       class: 
-             { 
-               bonfireModal: 'bonfireModal', 
-               modelTextBox: 'modelTextBox'
-             }
+         { bonfireModal: 'bonfireModal', 
+           modelTextBox: 'modelTextBox'}
     }
   })
 }

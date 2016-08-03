@@ -9,7 +9,7 @@ import * as actions from '../actions/index';
 
 class BonfireMap extends Component {
 	constructor(props) {
-		super(props)
+		super(props);
 		this.state = {
 			location: {
 				lat: this.props.location.lat, 
@@ -18,23 +18,19 @@ class BonfireMap extends Component {
 		}
 	}
 
-	componentDidMount() {
+	componentWillMount() {
 		this.props.getLocation();
 	}
 
-	// componentWillReceiveProps(nextProps) {
-	// 	if(this.props.location.lat !== nextProps.location.lat || this.props.location.lng !== nextProps.location.lng) {
-	// 		this.setState({
-	// 			location: {
-	// 				lat: nextProps.location.lat,
-	// 				lng: nextProps.location.lng
-	// 			}
-	// 		});
-	// 	}
-	// }
-
-	findLocation() {
-
+	componentWillReceiveProps(nextProps) {
+		if(this.props.location.lat !== nextProps.location.lat || this.props.location.lng !== nextProps.location.lng) {
+			this.setState({
+				location: {
+					lat: nextProps.location.lat,
+					lng: nextProps.location.lng
+				}
+			});
+		}
 	}
 
 	handleMapClick(event) {
@@ -43,6 +39,13 @@ class BonfireMap extends Component {
 		let markerObject = {
 			position: { lat: lat, lng: long }
 		}
+
+		this.setState({
+			location: {
+				lat: lat,
+				lng: long
+			}
+		});
 
 		this.props.addMarker(markerObject);
 		this.props.changeClassName();
@@ -68,6 +71,17 @@ class BonfireMap extends Component {
 		facebookLogout();
 	}
 
+	newCenter() {
+		let lat = this.refs.googleMap.getCenter().lat();
+		let lng = this.refs.googleMap.getCenter().lng();
+		this.setState({
+			location: {
+				lat: lat, 
+				lng: lng
+			}
+		});
+	}
+
 	render() {
 		return (
 			<GoogleMapLoader
@@ -78,11 +92,10 @@ class BonfireMap extends Component {
 			  googleMapElement={
 			    <GoogleMap
 
-			      // ref={googleMap => {
-			      //   googleMap && console.log(`Zoom: ${ googleMap.getZoom() }`);
-			      // }}
+			      ref="googleMap"
 			      defaultZoom={5}
-			      center={this.props.markers[this.props.markers.length - 1].position}
+			      onCenterChanged={this.newCenter.bind(this)}
+			      center={this.state.location}
 			      onClick={this.handleMapClick.bind(this)}
 			    >
 			      {this.renderMarkers()}

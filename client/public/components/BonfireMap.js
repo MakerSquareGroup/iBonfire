@@ -43,6 +43,7 @@ class BonfireMap extends Component {
 		let markerObject = {
 			position: { lat: lat, lng: long }
 		}
+
 		this.props.addMarker(markerObject);
 		this.props.changeClassName();
 	}
@@ -81,7 +82,7 @@ class BonfireMap extends Component {
 			      //   googleMap && console.log(`Zoom: ${ googleMap.getZoom() }`);
 			      // }}
 			      defaultZoom={5}
-			      center={this.state.location}
+			      center={this.props.markers[this.props.markers.length - 1].position}
 			      onClick={this.handleMapClick.bind(this)}
 			    >
 			      {this.renderMarkers()}

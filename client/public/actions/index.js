@@ -85,6 +85,7 @@ export function getLocation() {
 
     return (dispatch) => {
       return location.then((position) => {
+        console.log(position);
         dispatch({
           type: GET_LOCATION,
           position: position

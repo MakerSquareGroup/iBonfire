@@ -16,14 +16,31 @@ export function addMarker(data) {
   })
 }
 
-export function changeClassName() {
+export function changeClassName(boollean) {
+  if(boollean === true) {
+    return ({
+      type: CHANGE_CLASSNAME,
+      payload:
+      {
+        class:
+          {
+            bonfireModal: 'hidden',
+            modelTextBox: 'hidden',
+            showModal: 'hidden'
+          }
+      }
+    })
+  }
   return ({
     type: CHANGE_CLASSNAME,
     payload: 
     { 
       class: 
-         { bonfireModal: 'bonfireModal', 
-           modelTextBox: 'modelTextBox'}
+         { 
+           bonfireModal: 'bonfireModal', 
+           modelTextBox: 'modelTextBox',
+           showModal: 'showModal'
+         }
     }
   })
 }

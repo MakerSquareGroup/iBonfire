@@ -15,6 +15,7 @@ class BonfireModal extends Component {
   }
   descriptionBox(event) {
     if(event.keyCode === 13) {
+      this.props.changeClassName(true)
       this.setState({
         name: ''
       })
@@ -24,22 +25,24 @@ class BonfireModal extends Component {
     // description. And I need to send that object to the db. 
 
     // hitting enter also needs to clear the textbox by reseting the classname to hidden and reset state to an empty string
-    // this.props.
+    // this.props.getDescription()
   }
 
   render() {
     return (
-      <div id={this.props.changeClass.bonfireModal}>
-        <div id={this.props.changeClass.modelTextBox}>
-          <MuiThemeProvider>
-            <TextField
-              hintText="Description"
-              value={this.state.name}
-              onChange={e => this.setState({name: e.target.value})}
-              onKeyDown={this.descriptionBox.bind(this)}
-            />
-          </MuiThemeProvider>  
-        </div>        
+      <div id={this.props.changeClass.hidden || this.props.changeClass.showModal}>
+        <div id={this.props.changeClass.bonfireModal}>
+          <div id={this.props.changeClass.modelTextBox}>
+            <MuiThemeProvider>
+              <TextField
+                hintText="Description"
+                value={this.state.name}
+                onChange={e => this.setState({name: e.target.value})}
+                onKeyDown={this.descriptionBox.bind(this)}
+              />
+            </MuiThemeProvider>  
+          </div>        
+        </div>
       </div>
     )
   }

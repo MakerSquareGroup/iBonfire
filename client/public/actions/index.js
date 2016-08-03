@@ -9,6 +9,11 @@ export const CONVERT_LATLONG = 'CONVERT_LATLONG';
 export const CONVERT_LOCATION = 'CONVERT_LOCATION';
 export const SEARCH_USER_INPUT = 'SEARCH_USER_INPUT';
 
+
+export function sendDescription(modalObj) {
+  
+}
+
 export function addMarker(data) {
   return ({
     type: ADD_MARKER,

@@ -10,14 +10,16 @@ class BonfireModal extends Component {
     super(props)
 
     this.state = {
-      name: ''
+      description: '',
+      tag: ''
     }
   }
   descriptionBox(event) {
     if(event.keyCode === 13) {
       this.props.changeClassName(true)
       this.setState({
-        name: ''
+        description: '',
+        tag: ''
       })
     }
     // i need to send the description to my actions
@@ -25,7 +27,13 @@ class BonfireModal extends Component {
     // description. And I need to send that object to the db. 
 
     // hitting enter also needs to clear the textbox by reseting the classname to hidden and reset state to an empty string
-    // this.props.getDescription()
+    
+    // this.props.sendDescription({
+    //   modal: {
+    //     description: this.state.description,
+    //     tag: this.state.tag
+    //   }
+    // })
   }
 
   render() {
@@ -36,11 +44,20 @@ class BonfireModal extends Component {
             <MuiThemeProvider>
               <TextField
                 hintText="Description"
-                value={this.state.name}
-                onChange={e => this.setState({name: e.target.value})}
+                value={this.state.description}
+                onChange={e => this.setState({description: e.target.value})}
                 onKeyDown={this.descriptionBox.bind(this)}
               />
-            </MuiThemeProvider>  
+            </MuiThemeProvider> 
+              <br/>
+            <MuiThemeProvider>
+              <TextField
+                hintText="Tag"
+                value={this.state.tag}
+                onChange={e => this.setState({tag: e.target.value})}
+                onKeyDown={this.descriptionBox.bind(this)}
+              />
+            </MuiThemeProvider>   
           </div>        
         </div>
       </div>

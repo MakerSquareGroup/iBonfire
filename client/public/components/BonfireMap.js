@@ -11,10 +11,10 @@ class BonfireMap extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			location: {
-				lat: this.props.location.lat, 
-				lng: this.props.location.lng
-			}
+			// location: {
+			// 	lat: this.props.location.lat, 
+			// 	lng: this.props.location.lng
+			// }
 		}
 	}
 
@@ -88,14 +88,14 @@ class BonfireMap extends Component {
 			  containerElement={
 			    <div style={{ height: "100%" }} />
 			  }
-
 			  googleMapElement={
 			    <GoogleMap
-
 			      ref="googleMap"
 			      defaultZoom={5}
 			      onCenterChanged={this.newCenter.bind(this)}
 			      center={this.state.location}
+			      defaultCenter={this.props.location}
+			      center={this.props.markers[this.props.markers.length - 1].position}
 			      onClick={this.handleMapClick.bind(this)}
 			    >
 			      {this.renderMarkers()}

@@ -14,7 +14,7 @@ class Navigation extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			term: "Please enter a City/State"
+
 		}
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
@@ -43,9 +43,8 @@ class Navigation extends Component {
 			        <input 
 			        type="search" 
 			        placeholder="Search"
-			        value={this.state.term}
-			        onChange={(event) => this.setState({ term: event.target.value })}
-			        />
+							onChange={(event)=> this.setState({ term: event.target.value })}
+							/>
 			      </form>
 			    </div>
 

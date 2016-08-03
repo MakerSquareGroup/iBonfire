@@ -10,7 +10,6 @@ import * as actions from '../actions/index';
 class BonfireMap extends Component {
 	constructor(props) {
 		super(props)
-		console.log(props);
 		this.state = {
 			location: {
 				lat: this.props.location.lat, 
@@ -49,7 +48,6 @@ class BonfireMap extends Component {
 	}
 
 	renderMarkers() {
-		// console.log('in renderMarkers')
 		return this.props.markers.map((marker, index) => {
 			return (
 				<Marker
@@ -79,9 +77,9 @@ class BonfireMap extends Component {
 			  googleMapElement={
 			    <GoogleMap
 
-			      ref={googleMap => {
-			        googleMap && console.log(`Zoom: ${ googleMap.getZoom() }`);
-			      }}
+			      // ref={googleMap => {
+			      //   googleMap && console.log(`Zoom: ${ googleMap.getZoom() }`);
+			      // }}
 			      defaultZoom={5}
 			      center={this.state.location}
 			      onClick={this.handleMapClick.bind(this)}

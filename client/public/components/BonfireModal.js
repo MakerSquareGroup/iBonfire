@@ -14,7 +14,6 @@ class BonfireModal extends Component {
     }
   }
   descriptionBox(event) {
-    console.log(event.keyCode, 'keyCode')
     if(event.keyCode === 13) {
       this.setState({
         name: ''
@@ -29,9 +28,7 @@ class BonfireModal extends Component {
   }
 
   render() {
-    console.log('this.state.name', this.state.name);
     return (
-
       <div id={this.props.changeClass.bonfireModal}>
         <div id={this.props.changeClass.modelTextBox}>
           <MuiThemeProvider>

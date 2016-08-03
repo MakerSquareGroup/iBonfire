@@ -86,7 +86,7 @@ export function getLocation() {
 // to convert the location to latitude and longitude, then re-centers the map on that location
 
 export function searchAction(searchValue) {
-  console.log(searchValue, "THIS IS THE SEARCH VALUE")
+  // console.log(searchValue, "THIS IS THE SEARCH VALUE")
 }
 
 // convertCoordsToLocation takes in a latitude and longitude and returns an address

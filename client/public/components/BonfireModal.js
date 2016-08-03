@@ -15,9 +15,14 @@ class BonfireModal extends Component {
       cityState: ''
     }
   }
+
+  componentDidMount(){
+    this.props.changeBonfireModalClassName("fadeOut")
+  }
+
   descriptionBox(event) {
     if(event.keyCode === 13) {
-      this.props.changeClassName(true)
+      this.props.changeBonfireModalClassName("fadeOut")
       this.setState({
         description: '',
         tag: '',
@@ -44,11 +49,13 @@ class BonfireModal extends Component {
 
   render() {
     return (
-      <div id={this.props.changeClass.hidden || this.props.changeClass.showModal}>
-        <div id={this.props.changeClass.bonfireModal}>
+        <div className={this.props.changeClass.bonfireModal}>
+          <h id="CreateBonfireHeader">Create New Bonfire</h>
           <div id={this.props.changeClass.modelTextBox}>
             <MuiThemeProvider>
               <TextField
+              hintStyle={{'color':'white'}}
+                inputStyle={{'color':'white','fontFamily':'raleway','fontWeight':'300'}}
                 hintText="Tag"
                 value={this.state.tag}
                 onChange={e => this.setState({tag: e.target.value})}
@@ -57,6 +64,8 @@ class BonfireModal extends Component {
             </MuiThemeProvider>
             <MuiThemeProvider>
               <TextField
+                inputStyle={{'color':'white','fontFamily':'raleway','fontWeight':'300'}}
+                hintStyle={{'color':'white'}}
                 hintText="City, State"
                 value={this.state.cityState}
                 onChange={e => this.setState({cityState: e.target.value})}
@@ -65,16 +74,19 @@ class BonfireModal extends Component {
             </MuiThemeProvider>    
             <MuiThemeProvider>
               <TextField
+              inputStyle={{'color':'white','fontFamily':'raleway','fontWeight':'300'}}
+              hintStyle={{'color':'white'}}
                 hintText="Description"
                 value={this.state.description}
                 onChange={e => this.setState({description: e.target.value})}
                 onKeyDown={this.descriptionBox.bind(this)}
               />
-            </MuiThemeProvider> 
-              <br/>
-          </div>        
+            </MuiThemeProvider>
+          </div>
+          <div id="CreateBonfireImage">
+            
+          </div>
         </div>
-      </div>
     )
   }
 }

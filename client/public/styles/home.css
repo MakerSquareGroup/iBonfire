@@ -24,8 +24,12 @@
 	width: 350px;
 }
 
-#hide {
+#hidden {
 	visibility: hidden;
+}
+
+#showModal {
+	visibility: show;
 }
 
 #bonfireModal {

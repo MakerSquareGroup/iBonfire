@@ -22,8 +22,11 @@ export function changeClassName() {
     payload: 
     { 
       class: 
-         { bonfireModal: 'bonfireModal', 
-           modelTextBox: 'modelTextBox'}
+         { 
+           bonfireModal: 'bonfireModal', 
+           modelTextBox: 'modelTextBox',
+           showModal: 'showModal'
+         }
     }
   })
 }

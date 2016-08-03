@@ -126,7 +126,6 @@ export function searchAction(searchValue) {
   });
   return (dispatch) => {
     return convertedLocation.then((coords) => {
-      console.log(coords);
       dispatch({
         type: SEARCH_USER_INPUT,
         coords: coords

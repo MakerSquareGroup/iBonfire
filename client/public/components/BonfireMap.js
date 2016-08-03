@@ -10,8 +10,8 @@ import * as actions from '../actions/index';
 class BonfireMap extends Component {
 	constructor(props) {
 		super(props)
-		// console.log(props);
-		this.state = { 
+		console.log(props);
+		this.state = {
 			location: {
 				lat: this.props.location.lat, 
 				lng: this.props.location.lng

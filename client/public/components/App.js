@@ -11,15 +11,14 @@ import { facebookInit } from '../helpers/fbHelper';
 import injectTapEventPlugin from "react-tap-event-plugin";
 injectTapEventPlugin();
 
-
-export default class App extends Component {
+class App extends Component {
 	constructor(props) {
 		super(props);
     console.log(this.props, 'props in app')
 		this.state = {
 
 		};
-    
+
 		this.handleClick = this.handleClick.bind(this);
 	}
 

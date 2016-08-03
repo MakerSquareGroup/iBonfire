@@ -14,6 +14,7 @@ export function addMarker(data) {
 }
 
 export function changeClassName() {
+  console.log('inside changeCLassName action creator', CHANGE_CLASSNAME);
   return ({
     type: CHANGE_CLASSNAME,
     payload: {bonfireModal: 'bonfireModal'}

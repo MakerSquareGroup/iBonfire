@@ -5,6 +5,7 @@ export const ADD_MARKER = 'ADD_MARKER';
 export const ADD_USER = 'ADD_USER';
 
 export const GET_LOCATION = 'GET_LOCATION';
+export const CHANGE_CLASSNAME = 'CHANGE_CLASSNAME';
 
 export const CONVERT_LATLONG = 'CONVERT_LATLONG';
 export const CONVERT_LOCATION = 'CONVERT_LOCATION';
@@ -12,13 +13,17 @@ export const SEARCH_USER_LOCATION = 'SEARCH_USER_LOCATION';
 
 
 export function addMarker(data) {
-  // console.log(data, 'what is dispatch')
-  // return function (dispatch) {
-  //   axios()
-  // }
   return ({
     type: ADD_MARKER,
     payload: data
+  })
+}
+
+export function changeClassName() {
+  console.log('inside changeCLassName action creator', CHANGE_CLASSNAME);
+  return ({
+    type: CHANGE_CLASSNAME,
+    payload: {bonfireModal: 'bonfireModal'}
   })
 }
 
@@ -56,7 +61,7 @@ export function getLocation() {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-        browserHistory.push('/');
+        // browserHistory.push('/');
         resolve(pos);
       });
     });

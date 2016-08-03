@@ -35,7 +35,7 @@
 #bonfireModal {
 	position: absolute;
 	text-align: center;
-	top: 50%;
+	top: 55%;
 	left: 50%;
 	transform: translateX(-50%) translateY(-50%);
 	z-index: 10000;

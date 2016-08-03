@@ -15,6 +15,7 @@ injectTapEventPlugin();
 export default class App extends Component {
 	constructor(props) {
 		super(props);
+    console.log(this.props, 'props in app')
 		this.state = {
 
 		};
@@ -55,7 +56,8 @@ const mapStateToProps = state => {
   return {
     markers: state.markers,
     users: state.users,
-    location: state.location
+    location: state.location,
+    changeClass: state.changeClass.bonfireModal
   }
 }
 

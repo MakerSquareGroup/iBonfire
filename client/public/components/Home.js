@@ -10,10 +10,6 @@ class Home extends Component {
     super(props);
   }
 
-  componentWillMount() {
-    this.props.getLocation();
-  }
-
 	render() {
     return (
       <div id="Home">

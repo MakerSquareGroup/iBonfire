@@ -1,16 +1,16 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import { GoogleMapLoader, GoogleMap, Marker } from "react-google-maps";
 import { facebookLogout, facebookInit } from '../helpers/fbHelper';
 
-import BonfireModel from './BonfireModel';
+import BonfireModal from './BonfireModal';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
 
-export default class BonfireMap extends Component {
+class BonfireMap extends Component {
 	constructor(props) {
 		super(props)
-		console.log(props);
+		// console.log(props);
 		this.state = { 
 			location: {
 				lat: this.props.location.lat, 
@@ -23,16 +23,16 @@ export default class BonfireMap extends Component {
 		this.props.getLocation();
 	}
 
-	componentWillReceiveProps(nextProps) {
-		if(this.props.location.lat !== nextProps.location.lat || this.props.location.lng !== nextProps.location.lng) {
-			this.setState({
-				location: {
-					lat: nextProps.location.lat,
-					lng: nextProps.location.lng
-				}
-			});
-		}
-	}
+	// componentWillReceiveProps(nextProps) {
+	// 	if(this.props.location.lat !== nextProps.location.lat || this.props.location.lng !== nextProps.location.lng) {
+	// 		this.setState({
+	// 			location: {
+	// 				lat: nextProps.location.lat,
+	// 				lng: nextProps.location.lng
+	// 			}
+	// 		});
+	// 	}
+	// }
 
 	handleMapClick(event) {
 		let lat = event.latLng.lat();
@@ -41,10 +41,11 @@ export default class BonfireMap extends Component {
 			position: { lat: lat, lng: long }
 		}
 		this.props.addMarker(markerObject);
+		this.props.changeClassName();
 	}
 
 	renderMarkers() {
-		console.log('in renderMarkers')
+		// console.log('in renderMarkers')
 		return this.props.markers.map((marker, index) => {
 			return (
 				<Marker
@@ -83,7 +84,7 @@ export default class BonfireMap extends Component {
 			    >
 			      {this.renderMarkers()}
 
-						<BonfireModel />
+						<BonfireModal />
 
 			    </GoogleMap>
 		  	}

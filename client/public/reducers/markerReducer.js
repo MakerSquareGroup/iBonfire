@@ -1,4 +1,5 @@
 import { ADD_MARKER } from '../actions/index';
+import { CHANGE_CLASSNAME } from '../actions/index';
 
 const INITIAL_STATE = [
 {

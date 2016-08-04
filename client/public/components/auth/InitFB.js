@@ -22,7 +22,7 @@ export default (CheckedComponent) => {
       if(window.isLoaded) {
         return <CheckedComponent {...this.props} />
       } else {
-        return <div>Loading...</div>
+        return <h1 id="loading">Loading...</h1>
       }
     }
   }

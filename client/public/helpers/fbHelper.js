@@ -31,23 +31,9 @@ export const facebookInit = () => {
    })(document, 'script', 'facebook-jssdk');
 }
 
-
 export const checkLoginStatus = () => {
 	FB.getLoginStatus((response) => {
     statusChangeCallBack(response);
-  });
-};
-
-export const facebookLogin = () => {
-  FB.login((response) => {
-    if(response.authResponse) {
-      browserHistory.push('/Home');
-      return FB.api('/me', 'get', { fields:'id,name,gender,link'}, (response) => {
-        let picture = `http://graph.facebook.com/${response.id}/picture?type=large`
-        console.log("Thanks for logging in, " + response.name);
-        return actions.addUser(response, picture);
-      });
-    }
   });
 };
 

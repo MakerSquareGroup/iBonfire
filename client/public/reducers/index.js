@@ -8,6 +8,7 @@ import searchUserInputReducer from './searchUserInputReducer';
 import convertLocationReducer from './convertLocationReducer';
 import convertCoordsReducer from './convertCoordsReducer';
 import facebookReducer from './facebookReducer';
+import currentMarkerReducer from './currentMarkerReducer';
 
 const rootReducer = combineReducers({
   markers: markerReducer,
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   search: searchUserInputReducer,
   convertLocation: convertLocationReducer,
   convertCoords: convertCoordsReducer,
-  facebook: facebookReducer
+  facebook: facebookReducer,
+  currMarker: currentMarkerReducer
 });
 
 export default rootReducer;

@@ -68,17 +68,30 @@ module.exports = {
 		get: (req, res) => {
 			console.log("Received GET at /api/user/");
 
-			// This function checks for the type of prop you are searching for
 			
 			var matchParams = req.params.user_specs;
+
+			// These function checks for the type of prop you are searching for
+
 			var getParams = checkParamsUser(req.params.user_specs);
 			var userBonfires = checkParamsUserBonfires(req.params.user_specs);
 
 			if (matchParams.match("=")) {
-				console.log("TESTING IF")
+				User.findUserBonfires(userBonfires.FB_ID)
+					.then((bonfires) => {
+						if (!bonfires) {
+							console.log('User with Facebook ID ' + userBonfires + ' has not lit any bonfires!');
+							res.end('User with Facebook ID ' + userBonfires + ' has not lit any bonfires!');
+						} else {
+							console.log('Here are the users bonfires!');
+							res.send(bonfires);
+						}
+					})
+
+					return;
 			}
 
-			if (Array.isArray(getParams)) {
+			if (matchParams.match("&")) {
 				User.findUserByLocation(getParams[0], getParams[1])
 					.then((user) => {
 						if (!user) {
@@ -88,13 +101,15 @@ module.exports = {
 							console.log('Found the user you are looking for!');
 							res.send(user);
 						}
-					});
-			} else {
+					});	
+			}
+
+			if (typeof getParams === 'string') {
 				User.findUserById(getParams)
 					.then((user) => {
 						if (!user) {
 							console.log('User with Facebook ID ' + getParams + ' does not exist!');
-							res.end('User with Facebook ID' + getParams + ' does not exist!');
+							res.end('User with Facebook ID ' + getParams + ' does not exist!');
 						} else {
 							console.log('Found the user you are looking for!');
 							res.send(user);
@@ -132,7 +147,6 @@ checkParamsUser = getParams => {
 };
 
 checkParamsUserBonfires = userBonfires => {
-	console.log(userBonfires, 'INSIDE checkParamsUserBonfires')
 	var reg = /[=]/;
 	if (userBonfires.match(reg)) {
 		console.log('This GET request is for returning all bonfires by user id');

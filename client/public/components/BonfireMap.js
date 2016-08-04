@@ -53,6 +53,9 @@ class BonfireMap extends Component {
 	}
 
 	renderMarkers() {
+		if(this.props.markers.length === 0) {
+			return;
+		}
 		return this.props.markers.map((marker, index) => {
 			return (
 				<Marker

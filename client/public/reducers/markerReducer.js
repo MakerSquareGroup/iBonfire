@@ -1,15 +1,6 @@
 import { ADD_MARKER } from '../actions/index';
 
-const INITIAL_STATE = [
-{
-  position: {
-    lat: -25.363882,
-    lng: 131.044922
-  },
-}
-];
-
-export default function(state = INITIAL_STATE, action) {
+export default function(state = [], action) {
   switch(action.type){
     case ADD_MARKER:
       return [...state, action.payload];

@@ -53,6 +53,23 @@ export const facebookLogin = () => {
   });
 };
 
+<<<<<<< b342964c41144f4187644ab82dacfe78c4d4589d
+=======
+export const facebookLogin = () => {
+  FB.login((response) => {
+    if(response.authResponse) {
+      browserHistory.push('/Home');
+      return FB.api('/me', 'get', { fields:'id,name,gender,link'}, (response) => {
+        let picture = `http://graph.facebook.com/${response.id}/picture?type=large`
+        console.log("Thanks for logging in, " + response.name);
+        actions.saveImage(picture);
+        return actions.addUser(response, picture);
+      });
+    }
+  });
+};
+
+>>>>>>> [Refactor] Refactored code in the user model and for the delete method in userCtrl
 export const facebookLogout = () => {
   FB.logout((response) => {
     console.log("Logging out...", response);

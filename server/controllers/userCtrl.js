@@ -85,8 +85,8 @@ module.exports = {
 							res.send(bonfires);
 						}
 					})
-					// Return here to avoid invoking the below functions
-					return;
+				// Return here to avoid invoking the below functions
+				return;
 			}
 
 			// This function checks the props to return a user by either location or FB ID
@@ -103,7 +103,7 @@ module.exports = {
 							console.log('Found the user you are looking for!');
 							res.send(user);
 						}
-					});	
+					});
 			}
 
 			if (typeof getParams === 'string') {
@@ -129,10 +129,12 @@ module.exports = {
 		},
 		delete: (req, res) => {
 			console.log("Received DELETE at /api/user/");
+
 			var userId = req.params.user_specs;
+
 			User.findUserById(userId)
 				.then((user) => {
-					if(!user){
+					if (!user) {
 						console.log('could not find user with the id of ' + userId);
 						res.end('could not find user with the id of ' + userId);
 					} else {
@@ -142,9 +144,8 @@ module.exports = {
 								res.end('deleted user with the id of ' + userId);
 							})
 					}
-					
+
 				})
-			res.end("Received Delete at /api/user");
 		}
 	}
 };
@@ -188,6 +189,8 @@ seperateUserBonfire = userId => {
 	var reg = /[=]/;
 	var passedInProps = userId.split(reg);
 
-	return {"FB_ID": passedInProps[0], "Filter": passedInProps[1]};
+	return {
+		"FB_ID": passedInProps[0],
+		"Filter": passedInProps[1]
+	};
 };
-

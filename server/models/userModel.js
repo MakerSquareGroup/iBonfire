@@ -30,11 +30,11 @@ User.findUserByLocation = (latitude, longitude) => {
 
 User.findUserBonfires = (FB_id) => {
 	return db('bonfires').where({
-		id_Users: FB_id
-	})
-	.then((rows) => {
-		return rows;
-	})
+			id_Users: FB_id
+		})
+		.then((rows) => {
+			return rows;
+		})
 };
 
 User.createUser = (attr) => {
@@ -47,10 +47,10 @@ User.createUser = (attr) => {
 	});
 };
 
-User.deleteUser = function(id){
+User.deleteUser = function(id) {
 	return db('users').where({
-		FB_id: id
-	}).del()
+			FB_id: id
+		}).del()
 		.then((response) => {
 			return response;
 		})

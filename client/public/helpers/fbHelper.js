@@ -12,7 +12,7 @@ export const facebookInit = () => {
       version: 'v2.7'
     });
 
-    // window.isLoaded = true;
+    window.isLoaded = true;
 
     FB.getLoginStatus((response) => {
       if(!response.authResponse) {

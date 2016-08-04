@@ -53,20 +53,6 @@ export const facebookLogin = () => {
   });
 };
 
-export const facebookLogin = () => {
-  FB.login((response) => {
-    if(response.authResponse) {
-      browserHistory.push('/Home');
-      return FB.api('/me', 'get', { fields:'id,name,gender,link'}, (response) => {
-        let picture = `http://graph.facebook.com/${response.id}/picture?type=large`
-        console.log("Thanks for logging in, " + response.name);
-        actions.saveImage(picture);
-        return actions.addUser(response, picture);
-      });
-    }
-  });
-};
-
 export const facebookLogout = () => {
   FB.logout((response) => {
     console.log("Logging out...", response);

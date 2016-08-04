@@ -58,7 +58,7 @@ class Navigation extends Component {
 			    <div id="DropDown">
 				    <MuiThemeProvider>
 					    <IconMenu
-					      iconButtonElement={<IconButton><DownArrowIcon style={{'width':'100px','height':'100px'}} color={'#F00303'}/></IconButton>}
+					      iconButtonElement={<IconButton><DownArrowIcon style={{'width':'100px','height':'100px'}} color={'#DF584C'}/></IconButton>}
 					      anchorOrigin={{horizontal: 'right', vertical: 'top'}}
 					      targetOrigin={{horizontal: 'right', vertical: 'top'}}
 						>

@@ -23,18 +23,18 @@ class BonfireModal extends Component {
   descriptionBox(event) {
     if(event.keyCode === 13) {
       this.props.changeBonfireModalClassName("fadeOut");
-      this.setState({
-        description: '',
-        tag: '',
-        cityState: ''
-      });
       this.props.sendDescription({
           description: this.state.description,
           tags: this.state.tag,
           cityState: this.state.cityState,
           latitude: String(this.props.currentMarker.lat),
           longitude: String(this.props.currentMarker.lng)
-      })
+      });
+      this.setState({
+        description: '',
+        tag: '',
+        cityState: ''
+      });
     }
   }
 
@@ -45,7 +45,7 @@ class BonfireModal extends Component {
           <div id={this.props.changeClass.modelTextBox}>
             <MuiThemeProvider>
               <TextField
-              hintStyle={{'color':'white'}}
+                hintStyle={{'color':'white'}}
                 inputStyle={{'color':'white','fontFamily':'raleway','fontWeight':'300'}}
                 hintText="Tag"
                 value={this.state.tag}
@@ -65,8 +65,8 @@ class BonfireModal extends Component {
             </MuiThemeProvider>    
             <MuiThemeProvider>
               <TextField
-              inputStyle={{'color':'white','fontFamily':'raleway','fontWeight':'300'}}
-              hintStyle={{'color':'white'}}
+                inputStyle={{'color':'white','fontFamily':'raleway','fontWeight':'300'}}
+                hintStyle={{'color':'white'}}
                 hintText="Description"
                 value={this.state.description}
                 onChange={e => this.setState({description: e.target.value})}

@@ -28,23 +28,15 @@ class BonfireModal extends Component {
         tag: '',
         cityState: ''
       })
+      this.props.sendDescription({
+          description: this.state.description,
+          tags: this.state.tag,
+          cityState: this.state.cityState,
+          latitude: String(this.props.markers[this.props.markers.length - 1].position.lat),
+          longitude: String(this.props.markers[this.props.markers.length - 1].position.lng)
+        }
+      )
     }
-    // i need to send the description to my actions
-    // once my description is in my actions i need to link it up with long/lat of the pin that was dropped to an object with 
-    // description. And I need to send that object to the db. 
-
-    // hitting enter also needs to clear the textbox by reseting the classname to hidden and reset state to an empty string
-    // console.log(this.props.markers[this.props.markers.length - 1].position.lat, 'what are the markers')
-    // console.log(this.props.markers[this.props.markers.length - 1].position.lng, 'what are the markers')
-    this.props.sendDescription({
-      modal: {
-        description: this.state.description,
-        tags: this.state.tag,
-        cityState: this.state.cityState,
-        latitude: this.props.markers[this.props.markers.length - 1].position.lat,
-        longitude: this.props.markers[this.props.markers.length - 1].position.lng
-      }
-    })
   }
 
   render() {

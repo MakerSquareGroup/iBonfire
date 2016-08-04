@@ -21,14 +21,14 @@ module.exports = {
 		},
 		post: (req, res) => {
 			console.log('Recieved POST at api/bonfire');
-			console.log('Creating bonfire');
+			console.log('Creating bonfire', req.body);
 
 			var newBonfire = {
-				name: req.body.name,
+				tags: req.body.tags,
 				description: req.body.description,
 				latitude: req.body.latitude,
 				longitude: req.body.longitude,
-				location: req.body.location,
+				cityState: req.body.cityState,
 				id_Users: req.body.id_Users
 			};
 

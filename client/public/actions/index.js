@@ -10,17 +10,6 @@ export const CONVERT_LOCATION = 'CONVERT_LOCATION';
 export const SEARCH_USER_INPUT = 'SEARCH_USER_INPUT';
 
 
-export function sendDescription(modalObj) {
-  // return function(dispatch) {
-  // axios.post('/someRoute', modalObj)
-  //   .then(function(response) {
-
-  //   })
-  //   .catch(function(err) {
-  //     console.log(err: 'error in sendDescription action');
-  //   })
-  // }
-}
 
 export function addMarker(data) {
   return ({
@@ -87,6 +76,18 @@ export function addUser(user, picture) {
   }
 }
 
+export function sendDescription(modalObj) {
+  console.log(modalObj, 'modalObj')
+  const sendModal = axios.post('/api/bonfire', modalObj)
+  return (dispatch) => {
+    return sendModal.then((response) => {
+      console.log('success') 
+    })
+    .catch((err) => {
+      console.log(err, 'error in sendDescription action');
+    })
+  }
+}
 
 export function getLocation() {
   if (navigator.geolocation) {

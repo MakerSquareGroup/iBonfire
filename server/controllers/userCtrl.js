@@ -106,6 +106,21 @@ module.exports = {
 		},
 		delete: (req, res) => {
 			console.log("Received DELETE at /api/user/");
+			var userId = req.params.user_specs;
+			User.findUserById(userId)
+				.then((user) => {
+					if(!user){
+						console.log('could not find user with the id of ' + userId);
+						res.end('could not find user with the id of ' + userId);
+					} else {
+						User.deleteUser(userId)
+							.then((response) => {
+								console.log('deleted user with the id of ' + userId);
+								res.end('deleted user with the id of ' + userId);
+							})
+					}
+					
+				})
 			res.end("Received Delete at /api/user");
 		}
 	}

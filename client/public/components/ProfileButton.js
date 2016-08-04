@@ -10,7 +10,7 @@ class ProfileButton extends Component {
 	render() {
     return (
       <div id="ProfileButton">
-      	<img src="https://avatars2.githubusercontent.com/u/8779656?v=3&s=460"/>
+      	<img src={`http://graph.facebook.com/${this.props.facebookUser.id}/picture?type=large`}/>
       </div>
     );
   }
@@ -20,7 +20,8 @@ function mapStateToProps(state) {
   return {
     markers: state.markers,
     users: state.users,
-    location: state.location
+    location: state.location,
+    facebookUser: state.facebook
   };
 }
 

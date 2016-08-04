@@ -117,7 +117,8 @@ const mapStateToProps = state => {
 		markers: state.markers,
 		users: state.users,
 		location: state.location,
-		changeClass: state.changeClass
+		changeClass: state.changeClass,
+		facebookUser: state.facebook
 	}
 }
 

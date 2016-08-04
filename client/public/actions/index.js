@@ -119,39 +119,6 @@ export function getLocation() {
   }
 }
 
-// searchAction is called by the search form in the navbar and takes in an address to convert it to
-// latitude and longitude coordinates to recenter map on 
-
-// export function searchAction(searchValue) {
-//   const convertedLocation = new Promise((resolve, reject) => {
-//     let response;
-//     let coords;
-//     resolve(axios.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + searchValue + '&sensor=true'))
-//       .then((payload) => {
-//         response = payload.data.results[0].geometry.location;
-//         coords = {
-//           latitude: response.lat,
-//           longitude: response.lng
-//         };
-
-//         return {
-//           data: coords
-//         }
-//       })
-//       .catch((response) => {
-//         console.log(response, 'Error inside searchAction in Actions');
-//       });
-//   });
-//   return (dispatch) => {
-//     return convertedLocation.then((coords) => {
-//       dispatch({
-//         type: SEARCH_USER_INPUT,
-//         coords: coords
-//       });
-//     });
-//   };
-// };
-
 export function searchAction(searchValue) {
   const convertedLocation = axios.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + searchValue + '&sensor=true');
 

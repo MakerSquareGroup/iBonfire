@@ -39,3 +39,12 @@ User.createUser = function(attr) {
 			});
 	});
 };
+
+User.deleteUser = function(id){
+	return db('users').where({
+		FB_id: id
+	}).del()
+		.then((response) => {
+			return response;
+		})
+}

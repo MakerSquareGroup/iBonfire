@@ -7,6 +7,10 @@ class ProfileButton extends Component {
     super(props);
   }
 
+  componentDidMount(){
+    console.log(this.props.profilePicture, "profilePicture");
+  }
+
 	render() {
     return (
       <div id="ProfileButton">

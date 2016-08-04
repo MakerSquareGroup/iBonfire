@@ -68,12 +68,10 @@ module.exports = {
 		get: (req, res) => {
 			console.log("Received GET at /api/user/");
 
-			
 			var matchParams = req.params.user_specs;
 
-			// These function checks for the type of prop you are searching for
+			// This function checks for '=' to determine search field for user bonfires
 
-			var getParams = checkParamsUser(req.params.user_specs);
 			var userBonfires = checkParamsUserBonfires(req.params.user_specs);
 
 			if (matchParams.match("=")) {
@@ -87,9 +85,13 @@ module.exports = {
 							res.send(bonfires);
 						}
 					})
-
+					// Return here to avoid invoking the below functions
 					return;
 			}
+
+			// This function checks the props to return a user by either location or FB ID
+
+			var getParams = checkParamsUser(req.params.user_specs);
 
 			if (matchParams.match("&")) {
 				User.findUserByLocation(getParams[0], getParams[1])
@@ -146,16 +148,6 @@ checkParamsUser = getParams => {
 	}
 };
 
-checkParamsUserBonfires = userBonfires => {
-	var reg = /[=]/;
-	if (userBonfires.match(reg)) {
-		console.log('This GET request is for returning all bonfires by user id');
-		return (seperateUserBonfire(userBonfires));
-	} else {
-		return userBonfires;
-	}
-};
-
 seperateLatLongUser = getParams => {
 	var reg = /[&]/;
 	var coords = getParams.split(reg);
@@ -166,6 +158,16 @@ seperateLatLongUser = getParams => {
 // This function is made to be scalable. Currently it will seperate out only the user ID
 // and returns all bonfires associatewd with that user, however, it can be expanded to 
 // accept other arguments to filter results i.e.: by location.
+
+checkParamsUserBonfires = userBonfires => {
+	var reg = /[=]/;
+	if (userBonfires.match(reg)) {
+		console.log('This GET request is for returning all bonfires by user id');
+		return (seperateUserBonfire(userBonfires));
+	} else {
+		return userBonfires;
+	}
+};
 
 seperateUserBonfire = userId => {
 	var reg = /[=]/;

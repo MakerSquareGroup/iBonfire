@@ -8,6 +8,7 @@ export const CHANGE_CLASSNAME = 'CHANGE_CLASSNAME';
 export const CONVERT_LATLONG = 'CONVERT_LATLONG';
 export const CONVERT_LOCATION = 'CONVERT_LOCATION';
 export const SEARCH_USER_INPUT = 'SEARCH_USER_INPUT';
+export const CURRENT_USER = 'CURRENT_USER';
 
 
 
@@ -211,4 +212,23 @@ export function convertLocationToCoords(location) {
       });
     });
   };
+};
+
+export function facebookLogin() {
+  return (dispatch) => {
+    return FB.login((response) => {
+      if(response.authResponse) {
+        browserHistory.push('/Home');
+        return FB.api('/me', 'get', { fields:'id,name,gender,link'}, (response) => {
+          let picture = `http://graph.facebook.com/${response.id}/picture?type=large`
+          console.log("Thanks for logging in, " + response.name);
+          addUser(response, picture);
+          dispatch({
+            type: CURRENT_USER,
+            user: response
+          })
+        });
+      }
+    });
+  }
 };

@@ -6,8 +6,20 @@ import { bindActionCreators } from 'react-redux';
 import * as actions from '../actions/index';
 
 class Login extends Component {
+  constructor(props) {
+    super(props);
+    console.log(props);
+
+    this.handleLoginClick = this.handleLoginClick.bind(this);
+  }
+
   handleLoginClick() {
-    facebookLogin();
+    this.props.facebookLogin();
+    // facebookLogin();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
   }
 
   responseFacebook(response) {
@@ -34,12 +46,13 @@ function mapStateToProps(state) {
   return {
     markers: state,
     users: state.users,
-    location: state.location
+    location: state.location,
+    facebookUsers: state.facebook
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actions, dispatch);
-}
+// function mapDispatchToProps(dispatch) {
+//   return bindActionCreators(actions, dispatch);
+// }
 
 export default connect(mapStateToProps, actions)(Login);

@@ -108,7 +108,22 @@ module.exports = {
 		},
 		delete: (req, res) => {
 			console.log("Received DELETE at /api/bonfire/");
-			res.end("Received Delete at /api/bonfire");
+
+			var getId = req.params.bonfire_specs;
+
+			Bonfire.findBonfireById(getId)
+				.then((bonfire) => {
+					if (!bonfire) {
+						console.log("There is not a bonfire with an ID of " + getId);
+						res.end("There is not a bonfire with an ID of " + getId);
+					} else {
+						Bonfire.deleteBonfire(getId)
+							.then((response) => {
+								console.log(response + " bonfire with an ID of " + getId + " was extinguished");
+								res.end(response + " bonfire with an ID of " + getId + " was extinguished");
+							});
+					}
+				});
 		}
 	}
 

@@ -3,7 +3,6 @@
 	left:50%;
 	top:50%;
 	transform: translateX(-50%) translateY(-50%);
-
 }
 input {
 	outline: transparent;
@@ -21,9 +20,10 @@ input::-webkit-search-cancel-button {
 
 
 input[type=search] {
-	background: rgba(255,255,255,0.5) url(http://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 11px center;
+	background: #F00303 url(http://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 11px center;
 	border: solid 2px #eee;
 	width: 55px;
+	opacity: 0.85;
 
 	-webkit-border-radius: 10em;
 	-moz-border-radius: 10em;

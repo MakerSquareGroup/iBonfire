@@ -7,10 +7,6 @@ class ProfileButton extends Component {
     super(props);
   }
 
-  componentDidMount(){
-    console.log(this.props.profilePicture, "profilePicture");
-  }
-
 	render() {
     return (
       <div id="ProfileButton">
@@ -28,9 +24,5 @@ function mapStateToProps(state) {
     facebook: state.facebook
   };
 }
-
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators(actions, dispatch);
-// }
 
 export default connect(mapStateToProps, actions)(ProfileButton);

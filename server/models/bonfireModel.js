@@ -26,9 +26,9 @@ Bonfire.findBonfireByLocation = (latitude, longitude) => {
 		.then(rows => {
 			return rows[0]
 		});
-}
+};
 
-Bonfire.createBonfire = function(attr) {
+Bonfire.createBonfire = (attr) => {
 	return new Promise(function(resolve, reject) {
 		return db('bonfires').insert(attr)
 			.then(function(result) {
@@ -36,4 +36,13 @@ Bonfire.createBonfire = function(attr) {
 				resolve(attr);
 			});
 	});
+};
+
+Bonfire.deleteBonfire = (id) => {
+	return db('bonfires').where({
+			id: id
+		}).del()
+		.then(response => {
+			return response;
+		})
 };

@@ -9,7 +9,6 @@ import * as actions from '../actions/index';
 
 class BonfireMap extends Component {
 	constructor(props) {
-		console.log(props);
 		super(props);
 		this.state = {
 			location: {
@@ -25,11 +24,25 @@ class BonfireMap extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if(this.props.location.lat !== nextProps.location.lat || this.props.location.lng !== nextProps.location.lng) {
+		const location = this.props.location;
+		const nextLocation = nextProps.location;
+		const search = this.props.search.searchCoords;
+		const nextSearch = nextProps.search.searchCoords;
+
+		if(location.lat !== nextLocation.lat || location.lng !== nextLocation.lng) {
 			this.setState({
 				location: {
-					lat: nextProps.location.lat,
-					lng: nextProps.location.lng
+					lat: nextLocation.lat,
+					lng: nextLocation.lng
+				}
+			});
+		}
+
+		if(search.latitude !== nextSearch.latitude || search.longitude !== nextSearch.longitude) {
+			this.setState({
+				location: {
+					lat: nextSearch.latitude,
+					lng: nextSearch.longitude
 				}
 			});
 		}
@@ -122,6 +135,7 @@ const mapStateToProps = state => {
 		location: state.location,
 		changeClass: state.changeClass,
 		facebook: state.facebook,
+		search: state.search
 	}
 }
 

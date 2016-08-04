@@ -14,15 +14,18 @@ class Navigation extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-
+			searchBox: ""
 		}
-		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	handleSubmit(event) {
 		event.preventDefault();
-		this.props.searchAction(this.state.term);
-		this.setState({term: "Please enter a City/State"});
+		let searchValue = this.refs.searchValue.value;
+		console.log(searchValue);
+		this.props.searchAction(searchValue);
+		this.setState({
+			searchBox: ""
+		});
 	}
 
 	logout() {
@@ -39,14 +42,18 @@ class Navigation extends Component {
 
 		   		<div id="SearchBar">
 			      <form id="demo-2" 
-			      onSubmit={this.handleSubmit}>
+			      onSubmit={this.handleSubmit.bind(this)}>
 			        <input 
 			        type="search" 
 			        placeholder="Search"
-							onChange={(event)=> this.setState({ term: event.target.value })}
+			        value={this.state.searchBox}
+			        ref="searchValue"
+							onChange={(event) => this.setState({ searchBox: event.target.value })}
 							/>
 			      </form>
 			    </div>
+
+
 
 			    <div id="DropDown">
 				    <MuiThemeProvider>
@@ -66,6 +73,8 @@ class Navigation extends Component {
 		)
 	}
 }
+
+// <input className="form-control" type="text" defaultValue={this.state.event.name} placeholder="Enter a name" ref="name"/>
 
 const mapStateToProps = state => {
 	return {

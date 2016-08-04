@@ -1,9 +1,16 @@
-import SEARCH_USER_INPUT from '../actions/index';
+import { SEARCH_USER_INPUT } from '../actions/index';
 
-export default (state = {}, action) => {
+const initialState = {
+  searchCoords: {
+    latitude: "",
+    longitude: ""
+  }
+}
+
+export default (state = initialState, action) => {
   switch(action.type) {
     case SEARCH_USER_INPUT:
-      return action.payload;
+      return { ...state, searchCoords: action.searchCoords };
   };
   return state;
 };

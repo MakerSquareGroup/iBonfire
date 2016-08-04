@@ -53,8 +53,6 @@ export const facebookLogin = () => {
   });
 };
 
-<<<<<<< b342964c41144f4187644ab82dacfe78c4d4589d
-=======
 export const facebookLogin = () => {
   FB.login((response) => {
     if(response.authResponse) {
@@ -69,7 +67,6 @@ export const facebookLogin = () => {
   });
 };
 
->>>>>>> [Refactor] Refactored code in the user model and for the delete method in userCtrl
 export const facebookLogout = () => {
   FB.logout((response) => {
     console.log("Logging out...", response);

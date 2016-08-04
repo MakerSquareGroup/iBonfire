@@ -32,8 +32,6 @@ User.createUser = function(attr) {
 	return new Promise(function(resolve, reject) {
 		return db('users').insert(attr)
 			.then(function(result) {
-				console.log(result, "THIS IS RESULT");
-				console.log(attr, "THIS IS THE ATTR")
 				attr.id = result[0];
 				resolve(attr);
 			});

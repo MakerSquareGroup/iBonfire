@@ -15,15 +15,9 @@ class Login extends Component {
 
   handleLoginClick() {
     this.props.facebookLogin();
-    // facebookLogin();
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
-  }
-
-  responseFacebook(response) {
-    // console.log(response);
   }
 
   render() {
@@ -47,7 +41,7 @@ function mapStateToProps(state) {
     markers: state,
     users: state.users,
     location: state.location,
-    facebookUsers: state.facebook
+    facebookUser: state.facebook,
   };
 }
 

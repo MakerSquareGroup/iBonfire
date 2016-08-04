@@ -10,7 +10,7 @@ class ProfileButton extends Component {
 	render() {
     return (
       <div id="ProfileButton">
-      	<img src={`http://graph.facebook.com/${this.props.facebookUser.id}/picture?type=large`}/>
+      	<img src={`http://graph.facebook.com/${this.props.facebook.currUser.id}/picture?type=large`}/>
       </div>
     );
   }
@@ -21,7 +21,7 @@ function mapStateToProps(state) {
     markers: state.markers,
     users: state.users,
     location: state.location,
-    facebookUser: state.facebook
+    facebook: state.facebook
   };
 }
 

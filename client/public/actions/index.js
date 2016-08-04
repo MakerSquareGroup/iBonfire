@@ -9,6 +9,7 @@ export const CONVERT_LATLONG = 'CONVERT_LATLONG';
 export const CONVERT_LOCATION = 'CONVERT_LOCATION';
 export const SEARCH_USER_INPUT = 'SEARCH_USER_INPUT';
 export const CURRENT_USER = 'CURRENT_USER';
+export const LOGIN_STATUS = 'LOGIN_STATUS';
 
 
 
@@ -60,7 +61,7 @@ export function addUser(user, picture) {
     FB_timeline: user.link,
     latitude: "",
     longitude: "",
-    location: "Santa Monica"
+    location: ""
   };
 
   const newUser = axios.post('/api/user', userObject);
@@ -103,12 +104,16 @@ export function getLocation() {
     });
 
     return (dispatch) => {
+      console.log("Getting user location...");
       return location.then((position) => {
-        console.log(position);
+        console.log("Success!");
         dispatch({
           type: GET_LOCATION,
           position: position
         })
+      })
+      .catch((err) => {
+        console.log("Unable to get user location!");
       });
     }
   }
@@ -219,16 +224,24 @@ export function facebookLogin() {
     return FB.login((response) => {
       if(response.authResponse) {
         browserHistory.push('/Home');
-        return FB.api('/me', 'get', { fields:'id,name,gender,link'}, (response) => {
-          let picture = `http://graph.facebook.com/${response.id}/picture?type=large`
-          console.log("Thanks for logging in, " + response.name);
-          addUser(response, picture);
-          dispatch({
-            type: CURRENT_USER,
-            user: response
-          })
-        });
+        dispatch({
+          type: LOGIN_STATUS,
+          loggedIn: true
+        })
       }
     });
   }
 };
+
+export function getCurrentUser() {
+  return (dispatch) => {
+    return FB.api('/me', 'get', { fields:'id,name,gender,link'}, (response) => {
+      let picture = `http://graph.facebook.com/${response.id}/picture?type=large`;
+      addUser(response, picture);
+      dispatch({
+        type: CURRENT_USER,
+        user: response
+      })
+    });
+  }
+}

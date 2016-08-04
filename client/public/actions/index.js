@@ -61,7 +61,7 @@ export function addUser(user, picture) {
     FB_timeline: user.link,
     latitude: "",
     longitude: "",
-    location: ""
+    cityState: ""
   };
 
   const newUser = axios.post('/api/user', userObject);

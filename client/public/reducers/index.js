@@ -10,6 +10,7 @@ import convertCoordsReducer from './convertCoordsReducer';
 import facebookReducer from './facebookReducer';
 import currentMarkerReducer from './currentMarkerReducer';
 
+
 const rootReducer = combineReducers({
   markers: markerReducer,
   users: userReducer,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   convertCoords: convertCoordsReducer,
   facebook: facebookReducer,
   currMarker: currentMarkerReducer
+
 });
 
 export default rootReducer;

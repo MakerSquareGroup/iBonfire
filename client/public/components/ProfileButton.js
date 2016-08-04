@@ -7,6 +7,10 @@ class ProfileButton extends Component {
     super(props);
   }
 
+  componentDidMount(){
+    console.log(this.props.profilePicture, "profilePicture");
+  }
+
 	render() {
     return (
       <div id="ProfileButton">
@@ -21,7 +25,11 @@ function mapStateToProps(state) {
     markers: state.markers,
     users: state.users,
     location: state.location,
+<<<<<<< 9cce434ccd5d8eac582af20bc02627c4dd5ba025
     facebook: state.facebook
+=======
+    profilePicture: state.profilePicture
+>>>>>>> [Merge] Fix merge conflicts
   };
 }
 

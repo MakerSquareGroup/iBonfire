@@ -32,6 +32,14 @@ export function setCurrentMarker(marker) {
   })
 }
 
+
+export function saveImage(link) {
+  return ({
+    type: SAVE_IMAGE,
+    payload: link
+  })
+}
+
 export function addMarker(data) {
   return ({
     type: ADD_MARKER,

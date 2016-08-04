@@ -75,7 +75,6 @@ class BonfireModal extends Component {
             </MuiThemeProvider>
           </div>
           <div id="CreateBonfireImage">
-            
           </div>
         </div>
     )

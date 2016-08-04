@@ -17,7 +17,9 @@ class Login extends Component {
     this.props.facebookLogin();
   }
 
+
   componentWillReceiveProps(nextProps) {
+
   }
 
   render() {

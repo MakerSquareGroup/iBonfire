@@ -59,5 +59,17 @@ knex.ensureSchema = () => {
 					});
 			}
 		})
+
+		// knex.schema.hasTable('api_keys')
+		// .then(exists => {
+		// 	if(!exists) {
+		// 		knex.shcmea.createTable('api_keys', table => {
+		// 			table.increments('id').primary();
+		// 			table.string('apiKey', 100);
+		// 			table.string('id_Users').unsigned().reference()
+		// 			table.timestamps();
+		// 		})
+		// 	}
+		// })
 	]);
 };

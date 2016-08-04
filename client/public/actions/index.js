@@ -32,7 +32,6 @@ export function setCurrentMarker(marker) {
   })
 }
 
-
 export function addMarker(data) {
   return ({
     type: ADD_MARKER,
@@ -149,7 +148,6 @@ export function searchAction(searchValue) {
         latitude: coordsResp.lat,
         longitude: coordsResp.lng
       }
-      console.log(coords);
       dispatch({
         type: SEARCH_USER_INPUT,
         searchCoords: coords

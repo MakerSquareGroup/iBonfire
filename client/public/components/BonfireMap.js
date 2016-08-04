@@ -25,21 +25,11 @@ class BonfireMap extends Component {
 		this.props.getMarkers();
 	}
 
-	componentDidMount() {
-		// this.renderMarkers()
-	}
-
-	componentDidUpdate(){
-
-	}
-
 	componentWillReceiveProps(nextProps) {
 		const location = this.props.location;
 		const nextLocation = nextProps.location;
 		const search = this.props.search.searchCoords;
 		const nextSearch = nextProps.search.searchCoords;
-
-		console.log(nextProps);
 
 		if(location.lat !== nextLocation.lat || location.lng !== nextLocation.lng) {
 			this.setState({
@@ -57,10 +47,6 @@ class BonfireMap extends Component {
 					lng: nextSearch.longitude
 				}
 			});
-		}
-
-		if(this.props.markers.length < nextProps.markers.length) {
-			// this.renderMarkers();
 		}
 	}
 
@@ -104,21 +90,6 @@ class BonfireMap extends Component {
 		});
 	}
 
-	addNewMarker(position) {
-		console.log(position, 'addNewMarker')
-		// let position = {
-		// 	lat: this.props.currentMarker.lat,
-		// 	lng: this.props.currentMarker.lng
-		// }
-		return (
-			<Marker
-			icon='../media/BonFire.png'
-			position={position}
-  		defaultAnimation={2}
-  		/>
-		)
-	}
-
 	render() {
 		return (
 			<GoogleMapLoader
@@ -140,7 +111,6 @@ class BonfireMap extends Component {
 				    		lat: Number(marker.latitude),
 				    		lng: Number(marker.longitude)
 				    	}
-
 				    	return (
 				    		<Marker
 				    		icon='../media/BonFire.png'
@@ -151,7 +121,6 @@ class BonfireMap extends Component {
 				    	)
 				    })}
 
-
 						<BonfireModal />
 
 			    </GoogleMap>
@@ -160,9 +129,6 @@ class BonfireMap extends Component {
     )
 	}
 }
-
-			    	// {this.addNewMarker.bind(this)}
-
 
 const mapStateToProps = state => {
 	return {

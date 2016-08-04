@@ -15,10 +15,6 @@ class App extends Component {
 		super(props);
 	}
 
-  componentWillMount() {
-    this.props.getMarkers();
-  }
-
   render() {
     return (
 		<div>

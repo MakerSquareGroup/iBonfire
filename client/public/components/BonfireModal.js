@@ -16,7 +16,7 @@ class BonfireModal extends Component {
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.changeBonfireModalClassName("fadeOut");
   }
 
@@ -28,11 +28,6 @@ class BonfireModal extends Component {
         tag: '',
         cityState: ''
       });
-
-      let markerObject = {
-        position: { lat: this.props.currentMarker.lat, lng: this.props.currentMarker.lng }
-      }
-
       this.props.sendDescription({
           description: this.state.description,
           tags: this.state.tag,
@@ -40,7 +35,6 @@ class BonfireModal extends Component {
           latitude: String(this.props.currentMarker.lat),
           longitude: String(this.props.currentMarker.lng)
       })
-      this.props.newMarker(markerObject)
     }
   }
 

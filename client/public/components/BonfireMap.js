@@ -95,7 +95,7 @@ class BonfireMap extends Component {
 			  googleMapElement={
 			    <GoogleMap
 						ref="googleMap"
-						defaultZoom={5}
+						defaultZoom={15}
 			      onCenterChanged={this.newCenter.bind(this)}
 			      center={this.state.location}
 			      defaultCenter={this.props.location}

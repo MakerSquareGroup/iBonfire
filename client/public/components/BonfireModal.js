@@ -36,15 +36,15 @@ class BonfireModal extends Component {
     // hitting enter also needs to clear the textbox by reseting the classname to hidden and reset state to an empty string
     // console.log(this.props.markers[this.props.markers.length - 1].position.lat, 'what are the markers')
     // console.log(this.props.markers[this.props.markers.length - 1].position.lng, 'what are the markers')
-    // this.props.sendDescription({
-    //   modal: {
-    //     description: this.state.description,
-    //     tags: this.state.tag,
-    //     cityState: this.state.cityState,
-    //     lat: this.props.markers[this.props.markers.length - 1].position.lat,
-    //     lng: this.props.markers[this.props.markers.length - 1].position.lng
-    //   }
-    // })
+    this.props.sendDescription({
+      modal: {
+        description: this.state.description,
+        tags: this.state.tag,
+        cityState: this.state.cityState,
+        latitude: this.props.markers[this.props.markers.length - 1].position.lat,
+        longitude: this.props.markers[this.props.markers.length - 1].position.lng
+      }
+    })
   }
 
   render() {

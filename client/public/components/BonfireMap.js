@@ -39,14 +39,15 @@ class BonfireMap extends Component {
 		let markerObject = {
 			position: { lat: lat, lng: long }
 		}
-
+		if(this.props.changeClass.bonfireModal !== 'hidden') {
+			return;
+		}
 		this.setState({
 			location: {
 				lat: lat,
 				lng: long
 			}
 		});
-
 		this.props.addMarker(markerObject);
 		this.props.changeBonfireModalClassName("fadeIn");
 	}
@@ -112,7 +113,8 @@ const mapStateToProps = state => {
 	return {
 		markers: state.markers,
 		users: state.users,
-		location: state.location
+		location: state.location,
+		changeClass: state.changeClass
 	}
 }
 

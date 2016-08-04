@@ -7,7 +7,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class BonfireModal extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       description: '',
@@ -17,25 +17,30 @@ class BonfireModal extends Component {
   }
 
   componentDidMount(){
-    this.props.changeBonfireModalClassName("fadeOut")
+    this.props.changeBonfireModalClassName("fadeOut");
   }
 
   descriptionBox(event) {
     if(event.keyCode === 13) {
-      this.props.changeBonfireModalClassName("fadeOut")
+      this.props.changeBonfireModalClassName("fadeOut");
       this.setState({
         description: '',
         tag: '',
         cityState: ''
-      })
+      });
+
+      let markerObject = {
+        position: { lat: this.props.currentMarker.lat, lng: this.props.currentMarker.lng }
+      }
+
       this.props.sendDescription({
           description: this.state.description,
           tags: this.state.tag,
           cityState: this.state.cityState,
-          latitude: String(this.props.markers[this.props.markers.length - 1].position.lat),
-          longitude: String(this.props.markers[this.props.markers.length - 1].position.lng)
-        }
-      )
+          latitude: String(this.props.currentMarker.lat),
+          longitude: String(this.props.currentMarker.lng)
+      })
+      this.props.newMarker(markerObject)
     }
   }
 
@@ -86,7 +91,8 @@ class BonfireModal extends Component {
 const mapStateToProps = state => {
   return {
     changeClass: state.changeClass,
-    markers: state.markers
+    markers: state.markers,
+    currentMarker: state.currMarker
   }
 }
 

@@ -10,7 +10,27 @@ export const CONVERT_LOCATION = 'CONVERT_LOCATION';
 export const SEARCH_USER_INPUT = 'SEARCH_USER_INPUT';
 export const CURRENT_USER = 'CURRENT_USER';
 export const LOGIN_STATUS = 'LOGIN_STATUS';
+export const GET_MARKER = 'GET_MARKER';
+export const CURRENT_MARKER = 'CURRENT_MARKER';
 
+export function getMarkers() {
+  const grabMarkersDB = axios.get('/api/bonfire');
+  return (dispatch) => {
+    return grabMarkersDB.then((response) => {
+      dispatch({
+        type: GET_MARKER,
+        markers: response.data
+      })
+    })
+  }
+}
+
+export function setCurrentMarker(marker) {
+  return ({
+      type: CURRENT_MARKER,
+      currMarker: marker      
+  })
+}
 
 
 export function addMarker(data) {
@@ -79,11 +99,10 @@ export function addUser(user, picture) {
 }
 
 export function sendDescription(modalObj) {
-  console.log(modalObj, 'modalObj')
   const sendModal = axios.post('/api/bonfire', modalObj)
   return (dispatch) => {
     return sendModal.then((response) => {
-      console.log('success') 
+      dispatch({ type: ADD_MARKER, payload: response.data})
     })
     .catch((err) => {
       console.log(err, 'error in sendDescription action');

@@ -16,11 +16,21 @@ class BonfireMap extends Component {
 				lng: this.props.location.lng
 			}
 		}
+
 	}
 
 	componentWillMount() {
 		this.props.getCurrentUser();
 		this.props.getLocation();
+		this.props.getMarkers();
+	}
+
+	componentDidMount() {
+		// this.renderMarkers()
+	}
+
+	componentDidUpdate(){
+
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -28,6 +38,8 @@ class BonfireMap extends Component {
 		const nextLocation = nextProps.location;
 		const search = this.props.search.searchCoords;
 		const nextSearch = nextProps.search.searchCoords;
+
+		console.log(nextProps);
 
 		if(location.lat !== nextLocation.lat || location.lng !== nextLocation.lng) {
 			this.setState({
@@ -46,6 +58,10 @@ class BonfireMap extends Component {
 				}
 			});
 		}
+
+		if(this.props.markers.length < nextProps.markers.length) {
+			// this.renderMarkers();
+		}
 	}
 
 	handleMapClick(event) {
@@ -57,30 +73,16 @@ class BonfireMap extends Component {
 		if(this.props.changeClass.bonfireModal !== 'hidden') {
 			return;
 		}
+
 		this.setState({
 			location: {
 				lat: lat,
 				lng: long
 			}
 		});
-		this.props.addMarker(markerObject);
-		this.props.changeBonfireModalClassName("fadeIn");
-	}
 
-	renderMarkers() {
-		if(this.props.markers.length === 0) {
-			return;
-		}
-		return this.props.markers.map((marker, index) => {
-			return (
-				<Marker
-				icon="../media/BonFire.png"
-				position={marker.position}
-      	defaultAnimation={2}
-      	key={index}
-				/>
-			)
-		})
+		this.props.setCurrentMarker(markerObject);
+		this.props.changeBonfireModalClassName("fadeIn");
 	}
 
 	logout() {
@@ -102,6 +104,21 @@ class BonfireMap extends Component {
 		});
 	}
 
+	addNewMarker(position) {
+		console.log(position, 'addNewMarker')
+		// let position = {
+		// 	lat: this.props.currentMarker.lat,
+		// 	lng: this.props.currentMarker.lng
+		// }
+		return (
+			<Marker
+			icon='../media/BonFire.png'
+			position={position}
+  		defaultAnimation={2}
+  		/>
+		)
+	}
+
 	render() {
 		return (
 			<GoogleMapLoader
@@ -117,7 +134,23 @@ class BonfireMap extends Component {
 			      defaultCenter={this.props.location}
 			      onClick={this.handleMapClick.bind(this)}
 			    >
-			      {this.renderMarkers()}
+
+				    {this.props.markers.map((marker, index) => {
+				    	let position = {
+				    		lat: Number(marker.latitude),
+				    		lng: Number(marker.longitude)
+				    	}
+
+				    	return (
+				    		<Marker
+				    		icon='../media/BonFire.png'
+				    		position={position}
+				    		defaultAnimation={2}
+				    		key={index}
+				    		/>
+				    	)
+				    })}
+
 
 						<BonfireModal />
 
@@ -128,6 +161,9 @@ class BonfireMap extends Component {
 	}
 }
 
+			    	// {this.addNewMarker.bind(this)}
+
+
 const mapStateToProps = state => {
 	return {
 		markers: state.markers,
@@ -135,7 +171,8 @@ const mapStateToProps = state => {
 		location: state.location,
 		changeClass: state.changeClass,
 		facebook: state.facebook,
-		search: state.search
+		search: state.search,
+		currentMarker: state.currMarker
 	}
 }
 

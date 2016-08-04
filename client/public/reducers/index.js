@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
   users: userReducer,
   location: locationReducer,
   changeClass: changeClassReducer,
-  searchUserInputReducer: searchUserInputReducer,
+  search: searchUserInputReducer,
   convertLocation: convertLocationReducer,
   convertCoords: convertCoordsReducer,
   facebook: facebookReducer

@@ -24,7 +24,7 @@ module.exports = {
 				name: req.body.name,
 				latitude: req.body.latitude,
 				longitude: req.body.longitude,
-				location: req.body.location,
+				cityState: req.body.cityState,
 				FB_id: req.body.FB_id,
 				FB_img: req.body.FB_img,
 				FB_timeline: req.body.FB_timeline

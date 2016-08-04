@@ -26,7 +26,7 @@ knex.ensureSchema = () => {
 						table.string('name', 50);
 						table.string('latitude', 50);
 						table.string('longitude', 50);
-						table.string('location', 255);
+						table.string('cityState', 255);
 						table.string('FB_id', 50);
 						table.string('FB_img', 150);
 						table.string('FB_timeline', 150);

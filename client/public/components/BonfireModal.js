@@ -38,6 +38,14 @@ class BonfireModal extends Component {
     }
   }
 
+  modalValidation() {
+    let flag = true;
+    if(this.state.description.length < 3 || this.state.description.length > 140 ) {
+      flag = false;
+    }
+    
+  }
+
   render() {
     return (
         <div className={this.props.changeClass.bonfireModal}>

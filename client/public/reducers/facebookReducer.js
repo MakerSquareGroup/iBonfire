@@ -1,9 +1,19 @@
 import { CURRENT_USER } from '../actions/index';
+import { LOGIN_STATUS } from '../actions/index';
 
-export default function(state = {}, action) {
+let initialState = {
+  currUser: "",
+  loggedIn: false
+};
+
+export default function(state = initialState, action) {
   switch(action.type) {
     case CURRENT_USER:
-      return action.user;
+      return { ...state, currUser: action.user };
+
+    case LOGIN_STATUS:
+      return { ...state, loggedIn: action.loggedIn };
   }
+
   return state;
 }

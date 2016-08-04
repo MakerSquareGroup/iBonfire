@@ -9,6 +9,7 @@ import * as actions from '../actions/index';
 
 class BonfireMap extends Component {
 	constructor(props) {
+		console.log(props);
 		super(props);
 		this.state = {
 			location: {
@@ -19,6 +20,7 @@ class BonfireMap extends Component {
 	}
 
 	componentWillMount() {
+		this.props.getCurrentUser();
 		this.props.getLocation();
 	}
 
@@ -78,6 +80,7 @@ class BonfireMap extends Component {
 	newCenter() {
 		let lat = this.refs.googleMap.getCenter().lat();
 		let lng = this.refs.googleMap.getCenter().lng();
+
 		this.setState({
 			location: {
 				lat: lat, 
@@ -95,7 +98,7 @@ class BonfireMap extends Component {
 			  googleMapElement={
 			    <GoogleMap
 						ref="googleMap"
-						defaultZoom={5}
+						defaultZoom={15}
 			      onCenterChanged={this.newCenter.bind(this)}
 			      center={this.state.location}
 			      defaultCenter={this.props.location}
@@ -118,7 +121,7 @@ const mapStateToProps = state => {
 		users: state.users,
 		location: state.location,
 		changeClass: state.changeClass,
-		facebookUser: state.facebook
+		facebook: state.facebook,
 	}
 }
 

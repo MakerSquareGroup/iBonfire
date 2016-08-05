@@ -14,7 +14,7 @@ export const GET_MARKER = 'GET_MARKER';
 export const CURRENT_MARKER = 'CURRENT_MARKER';
 
 export function getMarkers() {
-  const grabMarkersDB = axios.get('/api/bonfire');
+  const grabMarkersDB = axios.get('/bonfire');
   return (dispatch) => {
     return grabMarkersDB.then((response) => {
       dispatch({
@@ -91,7 +91,7 @@ export function addUser(user, picture) {
     cityState: ""
   };
 
-  const newUser = axios.post('/api/user', userObject);
+  const newUser = axios.post('/user', userObject);
 
   return (dispatch) => {
     return newUser.then(({
@@ -106,7 +106,7 @@ export function addUser(user, picture) {
 }
 
 export function sendDescription(modalObj) {
-  const sendModal = axios.post('/api/bonfire', modalObj)
+  const sendModal = axios.post('/bonfire', modalObj)
   return (dispatch) => {
     return sendModal.then((response) => {
       dispatch({ type: ADD_MARKER, payload: response.data})

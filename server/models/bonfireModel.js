@@ -32,7 +32,6 @@ Bonfire.createBonfire = (attr) => {
 	return new Promise((resolve, reject) => {
 		return db('Bonfires').insert(attr)
 			.then(function(result) {
-				console.log(result, "RESULT INSIDE createBonfire")
 				attr.id = result[0];
 				resolve(attr);
 			});

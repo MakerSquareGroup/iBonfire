@@ -29,12 +29,12 @@ app.use(express.static(__dirname + '/../client/public'));
 app.use(cors());
 
 // Routes for endpoints
-app.use('/api/user', userRoutes);
-app.use('/api/bonfire', bonfireRoutes);
+app.use('/user', userRoutes);
+app.use('/bonfire', bonfireRoutes);
 app.use('/bonfire/join_bonfire', bonfireJoinRoutes);
 
-// Routes for API endpoints
-// Will go here
+// Route for API endpoint
+// app.use('/api/bonfire/location', bonfireApiRoutes);
 
 app.get('/*', function(req,res){
   res.sendFile(path.resolve('client', 'index.html'));

@@ -1,6 +1,5 @@
 const Bonfire = require('../models/bonfireModel.js');
 const User = require('../models/userModel.js');
-const url = require('url');
 
 module.exports = {
 	'/': {

@@ -58,7 +58,7 @@ knex.ensureSchema = () => {
 			}
 		}),
 
-		knex.schema.hasTable('Users_Bonefires')
+		knex.schema.hasTable('Users_Bonfires')
 		.then((exists) => {
 			if(!exists) {
 				knex.schema.createTable('Users_Bonfires', (table) => {

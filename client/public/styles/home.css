@@ -1,8 +1,18 @@
+
+
 #Home {
 	position: absolute;
 	width: 100%;
 	height: 100%;
 	margin: 0 auto;
+	min-width: 950px;
+}
+
+.Map {
+	height: 100%;
+	position: absolute;
+	width: 100%;
+	z-index: 100;
 }
 
 #GoogleMap {
@@ -20,7 +30,7 @@
 
 
 
-#ProfileButton {
+.ProfileButtonSmall {
 	width: 80px;
 	height: 80px;
 	position: absolute;
@@ -29,17 +39,40 @@
 	bottom: 20px;
 	left:50%;
 	transform: translateX(-50%);
-	
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-#ProfileButton:hover {
+.ProfileButtonSmall:hover {
 	opacity:0.7;
 }
 
-#ProfileButton img{
+.ProfileButtonExpand {
+	animation: 1000ms expandProfileButton ease-in-out forwards;
+  -webkit-animation: 1000ms expandProfileButton ease-in-out forwards;
+}
+
+.ProfileImageSmall {
 	width: 100%;
 	height: 100%;
 	border-radius: 100%;
+}
+
+
+.ProfileImageSmallAnimation {
 	animation: 3500ms pulse 1500ms ease-in-out infinite;
     -webkit-animation: 3500ms pulse 1500ms ease-in-out infinite;
 }
+
+.ProfileImageExpandAnimation {
+	animation: 250ms expandProfileImage ease-in-out forwards;
+    -webkit-animation: 250ms expandProfileImage ease-in-out forwards;
+}
+
+
+.FadeOutMap {
+	animation: 1000ms fadeOut ease-in-out forwards;
+  -webkit-animation: 1000ms fadeOut ease-in-out forwards;
+}
+

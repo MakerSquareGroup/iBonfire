@@ -35,3 +35,13 @@ User_Bonfire.joinBonfire = (UserID, bonfireId) => {
 			})
 	})
 };
+
+
+User_Bonfire.findUserBonfires = (UserID) => {
+	return db('Users_Bonfires').where({
+			id_Users: UserID
+		})
+		.then((rows) => {
+			console.log(rows);
+		})
+}

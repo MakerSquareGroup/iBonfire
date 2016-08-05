@@ -16,13 +16,18 @@ class BonfireMap extends Component {
 				lng: this.props.location.lng
 			}
 		}
-
+		this.handleMouseOver = this.handleMouseOver.bind(this);
+		this.handleMouseOut = this.handleMouseOut.bind(this);
 	}
 
 	componentWillMount() {
 		this.props.getCurrentUser();
 		this.props.getLocation();
 		this.props.getMarkers();
+	}
+
+	componentDidMount() {
+		// this.renderMarkers();
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -90,6 +95,40 @@ class BonfireMap extends Component {
 		});
 	}
 
+	handleMouseOver(event) {
+		console.log("over", event);
+	}
+
+	handleMouseOut(event) {
+		console.log("and out");
+	}
+
+	// renderMarkers() {
+	// 	console.log(this.props.markers, "renderMarkers");
+	// 	if(this.props.markers.length > 0) {
+	// 		console.log("are we inside renderMarkers?")
+	// 		return this.props.markers.map((marker, index) => {
+	//     	let position = {
+	//     		lat: Number(marker.latitude),
+	//     		lng: Number(marker.longitude)
+	//     	}
+	//     	return (
+	//     		<Marker
+	//     		icon='../media/BonFire.png'
+	//     		position={position}
+	//     		defaultAnimation={2}
+	//     		key={index}
+	//     		value={marker}
+	//     		onMouseover={() => this.handleMouseOver(marker)}
+	//     		onMouseout={this.handleMouseOut}
+	//     		/>
+	//     	)
+	//     })
+	// 	} else {
+	// 		return <div></div>
+	// 	}
+	// }
+
 	render() {
 		return (
 			<GoogleMapLoader
@@ -106,20 +145,23 @@ class BonfireMap extends Component {
 			      onClick={this.handleMapClick.bind(this)}
 			    >
 
-				    {this.props.markers.map((marker, index) => {
-				    	let position = {
-				    		lat: Number(marker.latitude),
-				    		lng: Number(marker.longitude)
-				    	}
-				    	return (
-				    		<Marker
-				    		icon='../media/BonFire.png'
-				    		position={position}
-				    		defaultAnimation={2}
-				    		key={index}
-				    		/>
-				    	)
-				    })}
+			   	{this.props.markers.map((marker, index) => {
+	    			let position = {
+	    				lat: Number(marker.latitude),
+	    				lng: Number(marker.longitude)
+	    			}
+	    			return (
+	    			<Marker
+		    		icon='../media/BonFire.png'
+		    		position={position}
+		    		defaultAnimation={2}
+		    		key={index}
+		    		value={marker}
+		    		onMouseover={() => this.handleMouseOver(marker)}
+		    		onMouseout={this.handleMouseOut}
+		    		/>
+	    		)
+	    		})}
 
 						<BonfireModal />
 
@@ -129,6 +171,25 @@ class BonfireMap extends Component {
     )
 	}
 }
+
+			  //  	{this.props.markers.map((marker, index) => {
+				 //    	let position = {
+				 //    		lat: Number(marker.latitude),
+				 //    		lng: Number(marker.longitude)
+				 //    	}
+				 //    	return (
+				 //    		<Marker
+				 //    		icon='../media/BonFire.png'
+				 //    		position={position}
+				 //    		defaultAnimation={2}
+				 //    		key={index}
+				 //    		value={marker}
+				 //    		onMouseover={() => this.handleMouseOver(marker)}
+				 //    		onMouseout={this.handleMouseOut}
+				 //    		/>
+				 //    	)
+				 //    })
+					// }
 
 const mapStateToProps = state => {
 	return {

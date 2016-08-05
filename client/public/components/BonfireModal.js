@@ -12,7 +12,10 @@ class BonfireModal extends Component {
     this.state = {
       description: '',
       tag: '',
-      cityState: ''
+      cityState: '',
+      correct: {
+        color: 'white'
+      }
     }
   }
 
@@ -48,9 +51,21 @@ class BonfireModal extends Component {
           return this.setState({
             description: '',
             tag: '',
-            cityState: ''
+            cityState: '',
+            correct: {
+              color: 'white'
+            } 
           })
         })  
+    } else {
+      this.setState({
+        description: '',
+        tag: '',
+        cityState: '',
+        correct: {
+          color: 'red'
+        } 
+      })
     }
   }
 
@@ -72,7 +87,7 @@ class BonfireModal extends Component {
             <MuiThemeProvider>
               <TextField
                 inputStyle={{'color':'white','fontFamily':'raleway','fontWeight':'300'}}
-                hintStyle={{'color':'white'}}
+                hintStyle={this.state.correct}
                 hintText="Description"
                 value={this.state.description}
                 onChange={e => this.setState({description: e.target.value})}

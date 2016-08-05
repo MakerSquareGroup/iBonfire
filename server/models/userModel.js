@@ -30,7 +30,7 @@ User.findUserByLocation = (latitude, longitude) => {
 
 User.findUserBonfires = (FB_id) => {
 	return db('Bonfires').where({
-			id_Users: FB_id
+			createdBy: FB_id
 		})
 		.then((rows) => {
 			return rows;

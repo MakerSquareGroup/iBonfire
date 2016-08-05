@@ -31,7 +31,6 @@ module.exports = {
 
 			User.findUserById(newUser.FB_id)
 				.then((user) => {
-					console.log(user);
 					if (user) {
 						console.log('User already exists!');
 						res.end('User already exists!');

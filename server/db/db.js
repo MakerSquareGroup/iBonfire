@@ -7,9 +7,9 @@ module.exports = knex;
 
 // Drops all tables and clears db
 knex.wipeDatabase = () => {
-	return knex('users').truncate()
+	return knex('Users').truncate()
 		.then(() => {
-			return knex('bonfire').truncate();
+			return knex('Bonfires').truncate();
 		});
 	console.log("Welp, you done did it now...No more data")
 };
@@ -18,20 +18,19 @@ knex.wipeDatabase = () => {
 
 knex.ensureSchema = () => {
 	return Promise.all([
-		knex.schema.hasTable('users')
+		knex.schema.hasTable('Users')
 		.then(exists => {
 			if (!exists) {
-				knex.schema.createTable('users', table => {
+				knex.schema.createTable('Users', table => {
 						table.increments('id').primary();
 						table.string('name', 50);
 						table.string('latitude', 50);
 						table.string('longitude', 50);
-						table.string('cityState', 255);
+						table.string('cityState', 50);
 						table.string('FB_id', 50);
 						table.string('FB_img', 150);
 						table.string('FB_timeline', 150);
 						table.timestamp('created_by_User_at').defaultTo(knex.fn.now());
-						table.integer('id_Bonfires').unsigned().references('id').inTable('bonfires');
 						table.timestamps();
 					})
 					.then(table => {
@@ -40,36 +39,37 @@ knex.ensureSchema = () => {
 			}
 		}),
 
-		knex.schema.hasTable('bonfires')
+		knex.schema.hasTable('Bonfires')
 		.then(exists => {
 			if (!exists) {
-				knex.schema.createTable('bonfires', table => {
+				knex.schema.createTable('Bonfires', table => {
 						table.increments('id').primary();
 						table.string('tags', 50);
 						table.string('description', 255);
 						table.string('latitude', 50);
 						table.string('longitude', 50);
-						table.string('cityState', 255);
+						table.string('cityState', 50);
 						table.timestamp('created_by_User_at').defaultTo(knex.fn.now());
-						table.integer('id_Users').unsigned().references('id').inTable('users');
 						table.timestamps();
 					})
 					.then(table => {
 						console.log('Bonfires Table has been created.');
 					});
 			}
-		})
+		}),
 
-		// knex.schema.hasTable('api_keys')
-		// .then(exists => {
-		// 	if(!exists) {
-		// 		knex.shcmea.createTable('api_keys', table => {
-		// 			table.increments('id').primary();
-		// 			table.string('apiKey', 100);
-		// 			table.string('id_Users').unsigned().reference()
-		// 			table.timestamps();
-		// 		})
-		// 	}
-		// })
+		knex.schema.hasTable('Users_Bonefires')
+		.then((exists) => {
+			if(!exists) {
+				knex.schema.createTaBle('Users_Bonfires', (table) => {
+					table.increments('id').primary();
+					table.string('id_Users').unsigned().references('FB_id').inTable('Users');
+					table.integer('id_Bonfires').unsigned().references('id').inTable('Bonfires');
+				})
+				.then((table) => {
+					console.log("Users_Bonfires join table has been created.");
+				});
+			}
+		})
 	]);
 };

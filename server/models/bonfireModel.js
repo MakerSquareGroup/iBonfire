@@ -3,14 +3,14 @@ const db = require('../db/db.js');
 const Bonfire = module.exports;
 
 Bonfire.findAllBonfires = (req, res) => {
-	return db('bonfires')
+	return db('Bonfires')
 		.then(rows => {
 			return rows;
 		});
 };
 
 Bonfire.findBonfireById = id => {
-	return db('bonfires').where({
+	return db('Bonfires').where({
 			id: id
 		}).limit(1)
 		.then(rows => {
@@ -19,7 +19,7 @@ Bonfire.findBonfireById = id => {
 };
 
 Bonfire.findBonfireByLocation = (latitude, longitude) => {
-	return db('bonfires').where({
+	return db('Bonfires').where({
 			latitude: latitude,
 			longitude: longitude
 		}).limit(1)
@@ -29,9 +29,10 @@ Bonfire.findBonfireByLocation = (latitude, longitude) => {
 };
 
 Bonfire.createBonfire = (attr) => {
-	return new Promise(function(resolve, reject) {
-		return db('bonfires').insert(attr)
+	return new Promise((resolve, reject) => {
+		return db('Bonfires').insert(attr)
 			.then(function(result) {
+				console.log(result, "RESULT INSIDE createBonfire")
 				attr.id = result[0];
 				resolve(attr);
 			});
@@ -39,10 +40,11 @@ Bonfire.createBonfire = (attr) => {
 };
 
 Bonfire.deleteBonfire = (id) => {
-	return db('bonfires').where({
+	return db('Bonfires').where({
 			id: id
 		}).del()
 		.then(response => {
 			return response;
 		})
 };
+

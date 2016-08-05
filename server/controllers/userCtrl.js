@@ -1,5 +1,4 @@
 const User = require('../models/userModel.js');
-const Q = require('q');
 
 module.exports = {
 	'/': {

@@ -16,7 +16,8 @@ const db = require('./db/db.js');
 
 // Require routes for enpoints
 const userRoutes = require('./routes/userRoutes.js');
-const bonfireRoutes =require('./routes/bonfireRoutes.js');
+const bonfireRoutes = require('./routes/bonfireRoutes.js');
+const bonfireJoinRoutes = require('./routes/bonfireJoinRoutes.js');
 
 app.use(bodyParser.json());
 
@@ -30,6 +31,10 @@ app.use(cors());
 // Routes for endpoints
 app.use('/api/user', userRoutes);
 app.use('/api/bonfire', bonfireRoutes);
+app.use('/bonfire/join_bonfire', bonfireJoinRoutes);
+
+// Routes for API endpoints
+// Will go here
 
 app.get('/*', function(req,res){
   res.sendFile(path.resolve('client', 'index.html'));

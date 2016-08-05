@@ -38,7 +38,7 @@ User.findUserBonfires = (FB_id) => {
 };
 
 User.createUser = (attr) => {
-	return new Promise(function(resolve, reject) {
+	return new Promise((resolve, reject) => {
 		return db('Users').insert(attr)
 			.then((result) => {
 				attr.id = result[0];
@@ -47,7 +47,7 @@ User.createUser = (attr) => {
 	});
 };
 
-User.deleteUser = function(id) {
+User.deleteUser = (id) => {
 	return db('Users').where({
 			FB_id: id
 		}).del()

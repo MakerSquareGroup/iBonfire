@@ -16,7 +16,16 @@ export default class ProfilePage extends React.Component {
 			<div>
 				<div className="BonfireHolder">
 					<div className="BonfireEntry">
-						<img src="" />
+						<img className="BonfireEntryImage" src="../../media/Bonfire_2.png"/>
+					</div>
+					<div className="BonfireEntry">
+						<img className="BonfireEntryImage" src="../../media/Bonfire_2.png"/>
+					</div>
+					<div className="BonfireEntry">
+						<img className="BonfireEntryImage" src="../../media/Bonfire_2.png"/>
+					</div>
+					<div className="BonfireEntry">
+						<img className="BonfireEntryImage" src="../../media/Bonfire_2.png"/>
 					</div>
 				</div>
 				<div className="MapButtonSmall">

@@ -12,7 +12,7 @@ module.exports = {
 				.then((bonfires) => {
 					if (bonfires.length === 0) {
 						console.log('There are no bonfires');
-						res.end('There are no bonfires');
+						res.send([{latitude: 0, longitude: 0}]);
 					} else {
 						console.log('We got bonfires!');
 						res.send(bonfires);
@@ -23,12 +23,13 @@ module.exports = {
 			console.log('Recieved POST at api/bonfire');
 			console.log('Creating bonfire', req.body);
 
+			var userId = req.body.id_Users;
 			var newBonfire = {
 				tags: req.body.tags,
 				description: req.body.description,
 				latitude: req.body.latitude,
 				longitude: req.body.longitude,
-				cityState: req.body.cityState
+				cityState: req.body.cityState,
 			};
 
 			Bonfire.findBonfireByLocation(newBonfire.latitude, newBonfire.longitude)
@@ -40,7 +41,7 @@ module.exports = {
 						Bonfire.createBonfire(newBonfire)
 							.then((result) => {
 								console.log('Result from bonfire controller createBonfire', result);
-								User_Bonfire.joinBonfire(1116484391754184, result.id)
+								User_Bonfire.joinBonfire(userId, result.id)
 								.then((result) => {
 									console.log("Result from bonfire controller in joinBonfire ", result);
 									res.send(result);
@@ -152,3 +153,4 @@ seperateLatLongBonfire = getParams => {
 
 	return coords;
 };
+

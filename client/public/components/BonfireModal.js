@@ -44,7 +44,8 @@ class BonfireModal extends Component {
             tags: this.state.tag,
             cityState: response.data.results[1].formatted_address,
             latitude: String(this.props.currentMarker.lat),
-            longitude: String(this.props.currentMarker.lng)
+            longitude: String(this.props.currentMarker.lng),
+            id_User: this.props.facebook.currUser.id
           })
          }) 
         .then(() => {
@@ -106,7 +107,8 @@ const mapStateToProps = state => {
   return {
     changeClass: state.changeClass,
     markers: state.markers,
-    currentMarker: state.currMarker
+    currentMarker: state.currMarker,
+    facebook: state.facebook
   }
 }
 

@@ -12,7 +12,10 @@ class BonfireModal extends Component {
     this.state = {
       description: '',
       tag: '',
-      cityState: ''
+      cityState: '',
+      correct: {
+        color: 'white'
+      }
     }
   }
 
@@ -22,18 +25,46 @@ class BonfireModal extends Component {
 
   descriptionBox(event) {
     if(event.keyCode === 13) {
-      this.props.changeBonfireModalClassName("fadeOut");
+      this.modalValidation();
+    }
+  }
+
+  modalValidation() {
+  let flag = true;
+    if(this.state.description.length < 3 || this.state.description.length > 140 ) {
+      flag = false;
+    }
+    if(flag) {
+      this.props.changeBonfireModalClassName("fadeOut"); 
+      const sendLocation = this.props.convertCoordsToLocation(String(this.props.currentMarker.lat) + ',' + String(this.props.currentMarker.lng));
+        return sendLocation
+        .then((response) => {
+          return this.props.sendDescription({
+            description: this.state.description,
+            tags: this.state.tag,
+            cityState: response.data.results[1].formatted_address,
+            latitude: String(this.props.currentMarker.lat),
+            longitude: String(this.props.currentMarker.lng)
+          })
+         }) 
+        .then(() => {
+          return this.setState({
+            description: '',
+            tag: '',
+            cityState: '',
+            correct: {
+              color: 'white'
+            } 
+          })
+        })  
+    } else {
       this.setState({
         description: '',
         tag: '',
-        cityState: ''
-      });
-      this.props.sendDescription({
-          description: this.state.description,
-          tags: this.state.tag,
-          cityState: this.state.cityState,
-          latitude: String(this.props.currentMarker.lat),
-          longitude: String(this.props.currentMarker.lng)
+        cityState: '',
+        correct: {
+          color: 'red'
+        } 
       })
     }
   }
@@ -45,28 +76,18 @@ class BonfireModal extends Component {
           <div id={this.props.changeClass.modelTextBox}>
             <MuiThemeProvider>
               <TextField
-              hintStyle={{'color':'white'}}
+                hintStyle={{'color':'white'}}
                 inputStyle={{'color':'white','fontFamily':'raleway','fontWeight':'300'}}
                 hintText="Tag"
                 value={this.state.tag}
                 onChange={e => this.setState({tag: e.target.value})}
                 onKeyDown={this.descriptionBox.bind(this)}
               />
-            </MuiThemeProvider>
-            <MuiThemeProvider>
-              <TextField
-                inputStyle={{'color':'white','fontFamily':'raleway','fontWeight':'300'}}
-                hintStyle={{'color':'white'}}
-                hintText="City, State"
-                value={this.state.cityState}
-                onChange={e => this.setState({cityState: e.target.value})}
-                onKeyDown={this.descriptionBox.bind(this)}
-              />
             </MuiThemeProvider>    
             <MuiThemeProvider>
               <TextField
-              inputStyle={{'color':'white','fontFamily':'raleway','fontWeight':'300'}}
-              hintStyle={{'color':'white'}}
+                inputStyle={{'color':'white','fontFamily':'raleway','fontWeight':'300'}}
+                hintStyle={this.state.correct}
                 hintText="Description"
                 value={this.state.description}
                 onChange={e => this.setState({description: e.target.value})}

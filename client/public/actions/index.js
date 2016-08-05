@@ -172,32 +172,15 @@ export function searchAction(searchValue) {
 // https://maps.googleapis.com/maps/api/geocode/json?latlng=44.4647452,7.3553838&sensor=true
 
 export function convertCoordsToLocation(latlng) {
-  const apiCall = new Promise((resolve, reject) => {
-    let response;
-    let address;
-    resolve(axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latlng + '&sensor=true'))
-      .then((payload) => {
-        response = payload.data.results[0].formatted_address;
-        address = {
-          location: response
-        };
-        return {
-          data: address
-        };
-      })
-      .catch((response) => {
-        console.log(response, 'Error inside convertCoordsToLocation in Actions');
-      });
-  });
-
+const apiCall = axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latlng + '&sensor=true');
   return (dispatch) => {
     return apiCall.then((location) => {
-      dispatch({
-        type: CONVERT_LATLONG,
-        location: location
-      });
-    });
-  };
+      return location
+    })
+    .catch((err) => {
+      console.log(err, ": error in convertCoordsToLocation action")
+    }) 
+  }
 };
 
 // convertLocationToCoords takes in a latitude and longitude and returns an address

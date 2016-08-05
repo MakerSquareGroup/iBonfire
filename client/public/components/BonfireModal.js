@@ -17,6 +17,7 @@ class BonfireModal extends Component {
         color: 'white'
       }
     }
+    this.handleMouseOut = this.handleMouseOut.bind(this);
   }
 
   componentDidMount() {
@@ -70,8 +71,13 @@ class BonfireModal extends Component {
     }
   }
 
+  handleMouseOut() {
+    console.log('you moused out there')
+  }
+
   render() {
     return (
+      <div onMouseOver={() => this.handleMouseOut()}>
         <div className={this.props.changeClass.bonfireModal}>
           <h id="CreateBonfireHeader">Create New Bonfire</h>
           <div id={this.props.changeClass.modelTextBox}>
@@ -99,6 +105,7 @@ class BonfireModal extends Component {
           <div id="CreateBonfireImage">
           </div>
         </div>
+      </div>
     )
   }
 }

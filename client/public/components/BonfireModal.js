@@ -22,28 +22,36 @@ class BonfireModal extends Component {
 
   descriptionBox(event) {
     if(event.keyCode === 13) {
-      this.props.changeBonfireModalClassName("fadeOut");
-      this.props.sendDescription({
-          description: this.state.description,
-          tags: this.state.tag,
-          cityState: this.state.cityState,
-          latitude: String(this.props.currentMarker.lat),
-          longitude: String(this.props.currentMarker.lng)
-      });
-      this.setState({
-        description: '',
-        tag: '',
-        cityState: ''
-      });
+      this.modalValidation();
     }
   }
 
   modalValidation() {
-    let flag = true;
+  let flag = true;
     if(this.state.description.length < 3 || this.state.description.length > 140 ) {
       flag = false;
     }
-    
+    if(flag) {
+      this.props.changeBonfireModalClassName("fadeOut"); 
+      const sendLocation = this.props.convertCoordsToLocation(String(this.props.currentMarker.lat) + ',' + String(this.props.currentMarker.lng));
+        return sendLocation
+        .then((response) => {
+          return this.props.sendDescription({
+            description: this.state.description,
+            tags: this.state.tag,
+            cityState: response.data.results[1].formatted_address,
+            latitude: String(this.props.currentMarker.lat),
+            longitude: String(this.props.currentMarker.lng)
+          })
+         }) 
+        .then(() => {
+          return this.setState({
+            description: '',
+            tag: '',
+            cityState: ''
+          })
+        })  
+    }
   }
 
   render() {
@@ -58,16 +66,6 @@ class BonfireModal extends Component {
                 hintText="Tag"
                 value={this.state.tag}
                 onChange={e => this.setState({tag: e.target.value})}
-                onKeyDown={this.descriptionBox.bind(this)}
-              />
-            </MuiThemeProvider>
-            <MuiThemeProvider>
-              <TextField
-                inputStyle={{'color':'white','fontFamily':'raleway','fontWeight':'300'}}
-                hintStyle={{'color':'white'}}
-                hintText="City, State"
-                value={this.state.cityState}
-                onChange={e => this.setState({cityState: e.target.value})}
                 onKeyDown={this.descriptionBox.bind(this)}
               />
             </MuiThemeProvider>    

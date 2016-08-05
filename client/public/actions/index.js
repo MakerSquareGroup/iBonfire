@@ -12,6 +12,9 @@ export const CURRENT_USER = 'CURRENT_USER';
 export const LOGIN_STATUS = 'LOGIN_STATUS';
 export const GET_MARKER = 'GET_MARKER';
 export const CURRENT_MARKER = 'CURRENT_MARKER';
+export const HOVER_MARKER = 'HOVER_MARKER';
+export const DISPLAY_MODAL = 'DISPLAY_MODAL';
+export const HIDE_MODAL = 'HIDE_MODAL';
 
 export function getMarkers() {
   const grabMarkersDB = axios.get('/bonfire');
@@ -25,23 +28,44 @@ export function getMarkers() {
   }
 }
 
+export function getHoverMarker(marker) {
+  return {
+    type: HOVER_MARKER,
+    payload: marker
+  };
+}
+
+export function displayHoverModal() {
+  return {
+    type: DISPLAY_MODAL,
+    payload: 'marker-modal'
+  }
+}
+
+export function hideHoverModal() {
+  return {
+    type: HIDE_MODAL,
+    payload: 'hide-marker-modal'
+  }
+}
+
 export function setCurrentMarker(marker) {
-  return ({
+  return {
       type: CURRENT_MARKER,
-      currMarker: marker      
-  })
+      currMarker: marker
+  };
 }
 
 export function addMarker(data) {
-  return ({
+  return {
     type: ADD_MARKER,
     payload: data
-  })
+  }
 }
 
 export function changeBonfireModalClassName(animation) {
   if(animation === "fadeOut") {
-    return ({
+    return {
       type: CHANGE_CLASSNAME,
       payload:
       {
@@ -52,7 +76,7 @@ export function changeBonfireModalClassName(animation) {
             showModal: 'hidden'
           }
       }
-    })
+    }
   }
 
   if(animation === "fadeIn"){

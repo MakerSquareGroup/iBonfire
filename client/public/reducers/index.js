@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import exampleReducer from './exampleReducer';
 import markerReducer from './markerReducer';
 import userReducer from './userReducer';
 import locationReducer from './locationReducer';
@@ -9,7 +8,7 @@ import convertLocationReducer from './convertLocationReducer';
 import convertCoordsReducer from './convertCoordsReducer';
 import facebookReducer from './facebookReducer';
 import currentMarkerReducer from './currentMarkerReducer';
-
+import hoverMarkerReducer from './hoverMarkerReducer';
 
 const rootReducer = combineReducers({
   markers: markerReducer,
@@ -20,8 +19,8 @@ const rootReducer = combineReducers({
   convertLocation: convertLocationReducer,
   convertCoords: convertCoordsReducer,
   facebook: facebookReducer,
-  currMarker: currentMarkerReducer
-
+  currMarker: currentMarkerReducer,
+  hoverMarker: hoverMarkerReducer
 });
 
 export default rootReducer;

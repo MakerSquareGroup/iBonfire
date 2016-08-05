@@ -4,6 +4,7 @@ import { GoogleMapLoader, GoogleMap, Marker } from "react-google-maps";
 import { facebookLogout, facebookInit } from '../helpers/fbHelper';
 
 import BonfireModal from './BonfireModal';
+import MarkerModal from './MarkerModal';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
 
@@ -24,10 +25,6 @@ class BonfireMap extends Component {
 		this.props.getCurrentUser();
 		this.props.getLocation();
 		this.props.getMarkers();
-	}
-
-	componentDidMount() {
-		// this.renderMarkers();
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -52,6 +49,10 @@ class BonfireMap extends Component {
 					lng: nextSearch.longitude
 				}
 			});
+		}
+
+		if(this.props.markers.length < nextProps.markers.length) {
+			this.props.getMarkers();
 		}
 	}
 
@@ -95,39 +96,14 @@ class BonfireMap extends Component {
 		});
 	}
 
-	handleMouseOver(event) {
-		console.log("over", event);
+	handleMouseOver(marker) {
+		this.props.getHoverMarker(marker);
+		this.props.displayHoverModal();
 	}
 
 	handleMouseOut(event) {
-		console.log("and out");
+		this.props.hideHoverModal();
 	}
-
-	// renderMarkers() {
-	// 	console.log(this.props.markers, "renderMarkers");
-	// 	if(this.props.markers.length > 0) {
-	// 		console.log("are we inside renderMarkers?")
-	// 		return this.props.markers.map((marker, index) => {
-	//     	let position = {
-	//     		lat: Number(marker.latitude),
-	//     		lng: Number(marker.longitude)
-	//     	}
-	//     	return (
-	//     		<Marker
-	//     		icon='../media/BonFire.png'
-	//     		position={position}
-	//     		defaultAnimation={2}
-	//     		key={index}
-	//     		value={marker}
-	//     		onMouseover={() => this.handleMouseOver(marker)}
-	//     		onMouseout={this.handleMouseOut}
-	//     		/>
-	//     	)
-	//     })
-	// 	} else {
-	// 		return <div></div>
-	// 	}
-	// }
 
 	render() {
 		return (
@@ -158,12 +134,13 @@ class BonfireMap extends Component {
 		    		key={index}
 		    		value={marker}
 		    		onMouseover={() => this.handleMouseOver(marker)}
-		    		onMouseout={this.handleMouseOut}
+		    		onMouseout={() => this.handleMouseOut(marker)}
 		    		/>
 	    		)
 	    		})}
 
 						<BonfireModal />
+						<MarkerModal />
 
 			    </GoogleMap>
 		  	}
@@ -171,25 +148,6 @@ class BonfireMap extends Component {
     )
 	}
 }
-
-			  //  	{this.props.markers.map((marker, index) => {
-				 //    	let position = {
-				 //    		lat: Number(marker.latitude),
-				 //    		lng: Number(marker.longitude)
-				 //    	}
-				 //    	return (
-				 //    		<Marker
-				 //    		icon='../media/BonFire.png'
-				 //    		position={position}
-				 //    		defaultAnimation={2}
-				 //    		key={index}
-				 //    		value={marker}
-				 //    		onMouseover={() => this.handleMouseOver(marker)}
-				 //    		onMouseout={this.handleMouseOut}
-				 //    		/>
-				 //    	)
-				 //    })
-					// }
 
 const mapStateToProps = state => {
 	return {
@@ -199,7 +157,8 @@ const mapStateToProps = state => {
 		changeClass: state.changeClass,
 		facebook: state.facebook,
 		search: state.search,
-		currentMarker: state.currMarker
+		currentMarker: state.currMarker,
+		hoverMarker: state.hoverMarker
 	}
 }
 

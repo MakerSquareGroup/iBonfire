@@ -49,6 +49,7 @@ knex.ensureSchema = () => {
 						table.string('latitude', 50);
 						table.string('longitude', 50);
 						table.string('cityState', 50);
+						table.string('createdBy', 50);
 						table.timestamp('created_by_User_at').defaultTo(knex.fn.now());
 						table.timestamps();
 					})
@@ -60,19 +61,30 @@ knex.ensureSchema = () => {
 
 		knex.schema.hasTable('Users_Bonfires')
 		.then((exists) => {
-			if(!exists) {
+			if (!exists) {
 				knex.schema.createTable('Users_Bonfires', (table) => {
-					table.increments('id').primary();
-					table.string('id_Users').references('FB_id').inTable('Users');
-					table.string('id_Bonfires').references('id').inTable('Bonfires');
-				})
-				.then((table) => {
-					console.log("Users_Bonfires join table has been created.");
-				});
-			} else {
-				console.log(exists);
+						table.increments('id').primary();
+						table.string('id_Users').references('FB_id').inTable('Users');
+						table.string('id_Bonfires').references('id').inTable('Bonfires');
+					})
+					.then((table) => {
+						console.log('Users_Bonfires join table has been created.');
+					});
+			}
+		}),
+
+		knex.schema.hasTable('Chats')
+		.then((exists) => {
+			if (!exists) {
+				knex.schema.createTable('Chats', (table) => {
+						table.increments('id').primary();
+						table.string('messages');
+						table.timestamp('created_by_User_at').defaultTo(knex.fn.now());
+					})
+					.then((then) => {
+						console.log('Chats Table has been created.')
+					});
 			}
 		})
 	]);
 };
-

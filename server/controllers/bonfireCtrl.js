@@ -23,13 +23,13 @@ module.exports = {
 			console.log('Recieved POST at api/bonfire');
 			console.log('Creating bonfire', req.body);
 
-			var userId = req.body.id_Users;
 			var newBonfire = {
 				tags: req.body.tags,
 				description: req.body.description,
 				latitude: req.body.latitude,
 				longitude: req.body.longitude,
 				cityState: req.body.cityState,
+				createdBy: req.body.createdBy
 			};
 
 			Bonfire.findBonfireByLocation(newBonfire.latitude, newBonfire.longitude)
@@ -41,7 +41,7 @@ module.exports = {
 						Bonfire.createBonfire(newBonfire)
 							.then((result) => {
 								console.log('Result from bonfire controller createBonfire', result);
-								User_Bonfire.joinBonfire(userId, result.id)
+								User_Bonfire.joinBonfire(newBonfire.createdBy, result.id)
 								.then((result) => {
 									console.log("Result from bonfire controller in joinBonfire ", result);
 									res.send(result);

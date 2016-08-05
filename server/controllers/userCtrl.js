@@ -73,7 +73,7 @@ module.exports = {
 			var userBonfires = checkParamsUserBonfires(req.params.user_specs);
 
 			if (matchParams.match("=")) {
-				User.findUserBonfires(userBonfires.FB_ID)
+				User.findUserBonfires(userBonfires.createdBy)
 					.then((bonfires) => {
 						if (!bonfires) {
 							console.log('User with Facebook ID ' + userBonfires + ' has not lit any bonfires!');
@@ -83,7 +83,7 @@ module.exports = {
 							res.send(bonfires);
 						}
 					})
-				// Return here to avoid invoking the below functions
+
 				return;
 			}
 
@@ -188,7 +188,7 @@ seperateUserBonfire = userId => {
 	var passedInProps = userId.split(reg);
 
 	return {
-		"FB_ID": passedInProps[0],
+		"createdBy": passedInProps[0],
 		"Filter": passedInProps[1]
 	};
 };

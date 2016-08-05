@@ -27,8 +27,7 @@ module.exports = {
 				description: req.body.description,
 				latitude: req.body.latitude,
 				longitude: req.body.longitude,
-				cityState: req.body.cityState,
-				id_Users: req.body.id_Users
+				cityState: req.body.cityState
 			};
 
 			Bonfire.findBonfireByLocation(newBonfire.latitude, newBonfire.longitude)

@@ -16,7 +16,8 @@ class BonfireMap extends Component {
 				lng: this.props.location.lng
 			}
 		}
-
+		this.handleMouseOver = this.handleMouseOver.bind(this);
+		this.handleMouseOut = this.handleMouseOut.bind(this);
 	}
 
 	componentWillMount() {
@@ -90,6 +91,14 @@ class BonfireMap extends Component {
 		});
 	}
 
+	handleMouseOver(event) {
+		console.log("over", event);
+	}
+
+	handleMouseOut(event) {
+		console.log("and out");
+	}
+
 	render() {
 		return (
 			<GoogleMapLoader
@@ -117,6 +126,9 @@ class BonfireMap extends Component {
 				    		position={position}
 				    		defaultAnimation={2}
 				    		key={index}
+				    		value={marker}
+				    		onMouseover={() => this.handleMouseOver(marker)}
+				    		onMouseout={this.handleMouseOut}
 				    		/>
 				    	)
 				    })}

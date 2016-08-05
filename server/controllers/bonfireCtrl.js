@@ -1,5 +1,6 @@
 const Bonfire = require('../models/bonfireModel.js');
 const User = require('../models/userModel.js');
+const User_Bonfire = require('../models/user_bonfireModel.js');
 
 module.exports = {
 	'/': {
@@ -38,8 +39,12 @@ module.exports = {
 					} else {
 						Bonfire.createBonfire(newBonfire)
 							.then((result) => {
-								console.log('Result from bonfire controller createTable', result);
-								res.send(result);
+								console.log('Result from bonfire controller createBonfire', result);
+								User_Bonfire.joinBonfire(1116484391754184, result.id)
+								.then((result) => {
+									console.log("Result from bonfire controller in joinBonfire ", result);
+									res.send(result);
+								});
 							});
 					}
 				});

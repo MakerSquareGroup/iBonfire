@@ -5,7 +5,7 @@ const knex = require('knex')(config[env]);
 module.exports = knex;
 
 
-// Drops all tables and clears db
+// Drops clears db
 knex.wipeDatabase = () => {
 	return knex('Users').truncate()
 		.then(() => {
@@ -19,9 +19,9 @@ knex.wipeDatabase = () => {
 knex.ensureSchema = () => {
 	return Promise.all([
 		knex.schema.hasTable('Users')
-		.then(exists => {
+		.then((exists) => {
 			if (!exists) {
-				knex.schema.createTable('Users', table => {
+				knex.schema.createTable('Users', (table) => {
 						table.increments('id').primary();
 						table.string('name', 50);
 						table.string('latitude', 50);
@@ -33,16 +33,16 @@ knex.ensureSchema = () => {
 						table.timestamp('created_by_User_at').defaultTo(knex.fn.now());
 						table.timestamps();
 					})
-					.then(table => {
+					.then((table) => {
 						console.log('Users Table has been created.');
 					});
 			}
 		}),
 
 		knex.schema.hasTable('Bonfires')
-		.then(exists => {
+		.then((exists) => {
 			if (!exists) {
-				knex.schema.createTable('Bonfires', table => {
+				knex.schema.createTable('Bonfires', (table) => {
 						table.increments('id').primary();
 						table.string('tags', 50);
 						table.string('description', 255);
@@ -52,7 +52,7 @@ knex.ensureSchema = () => {
 						table.timestamp('created_by_User_at').defaultTo(knex.fn.now());
 						table.timestamps();
 					})
-					.then(table => {
+					.then((table) => {
 						console.log('Bonfires Table has been created.');
 					});
 			}
@@ -61,15 +61,18 @@ knex.ensureSchema = () => {
 		knex.schema.hasTable('Users_Bonefires')
 		.then((exists) => {
 			if(!exists) {
-				knex.schema.createTaBle('Users_Bonfires', (table) => {
+				knex.schema.createTable('Users_Bonfires', (table) => {
 					table.increments('id').primary();
-					table.string('id_Users').unsigned().references('FB_id').inTable('Users');
-					table.integer('id_Bonfires').unsigned().references('id').inTable('Bonfires');
+					table.string('id_Users').references('FB_id').inTable('Users');
+					table.string('id_Bonfires').references('id').inTable('Bonfires');
 				})
 				.then((table) => {
 					console.log("Users_Bonfires join table has been created.");
 				});
+			} else {
+				console.log(exists);
 			}
 		})
 	]);
 };
+

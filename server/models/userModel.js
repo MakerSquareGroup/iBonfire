@@ -40,7 +40,7 @@ User.findUserBonfires = (FB_id) => {
 User.createUser = (attr) => {
 	return new Promise(function(resolve, reject) {
 		return db('Users').insert(attr)
-			.then(function(result) {
+			.then((result) => {
 				attr.id = result[0];
 				resolve(attr);
 			});

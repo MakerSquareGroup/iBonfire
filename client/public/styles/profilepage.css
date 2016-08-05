@@ -13,6 +13,93 @@ Profile Page
 	z-index: 100;
 }
 
+.ProfilePageTop {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	height: 300px;
+}
+
+.ProfilePageLeft {
+	height:100%;
+	background-color: transparent;
+	width:300px;
+	display: inline-block;
+}
+
+.ProfilePageName {
+	color:white;
+	background-color: transparent;
+	width: 100%;
+	height:80px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  color: white;
+  font-size: 30px;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: white;
+}
+
+.ProfilePageUserInfo {
+	width: 100%;
+	height: 200px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  color: white;
+  font-size: 15px;
+  text-align: center;
+  padding-top: 40px;
+  box-sizing: border-box;
+}
+
+
+.ProfilePageMiddle {
+	height:100%;
+	background-color: white;
+	width:300px;
+	border-radius: 100%;
+	box-shadow:rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
+}
+
+.ProfilePageRight {
+	height:100%;
+	background-color: transparent;
+	width:300px;
+	display: inline-block;
+}
+
+.ProfilePageStats {
+	width: 100%;
+	height: 200px;
+	background-color: transparent;
+}
+
+.ProfilePagePoints {
+	height:110px;
+	width: 100%;
+	background-color: transparent;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  color: white;
+  font-size: 30px;
+  text-align: center;
+  border-top-style: solid;
+  border-top-color: white;
+  border-top-width: 1px;
+}
+
+
+
 .MapButtonSmall {
 	width: 80px;
 	height: 80px;

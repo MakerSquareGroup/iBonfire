@@ -35,4 +35,5 @@ module.exports = {
       res.end("Received DELETE at /bonfire/join_bonfire");
     }
   }
+
 };

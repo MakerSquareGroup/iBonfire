@@ -19,6 +19,7 @@ export const HIDE_MODAL = 'HIDE_MODAL';
 export const LOAD_MODAL = 'LOAD_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const BAD_SUBMISSION = 'BAD_SUBMISSION';
+export const JOIN_BONFIRE = 'JOIN_BONFIRE';
 
 export function getMarkers() {
   const grabMarkersDB = axios.get('/bonfire');
@@ -65,6 +66,24 @@ export function addMarker(data) {
     type: ADD_MARKER,
     payload: data
   }
+}
+
+export function joinBonfire(bonId, userId) {
+  const join = axios.put('/bonfire/join_bonfire/' + bonId + '&'+ userId)
+
+  return (dispatch) => {
+    return join
+    .then(() => {
+      console.log("You've joined the bonfire, time to get weird!");
+      dispatch({
+        type: JOIN_BONFIRE,
+        payload: {
+          bonId: bonId,
+          userId: userId
+        }
+      })
+    });
+  };
 }
 
 export function changeBonfireModalClassName(animation) {

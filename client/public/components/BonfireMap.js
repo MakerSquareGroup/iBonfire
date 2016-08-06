@@ -106,7 +106,7 @@ class BonfireMap extends Component {
 	}
 
 	handleMouseOut(event) {
-		this.props.hideHoverModal();
+		// this.props.hideHoverModal();
 	}
 
 	render() {

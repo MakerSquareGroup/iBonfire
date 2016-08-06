@@ -9,6 +9,7 @@ import convertCoordsReducer from './convertCoordsReducer';
 import facebookReducer from './facebookReducer';
 import currentMarkerReducer from './currentMarkerReducer';
 import hoverMarkerReducer from './hoverMarkerReducer';
+import bonfireReducer from './bonfireReducer';
 
 const rootReducer = combineReducers({
   markers: markerReducer,
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
   convertCoords: convertCoordsReducer,
   facebook: facebookReducer,
   currMarker: currentMarkerReducer,
-  hoverMarker: hoverMarkerReducer
+  hoverMarker: hoverMarkerReducer,
+  bonfire: bonfireReducer
 });
 
 export default rootReducer;

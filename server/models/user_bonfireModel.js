@@ -23,12 +23,25 @@ User_Bonfire.findJoinTable = (bonfireId) => {
 		});
 };
 
-User_Bonfire.joinBonfire = (UserID, bonfireId) => {
+User_Bonfire.checkIfUserExists = (joinId, userId) => {
+	return new Promise((resolve, reject) => {
+		return db('Users_Bonfires').where({
+			id: joinId
+		}).where({
+			id_Users: userId
+		})
+		.then((rows) => {
+			resolve(rows);
+		});
+	});
+};
+
+User_Bonfire.joinBonfire = (userId, bonfireId) => {
 	return new Promise((resolve, reject) => {
 		return db('Users_Bonfires').where({
 				id_Bonfires: bonfireId
 			}).insert({
-				id_Users: UserID,
+				id_Users: userId,
 				id_Bonfires: bonfireId
 			})
 			.then((response) => {
@@ -39,9 +52,9 @@ User_Bonfire.joinBonfire = (UserID, bonfireId) => {
 };
 
 
-User_Bonfire.findUserBonfires = (UserID) => {
+User_Bonfire.findUserBonfires = (userId) => {
 	return db('Users_Bonfires').where({
-			id_Users: UserID
+			id_Users: userId
 		})
 		.then((rows) => {
 			return rows;

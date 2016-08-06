@@ -25,7 +25,7 @@ class BonfireModal extends Component {
 
   descriptionBox(event) {
     if(event.keyCode === 13) {
-      this.modalValidation();
+      this.modalValidation('hit enter');
     }
   }
 
@@ -44,24 +44,54 @@ class BonfireModal extends Component {
 
   modalValidation(value) {
   let flag = true;
-    if(this.state.description.length < 3 && value === 1 ) {
+    if(value === 'hit enter') {
+      if(this.state.description.length < 3 && this.state.value === 1 || this.state.description.length < 3 && value  === undefined) {
+      flag = false;
+      this.props.changeBonfireModalClassName('badSubmission');
+      this.setState({
+            description: ''
+            })
+      } else if(this.state.description.length > 3 && this.state.value  === 1 || this.state.description.length > 3 && value  === undefined) {
+        flag = false;
+        this.props.changeBonfireModalClassName('badDropDown');
+        this.setState({
+              description: ''
+            })
+      } else if(this.state.value  === 1 || this.state.value  === undefined) {
+        flag = false;
+        this.props.changeBonfireModalClassName('badDropDown');
+      } else if(this.state.description.length < 3) {
+        flag = false;
+        this.props.changeBonfireModalClassName('badDescription');
+        this.setState({
+              description: ''
+            })
+      }
+    } else if(this.state.description.length < 3 && value === 1 || this.state.description.length < 3 && value === undefined) {
       flag = false;
       this.props.changeBonfireModalClassName('badSubmission');
       this.setState({
             description: ''
           })
-    } else if(value === 1) {
-      flag = false;
-      this.props.changeBonfireModalClassName('badDropDown');
-    } else if(this.state.description.length < 3) {
-      flag = false;
-      this.props.changeBonfireModalClassName('badDescription');
-      this.setState({
-            description: ''
-          })
-    }
+      } else if(this.state.description.length > 3 && value === 1 || this.state.description.length > 3 && value === undefined) {
+        flag = false;
+        this.props.changeBonfireModalClassName('badDropDown');
+        this.setState({
+              description: ''
+            })
+      } else if(value === 1 || value === undefined) {
+        flag = false;
+        this.props.changeBonfireModalClassName('badDropDown');
+      } else if(this.state.description.length < 3) {
+        flag = false;
+        this.props.changeBonfireModalClassName('badDescription');
+        this.setState({
+              description: ''
+            })
+      }
 
     if(flag) {
+      console.log('are you here')
       this.props.changeBonfireModalClassName("fadeOut"); 
       const sendLocation = this.props.convertCoordsToLocation(String(this.props.currentMarker.lat) + ',' + String(this.props.currentMarker.lng));
         return sendLocation

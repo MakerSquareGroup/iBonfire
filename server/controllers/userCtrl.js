@@ -158,6 +158,9 @@ module.exports = {
 								console.log('deleted user with the id of ' + userId);
 								res.end('deleted user with the id of ' + userId);
 							})
+							.catch((err) => {
+			            console.log('Error inside deleteUser ', err);
+			        });
 					}
 
 				})

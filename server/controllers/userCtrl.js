@@ -57,10 +57,10 @@ module.exports = {
 	// For example:
 
 	// Search by FB_id:
-	// /api/user/115548485
+	// /user/115548485
 
 	// Search by coordinates
-	// /api/user/34.024212&-118.496475
+	// /user/34.024212&-118.496475
 
 	'/:user_specs': {
 		get: (req, res) => {
@@ -151,7 +151,7 @@ module.exports = {
 // The below functions, checkParamUser and seperateLatLongUser are used to determine the proper endpoint
 // based on coordinates or Facebook ID
 
-checkParamsUser = getParams => {
+checkParamsUser = (getParams) => {
 	var reg = /[&]/;
 	if (getParams.match(reg)) {
 		console.log('This GET request is for a user at a coordinate');
@@ -162,7 +162,7 @@ checkParamsUser = getParams => {
 	}
 };
 
-seperateLatLongUser = getParams => {
+seperateLatLongUser = (getParams) => {
 	var reg = /[&]/;
 	var coords = getParams.split(reg);
 
@@ -173,7 +173,7 @@ seperateLatLongUser = getParams => {
 // and returns all bonfires associatewd with that user, however, it can be expanded to 
 // accept other arguments to filter results i.e.: by location.
 
-checkParamsUserBonfires = userBonfires => {
+checkParamsUserBonfires = (userBonfires) => {
 	var reg = /[=]/;
 	if (userBonfires.match(reg)) {
 		console.log('This GET request is for returning all bonfires by user id');
@@ -183,7 +183,7 @@ checkParamsUserBonfires = userBonfires => {
 	}
 };
 
-seperateUserBonfire = userId => {
+seperateUserBonfire = (userId) => {
 	var reg = /[=]/;
 	var passedInProps = userId.split(reg);
 

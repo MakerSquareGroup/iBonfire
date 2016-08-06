@@ -1,4 +1,4 @@
-const controllers = require('../controllers/bonfireJoinCtrl.js');
+const controllers = require('../controllers/user_bonfireCtrl.js');
 const router = require('express').Router();
 
 for (var route in controllers) {

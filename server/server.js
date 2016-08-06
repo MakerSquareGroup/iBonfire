@@ -15,6 +15,7 @@ const dotenv = require('dotenv').config();
 const db = require('./db/db.js');
 
 // Require routes for enpoints
+const tagRoutes = require('./routes/tagRoutes.js');
 const userRoutes = require('./routes/userRoutes.js');
 const bonfireRoutes = require('./routes/bonfireRoutes.js');
 const bonfireJoinRoutes = require('./routes/user_bonfireRoutes.js');
@@ -29,13 +30,13 @@ app.use(express.static(__dirname + '/../client/public'));
 app.use(cors());
 
 // Routes for endpoints
+app.use('/tag', tagRoutes);
 app.use('/user', userRoutes);
 app.use('/bonfire', bonfireRoutes);
 app.use('/bonfire/join_bonfire', bonfireJoinRoutes);
 
 // Route for API endpoint
 // app.use('/api/bonfire/location', bonfireApiRoutes);
-
 app.get('/*', function(req,res){
   res.sendFile(path.resolve('client', 'index.html'));
 })

@@ -5,17 +5,31 @@ const knex = require('knex')(config[env]);
 module.exports = knex;
 
 
-// Drops clears db
+// Wipes every table and clears DB but leaves tables intact. 
 knex.wipeDatabase = () => {
 	return knex('Users').truncate()
 		.then(() => {
 			return knex('Bonfires').truncate();
+		})
+		.then(() => {
+			return knex('Users_Bonfires').truncate();
+		})
+		.then(() => {
+			return knex('Chats').truncate();
+		})
+		.then(() => {
+			return knex('Users_Chats').truncate();
+		})
+		.then(() => {
+			return knex('Tags').truncate();
+		})
+		.then(() => {
+			return knex('Bonfires_Tags').truncate();
 		});
 	console.log("Welp, you done did it now...No more data")
 };
 
 // The ensureSchema function builds the schema for the db
-
 knex.ensureSchema = () => {
 	return Promise.all([
 		knex.schema.hasTable('Users')

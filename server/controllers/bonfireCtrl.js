@@ -1,27 +1,33 @@
 const Bonfire = require('../models/bonfireModel.js');
 const User = require('../models/userModel.js');
 const User_Bonfire = require('../models/user_bonfireModel.js');
+const Helpers = require('../helpers/ctrl_helpers.js');
 
 module.exports = {
 	'/': {
 		get: (req, res) => {
 			console.log('Recieved GET at /api/bonfire');
-			console.log('Sending all bonfires');
+			console.log('Sending all bonfires!');
 
 			Bonfire.findAllBonfires()
 				.then((bonfires) => {
 					if (bonfires.length === 0) {
 						console.log('There are no bonfires');
-						res.send([{latitude: 0, longitude: 0}]);
+						res.send([{
+							latitude: 0,
+							longitude: 0
+						}]);
 					} else {
 						console.log('We got bonfires!');
 						res.send(bonfires);
 					}
+				})
+				.catch((err) => {
+						console.log('Error inside findAllBonfires ', err);
 				});
 		},
 		post: (req, res) => {
 			console.log('Recieved POST at api/bonfire');
-			console.log('Creating bonfire', req.body);
 
 			var newBonfire = {
 				tags: req.body.tags,
@@ -41,26 +47,41 @@ module.exports = {
 						Bonfire.createBonfire(newBonfire)
 							.then((result) => {
 								console.log('Result from bonfire controller createBonfire', result);
-								User_Bonfire.createJoinTable({id_Users: newBonfire.createdBy, id_Bonfires: result.id})
-								.then((result) => {
-									console.log("Result from bonfire controller in joinBonfire ", result);
-									User_Bonfire.findJoinTable(result.id_Users)
+								User_Bonfire.createJoinTable({
+										id_Users: newBonfire.createdBy,
+										id_Bonfires: result.id
+									})
 									.then((result) => {
-										console.log("Result from bonfire controller in findJoinTable ", result);
-										res.send(result);
+										console.log("Result from bonfire controller in joinBonfire ", result);
+										User_Bonfire.findJoinTable(result.id_Users)
+											.then((result) => {
+												console.log("Result from bonfire controller in findJoinTable ", result);
+												res.send(result);
+											})
+											.catch((err) => {
+												console.log('Error inside findJoinTable ', err);
+											});
+									})
+									.catch((err) => {
+										console.log('Error inside createJoinTable ', err);
 									});
-								});
+							})
+							.catch((err) => {
+								console.log('Error inside createBonfire ', err);
 							});
 					}
+				})
+				.catch((err) => {
+						console.log('Error inside findBonfireByLocation ', err);
 				});
 		},
 		put: (req, res) => {
-			console.log("Received PUT at /api/bonfire/");
-			res.end("Received PUT at /api/bonfire");
+			console.log('Received PUT at /api/bonfire/');
+			res.end('Received PUT at /api/bonfire');
 		},
 		delete: (req, res) => {
-			console.log("Received DELETE at /api/bonfire/");
-			res.end("Received Delete at /api/bonfire");
+			console.log('Received DELETE at /api/bonfire/');
+			res.end('Received Delete at /api/bonfire');
 		}
 	},
 
@@ -76,10 +97,10 @@ module.exports = {
 	'/:bonfire_specs': {
 		get: (req, res) => {
 			console.log('Recieved GET at /api/bonfire');
-			console.log(req.params, "This is the params object in bonfires");
+			console.log(req.params, 'This is the params object in bonfires');
 
 			// This function checks for the type of prop you are searching for
-			var getParams = checkParamsBonfire(req.params.bonfire_specs);
+			var getParams = Helpers.checkParamsBonfire(req.params.bonfire_specs);
 
 			if (Array.isArray(getParams)) {
 				Bonfire.findBonfireByLocation(getParams[0], getParams[1])
@@ -91,7 +112,10 @@ module.exports = {
 							console.log('Found the bonfire you are looking for!');
 							res.send(bonfire);
 						}
-					});
+					})
+					.catch((err) => {
+						console.log('Error inside findBonfireByLocation ', err);
+				});
 			} else {
 				Bonfire.findBonfireById(getParams)
 					.then((bonfire) => {
@@ -102,7 +126,10 @@ module.exports = {
 							console.log('Found the bonfire you are looking for!');
 							res.send(bonfire);
 						}
-					});
+					})
+					.catch((err) => {
+						console.log('Error inside findBonfireById ', err);
+				});
 			}
 		},
 		post: (req, res) => {
@@ -111,50 +138,31 @@ module.exports = {
 
 		},
 		put: (req, res) => {
-			console.log("Received PUT at /api/bonfire/");
-			res.end("Received PUT at /api/bonfire");
+			console.log('Received PUT at /api/bonfire/');
+			res.end('Received PUT at /api/bonfire');
 		},
 		delete: (req, res) => {
-			console.log("Received DELETE at /api/bonfire/");
+			console.log('Received DELETE at /api/bonfire/');
 
 			var getId = req.params.bonfire_specs;
 
 			Bonfire.findBonfireById(getId)
 				.then((bonfire) => {
 					if (!bonfire) {
-						console.log("There is not a bonfire with an ID of " + getId);
-						res.end("There is not a bonfire with an ID of " + getId);
+						console.log('There is not a bonfire with an ID of ' + getId);
+						res.end('There is not a bonfire with an ID of ' + getId);
 					} else {
 						Bonfire.deleteBonfire(getId)
 							.then((response) => {
-								console.log(response + " bonfire with an ID of " + getId + " was extinguished");
-								res.end(response + " bonfire with an ID of " + getId + " was extinguished");
+								console.log(response + ' bonfire with an ID of ' + getId + ' was extinguished');
+								res.end(response + ' bonfire with an ID of ' + getId + ' was extinguished');
 							});
 					}
+				})
+				.catch((err) => {
+						console.log('Error inside findBonfireById ', err);
 				});
 		}
 	}
-
-};
-
-// The below functions, checkParamBonfire and seperateLatLongBonfire are used to determine the proper endpoint
-// based on coordinates or Facebook ID
-
-checkParamsBonfire = getParams => {
-	var reg = /[&]/g;
-	if (getParams.match(reg)) {
-		console.log("This GET request is for a bonfire at a coordinate");
-		return seperateLatLongBonfire(getParams);
-	} else {
-		console.log("This GET request finds a bonfire based on the bonfire id");
-		return getParams;
-	}
-};
-
-seperateLatLongBonfire = getParams => {
-	var reg = /[&]/;
-	var coords = getParams.split(reg);
-
-	return coords;
 };
 

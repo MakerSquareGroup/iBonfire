@@ -9,7 +9,8 @@ export const CONVERT_LATLONG = 'CONVERT_LATLONG';
 export const CONVERT_LOCATION = 'CONVERT_LOCATION';
 export const SEARCH_USER_INPUT = 'SEARCH_USER_INPUT';
 export const CURRENT_USER = 'CURRENT_USER';
-export const LOGIN_STATUS = 'LOGIN_STATUS';
+export const LOGIN_SUCCESSFUL = 'LOGIN_SUCCESSFUL';
+export const LOG_OUT = 'LOG_OUT';
 export const GET_MARKER = 'GET_MARKER';
 export const CURRENT_MARKER = 'CURRENT_MARKER';
 export const HOVER_MARKER = 'HOVER_MARKER';
@@ -239,13 +240,35 @@ export function facebookLogin() {
       if(response.authResponse) {
         browserHistory.push('/Home');
         dispatch({
-          type: LOGIN_STATUS,
+          type: LOGIN_SUCCESSFUL,
           loggedIn: true
         })
       }
     });
   }
 };
+
+export function statusLoggedIn() {
+  return (dispatch) => {
+    dispatch({
+      type: LOGIN_SUCCESSFUL,
+      loggedIn: true
+    })
+  }
+}
+
+export function facebookLogout() {
+  return (dispatch) => {
+    return FB.logout((response) => {
+      console.log("Logging out...", response);
+      browserHistory.push('/');
+      dispatch({
+        type: LOG_OUT,
+        loggedIn: false
+      })
+    });
+  }
+}
 
 export function getCurrentUser() {
   return (dispatch) => {

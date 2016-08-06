@@ -29,6 +29,19 @@ class BonfireModal extends Component {
     }
   }
 
+  componentWillReceiveProps(props) {
+    if(props.changeClass.changed.bonfireModal === 'hidden') {
+      this.setState({
+        value: 1
+      })
+    }
+    if(props.changeClass.changed.bonfireModal === 'hidden') {
+      this.setState({
+        description: ''
+      })
+    }
+  }
+
   modalValidation(value) {
   let flag = true;
     if(this.state.description.length < 3 && value === 1 ) {

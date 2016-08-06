@@ -16,6 +16,9 @@ export const CURRENT_MARKER = 'CURRENT_MARKER';
 export const HOVER_MARKER = 'HOVER_MARKER';
 export const DISPLAY_MODAL = 'DISPLAY_MODAL';
 export const HIDE_MODAL = 'HIDE_MODAL';
+export const LOAD_MODAL = 'LOAD_MODAL';
+export const CLOSE_MODAL = 'CLOSE_MODAL';
+export const BAD_SUBMISSION = 'BAD_SUBMISSION';
 
 export function getMarkers() {
   const grabMarkersDB = axios.get('/bonfire');
@@ -67,7 +70,7 @@ export function addMarker(data) {
 export function changeBonfireModalClassName(animation) {
   if(animation === "fadeOut") {
     return {
-      type: CHANGE_CLASSNAME,
+      type: CLOSE_MODAL,
       payload:
       {
         class:
@@ -85,14 +88,14 @@ export function changeBonfireModalClassName(animation) {
 
   if(animation === 'badSubmission') {
     return {
-      type: CHANGE_CLASSNAME,
+      type: BAD_SUBMISSION,
       payload:
       {
         class:
           {
-            bonfireModal: 'hidden',
-            modelTextBox: 'hidden',
-            showModal: 'hidden',
+            bonfireModal: 'bonfireModal',
+            modelTextBox: 'modelTextBox',
+            showModal: 'showModal',
             textColor: {
               color: 'red'
             }
@@ -103,7 +106,7 @@ export function changeBonfireModalClassName(animation) {
 
   if(animation === "fadeIn"){
     return ({
-      type: CHANGE_CLASSNAME,
+      type: LOAD_MODAL,
       payload: 
       { 
         class: 

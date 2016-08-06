@@ -30,7 +30,6 @@ class BonfireModal extends Component {
   }
 
   componentWillReceiveProps(props) {
-    console.log(this.props.changeClass.changed.textHint, 'what is textHInt')
     if(props.changeClass.changed.bonfireModal === 'hidden') {
       this.setState({
         value: 1

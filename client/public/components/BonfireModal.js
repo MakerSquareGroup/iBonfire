@@ -63,26 +63,27 @@ class BonfireModal extends Component {
               value: 1
             })
         })  
+    } else {
+        this.props.changeBonfireModalClassName('badSubmission');
+          return this.setState({
+            description: '',
+            tag: '',
+            cityState: '',
+            correct: {
+              color: 'red'
+            } 
+          }) 
     }
   }
 
   handleDropDown(event, index, value) {
     this.setState({value})
   }
-
-            // <TextField
-            //   inputStyle={{'color':'white','fontFamily':'raleway','fontWeight':'300'}}
-            //   hintStyle={this.state.correct}
-            //   hintText="Description"
-            //   value={this.state.description}
-            //   onChange={e => this.setState({description: e.target.value})}
-            //   onKeyDown={this.descriptionBox.bind(this)}
-            // />
+  
   render() {
     return (
       <div className={this.props.changeClass.changed.bonfireModal}>
         <h id="CreateBonfireHeader">Create New Bonfire</h>
-<<<<<<< e79d201850adea289dc1246ab2d3b3485d26084e
         <div id={this.props.changeClass.changed.modelTextBox}>
             <TextField
               hintStyle={this.props.changeClass.changed.textColor}
@@ -100,7 +101,6 @@ class BonfireModal extends Component {
             <MenuItem className='dropDownList' style={{color: 'black'}} value={4} primaryText="#politics" />
             <MenuItem className='dropDownList' style={{color: 'black'}} value={5} primaryText="#random" />
           </DropDownMenu>
-=======
         <div id={this.props.changeClass.modelTextBox}>
           <MuiThemeProvider>
             <TextField
@@ -123,7 +123,6 @@ class BonfireModal extends Component {
                 </MenuItem>
               </IconMenu>
           </MuiThemeProvider>
->>>>>>> [Pull] Beginning dropdown for modal
         </div>
         <div id="CreateBonfireImage">
         </div>

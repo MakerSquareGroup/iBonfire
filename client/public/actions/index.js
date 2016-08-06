@@ -74,7 +74,28 @@ export function changeBonfireModalClassName(animation) {
           {
             bonfireModal: 'hidden',
             modelTextBox: 'hidden',
-            showModal: 'hidden'
+            showModal: 'hidden',
+            textColor: {
+              color: 'white'
+            }
+          }
+      }
+    }
+  }
+
+  if(animation === 'badSubmission') {
+    return {
+      type: CHANGE_CLASSNAME,
+      payload:
+      {
+        class:
+          {
+            bonfireModal: 'hidden',
+            modelTextBox: 'hidden',
+            showModal: 'hidden',
+            textColor: {
+              color: 'red'
+            }
           }
       }
     }
@@ -86,11 +107,14 @@ export function changeBonfireModalClassName(animation) {
       payload: 
       { 
         class: 
-           { 
-             bonfireModal: 'bonfireModal', 
-             modelTextBox: 'modelTextBox',
-             showModal: 'showModal'
-           }
+          { 
+            bonfireModal: 'bonfireModal', 
+            modelTextBox: 'modelTextBox',
+            showModal: 'showModal',
+            textColor: {
+             color: 'white'
+            }
+          }
       }
     })
   }

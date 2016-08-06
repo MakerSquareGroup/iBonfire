@@ -12,6 +12,7 @@ const INITIAL_STATE = {
     textColor: {
       color: 'white'
     },
+    textHint: 'Description',
     dropDownColor: {
       color: 'white'
     }

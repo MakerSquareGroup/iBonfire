@@ -30,6 +30,7 @@ class BonfireModal extends Component {
   }
 
   componentWillReceiveProps(props) {
+    console.log(this.props.changeClass.changed.textHint, 'what is textHInt')
     if(props.changeClass.changed.bonfireModal === 'hidden') {
       this.setState({
         value: 1
@@ -129,7 +130,7 @@ class BonfireModal extends Component {
               underlineFocusStyle={{borderColor: 'red'}}
               hintStyle={this.props.changeClass.changed.textColor}
               inputStyle={{color:'white',fontFamily:'raleway',fontWeight:'300'}}
-              hintText="Description"
+              hintText={this.props.changeClass.changed.textHint}//"Description" 
               value={this.state.description}
               onChange={e => this.setState({description: e.target.value})}
               onKeyDown={this.descriptionBox.bind(this)}

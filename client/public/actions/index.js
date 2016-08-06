@@ -104,7 +104,8 @@ export function changeBonfireModalClassName(animation) {
             },
             dropDownColor: {
               color: 'white'
-            }
+            },
+            textHint: 'Description'
           }
       }
     })
@@ -125,7 +126,8 @@ export function changeBonfireModalClassName(animation) {
             },
             dropDownColor: {
               color: 'white'
-            }
+            },
+            textHint: 'Description'
           }
       }
     }
@@ -142,11 +144,12 @@ export function changeBonfireModalClassName(animation) {
             modelTextBox: 'modelTextBox',
             showModal: 'showModal',
             textColor: {
-              color: 'red'
+              color: 'white'
             },
             dropDownColor: {
               color: 'red'
-            }
+            },
+            textHint: 'Please select a tag and type a description thats longer than 3 characters'
           }
       }
     }
@@ -163,11 +166,12 @@ export function changeBonfireModalClassName(animation) {
             modelTextBox: 'modelTextBox',
             showModal: 'showModal',
             textColor: {
-              color: 'red'
+              color: 'white'
             },
             dropDownColor: {
               color: 'white'
-            }
+            },
+            textHint: 'Your description must be larger than 3 characters'
           }
       }
     }
@@ -188,7 +192,8 @@ export function changeBonfireModalClassName(animation) {
             },
             dropDownColor: {
               color: 'red'
-            }
+            },
+            textHint: 'Please select a tag'
           }
       }
     })

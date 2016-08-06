@@ -3,14 +3,11 @@ import TextField from 'material-ui/TextField';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
     
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import DownArrowIcon from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
 import IconButton from 'material-ui/IconButton/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
-// import label from 'material-ui/DropDownMenu';
-
 
 class BonfireModal extends Component {
   constructor(props) {
@@ -28,31 +25,73 @@ class BonfireModal extends Component {
 
   descriptionBox(event) {
     if(event.keyCode === 13) {
-      this.modalValidation();
+      this.modalValidation('hit enter');
     }
   }
 
-  modalValidation() {
-  let flag = true;
+  componentWillReceiveProps(props) {
+    if(props.changeClass.changed.bonfireModal === 'hidden') {
+      this.setState({
+        value: 1
+      })
+    }
+    if(props.changeClass.changed.bonfireModal === 'hidden') {
+      this.setState({
+        description: ''
+      })
+    }
+  }
 
-    if(this.state.description.length < 3 && this.state.value === 1 ) {
+  modalValidation(value) {
+  let flag = true;
+    if(value === 'hit enter') {
+      if(this.state.description.length < 3 && this.state.value === 1 || this.state.description.length < 3 && value  === undefined) {
+      flag = false;
+      this.props.changeBonfireModalClassName('badSubmission');
+      this.setState({
+            description: ''
+            })
+      } else if(this.state.description.length > 3 && this.state.value  === 1 || this.state.description.length > 3 && value  === undefined) {
+        flag = false;
+        this.props.changeBonfireModalClassName('badDropDown');
+        this.setState({
+              description: ''
+            })
+      } else if(this.state.value  === 1 || this.state.value  === undefined) {
+        flag = false;
+        this.props.changeBonfireModalClassName('badDropDown');
+      } else if(this.state.description.length < 3) {
+        flag = false;
+        this.props.changeBonfireModalClassName('badDescription');
+        this.setState({
+              description: ''
+            })
+      }
+    } else if(this.state.description.length < 3 && value === 1 || this.state.description.length < 3 && value === undefined) {
       flag = false;
       this.props.changeBonfireModalClassName('badSubmission');
       this.setState({
             description: ''
           })
-    } else if(this.state.value === 1) {
-      flag = false;
-      this.props.changeBonfireModalClassName('badDropDown');
-    } else if(this.state.description.length < 3) {
-      flag = false;
-      this.props.changeBonfireModalClassName('badDescription');
-      this.setState({
-            description: ''
-          })
-    }
+      } else if(this.state.description.length > 3 && value === 1 || this.state.description.length > 3 && value === undefined) {
+        flag = false;
+        this.props.changeBonfireModalClassName('badDropDown');
+        this.setState({
+              description: ''
+            })
+      } else if(value === 1 || value === undefined) {
+        flag = false;
+        this.props.changeBonfireModalClassName('badDropDown');
+      } else if(this.state.description.length < 3) {
+        flag = false;
+        this.props.changeBonfireModalClassName('badDescription');
+        this.setState({
+              description: ''
+            })
+      }
 
     if(flag) {
+      console.log('are you here')
       this.props.changeBonfireModalClassName("fadeOut"); 
       const sendLocation = this.props.convertCoordsToLocation(String(this.props.currentMarker.lat) + ',' + String(this.props.currentMarker.lng));
         return sendLocation
@@ -77,10 +116,8 @@ class BonfireModal extends Component {
   }
 
   handleDropDown(event, index, value) {
-    this.setState({
-      value: value,
-      tag: event.target.innerText
-    })
+    this.setState({value: value, tag: event.target.innerText});
+    this.modalValidation(value);
   }
 
   render() {
@@ -89,6 +126,7 @@ class BonfireModal extends Component {
         <h id="CreateBonfireHeader">Create New Bonfire</h>
         <div id={this.props.changeClass.changed.modelTextBox}>
             <TextField
+              underlineFocusStyle={{borderColor: 'red'}}
               hintStyle={this.props.changeClass.changed.textColor}
               inputStyle={{color:'white',fontFamily:'raleway',fontWeight:'300'}}
               hintText="Description"

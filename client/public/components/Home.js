@@ -11,42 +11,47 @@ import ProfilePage from './ProfilePage/ProfilePage';
 class Home extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      mapClass : 'Map',
-      profilePageClass: 'ProfilePage'
+      visibleComponent : ''
     }
-    this.transitionToProfilePage = this.transitionToProfilePage.bind(this);
-    this.transitionToMap = this.transitionToMap.bind(this);
+
+    this.renderMap = this.renderMap.bind(this);
+    this.renderProfile = this.renderProfile.bind(this);
   }
 
   componentDidMount(){
-   
+    this.renderMap();
   }
 
-  transitionToProfilePage(){
-    this.setState({
-      mapClass: 'Map FadeOutMap',
-      profilePageClass: 'ProfilePage FadeInProfilePage'
-    })
+  
+  renderMap(){
+    const map = (
+      <div className="Map">
+        <Navigation/>
+        <BonfireMap/>
+        <ProfileButton renderProfile={this.renderProfile}/>
+      </div>
+    )
+    this.setState({visibleComponent: map})
   }
 
-  transitionToMap(){
-    
+  renderProfile(){
+    const profile =  (
+      <div className="ProfilePage">
+        <ProfilePage renderMap={this.renderMap}/>
+      </div>
+      
+    )
+    this.setState({visibleComponent: profile});
   }
+
+
 
 	render() {
     return (
       <div id="Home">
-      	<div className={this.state.mapClass}>
-          <Navigation/>
-          <BonfireMap/>
-          <ProfileButton transitionToProfilePage={this.transitionToProfilePage}/>
-        </div>
-        <div className={this.state.profilePageClass}>
-          <ProfilePage/>
-        </div>
-      </div>
+      	{this.state.visibleComponent}
+       </div> 
     );
   }
 }

@@ -11,8 +11,8 @@ module.exports = {
       User_Bonfire.findUserBonfires(paramIds[0])
         .then((joinTable) => {
           if (!joinTable) {
-            console.log("There is no join table with a bonfire ID of " + paramIds[0]);
-            res.end("There is no join table with a bonfire ID of " + paramIds[0])
+            console.log("There is no join table with a user ID of " + paramIds[0]);
+            res.end("There is no join table with a user ID of " + paramIds[0])
           } else {
             console.log('Result from user_bonfire controller in findUserBonfires', joinTable);
             res.send(joinTable);

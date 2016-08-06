@@ -20,6 +20,8 @@ export const LOAD_MODAL = 'LOAD_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const BAD_SUBMISSION = 'BAD_SUBMISSION';
 export const JOIN_BONFIRE = 'JOIN_BONFIRE';
+export const BAD_DROPDOWN = 'BAD_DROPDOWN';
+export const BAD_DESCRIPTION = 'BAD_DESCRIPTION';
 
 export function getMarkers() {
   const grabMarkersDB = axios.get('/bonfire');
@@ -87,6 +89,27 @@ export function joinBonfire(bonId, userId) {
 }
 
 export function changeBonfireModalClassName(animation) {
+  if(animation === "fadeIn"){
+    return ({
+      type: LOAD_MODAL,
+      payload: 
+      { 
+        class: 
+          { 
+            bonfireModal: 'bonfireModal', 
+            modelTextBox: 'modelTextBox',
+            showModal: 'showModal',
+            textColor: {
+              color: 'white'
+            },
+            dropDownColor: {
+              color: 'white'
+            }
+          }
+      }
+    })
+  }
+
   if(animation === "fadeOut") {
     return {
       type: CLOSE_MODAL,
@@ -98,6 +121,9 @@ export function changeBonfireModalClassName(animation) {
             modelTextBox: 'hidden',
             showModal: 'hidden',
             textColor: {
+              color: 'white'
+            },
+            dropDownColor: {
               color: 'white'
             }
           }
@@ -117,15 +143,39 @@ export function changeBonfireModalClassName(animation) {
             showModal: 'showModal',
             textColor: {
               color: 'red'
+            },
+            dropDownColor: {
+              color: 'red'
             }
           }
       }
     }
   }
 
-  if(animation === "fadeIn"){
+  if(animation === 'badDescription') {
+    return {
+      type: BAD_DESCRIPTION,
+      payload:
+      {
+        class:
+          {
+            bonfireModal: 'bonfireModal',
+            modelTextBox: 'modelTextBox',
+            showModal: 'showModal',
+            textColor: {
+              color: 'red'
+            },
+            dropDownColor: {
+              color: 'white'
+            }
+          }
+      }
+    }
+  }
+
+  if(animation === "badDropDown"){
     return ({
-      type: LOAD_MODAL,
+      type: BAD_DROPDOWN,
       payload: 
       { 
         class: 
@@ -134,7 +184,10 @@ export function changeBonfireModalClassName(animation) {
             modelTextBox: 'modelTextBox',
             showModal: 'showModal',
             textColor: {
-             color: 'white'
+              color: 'white'
+            },
+            dropDownColor: {
+              color: 'red'
             }
           }
       }

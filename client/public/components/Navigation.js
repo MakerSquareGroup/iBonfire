@@ -8,12 +8,13 @@ import MenuItem from 'material-ui/MenuItem';
 import { facebookLogout } from '../helpers/fbHelper';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
-
+import { ChatPage } from './ChatPage'
+// import { Link } from 'react-router';
+import {browserHistory} from 'react-router';
 
 class Navigation extends Component {
 	constructor(props) {
 		super(props);
-		console.log(props);
 		this.state = {
 			searchBox: ""
 		}
@@ -22,7 +23,6 @@ class Navigation extends Component {
 	handleSubmit(event) {
 		event.preventDefault();
 		let searchValue = this.refs.searchValue.value;
-		console.log(searchValue);
 		this.props.searchAction(searchValue);
 		this.setState({
 			searchBox: ""
@@ -31,6 +31,10 @@ class Navigation extends Component {
 
 	logout() {
 		facebookLogout();
+	}
+
+	goToChat() {
+		browserHistory.push('/ChatPage');
 	}
 
 	render() {
@@ -65,6 +69,9 @@ class Navigation extends Component {
 						>
 					    <MenuItem onClick={this.props.facebookLogout}>
 								Log Out
+							</MenuItem>
+							<MenuItem onClick={this.goToChat.bind(this)}>
+									Chat
 							</MenuItem>
 					    </IconMenu>
 				    </MuiThemeProvider>

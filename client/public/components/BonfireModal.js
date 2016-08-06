@@ -45,7 +45,7 @@ class BonfireModal extends Component {
             cityState: response.data.results[1].formatted_address,
             latitude: String(this.props.currentMarker.lat),
             longitude: String(this.props.currentMarker.lng),
-            id_User: this.props.facebook.currUser.id
+            createdBy: this.props.facebook.currUser.id
           })
          }) 
         .then(() => {

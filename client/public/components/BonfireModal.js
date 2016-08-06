@@ -63,23 +63,13 @@ class BonfireModal extends Component {
               value: 1
             })
         })  
-    } else {
-        this.props.changeBonfireModalClassName('badSubmission');
-          return this.setState({
-            description: '',
-            tag: '',
-            cityState: '',
-            correct: {
-              color: 'red'
-            } 
-          }) 
     }
   }
 
   handleDropDown(event, index, value) {
     this.setState({value})
   }
-  
+
   render() {
     return (
       <div className={this.props.changeClass.changed.bonfireModal}>
@@ -101,28 +91,6 @@ class BonfireModal extends Component {
             <MenuItem className='dropDownList' style={{color: 'black'}} value={4} primaryText="#politics" />
             <MenuItem className='dropDownList' style={{color: 'black'}} value={5} primaryText="#random" />
           </DropDownMenu>
-        <div id={this.props.changeClass.modelTextBox}>
-          <MuiThemeProvider>
-            <TextField
-              hintStyle={{'color':'white'}}
-              inputStyle={{'color':'white','fontFamily':'raleway','fontWeight':'300'}}
-              hintText="Tag"
-              value={this.state.tag}
-              onChange={e => this.setState({tag: e.target.value})}
-              onKeyDown={this.descriptionBox.bind(this)}
-            />
-          </MuiThemeProvider>    
-          <MuiThemeProvider>
-            <IconMenu
-                iconButtonElement={<IconButton><DownArrowIcon style={{'width':'100px','height':'100px'}} color={'#DF584C'}/></IconButton>}
-                anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-                targetOrigin={{horizontal: 'right', vertical: 'top'}}
-            >
-                <MenuItem onClick={this.logout}>
-                  Log Out
-                </MenuItem>
-              </IconMenu>
-          </MuiThemeProvider>
         </div>
         <div id="CreateBonfireImage">
         </div>

@@ -74,7 +74,9 @@ module.exports = {
 
 	'/:user_specs': {
 		get: (req, res) => {
+
 			console.log("Received GET at /user/");
+
 
 			var matchParams = req.params.user_specs;
 

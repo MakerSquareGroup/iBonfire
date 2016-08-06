@@ -4,13 +4,13 @@ export default class ProfilePage extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			mapButtonClass: 'MapButtonSmall',
-      mapButtonImageClass: 'MapImageSmall MapImageSmallAnimation'
+			
 		}
+
+		
 	}
 
-
-
+	
 	render(){
 		
 
@@ -51,7 +51,7 @@ export default class ProfilePage extends React.Component {
 						<img className="BonfireEntryImage" src="../../media/Bonfire_2.png"/>
 					</div>
 				</div>
-				<div className="MapButtonSmall">
+				<div className="MapButtonSmall" onClick={this.props.renderMap}>
 					<img  className="MapImageSmall MapImageSmallAnimation" src='http://www.appelsiini.net/assets/2008/5/26/tartu.png'/>
 				</div>
 			</div>

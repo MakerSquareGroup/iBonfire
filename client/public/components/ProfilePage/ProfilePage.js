@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../../actions/profile';
 
 export default class ProfilePage extends React.Component {
 	constructor(props){
@@ -6,21 +8,16 @@ export default class ProfilePage extends React.Component {
 		this.state = {
 			
 		}
-
-		
 	}
 
+	componentDidMount(){
+		this.props.getUserBonfires(this.props.facebook.currUser.id);
+
+	}
 	
 	render(){
 		
-
 		var latinText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-
-
-
-
-
-
 
 
 		return(
@@ -58,3 +55,11 @@ export default class ProfilePage extends React.Component {
 		)
 	}
 }
+const mapStateToProps = state => {
+	return {
+		bonfires: state.bonfires,
+		facebook: state.facebook
+	}
+}
+
+export default connect(mapStateToProps, actions)(ProfilePage);

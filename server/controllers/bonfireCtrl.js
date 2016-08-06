@@ -41,10 +41,14 @@ module.exports = {
 						Bonfire.createBonfire(newBonfire)
 							.then((result) => {
 								console.log('Result from bonfire controller createBonfire', result);
-								User_Bonfire.createJoinTable({id_Bonfires: newBonfire.createdBy, id_Users: result.id})
+								User_Bonfire.createJoinTable({id_Users: newBonfire.createdBy, id_Bonfires: result.id})
 								.then((result) => {
 									console.log("Result from bonfire controller in joinBonfire ", result);
-									res.send(result);
+									User_Bonfire.findJoinTable(result.id_Users)
+									.then((result) => {
+										console.log("Result from bonfire controller in findJoinTable ", result);
+										res.send(result);
+									});
 								});
 							});
 					}

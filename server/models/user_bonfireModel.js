@@ -6,6 +6,8 @@ User_Bonfire.createJoinTable = (attr) => {
 	return new Promise((resolve, reject) => {
 		return db('Users_Bonfires').insert(attr)
 		.then((result) => {
+			console.log(result, "THIS IS result");
+			console.log(attr, "THIS IS ATTR");
 			attr.id = result[0];
 			resolve(attr);
 		});

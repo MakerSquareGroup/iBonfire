@@ -1,11 +1,12 @@
 const User_Bonfire = require('../models/user_bonfireModel.js');
+const Helpers = require('../helpers/ctrl_helpers.js');
 
 module.exports = {
   '/:passed_ids': {
     get: function(req, res) {
       console.log("Received GET at /bonfire/join_bonfire");
 
-      var paramIds = seperateBonfireUserId(req.params.passed_ids);
+      var paramIds = Helpers.seperateBonfireUserId(req.params.passed_ids);
 
       User_Bonfire.findUserBonfires(paramIds[0])
         .then((joinTable) => {
@@ -17,6 +18,9 @@ module.exports = {
             res.send(joinTable);
           }
         })
+        .catch((err) => {
+            console.log('Error inside findUserBonfires ', err);
+        });
     },
     post: function(req, res) {
       console.log("Received POST at /bonfire/join_bonfire");
@@ -25,7 +29,7 @@ module.exports = {
     put: function(req, res) {
       console.log("Received PUT at /bonfire/join_bonfire");
 
-      var paramIds = seperateBonfireUserId(req.params.passed_ids);
+      var paramIds = Helpers.seperateBonfireUserId(req.params.passed_ids);
 
       User_Bonfire.findJoinTable(paramIds[0])
         .then((joinTable) => {
@@ -44,14 +48,26 @@ module.exports = {
                         .then((results) => {
                           console.log('Result from user_bonfire controller in joinBonfire', results);
                           res.send(results);
+                        })
+                        .catch((err) => {
+                            console.log('Error inside findAllBonfires ', err);
                         });
+                    })
+                    .catch((err) => {
+                        console.log('Error inside joinBonfire ', err);
                     });
                 } else {
                   console.log("The user with an id of " + paramIds[0] + " is already in the bonfire group with an id of " + paramIds[1]);
                   res.end("The user with an id of " + paramIds[0] + " is already in the bonfire group with an id of " + paramIds[1]);
                 }
+              })
+              .catch((err) => {
+                  console.log('Error inside checkIfUserExists ', err);
               });
           }
+        })
+        .catch((err) => {
+            console.log('Error inside findJoinTable ', err);
         });
     },
     delete: function(req, res) {
@@ -59,20 +75,4 @@ module.exports = {
       res.end("Received DELETE at /bonfire/join_bonfire");
     }
   }
-
 };
-
-seperateBonfireUserId = (getParams) => {
-  var reg = /[&]/;
-  var coords = getParams.split(reg);
-
-  return coords;
-};
-
-
-// Example PUT for users to join a bonfire
-
-// Endpoint: localhost:8080/bonfire/join_bonfire/*bonfireID*&*FB_ID*
-// Endpoint: localhost:8080/bonfire/join_bonfire/10&4294967295
-
-// Returns the join table ID

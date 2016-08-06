@@ -1,9 +1,10 @@
 const User = require('../models/userModel.js');
+const Helpers = require('../helpers/ctrl_helpers.js');
 
 module.exports = {
 	'/': {
 		get: (req, res) => {
-			console.log("Received GET at /api/user/");
+			console.log("Received GET at /user/");
 
 			User.findAllUsers()
 				.then((users) => {
@@ -14,10 +15,13 @@ module.exports = {
 						console.log('We got users!')
 						res.send(users);
 					}
-				});
+				})
+				.catch((err) => {
+            console.log('Error inside findAllUsers ', err);
+        });
 		},
 		post: (req, res) => {
-			console.log("Received POST at /api/user/");
+			console.log("Received POST at /user/");
 
 			var newUser = {
 				name: req.body.name,
@@ -37,19 +41,25 @@ module.exports = {
 					} else {
 						User.createUser(newUser)
 							.then((result) => {
-								console.log('Result from user controller', results);
+								console.log('Result from user controller', result);
 								res.send(result);
-							});
+							})
+							.catch((err) => {
+			            console.log('Error inside createUser ', err);
+			        });
 					}
-				});
+				})
+				.catch((err) => {
+            console.log('Error inside findUserById ', err);
+        });
 		},
 		put: (req, res) => {
-			console.log("Received PUT at /api/user/");
-			res.end("Received PUT at /api/user");
+			console.log("Received PUT at /user/");
+			res.end("Received PUT at /user");
 		},
 		delete: (req, res) => {
-			console.log("Received DELETE at /api/user/");
-			res.end("Received Delete at /api/user");
+			console.log("Received DELETE at /user/");
+			res.end("Received Delete at /user");
 		}
 	},
 
@@ -64,13 +74,12 @@ module.exports = {
 
 	'/:user_specs': {
 		get: (req, res) => {
-			console.log("Received GET at /api/user/");
+			console.log("Received GET at /user/");
 
 			var matchParams = req.params.user_specs;
 
 			// This function checks for '=' to determine search field for user bonfires
-
-			var userBonfires = checkParamsUserBonfires(req.params.user_specs);
+			var userBonfires = Helpers.checkParamsUserBonfires(req.params.user_specs);
 
 			if (matchParams.match("=")) {
 				User.findUserBonfires(userBonfires.createdBy)
@@ -83,13 +92,15 @@ module.exports = {
 							res.send(bonfires);
 						}
 					})
+					.catch((err) => {
+	            console.log('Error inside findUserBonfires ', err);
+	        });
 
 				return;
 			}
 
 			// This function checks the props to return a user by either location or FB ID
-
-			var getParams = checkParamsUser(req.params.user_specs);
+			var getParams = Helpers.checkParamsUser(req.params.user_specs);
 
 			if (matchParams.match("&")) {
 				User.findUserByLocation(getParams[0], getParams[1])
@@ -101,7 +112,10 @@ module.exports = {
 							console.log('Found the user you are looking for!');
 							res.send(user);
 						}
-					});
+					})
+					.catch((err) => {
+	            console.log('Error inside findUserByLocation ', err);
+	        });
 			}
 
 			if (typeof getParams === 'string') {
@@ -114,19 +128,22 @@ module.exports = {
 							console.log('Found the user you are looking for!');
 							res.send(user);
 						}
-					});
+					})
+					.catch((err) => {
+	            console.log('Error inside findUserById ', err);
+	        });
 			}
 		},
 		post: (req, res) => {
-			console.log('Received POST at /api/user/');
-			res.end('Received POST at /api/user');
+			console.log('Received POST at /user/');
+			res.end('Received POST at /user');
 		},
 		put: (req, res) => {
-			console.log('Received PUT at /api/user/');
-			res.end('Received PUT at /api/user');
+			console.log('Received PUT at /user/');
+			res.end('Received PUT at /user');
 		},
 		delete: (req, res) => {
-			console.log("Received DELETE at /api/user/");
+			console.log("Received DELETE at /user/");
 
 			var userId = req.params.user_specs;
 
@@ -144,51 +161,10 @@ module.exports = {
 					}
 
 				})
+				.catch((err) => {
+            console.log('Error inside findUserById ', err);
+        });
 		}
 	}
 };
 
-// The below functions, checkParamUser and seperateLatLongUser are used to determine the proper endpoint
-// based on coordinates or Facebook ID
-
-checkParamsUser = (getParams) => {
-	var reg = /[&]/;
-	if (getParams.match(reg)) {
-		console.log('This GET request is for a user at a coordinate');
-		return seperateLatLongUser(getParams);
-	} else {
-		console.log('This GET request finds a user based on FB_id');
-		return getParams;
-	}
-};
-
-seperateLatLongUser = (getParams) => {
-	var reg = /[&]/;
-	var coords = getParams.split(reg);
-
-	return coords;
-};
-
-// This function is made to be scalable. Currently it will seperate out only the user ID
-// and returns all bonfires associatewd with that user, however, it can be expanded to 
-// accept other arguments to filter results i.e.: by location.
-
-checkParamsUserBonfires = (userBonfires) => {
-	var reg = /[=]/;
-	if (userBonfires.match(reg)) {
-		console.log('This GET request is for returning all bonfires by user id');
-		return (seperateUserBonfire(userBonfires));
-	} else {
-		return userBonfires;
-	}
-};
-
-seperateUserBonfire = (userId) => {
-	var reg = /[=]/;
-	var passedInProps = userId.split(reg);
-
-	return {
-		"createdBy": passedInProps[0],
-		"Filter": passedInProps[1]
-	};
-};

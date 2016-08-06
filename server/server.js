@@ -35,7 +35,6 @@ app.use('/bonfire/join_bonfire', bonfireJoinRoutes);
 
 // Route for API endpoint
 // app.use('/api/bonfire/location', bonfireApiRoutes);
-
 app.get('/*', function(req,res){
   res.sendFile(path.resolve('client', 'index.html'));
 })

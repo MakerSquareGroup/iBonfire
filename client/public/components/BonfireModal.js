@@ -91,7 +91,6 @@ class BonfireModal extends Component {
       }
 
     if(flag) {
-      console.log('are you here')
       this.props.changeBonfireModalClassName("fadeOut"); 
       const sendLocation = this.props.convertCoordsToLocation(String(this.props.currentMarker.lat) + ',' + String(this.props.currentMarker.lng));
         return sendLocation
@@ -129,7 +128,7 @@ class BonfireModal extends Component {
               underlineFocusStyle={{borderColor: 'red'}}
               hintStyle={this.props.changeClass.changed.textColor}
               inputStyle={{color:'white',fontFamily:'raleway',fontWeight:'300'}}
-              hintText={this.props.changeClass.changed.textHint}//"Description" 
+              hintText={this.props.changeClass.changed.textHint}
               value={this.state.description}
               onChange={e => this.setState({description: e.target.value})}
               onKeyDown={this.descriptionBox.bind(this)}

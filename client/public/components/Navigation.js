@@ -13,7 +13,6 @@ import * as actions from '../actions/index';
 class Navigation extends Component {
 	constructor(props) {
 		super(props);
-		console.log(props);
 		this.state = {
 			searchBox: ""
 		}
@@ -22,7 +21,6 @@ class Navigation extends Component {
 	handleSubmit(event) {
 		event.preventDefault();
 		let searchValue = this.refs.searchValue.value;
-		console.log(searchValue);
 		this.props.searchAction(searchValue);
 		this.setState({
 			searchBox: ""

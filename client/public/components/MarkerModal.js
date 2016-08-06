@@ -12,12 +12,14 @@ class MarkerModal extends Component {
     this.props.joinBonfire(bonId, userId);
   }
 
+  // onMouseOut={() => this.props.hideHoverModal()}
+
   render() {
     const hoverMarker = this.props.hoverMarker;
     const markerData = hoverMarker.markerData;
     const currUser = this.props.facebook.currUser;
     return (
-      <div className={hoverMarker.displayClass} onMouseOut={() => this.props.hideHoverModal()}>
+      <div className={hoverMarker.displayClass}>
         <h2>Bonfire ID: {markerData.id}</h2>
         <h2>Hello, {currUser.name}</h2>
         <h3>{markerData.cityState}</h3>

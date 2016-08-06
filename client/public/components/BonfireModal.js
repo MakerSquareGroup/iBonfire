@@ -34,14 +34,24 @@ class BonfireModal extends Component {
 
   modalValidation() {
   let flag = true;
-    if(this.state.description.length < 3 || this.state.description.length > 140 ) {
+
+    if(this.state.description.length < 3 && this.state.value === 1 ) {
       flag = false;
       this.props.changeBonfireModalClassName('badSubmission');
       this.setState({
-            description: '',
-            tag: ''
+            description: ''
+          })
+    } else if(this.state.value === 1) {
+      flag = false;
+      this.props.changeBonfireModalClassName('badDropDown');
+    } else if(this.state.description.length < 3) {
+      flag = false;
+      this.props.changeBonfireModalClassName('badDescription');
+      this.setState({
+            description: ''
           })
     }
+
     if(flag) {
       this.props.changeBonfireModalClassName("fadeOut"); 
       const sendLocation = this.props.convertCoordsToLocation(String(this.props.currentMarker.lat) + ',' + String(this.props.currentMarker.lng));
@@ -67,7 +77,10 @@ class BonfireModal extends Component {
   }
 
   handleDropDown(event, index, value) {
-    this.setState({value})
+    this.setState({
+      value: value,
+      tag: event.target.innerText
+    })
   }
 
   render() {
@@ -84,7 +97,7 @@ class BonfireModal extends Component {
               onKeyDown={this.descriptionBox.bind(this)}
             />
           <br/>   
-          <DropDownMenu value={this.state.value} onChange={this.handleDropDown.bind(this)} labelStyle={{color: 'white'}}>
+          <DropDownMenu value={this.state.value} onChange={this.handleDropDown.bind(this)} labelStyle={this.props.changeClass.changed.dropDownColor}>
             <MenuItem className='dropDownList' style={{color: 'black'}} value={1} primaryText="Tag your Bonfire" />
             <MenuItem className='dropDownList' style={{color: 'black'}} value={2} primaryText="#beer" />
             <MenuItem className='dropDownList' style={{color: 'black'}} value={3} primaryText="#sports" />

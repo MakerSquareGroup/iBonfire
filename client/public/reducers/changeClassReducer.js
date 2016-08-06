@@ -1,6 +1,8 @@
 import { LOAD_MODAL } from '../actions/index';
 import { CLOSE_MODAL } from '../actions/index';
 import { BAD_SUBMISSION } from '../actions/index';
+import { BAD_DROPDOWN } from '../actions/index';
+import { BAD_DESCRIPTION } from '../actions/index';
 
 const INITIAL_STATE = {
   changed: {
@@ -8,6 +10,9 @@ const INITIAL_STATE = {
     modelTextBox: 'hidden',
     showModal: 'hidden',
     textColor: {
+      color: 'white'
+    },
+    dropDownColor: {
       color: 'white'
     }
   }
@@ -20,6 +25,10 @@ export default function(state = INITIAL_STATE, action) {
     case CLOSE_MODAL:
       return {...state, changed: action.payload.class};
     case BAD_SUBMISSION:
+      return {...state, changed: action.payload.class};
+    case BAD_DROPDOWN:
+      return {...state, changed: action.payload.class};
+    case BAD_DESCRIPTION:
       return {...state, changed: action.payload.class};
   }
   return state;

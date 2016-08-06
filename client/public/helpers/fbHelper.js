@@ -3,7 +3,7 @@ import * as actions from '../actions/index';
 
 export const facebookInit = () => {
   window.isLoaded = false;
-	window.fbAsyncInit = () => {
+  window.fbAsyncInit = () => {
     console.log("Facebook SDK initialized");
     FB.init({
       appId: '708986855908181',
@@ -32,7 +32,7 @@ export const facebookInit = () => {
 }
 
 export const checkLoginStatus = () => {
-	FB.getLoginStatus((response) => {
+  FB.getLoginStatus((response) => {
     statusChangeCallBack(response);
   });
 };

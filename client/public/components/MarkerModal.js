@@ -12,6 +12,7 @@ class MarkerModal extends Component {
     const markerData = hoverMarker.markerData;
     return (
       <div className={hoverMarker.displayClass}>
+        <h2>Bonfire ID: {markerData.id}</h2>
         <h2>Hello, {this.props.facebook.currUser.name}</h2>
         <h3>{markerData.cityState}</h3>
         <h3>{markerData.tags}</h3>

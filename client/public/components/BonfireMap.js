@@ -97,8 +97,10 @@ class BonfireMap extends Component {
 	}
 
 	handleMouseOver(marker) {
-		this.props.getHoverMarker(marker);
-		this.props.displayHoverModal();
+		if(this.props.changeClass.bonfireModal === 'hidden') {
+			this.props.getHoverMarker(marker);
+			this.props.displayHoverModal();
+		}
 	}
 
 	handleMouseOut(event) {

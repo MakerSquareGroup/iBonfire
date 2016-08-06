@@ -13,6 +13,7 @@ import * as actions from '../actions/index';
 class Navigation extends Component {
 	constructor(props) {
 		super(props);
+		console.log(props);
 		this.state = {
 			searchBox: ""
 		}
@@ -62,7 +63,7 @@ class Navigation extends Component {
 					      anchorOrigin={{horizontal: 'right', vertical: 'top'}}
 					      targetOrigin={{horizontal: 'right', vertical: 'top'}}
 						>
-					    <MenuItem onClick={this.logout}>
+					    <MenuItem onClick={this.props.facebookLogout}>
 								Log Out
 						</MenuItem>
 					    </IconMenu>
@@ -74,11 +75,10 @@ class Navigation extends Component {
 	}
 }
 
-// <input className="form-control" type="text" defaultValue={this.state.event.name} placeholder="Enter a name" ref="name"/>
-
 const mapStateToProps = state => {
 	return {
-		term: state.term
+		term: state.term,
+		facebook: state.facebook
 	}
 }
 

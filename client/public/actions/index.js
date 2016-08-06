@@ -75,13 +75,14 @@ export function joinBonfire(bonId, userId) {
 
   return (dispatch) => {
     return join
-    .then(() => {
-      console.log("You've joined the bonfire, time to get weird!");
+    .then((response) => {
+      console.log("You've joined the bonfire, time to get weird!", response);
       dispatch({
         type: JOIN_BONFIRE,
         payload: {
           bonId: bonId,
-          userId: userId
+          userId: userId,
+          allMembers: response.data
         }
       })
     });

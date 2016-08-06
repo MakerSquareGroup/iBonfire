@@ -65,7 +65,7 @@ class Navigation extends Component {
 						>
 					    <MenuItem onClick={this.props.facebookLogout}>
 								Log Out
-						</MenuItem>
+							</MenuItem>
 					    </IconMenu>
 				    </MuiThemeProvider>
 			    </div>

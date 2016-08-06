@@ -17,7 +17,7 @@ const db = require('./db/db.js');
 // Require routes for enpoints
 const userRoutes = require('./routes/userRoutes.js');
 const bonfireRoutes = require('./routes/bonfireRoutes.js');
-const bonfireJoinRoutes = require('./routes/bonfireJoinRoutes.js');
+const bonfireJoinRoutes = require('./routes/user_bonfireRoutes.js');
 
 app.use(bodyParser.json());
 

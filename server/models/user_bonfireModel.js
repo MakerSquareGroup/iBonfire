@@ -21,7 +21,7 @@ User_Bonfire.findJoinTable = (bonfireId) => {
 		});
 };
 
-User_Bonfire.joinBonfire = (UserID, bonfireId) => {
+User_Bonfire.joinBonfire = (bonfireId, UserID) => {
 	return new Promise((resolve, reject) => {
 		return db('Users_Bonfires').where({
 				id_Bonfires: bonfireId

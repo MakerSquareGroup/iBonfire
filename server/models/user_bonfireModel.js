@@ -17,11 +17,11 @@ User_Bonfire.findJoinTable = (bonfireId) => {
 			id_Bonfires: bonfireId
 		}).limit(1)
 		.then((rows) => {
-			return rows[0];
+			return rows;
 		});
 };
 
-User_Bonfire.joinBonfire = (bonfireId, UserID) => {
+User_Bonfire.joinBonfire = (UserID, bonfireId) => {
 	return new Promise((resolve, reject) => {
 		return db('Users_Bonfires').where({
 				id_Bonfires: bonfireId
@@ -42,6 +42,15 @@ User_Bonfire.findUserBonfires = (UserID) => {
 			id_Users: UserID
 		})
 		.then((rows) => {
-			console.log(rows);
+			return rows;
 		})
-}
+};
+
+User_Bonfire.findBonfiresById = (bonfireID) => {
+	return db('Users_Bonfires').where({
+			id_Bonfires: bonfireID
+		})
+		.then((rows) => {
+			return rows;
+		})
+};

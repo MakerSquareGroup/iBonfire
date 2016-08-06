@@ -3,14 +3,11 @@ import TextField from 'material-ui/TextField';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
     
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import DownArrowIcon from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
 import IconButton from 'material-ui/IconButton/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
-// import label from 'material-ui/DropDownMenu';
-
 
 class BonfireModal extends Component {
   constructor(props) {
@@ -32,16 +29,15 @@ class BonfireModal extends Component {
     }
   }
 
-  modalValidation() {
+  modalValidation(value) {
   let flag = true;
-
-    if(this.state.description.length < 3 && this.state.value === 1 ) {
+    if(this.state.description.length < 3 && value === 1 ) {
       flag = false;
       this.props.changeBonfireModalClassName('badSubmission');
       this.setState({
             description: ''
           })
-    } else if(this.state.value === 1) {
+    } else if(value === 1) {
       flag = false;
       this.props.changeBonfireModalClassName('badDropDown');
     } else if(this.state.description.length < 3) {
@@ -77,10 +73,8 @@ class BonfireModal extends Component {
   }
 
   handleDropDown(event, index, value) {
-    this.setState({
-      value: value,
-      tag: event.target.innerText
-    })
+    this.setState({value: value, tag: event.target.innerText});
+    this.modalValidation(value);
   }
 
   render() {
@@ -89,6 +83,7 @@ class BonfireModal extends Component {
         <h id="CreateBonfireHeader">Create New Bonfire</h>
         <div id={this.props.changeClass.changed.modelTextBox}>
             <TextField
+              underlineFocusStyle={{borderColor: 'red'}}
               hintStyle={this.props.changeClass.changed.textColor}
               inputStyle={{color:'white',fontFamily:'raleway',fontWeight:'300'}}
               hintText="Description"

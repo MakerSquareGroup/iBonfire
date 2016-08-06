@@ -4,7 +4,19 @@ module.exports = {
   '/:passed_ids': {
     get: function(req, res) {
       console.log("Received GET at /bonfire/join_bonfire");
-      res.end("Received GET at /bonfire/join_bonfire");
+      
+      var paramIds = seperateBonfireUserId(req.params.passed_ids);
+      
+      User_Bonfire.findUserBonfires(paramIds[0])
+      .then((joinTable) => {
+        if(!joinTable) {
+          console.log("There is no join table with a bonfire ID of " + paramIds[0]);
+          res.end("There is no join table with a bonfire ID of " + paramIds[0])
+        } else {
+          console.log('Result from user_bonfire controller in findUserBonfires', joinTable);
+          res.send(joinTable);
+        }
+      })
     },
     post: function(req, res) {
       console.log("Received POST at /bonfire/join_bonfire");
@@ -21,10 +33,14 @@ module.exports = {
             console.log("There is no join table with a bonfire ID of " + paramIds[0]);
             res.end("There is no join table with a bonfire ID of " + paramIds[0])
           } else {
-            User_Bonfire.joinBonfire(paramIds[0], paramIds[1])
+            User_Bonfire.joinBonfire(paramIds[1], paramIds[0])
               .then((results) => {
-                console.log('Result from user_bonfire controller', results);
-                res.send(results);
+                console.log('Result from user_bonfire controller in joinBonfire', results);
+                User_Bonfire.findBonfiresById(paramIds[0])
+                .then((results) => {
+                  console.log('Result from user_bonfire controller in joinBonfire', results);
+                  res.send(results);
+                })
               });
           }
         });

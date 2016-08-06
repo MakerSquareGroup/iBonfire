@@ -79,12 +79,55 @@ knex.ensureSchema = () => {
 				knex.schema.createTable('Chats', (table) => {
 						table.increments('id').primary();
 						table.string('messages');
+						table.string('id_Bonfires').references('id').inTable('Bonfires');
 						table.timestamp('created_by_User_at').defaultTo(knex.fn.now());
 					})
-					.then((then) => {
+					.then((table) => {
 						console.log('Chats Table has been created.')
 					});
 			}
+		}),
+
+		knex.schema.hasTable('Users_Chats')
+		.then((exists) => {
+			if (!exists) {
+				knex.schema.createTable('Users_Chats', (table) => {
+						table.increments('id').primary();
+						table.string('id_Users').references('FB_id').inTable('Users');
+						table.string('id_Chats').references('id').inTable('Chats');
+					})
+					.then((table) => {
+						console.log('Users_Chats Table has been created.');
+					});
+			}
+		}),
+
+		knex.schema.hasTable('Tags')
+		.then((exists) => {
+			if (!exists) {
+				knex.schema.createTable('Tags', (table) => {
+						table.increments('id');
+						table.string('tag');
+					})
+					.then((table) => {
+						console.log('Tags Table has been created.');
+					});
+			}
+		}),
+
+		knex.schema.hasTable('Bonfires_Tags')
+		.then((exists) => {
+			if (!exists) {
+				knex.schema.createTable('Bonfires_Tags', (table) => {
+						table.increments('id');
+						table.string('id_Bonfires').references('id').inTable('Bonfires');
+						table.string('id_Tags').references('id').inTable('Tags');
+					})
+					.then((table) => {
+						console.log('Bonfires_Tags Tabel has been created.');
+					})
+			}
 		})
+
 	]);
 };

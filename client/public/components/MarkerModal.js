@@ -26,10 +26,10 @@ class MarkerModal extends Component {
     const currUser = this.props.facebook.currUser;
     return (
       <div className='marker-modal'>
+        <h1>Tags: {markerData.tags}</h1>
         <p>Bonfire ID: {markerData.id}</p>
-        <p>{markerData.tags}</p>
+        <h2>Description: {markerData.description}</h2>
         <button id='join-bonfire' onClick={() => this.joinBonfire(markerData.id, currUser.id)}>Join</button>
-        <p>{markerData.description}</p>
         <p>{markerData.cityState}</p>
       </div>
     )

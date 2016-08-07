@@ -6,23 +6,23 @@ export default class ChatPage extends Component {
     super(props);
     this.state = {
       value: '',
-      // socket: 
+      socket: io()
     }
 
   }
 
   componentDidMount() {
-    const socket= io()
-    console.log(socket, 'this is socket')
-      socket.emit('new message');
+    // const socket= io()
+    // console.log(socket, 'this is socket')
     
   }
 
   handleSubmit(e) {
     e.preventDefault()
-    // this.setState({
-    //   value: ''
-    // })
+      this.state.socket.emit('new message', this.state.value);
+    this.setState({
+      value: ''
+    })
   }
 
   handleChange(e) {

@@ -35,7 +35,7 @@
 	top: 55%;
 	left: 50%;
 	transform: translateX(-50%) translateY(-50%);
-	z-index: 10000;
+	z-index: 1000;
 	visibility: hidden;
 	animation: 1000ms fadeIn ease-in-out forwards;
   -webkit-animation: 1000ms fadeIn ease-in-out forwards;

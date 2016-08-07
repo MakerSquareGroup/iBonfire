@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
 import { InfoWindow } from 'react-google-maps';
+import { Infinite } from 'react-infinite';
 
 class MarkerModal extends Component {
   constructor(props) {
@@ -25,12 +26,11 @@ class MarkerModal extends Component {
     const currUser = this.props.facebook.currUser;
     return (
       <div className='marker-modal'>
-        <h2>Bonfire ID: {markerData.id}</h2>
-        <h2>Hello, {currUser.name}</h2>
-        <h3>{markerData.cityState}</h3>
-        <button onClick={() => this.joinBonfire(markerData.id, currUser.id)}>Join</button>
-        <h3>{markerData.tags}</h3>
-        <h3>{markerData.description}</h3>
+        <p>Bonfire ID: {markerData.id}</p>
+        <p>{markerData.tags}</p>
+        <button id='join-bonfire' onClick={() => this.joinBonfire(markerData.id, currUser.id)}>Join</button>
+        <p>{markerData.description}</p>
+        <p>{markerData.cityState}</p>
       </div>
     )
   }

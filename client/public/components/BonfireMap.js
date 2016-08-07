@@ -76,9 +76,9 @@ class BonfireMap extends Component {
 	}
 
 	handleMapClick(event) {
-		let lat = event.latLng.lat();
-		let long = event.latLng.lng();
-		let markerObject = {
+		const lat = event.latLng.lat();
+		const long = event.latLng.lng();
+		const markerObject = {
 			position: { lat: lat, lng: long }
 		}
 		const changed = this.props.changeClass.changed;
@@ -128,37 +128,42 @@ class BonfireMap extends Component {
 			return;
 		}
 
-		this.props.getHoverMarker(target);
-		this.props.displayHoverModal();
-		this.setState({
-			windowOpen: true,
-			markers: this.state.markers.map((marker) => {
+		let indexMarker = "";
+
+		let markers = this.state.markers.map((marker, index) => {
 				if(marker === target) {
+					indexMarker = index;
 					return {
 						...marker,
-						showInfo: true
+						showInfo: true,
 					};
 				}
 				return marker;
-			})
 		});
+
+		this.setState({
+			windowOpen: true,
+			markers: markers,
+			markerIndex: indexMarker
+		});
+
+		this.props.displayHoverModal();
+		this.props.getHoverMarker(target);
 	}
 
 	closeModal(target) {
-		console.log("CLOSE ME GOD DAMMIT");
-		this.props.hideHoverModal(target);
+		const markers = this.state.markers;
+		const index = this.state.markerIndex;
+		let targetMarker = markers[index]
+		targetMarker.showInfo = false;
 		this.setState({
 			windowOpen: false,
-			markers: this.state.markers.map((marker) => {
-				if(marker === target) {
-					return {
-						...marker,
-						showInfo: false
-					};
-				}
-				return marker;
-			})
+			markers: [...markers.slice(0, index),
+				targetMarker, ...markers.slice(index + 1)
+			]
 		});
+
+		this.props.hideHoverModal(target);
 	}
 
 	renderInfoWindow(ref, marker) {

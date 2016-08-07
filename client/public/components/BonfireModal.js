@@ -21,9 +21,17 @@ class BonfireModal extends Component {
       },
       value: 1
     }
+  window.addEventListener("keydown", this.hideModal.bind(this));
+  }
+  
+  hideModal(event) {
+    if(event.keyCode === 27) {
+      this.props.changeBonfireModalClassName('fadeOut');
+    }
   }
 
   descriptionBox(event) {
+    console.log(event.keyCode, 'what is the event.keyCode')
     if(event.keyCode === 13) {
       this.modalValidation('hit enter');
     }

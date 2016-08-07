@@ -4,7 +4,7 @@ import { HIDE_MODAL } from '../actions/index';
 
 const initialState = {
   markerData: "",
-  displayClass: "hidden"
+  windowOpen: false
 };
 
 export default function(state = initialState, action) {
@@ -12,9 +12,9 @@ export default function(state = initialState, action) {
     case HOVER_MARKER:
       return { ...state, markerData: action.payload };
     case DISPLAY_MODAL:
-      return { ...state, displayClass: action.payload };
+      return { ...state, windowOpen: action.payload.windowOpen };
     case HIDE_MODAL:
-      return { ...state, displayClass: action.payload };
+      return { ...state, windowOpen: action.payload.windowOpen };
   }
   return state;
 }

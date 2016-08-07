@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
+import { InfoWindow } from 'react-google-maps';
 
 class MarkerModal extends Component {
   constructor(props) {
     super(props);
+
+    this.mouseOutModal = this.mouseOutModal.bind(this);
   }
 
   joinBonfire(bonId, userId) {
@@ -12,25 +15,28 @@ class MarkerModal extends Component {
     this.props.joinBonfire(bonId, userId);
   }
 
-  // onMouseOut={() => this.props.hideHoverModal()}
+  mouseOutModal(marker) {
+    this.props.hideHoverModal(marker);
+  }
 
   render() {
     const hoverMarker = this.props.hoverMarker;
     const markerData = hoverMarker.markerData;
     const currUser = this.props.facebook.currUser;
     return (
-      <div className={hoverMarker.displayClass}>
+      <div className='marker-modal'>
         <h2>Bonfire ID: {markerData.id}</h2>
         <h2>Hello, {currUser.name}</h2>
         <h3>{markerData.cityState}</h3>
         <button onClick={() => this.joinBonfire(markerData.id, currUser.id)}>Join</button>
         <h3>{markerData.tags}</h3>
         <h3>{markerData.description}</h3>
-        <img src={`http://graph.facebook.com/${this.props.facebook.currUser.id}/picture?type=small`}/>
       </div>
     )
   }
 }
+
+            // <img src={`http://graph.facebook.com/${this.props.facebook.currUser.id}/picture?type=small`}/>
 
 function mapStateToProps(state) {
   return {

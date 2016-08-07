@@ -45,14 +45,18 @@ export function getHoverMarker(marker) {
 export function displayHoverModal() {
   return {
     type: DISPLAY_MODAL,
-    payload: 'marker-modal'
+    payload: {
+      windowOpen: true
+    }
   }
 }
 
-export function hideHoverModal() {
+export function hideHoverModal(marker) {
   return {
     type: HIDE_MODAL,
-    payload: 'hide-marker-modal'
+    payload: {
+      windowOpen: false
+    }
   }
 }
 

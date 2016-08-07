@@ -3,21 +3,21 @@
   width: 300px;
   position: absolute;
   text-align: center;
-  top: 55%;
-  left: 50%;
+/*  top: 55%;
+  left: 50%;*/
   transform: translateX(-50%) translateY(-50%);
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   border-radius: 50%;
 /*  visibility: hidden; */
   -webkit-animation: 500ms fadeIn ease-in-out forwards;
-  background-color: gray;
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   z-index: 300;
 }
 
-.hide-marker-modal {
+/*.hide-marker-modal {
   visibility: hidden;
-}
+}*/

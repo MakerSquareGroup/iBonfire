@@ -45,14 +45,18 @@ export function getHoverMarker(marker) {
 export function displayHoverModal() {
   return {
     type: DISPLAY_MODAL,
-    payload: 'marker-modal'
+    payload: {
+      windowOpen: true
+    }
   }
 }
 
-export function hideHoverModal() {
+export function hideHoverModal(marker) {
   return {
     type: HIDE_MODAL,
-    payload: 'hide-marker-modal'
+    payload: {
+      windowOpen: false
+    }
   }
 }
 
@@ -75,13 +79,14 @@ export function joinBonfire(bonId, userId) {
 
   return (dispatch) => {
     return join
-    .then(() => {
-      console.log("You've joined the bonfire, time to get weird!");
+    .then((response) => {
+      console.log("You've joined the bonfire, time to get weird!", response);
       dispatch({
         type: JOIN_BONFIRE,
         payload: {
           bonId: bonId,
-          userId: userId
+          userId: userId,
+          allMembers: response.data
         }
       })
     });

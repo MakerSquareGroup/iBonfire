@@ -22,7 +22,12 @@ export default (CheckedComponent) => {
       if(window.isLoaded) {
         return <CheckedComponent {...this.props} />
       } else {
-        return <h1 id="loading">Loading...</h1>
+        return (
+          <div className="spinner">
+            <div className="double-bounce1"></div>
+            <div className="double-bounce2"></div>
+        </div>
+        )
       }
     }
   }

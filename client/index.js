@@ -15,7 +15,7 @@ import ChatPage from './public/components/ChatPage'
 import InitFB from './public/components/auth/InitFB';
 
 const createStoreWithMiddleWare = applyMiddleware(thunk)(createStore);
-const store = createStoreWithMiddleWare(rootReducer, window.devToolsExtension ? window.devToolsExtension() : f => f);
+export const store = createStoreWithMiddleWare(rootReducer, window.devToolsExtension ? window.devToolsExtension() : f => f);
 
 const router = (
   <Provider store={store}>

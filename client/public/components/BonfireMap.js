@@ -1,24 +1,33 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { browserHistory } from 'react-router';
-import { GoogleMapLoader, GoogleMap, Marker } from "react-google-maps";
+import { GoogleMapLoader, GoogleMap, Marker, InfoWindow } from "react-google-maps";
 import { facebookLogout, facebookInit } from '../helpers/fbHelper';
+
+import { default as InfoBox } from '../../../node_modules/react-google-maps/lib/addons/InfoBox';
 
 import BonfireModal from './BonfireModal';
 import MarkerModal from './MarkerModal';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
+import { Provider } from 'react-redux';
+
+import { store } from '../../index';
 
 class BonfireMap extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			windowOpen: this.props.hoverMarker.windowOpen,
 			location: {
 				lat: this.props.location.lat, 
 				lng: this.props.location.lng
-			}
+			},
+			markers: this.props.markers
 		}
-		this.handleMouseOver = this.handleMouseOver.bind(this);
-		this.handleMouseOut = this.handleMouseOut.bind(this);
+		this.openModal = this.openModal.bind(this);
+		this.closeModal = this.closeModal.bind(this);
+		this.renderInfoWindow = this.renderInfoWindow.bind(this);
 	}
 
 	componentWillMount() {
@@ -54,15 +63,29 @@ class BonfireMap extends Component {
 		if(this.props.markers.length < nextProps.markers.length) {
 			this.props.getMarkers();
 		}
+
+		if(this.state.markers.length < nextProps.markers.length) {
+			this.setState({
+				markers: this.props.markers
+			});
+		}
+
+		if(nextProps.hoverMarker.windowOpen === false && this.state.windowOpen === true) {
+			this.closeModal(this.props.hoverMarker.markerData);
+		}
 	}
 
 	handleMapClick(event) {
-		let lat = event.latLng.lat();
-		let long = event.latLng.lng();
-		let markerObject = {
+		const lat = event.latLng.lat();
+		const long = event.latLng.lng();
+		const markerObject = {
 			position: { lat: lat, lng: long }
 		}
 		const changed = this.props.changeClass.changed;
+
+		if(this.state.windowOpen) {
+			return;
+		}
 		
 		if(changed.bonfireModal !== 'hidden') {
 			return this.props.changeBonfireModalClassName("fadeOut")
@@ -98,15 +121,59 @@ class BonfireMap extends Component {
 		});
 	}
 
-	handleMouseOver(marker) {
-		if(this.props.changeClass.changed.bonfireModal === 'hidden') {
-			this.props.getHoverMarker(marker);
-			this.props.displayHoverModal();
+	openModal(target) {
+		const bonfireModal = this.props.changeClass.changed.bonfireModal;
+
+		if(bonfireModal !== 'hidden' || this.props.hoverMarker.windowOpen) {
+			return;
 		}
+
+		let indexMarker = "";
+
+		let markers = this.state.markers.map((marker, index) => {
+				if(marker === target) {
+					indexMarker = index;
+					return {
+						...marker,
+						showInfo: true,
+					};
+				}
+				return marker;
+		});
+
+		this.setState({
+			windowOpen: true,
+			markers: markers,
+			markerIndex: indexMarker
+		});
+
+		this.props.displayHoverModal();
+		this.props.getHoverMarker(target);
 	}
 
-	handleMouseOut(event) {
-		// this.props.hideHoverModal();
+	closeModal(target) {
+		const markers = this.state.markers;
+		const index = this.state.markerIndex;
+		let targetMarker = markers[index]
+		targetMarker.showInfo = false;
+		this.setState({
+			windowOpen: false,
+			markers: [...markers.slice(0, index),
+				targetMarker, ...markers.slice(index + 1)
+			]
+		});
+
+		this.props.hideHoverModal(target);
+	}
+
+	renderInfoWindow(ref, marker) {
+		return (
+			<InfoBox key={ref} options={{ closeBoxURL: '', enableEventPropagation: true }}>
+				<div onMouseLeave={() => this.closeModal(marker)}>
+					<MarkerModal store={store} />
+				</div>
+			</InfoBox>
+		)
 	}
 
 	render() {
@@ -125,33 +192,38 @@ class BonfireMap extends Component {
 			      onClick={this.handleMapClick.bind(this)}
 			    >
 
-			   	{this.props.markers.map((marker, index) => {
+			   	{this.state.markers.map((marker, index) => {
 	    			let position = {
 	    				lat: Number(marker.latitude),
 	    				lng: Number(marker.longitude)
 	    			}
+	    			const ref = `marker_${index}`;
 	    			return (
 	    			<Marker
 		    		icon='../media/BonFire.png'
 		    		position={position}
 		    		defaultAnimation={2}
 		    		key={index}
+		    		ref={ref}
 		    		value={marker}
-		    		onMouseover={() => this.handleMouseOver(marker)}
-		    		onMouseout={() => this.handleMouseOut(marker)}
-		    		/>
+		    		onMouseover={() => this.openModal(marker)}
+		    		// onMouseout={() => this.handleMouseOut(marker)}
+		    		>
+		    			{marker.showInfo ? this.renderInfoWindow(ref, marker) : null }
+
+		    		</Marker>
 	    		)
 	    		})}
 
 						<BonfireModal />
-						<MarkerModal />
-
 			    </GoogleMap>
 		  	}
 			/>
     )
 	}
 }
+
+// <MarkerModal/>
 
 const mapStateToProps = state => {
 	return {

@@ -1,4 +1,6 @@
 .chat {
+	display: flex;
+	min-height: 100vh;
 	background-color: white;
 	z-index: 1000;
 }

@@ -32,7 +32,6 @@ class BonfireMap extends Component {
 
 	componentWillMount() {
 		this.props.getCurrentUser();
-		this.props.getLocation();
 		this.props.getMarkers();
 	}
 
@@ -114,11 +113,13 @@ class BonfireMap extends Component {
 		let lng = this.refs.googleMap.getCenter().lng();
 
 		this.setState({
+			windowOpen: false,
 			location: {
 				lat: lat, 
 				lng: lng
 			}
 		});
+
 	}
 
 	openModal(target) {
@@ -221,8 +222,6 @@ class BonfireMap extends Component {
     )
 	}
 }
-
-// <MarkerModal/>
 
 const mapStateToProps = state => {
 	return {

@@ -4,7 +4,7 @@
   position: absolute;
   text-align: center;
   justify-content: center;
-  color: black;
+  color: white;
 /*  top: 55%;
   left: 50%;*/
   transform: translateX(-50%) translateY(-50%);
@@ -13,7 +13,7 @@
   border-radius: 5%;
 /*  visibility: hidden; */
   /*-webkit-animation: 500ms fadeIn ease-in-out forwards;*/
-  background-color: rgba(219,76,44,.3);
+  background-color: rgba(219,76,44,.7);
   display: flex;
   flex-direction: column;
   align-items: center;

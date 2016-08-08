@@ -75,7 +75,7 @@ export function addMarker(data) {
 }
 
 export function joinBonfire(bonId, userId) {
-  const join = axios.put('/bonfire/join_bonfire/' + bonId + '&'+ userId)
+  const join = axios.put('/bonfire/join_bonfire/' + userId + '&'+ bonId)
 
   return (dispatch) => {
     return join
@@ -232,7 +232,6 @@ export function addUser(user, picture) {
 }
 
 export function sendDescription(modalObj) {
-  console.log(modalObj, 'what is the modalObj?')
   const sendModal = axios.post('/bonfire', modalObj)
   return (dispatch) => {
     return sendModal.then((response) => {

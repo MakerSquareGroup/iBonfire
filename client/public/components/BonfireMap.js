@@ -89,6 +89,8 @@ class BonfireMap extends Component {
 		
 		if(changed.bonfireModal !== 'hidden') {
 			return this.props.changeBonfireModalClassName("fadeOut")
+		} else {
+			this.props.changeBonfireModalClassName("fadeIn");
 		}
 
 		this.setState({
@@ -97,9 +99,7 @@ class BonfireMap extends Component {
 				lng: long
 			}
 		});
-
 		this.props.setCurrentMarker(markerObject);
-		this.props.changeBonfireModalClassName("fadeIn");
 	}
 
 	logout() {
@@ -141,14 +141,14 @@ class BonfireMap extends Component {
 				return marker;
 		});
 
+		this.props.displayHoverModal();
+		this.props.getHoverMarker(target);
+
 		this.setState({
 			windowOpen: true,
 			markers: markers,
 			markerIndex: indexMarker
 		});
-
-		this.props.displayHoverModal();
-		this.props.getHoverMarker(target);
 	}
 
 	closeModal(target) {

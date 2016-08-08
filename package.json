@@ -37,11 +37,7 @@
     "express": "^4.14.0",
     "http": "0.0.0",
     "knex": "^0.11.7",
-<<<<<<< HEAD
     "material-ui": "^0.15.3",
-=======
-    "material-ui": "^0.15.2",
->>>>>>> [Feature] Add Navigation with logo, search, and logout
     "moment": "^2.14.1",
     "morgan": "^1.7.0",
     "mysql": "^2.11.1",

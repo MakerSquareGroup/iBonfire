@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import BonfireMap from './BonfireMap';
 import Navigation from './Navigation';
-<<<<<<< HEAD
 import ProfileButton from './ProfileButton';
-=======
->>>>>>> Add Navigation
 import DragAndDrop from './DragAndDrop';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';

@@ -3,10 +3,6 @@
 	left:50%;
 	top:50%;
 	transform: translateX(-50%) translateY(-50%);
-<<<<<<< HEAD
-=======
-
->>>>>>> [Feature] Add Navigation with logo, search, and logout
 }
 input {
 	outline: transparent;
@@ -24,17 +20,10 @@ input::-webkit-search-cancel-button {
 
 
 input[type=search] {
-<<<<<<< HEAD
 	background: #DF584C url(http://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 11px center;
 	border: solid 2px #eee;
 	width: 55px;
 	opacity: 0.85;
-=======
-	background: rgba(255,255,255,0.5) url(http://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 11px center;
-	border: solid 2px #eee;
-	width: 55px;
->>>>>>> [Feature] Add Navigation with logo, search, and logout
-
 	-webkit-border-radius: 10em;
 	-moz-border-radius: 10em;
 	border-radius: 10em;
@@ -74,11 +63,7 @@ input::-webkit-input-placeholder {
 #SearchBar input[type=search]:focus {
 	border-bottom: 1px solid rgb(212, 212, 212);
 	box-shadow: 0 1px 0 0 rgba(38, 166, 154, 0);
-<<<<<<< HEAD
 	width: 200px;
-=======
-	width: 130px;
->>>>>>> [Feature] Add Navigation with logo, search, and logout
 	padding-left: 35px;
 	color: #000;
 	border: 2px solid #eee;

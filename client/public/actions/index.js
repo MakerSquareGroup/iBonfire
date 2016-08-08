@@ -299,7 +299,7 @@ export function searchAction(searchValue) {
 // https://maps.googleapis.com/maps/api/geocode/json?latlng=44.4647452,7.3553838&sensor=true
 
 export function convertCoordsToLocation(latlng) {
-const apiCall = axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latlng + '&sensor=true');
+  const apiCall = axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latlng + '&sensor=true');
   return (dispatch) => {
     return apiCall.then((location) => {
       return location

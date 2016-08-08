@@ -1,6 +1,6 @@
 .marker-modal {
-  height: 270px;
-  width: 270px;
+  height: 250px;
+  width: 300px;
   position: absolute;
   text-align: center;
   justify-content: center;
@@ -10,7 +10,7 @@
   transform: translateX(-50%) translateY(-50%);
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
-  border-radius: 50%;
+  border-radius: 5%;
 /*  visibility: hidden; */
   /*-webkit-animation: 500ms fadeIn ease-in-out forwards;*/
   background-color: rgba(219,76,44,.3);

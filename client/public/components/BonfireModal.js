@@ -31,7 +31,6 @@ class BonfireModal extends Component {
   }
 
   descriptionBox(event) {
-    console.log(event.keyCode, 'what is the event.keyCode')
     if(event.keyCode === 13) {
       this.modalValidation('hit enter');
     }
@@ -45,6 +44,7 @@ class BonfireModal extends Component {
     }
     if(props.changeClass.changed.bonfireModal === 'hidden') {
       this.setState({
+        copyDescription: this.state.description,
         description: ''
       })
     }
@@ -99,12 +99,12 @@ class BonfireModal extends Component {
       }
 
     if(flag) {
-      this.props.changeBonfireModalClassName("fadeOut"); 
       const sendLocation = this.props.convertCoordsToLocation(String(this.props.currentMarker.lat) + ',' + String(this.props.currentMarker.lng));
+      this.props.changeBonfireModalClassName("fadeOut")
         return sendLocation
         .then((response) => {
           return this.props.sendDescription({
-            description: this.state.description,
+            description: this.state.copyDescription,
             tags: this.state.tag,
             cityState: response.data.results[1].formatted_address,
             latitude: String(this.props.currentMarker.lat),
@@ -113,11 +113,10 @@ class BonfireModal extends Component {
           })
          }) 
         .then(() => {
-          this.props.changeBonfireModalClassName('fadeOut');
-            return this.setState({
-              description: '',
-              value: 1
-            })
+          return this.setState({
+            description: '',
+            value: 1
+          })
         })  
     }
   }

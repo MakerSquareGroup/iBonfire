@@ -232,6 +232,7 @@ export function addUser(user, picture) {
 }
 
 export function sendDescription(modalObj) {
+  console.log(modalObj, 'what is the modalObj?')
   const sendModal = axios.post('/bonfire', modalObj)
   return (dispatch) => {
     return sendModal.then((response) => {

@@ -20,7 +20,6 @@
   left: 50%;
   top: 50%;
   -webkit-transform: translate(-50%,-50%)
-  margin: 100px auto;
 }
 
 .double-bounce1, .double-bounce2 {

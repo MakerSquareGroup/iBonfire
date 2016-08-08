@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
 import { InfoWindow } from 'react-google-maps';
-import { Infinite } from 'react-infinite';
+import Infinite  from 'react-infinite';
 
 class MarkerModal extends Component {
   constructor(props) {
@@ -26,17 +26,20 @@ class MarkerModal extends Component {
     const currUser = this.props.facebook.currUser;
     return (
       <div className='marker-modal'>
-        <h1>Tags: {markerData.tags}</h1>
-        <p>Bonfire ID: {markerData.id}</p>
-        <h2>Description: {markerData.description}</h2>
+        <Infinite elementHeight={60}
+        containerHeight={180}
+        >
+          <h1>Tags: {markerData.tags}</h1>
+          <p>Bonfire ID: {markerData.id}</p>
+          <h2>Description: {markerData.description}</h2>
+          <img src={`http://graph.facebook.com/${this.props.facebook.currUser.id}/picture?type=small`}/>
+          <p>{markerData.cityState}</p>
+        </Infinite>
         <button id='join-bonfire' onClick={() => this.joinBonfire(markerData.id, currUser.id)}>Join</button>
-        <p>{markerData.cityState}</p>
       </div>
     )
   }
 }
-
-            // <img src={`http://graph.facebook.com/${this.props.facebook.currUser.id}/picture?type=small`}/>
 
 function mapStateToProps(state) {
   return {

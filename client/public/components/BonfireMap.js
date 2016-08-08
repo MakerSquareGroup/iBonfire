@@ -60,13 +60,13 @@ class BonfireMap extends Component {
 			});
 		}
 
-		if(this.props.markers.length < nextProps.markers.length) {
-			this.props.getMarkers();
+		if(this.props.markers.length !== nextProps.markers.length) {
+			return this.props.getMarkers();
 		}
 
-		if(this.state.markers.length < nextProps.markers.length) {
+		if(this.state.markers !== nextProps.markers) {
 			this.setState({
-				markers: this.props.markers
+				markers: nextProps.markers
 			});
 		}
 
@@ -207,7 +207,6 @@ class BonfireMap extends Component {
 		    		ref={ref}
 		    		value={marker}
 		    		onMouseover={() => this.openModal(marker)}
-		    		// onMouseout={() => this.handleMouseOut(marker)}
 		    		>
 		    			{marker.showInfo ? this.renderInfoWindow(ref, marker) : null }
 

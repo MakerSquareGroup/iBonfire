@@ -27,6 +27,7 @@
 }
 
 
+
 .Top {
   z-index: 100;
 }
@@ -94,7 +95,4 @@
 	animation: 1000ms fadeOut ease-in-out forwards;
   -webkit-animation: 1000ms fadeOut ease-in-out forwards;
 }
-
-
-
 

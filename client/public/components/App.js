@@ -17,6 +17,10 @@ class App extends Component {
 		super(props);
 	}
 
+  componentWillMount() {
+    this.props.getLocation();
+  }
+
   render() {
     return (
     <MuiThemeProvider>

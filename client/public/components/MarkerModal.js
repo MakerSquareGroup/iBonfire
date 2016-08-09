@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions/index';
 import { InfoWindow } from 'react-google-maps';
 import Infinite  from 'react-infinite';
+import axios from 'axios';
 
 class MarkerModal extends Component {
   constructor(props) {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import React from 'react';
 import DownArrowIcon from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
 import Avatar from 'material-ui/Avatar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -46,10 +47,10 @@ class Navigation extends Component {
       			</div>
 
 		   		<div id="SearchBar">
-			      <form id="demo-2" 
+			      <form id="demo-2"
 			      onSubmit={this.handleSubmit.bind(this)}>
-			        <input 
-			        type="search" 
+			        <input
+			        type="search"
 			        placeholder="Search"
 			        value={this.state.searchBox}
 			        ref="searchValue"
@@ -76,7 +77,6 @@ class Navigation extends Component {
 					    </IconMenu>
 				    </MuiThemeProvider>
 			    </div>
-			    
 			</div>
 		)
 	}

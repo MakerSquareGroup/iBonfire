@@ -23,7 +23,7 @@ class Home extends Component {
     this.renderMap();
   }
 
-  
+
   renderMap(){
     const map = (
       <div className="Map">
@@ -40,7 +40,7 @@ class Home extends Component {
       <div className="ProfilePage">
         <ProfilePage renderMap={this.renderMap}/>
       </div>
-      
+
     )
     this.setState({visibleComponent: profile});
   }
@@ -50,8 +50,9 @@ class Home extends Component {
 	render() {
     return (
       <div id="Home">
-      	{this.state.visibleComponent}
-       </div> 
+          {this.state.visibleComponent}
+      </div>
+
     );
   }
 }

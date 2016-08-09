@@ -4,3 +4,10 @@
 	background-color: white;
 	z-index: 1000;
 }
+
+.chatMessages {
+	/*display: flex;
+	min-height: 100vh;
+	background-color: white;*/
+	/*z-index: 1002;*/
+}

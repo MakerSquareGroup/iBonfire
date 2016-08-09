@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import socket from 'socket.io-client';
+import axios from 'axios';
+import { addChatMessage } from '../helpers/chatHelper';
 
 export default class ChatPage extends Component {
   constructor(props) {
@@ -8,13 +10,23 @@ export default class ChatPage extends Component {
       value: '',
       socket: io()
     }
-
   }
 
   componentDidMount() {
     // const socket= io()
     // console.log(socket, 'this is socket')
-    
+  addChatMessage()
+    .then((response) )
+  }
+
+  // componentWillMount() {
+  //   axios.get('bonfireChats')
+  // }
+
+  postMessage(msg) {
+    this.setState({
+      newMsg: <li>{msg}</li>
+    })
   }
 
   handleSubmit(e) {
@@ -22,6 +34,10 @@ export default class ChatPage extends Component {
       this.state.socket.emit('new message', this.state.value);
     this.setState({
       value: ''
+    })
+
+    this.state.socket.on('receive-message', (msg)  => {
+      this.postMessage(msg)
     })
   }
 
@@ -33,8 +49,13 @@ export default class ChatPage extends Component {
 
   render() {
     return(
-      <div className='chat'>
-        <div>
+      <div>
+        <div className='chat'>
+        <div className="chatMessages">
+          <ul>
+            {this.state.newMsg}
+          </ul>
+        </div>
           <form onSubmit={this.handleSubmit.bind(this)}>
             <input id="m" value={this.state.value} onChange={this.handleChange.bind(this)} type='text'/>
           </form>

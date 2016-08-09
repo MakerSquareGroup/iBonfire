@@ -21,6 +21,7 @@ const tagRoutes = require('./routes/tagRoutes.js');
 const userRoutes = require('./routes/userRoutes.js');
 const bonfireRoutes = require('./routes/bonfireRoutes.js');
 const bonfireJoinRoutes = require('./routes/user_bonfireRoutes.js');
+const chatRoutes = require('./routes/chatRoutes.js');
 
 app.use(bodyParser.json());
 
@@ -33,7 +34,7 @@ io.on('connection', function(socket){
   console.log('a user connected');
   socket.on('new message', function(msg){
     console.log(msg);
-    // io.emit('receive-message', msg);
+    io.emit('receive-message', msg);
   });
 });
 
@@ -44,6 +45,7 @@ app.use('/tag', tagRoutes);
 app.use('/user', userRoutes);
 app.use('/bonfire', bonfireRoutes);
 app.use('/bonfire/join_bonfire', bonfireJoinRoutes);
+app.use('/bonfireChat', chatRoutes);
 
 // Route for API endpoint
 // app.use('/api/bonfire/location', bonfireApiRoutes);

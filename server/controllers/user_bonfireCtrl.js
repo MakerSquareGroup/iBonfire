@@ -1,5 +1,6 @@
 const User_Bonfire = require('../models/user_bonfireModel.js');
 const Helpers = require('../helpers/ctrl_helpers.js');
+const Chat = require('../models/chatModel.js');
 
 module.exports = {
   '/:passed_ids': {

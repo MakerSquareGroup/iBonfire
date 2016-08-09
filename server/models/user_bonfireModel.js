@@ -5,12 +5,10 @@ const User_Bonfire = module.exports;
 User_Bonfire.createJoinTable = (attr) => {
 	return new Promise((resolve, reject) => {
 		return db('Users_Bonfires').insert(attr)
-		.then((result) => {
-			console.log(result, "THIS IS result");
-			console.log(attr, "THIS IS ATTR");
-			attr.id = result[0];
-			resolve(attr);
-		});
+			.then((result) => {
+				attr.id = result[0];
+				resolve(attr);
+			});
 	})
 };
 
@@ -23,17 +21,17 @@ User_Bonfire.findJoinTable = (bonfireId) => {
 		});
 };
 
-User_Bonfire.checkIfUserExists = (joinId, userId) => {
-	return new Promise((resolve, reject) => {
-		return db('Users_Bonfires').where({
-			id: joinId
+User_Bonfire.checkIfUserExists = (userId, bonfireId) => {
+	console.log(userId, "USERID IN MODEL")
+	return db('Users_Bonfires').where({
+			id_Bonfires: bonfireId
 		}).where({
 			id_Users: userId
 		})
 		.then((rows) => {
-			resolve(rows);
-		});
-	});
+			console.log(rows)
+			return rows;
+		})
 };
 
 User_Bonfire.joinBonfire = (userId, bonfireId) => {
@@ -51,7 +49,6 @@ User_Bonfire.joinBonfire = (userId, bonfireId) => {
 	})
 };
 
-
 User_Bonfire.findUserBonfires = (userId) => {
 	return db('Users_Bonfires').where({
 			id_Users: userId
@@ -61,11 +58,17 @@ User_Bonfire.findUserBonfires = (userId) => {
 		})
 };
 
-User_Bonfire.findBonfiresById = (bonfireID) => {
+User_Bonfire.findBonfiresById = (bonfireId) => {
 	return db('Users_Bonfires').where({
 			id_Bonfires: bonfireID
 		})
 		.then((rows) => {
 			return rows;
 		})
+};
+
+User_Bonfire.findAllUsers = (bonfireId) => {
+	return db("Users_Bonfires").where({
+		id_Bonfires: bonfireId
+	})
 };

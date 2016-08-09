@@ -14,7 +14,7 @@ class ProfileButton extends Component {
   render() {
     return (
       <div className="ProfileButtonSmall" onClick={this.props.renderProfile}>
-      	<img className="ProfileImageSmall ProfileImageSmallAnimation" src={`http://graph.facebook.com/${this.props.facebook.currUser.id}/picture?type=large`}/>
+        <img className="ProfileImageSmall ProfileImageSmallAnimation" src={`http://graph.facebook.com/${this.props.facebook.currUser.id}/picture?type=large`}/>
       </div>
     );
   }

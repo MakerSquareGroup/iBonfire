@@ -1,22 +1,22 @@
 var Tag = require('../models/tagModel.js');
 
 module.exports = {
-  '/:userId': {
+  '/': {
     get: function(req,res) {
-      console.log("Received GET at /:tagname");
-      res.end("Received GET at /:tagname");
+      console.log("Received GET at /tag");
+      res.end("Received GET at /tag");
     },
     post: function(req, res) {
-      console.log("Received POST at /:tagname");
-      res.end("Received POST at /:tagname");
+      console.log("Received POST at /tag");
+      res.end("Received POST at /tag");
     },
     put: function(req, res) {
-      console.log("Received PUT at /:tagname");
-      res.end("Received PUT at /:tagname");
+      console.log("Received PUT at /tag");
+      res.end("Received PUT at /tag");
     },
     delete: function(req, res) {
-      console.log("Received DELETE at /:tagname");
-      res.end("Received DELETE at /:tagname");
+      console.log("Received DELETE at /tag");
+      res.end("Received DELETE at /tag");
     }
   }
 };

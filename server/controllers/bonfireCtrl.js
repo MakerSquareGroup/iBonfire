@@ -2,12 +2,13 @@ const Bonfire = require('../models/bonfireModel.js');
 const User = require('../models/userModel.js');
 const User_Bonfire = require('../models/user_bonfireModel.js');
 const Helpers = require('../helpers/ctrl_helpers.js');
+const Tag = require('../models/tagModel.js')
 
 module.exports = {
 	'/': {
 		get: (req, res) => {
-			console.log('Recieved GET at /api/bonfire');
-			console.log('Sending all bonfires!');
+			console.log('Recieved GET at /bonfire');
+			console.log('Sending all /bonfires!');
 
 			Bonfire.findAllBonfires()
 				.then((bonfires) => {
@@ -27,7 +28,7 @@ module.exports = {
 				});
 		},
 		post: (req, res) => {
-			console.log('Recieved POST at api/bonfire');
+			console.log('Recieved POST at bonfire');
 
 			var newBonfire = {
 				tags: req.body.tags,
@@ -76,27 +77,60 @@ module.exports = {
 				});
 		},
 		put: (req, res) => {
-			console.log('Received PUT at /api/bonfire/');
-			res.end('Received PUT at /api/bonfire');
+			console.log('Received PUT at /bonfire/');
+			res.end('Received PUT at /bonfire');
 		},
 		delete: (req, res) => {
-			console.log('Received DELETE at /api/bonfire/');
-			res.end('Received Delete at /api/bonfire');
+			console.log('Received DELETE at /bonfire/');
+			res.end('Received Delete at /bonfire');
 		}
+	},
+	'/users_bonfires/:bonfireId': {
+		get: (req, res) => {
+			console.log('Recieved GET at /users_bonfires');
+
+			var bonfireId = req.params.bonfireId;
+
+			User_Bonfire.findAllUsers(bonfireId)
+			.then((bonfires) => {
+				if(!bonfires) {
+					console.log('There are no bonfires with an id of ', bonfireId);
+					res.end('There are no bonfires with an id of ', bonfireId);
+				} else {
+					console.log('Sending all the bonfires users in bonfire ', bonfireId);
+					res.send(bonfires);
+				}
+			})
+			.catch((err) => {
+						console.log('Error inside findAllUsers ', err);
+			});
+		},
+		post: (req, res) => {
+			console.log('Recieved POST at /users_bonfires');
+			res.end('Recieved POST at bonfire');
+		},
+		put: (req, res) => {
+			console.log('Received PUT at /users_bonfires/');
+			res.end('Received PUT at /users_bonfires');
+		},
+		delete: (req, res) => {
+			console.log('Received DELETE at /users_bonfires/');
+			res.end('Received DELETE at /users_bonfires');
+		}	
 	},
 
 	// Bonfire specs can be in the form of bonfire id or latitude&longitude so that a user can be searched by either id or coordinates
 	// For example:
 
 	// Search by bonfire Id:
-	// /api/bonfire/1
+	// /bonfire/1
 
 	// Search by coordinates
-	// /api/bonfire/34.024212&-118.496475
+	// /bonfire/34.024212&-118.496475
 
 	'/:bonfire_specs': {
 		get: (req, res) => {
-			console.log('Recieved GET at /api/bonfire');
+			console.log('Recieved GET at /bonfire');
 			console.log(req.params, 'This is the params object in bonfires');
 
 			// This function checks for the type of prop you are searching for
@@ -120,8 +154,8 @@ module.exports = {
 				Bonfire.findBonfireById(getParams)
 					.then((bonfire) => {
 						if (!bonfire) {
-							console.log('Bonfire with bonfire id ' + getParams + ' does not exist!');
-							res.end('Bonfire with bonfire id ' + getParams + ' does not exist!');
+							console.log('Bonfire with a bonfire id ' + getParams + ' does not exist!');
+							res.end('Bonfire a with bonfire id ' + getParams + ' does not exist!');
 						} else {
 							console.log('Found the bonfire you are looking for!');
 							res.send(bonfire);
@@ -133,16 +167,16 @@ module.exports = {
 			}
 		},
 		post: (req, res) => {
-			console.log('Recieved POST at api/bonfire');
-			res.end('Recieved POST at api/bonfire');
+			console.log('Recieved POST at /bonfire');
+			res.end('Recieved POST at bonfire');
 
 		},
 		put: (req, res) => {
-			console.log('Received PUT at /api/bonfire/');
-			res.end('Received PUT at /api/bonfire');
+			console.log('Received PUT at /bonfire/');
+			res.end('Received PUT at /bonfire');
 		},
 		delete: (req, res) => {
-			console.log('Received DELETE at /api/bonfire/');
+			console.log('Received DELETE at /bonfire/');
 
 			var getId = req.params.bonfire_specs;
 

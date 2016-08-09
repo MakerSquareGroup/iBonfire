@@ -46,4 +46,3 @@ Bonfire.deleteBonfire = (id) => {
 			return response;
 		})
 };
-

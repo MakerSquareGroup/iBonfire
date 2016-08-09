@@ -92,26 +92,26 @@ knex.ensureSchema = () => {
 			if (!exists) {
 				knex.schema.createTable('Chats', (table) => {
 						table.increments('id').primary();
-						table.string('messages');
-						table.string('id_Bonfires').references('id').inTable('Bonfires');
-						table.timestamp('created_by_User_at').defaultTo(knex.fn.now());
+						table.string('id_Bonfires');
 					})
 					.then((table) => {
 						console.log('Chats Table has been created.')
 					});
 			}
-		}),
+		}),	
 
-		knex.schema.hasTable('Users_Chats')
+		knex.schema.hasTable('Messages')
 		.then((exists) => {
 			if (!exists) {
-				knex.schema.createTable('Users_Chats', (table) => {
+				knex.schema.createTable('Messages', (table) => {
 						table.increments('id').primary();
 						table.string('id_Users').references('FB_id').inTable('Users');
-						table.string('id_Chats').references('id').inTable('Chats');
+						table.string('Chats_id').references('id').inTable('Chats');
+						table.string('messages');
+						table.timestamp('created_by_User_at').defaultTo(knex.fn.now());
 					})
 					.then((table) => {
-						console.log('Users_Chats Table has been created.');
+						console.log('Messages Table has been created.');
 					});
 			}
 		}),

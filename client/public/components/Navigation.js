@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import React from 'react';
 import DownArrowIcon from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
 import Avatar from 'material-ui/Avatar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';

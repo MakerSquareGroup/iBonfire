@@ -60,7 +60,7 @@ User_Bonfire.findUserBonfires = (userId) => {
 
 User_Bonfire.findBonfiresById = (bonfireId) => {
 	return db('Users_Bonfires').where({
-			id_Bonfires: bonfireID
+			id_Bonfires: bonfireId
 		})
 		.then((rows) => {
 			return rows;

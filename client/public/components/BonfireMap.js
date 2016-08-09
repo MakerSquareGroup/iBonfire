@@ -129,6 +129,8 @@ class BonfireMap extends Component {
 			return;
 		}
 
+		this.props.getHoverMarker(target);
+
 		let indexMarker = "";
 
 		let markers = this.state.markers.map((marker, index) => {
@@ -143,7 +145,6 @@ class BonfireMap extends Component {
 		});
 
 		this.props.displayHoverModal();
-		this.props.getHoverMarker(target);
 
 		this.setState({
 			windowOpen: true,
@@ -170,8 +171,8 @@ class BonfireMap extends Component {
 	renderInfoWindow(ref, marker) {
 		return (
 			<InfoBox key={ref} options={{ closeBoxURL: '', enableEventPropagation: true }}>
-				<div onMouseLeave={() => this.closeModal(marker)}>
-					<MarkerModal store={store} />
+				<div>
+					<MarkerModal store={store} closeModal={this.closeModal} />
 				</div>
 			</InfoBox>
 		)

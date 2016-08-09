@@ -22,6 +22,7 @@ export const BAD_SUBMISSION = 'BAD_SUBMISSION';
 export const JOIN_BONFIRE = 'JOIN_BONFIRE';
 export const BAD_DROPDOWN = 'BAD_DROPDOWN';
 export const BAD_DESCRIPTION = 'BAD_DESCRIPTION';
+export const JOINED_USERS = 'JOINED_USERS';
 
 export function getMarkers() {
   const grabMarkersDB = axios.get('/bonfire');
@@ -42,11 +43,28 @@ export function getHoverMarker(marker) {
   };
 }
 
+export function getJoinedUsers(markerId) {
+  const getUsers = axios.get('bonfire/users_bonfires/' + markerId);
+  return (dispatch) => {
+    return getUsers
+    .then((response) => {
+      console.log(response);
+      dispatch({
+        type: JOINED_USERS,
+        joinedUsers: response.data,
+        payload: {
+          windowOpen: false
+        }
+      })
+    });
+  }
+}
+
 export function displayHoverModal() {
   return {
     type: DISPLAY_MODAL,
     payload: {
-      windowOpen: true
+      windowOpen: true,
     }
   }
 }

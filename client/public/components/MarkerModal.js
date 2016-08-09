@@ -8,18 +8,16 @@ import axios from 'axios';
 class MarkerModal extends Component {
   constructor(props) {
     super(props);
-
-    this.mouseOutModal = this.mouseOutModal.bind(this);
   }
 
   joinBonfire(bonId, userId) {
     console.log("joining bonfire!");
-    this.props.joinBonfire(bonId, userId);
+    this.props.joinBonfire(userId, bonId);
   }
 
-  mouseOutModal(marker) {
-    this.props.hideHoverModal(marker);
-  }
+          //   {hoverMarker.joinedUsers.map((user) => {
+          //   console.log(user);
+          // })}
 
   render() {
     const hoverMarker = this.props.hoverMarker;
@@ -30,13 +28,14 @@ class MarkerModal extends Component {
         <Infinite elementHeight={60}
         containerHeight={180}
         >
+          <button onClick={() => this.props.closeModal(markerData)}>Close</button>
           <h1>Tags: {markerData.tags}</h1>
           <p>Bonfire ID: {markerData.id}</p>
           <h2>Description: {markerData.description}</h2>
           <img src={`http://graph.facebook.com/${this.props.facebook.currUser.id}/picture?type=small`}/>
           <p>{markerData.cityState}</p>
         </Infinite>
-        <button id='join-bonfire' onClick={() => this.joinBonfire(markerData.id, currUser.id)}>Join</button>
+        <button id='join-bonfire' onClick={() => this.joinBonfire(currUser.id, markerData.id)}>Join</button>
       </div>
     )
   }

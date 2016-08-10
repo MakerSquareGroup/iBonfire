@@ -142,7 +142,29 @@ module.exports = {
 		},
 		put: (req, res) => {
 			console.log('Received PUT at /user/');
-			res.end('Received PUT at /user');
+			var updateUser = {
+				latitude: req.body.latitude,
+				longitude: req.body.longitude,
+				cityState: req.body.cityState,
+				FB_id: req.params.user_specs
+			};
+			
+			User.findUserById(req.params.user_specs)
+				.then((user) => {
+					if (user) {
+						User.updateUser(updateUser)
+						.then((response) => {
+							console.log('Result from updating user!', response);
+							res.send(response);
+						})
+					} else {
+						console.log("User doesn't exist!");
+						res.end("User doesn't exist!");
+					}
+				})
+				.catch((err) => {
+	         console.log('Error inside findUser ', err);
+	      });
 		},
 		delete: (req, res) => {
 			console.log("Received DELETE at /user/");

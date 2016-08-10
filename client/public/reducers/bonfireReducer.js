@@ -15,7 +15,7 @@ export default function(state = initialState, action) {
         users: [...state.users, action.payload.userId]
       };
     case GET_USER_BONFIRES:
-      return{
+      return {
         ...state,
         bonfires: action.payload.bonfires
       }

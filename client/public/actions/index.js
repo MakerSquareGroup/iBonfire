@@ -22,6 +22,8 @@ export const BAD_SUBMISSION = 'BAD_SUBMISSION';
 export const JOIN_BONFIRE = 'JOIN_BONFIRE';
 export const BAD_DROPDOWN = 'BAD_DROPDOWN';
 export const BAD_DESCRIPTION = 'BAD_DESCRIPTION';
+export const JOINED_USERS = 'JOINED_USERS';
+export const USER_DATA = 'USER_DATA';
 
 export function getMarkers() {
   const grabMarkersDB = axios.get('/bonfire');
@@ -42,11 +44,28 @@ export function getHoverMarker(marker) {
   };
 }
 
+export function getJoinedUsers(markerId) {
+  const getUsers = axios.get('bonfire/users_bonfires/' + markerId);
+  return (dispatch) => {
+    return getUsers
+    .then((response) => {
+      console.log(response);
+      dispatch({
+        type: JOINED_USERS,
+        joinedUsers: response.data,
+        payload: {
+          windowOpen: false
+        }
+      })
+    });
+  }
+}
+
 export function displayHoverModal() {
   return {
     type: DISPLAY_MODAL,
     payload: {
-      windowOpen: true
+      windowOpen: true,
     }
   }
 }
@@ -244,7 +263,7 @@ export function sendDescription(modalObj) {
   }
 }
 
-export function getLocation() {
+export function getLocation(fbId) {
   if (navigator.geolocation) {
     const location = new Promise((resolve, reject) => {
       return navigator.geolocation.getCurrentPosition((position) => {
@@ -259,10 +278,15 @@ export function getLocation() {
     return (dispatch) => {
       console.log("Getting user location...");
       return location.then((position) => {
+        let formatPosition = { latitude: String(position.lat), longitude: String(position.lng) };
+        const updateLocation = axios.put('/user/' + fbId, formatPosition);
         console.log("Success!");
-        dispatch({
-          type: GET_LOCATION,
-          position: position
+        return updateLocation.then((response) => {
+          console.log("Updated location in database!")
+          dispatch({
+            type: GET_LOCATION,
+            position: position
+          })
         })
       })
       .catch((err) => {
@@ -360,6 +384,7 @@ export function facebookLogin() {
 
 export function statusLoggedIn() {
   return (dispatch) => {
+    console.log(dispatch, "dispatch");
     dispatch({
       type: LOGIN_SUCCESSFUL,
       loggedIn: true
@@ -390,6 +415,21 @@ export function getCurrentUser() {
         user: response
       })
     });
+  }
+}
+
+export function getUserDB(id) {
+  const dbUser = axios.get('/user/' + id);
+  return (dispatch) => {
+    return dbUser
+    .then((response) => {
+      dispatch({
+        type: USER_DATA,
+        payload: {
+          user: response.data
+        }
+      })
+    })
   }
 }
 

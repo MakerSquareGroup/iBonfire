@@ -20,8 +20,8 @@ class BonfireMap extends Component {
 		this.state = {
 			windowOpen: this.props.hoverMarker.windowOpen,
 			location: {
-				lat: this.props.location.lat, 
-				lng: this.props.location.lng
+				lat: this.props.users.userData.latitude, 
+				lng: this.props.users.userData.longitude
 			},
 			markers: this.props.markers
 		}
@@ -35,11 +35,27 @@ class BonfireMap extends Component {
 		this.props.getMarkers();
 	}
 
+	componentDidMount() {
+		if(this.props.facebook.currUser.id) {
+			this.props.getUserDB(this.props.facebook.currUser.id);
+		}
+	}
+
 	componentWillReceiveProps(nextProps) {
 		const location = this.props.location;
 		const nextLocation = nextProps.location;
 		const search = this.props.search.searchCoords;
 		const nextSearch = nextProps.search.searchCoords;
+		const nextUser = nextProps.users.userData
+
+		if(nextUser.latitude !== this.state.location.latitude || nextUser.longitude !== this.state.location.longitude) {
+			return this.setState({
+				location: {
+					lat: nextUser.latitude,
+					lng: nextUser.longitude
+				}
+			});
+		}
 
 		if(location.lat !== nextLocation.lat || location.lng !== nextLocation.lng) {
 			this.setState({
@@ -129,6 +145,8 @@ class BonfireMap extends Component {
 			return;
 		}
 
+		this.props.getHoverMarker(target);
+
 		let indexMarker = "";
 
 		let markers = this.state.markers.map((marker, index) => {
@@ -143,7 +161,6 @@ class BonfireMap extends Component {
 		});
 
 		this.props.displayHoverModal();
-		this.props.getHoverMarker(target);
 
 		this.setState({
 			windowOpen: true,
@@ -170,56 +187,65 @@ class BonfireMap extends Component {
 	renderInfoWindow(ref, marker) {
 		return (
 			<InfoBox key={ref} options={{ closeBoxURL: '', enableEventPropagation: true }}>
-				<div onMouseLeave={() => this.closeModal(marker)}>
-					<MarkerModal store={store} />
+				<div>
+					<MarkerModal store={store} closeModal={this.closeModal} />
 				</div>
 			</InfoBox>
 		)
 	}
 
 	render() {
-		return (
-			<GoogleMapLoader
-			  containerElement={
-			    <div style={{ height: "100%" }} />
-			  }
-			  googleMapElement={
-			    <GoogleMap
-						ref="googleMap"
-						defaultZoom={15}
-			      onCenterChanged={this.newCenter.bind(this)}
-			      center={this.state.location}
-			      defaultCenter={this.props.location}
-			      onClick={this.handleMapClick.bind(this)}
-			    >
+		if(this.state.location.lat && this.state.location.lng) {
+			return (
+				<GoogleMapLoader
+				  containerElement={
+				    <div style={{ height: "100%" }} />
+				  }
+				  googleMapElement={
+				    <GoogleMap
+							ref="googleMap"
+							defaultZoom={15}
+				      onCenterChanged={this.newCenter.bind(this)}
+				      center={this.state.location}
+				      defaultCenter={this.props.location}
+				      onClick={this.handleMapClick.bind(this)}
+				    >
 
-			   	{this.state.markers.map((marker, index) => {
-	    			let position = {
-	    				lat: Number(marker.latitude),
-	    				lng: Number(marker.longitude)
-	    			}
-	    			const ref = `marker_${index}`;
-	    			return (
-	    			<Marker
-		    		icon='../media/BonFire.png'
-		    		position={position}
-		    		defaultAnimation={2}
-		    		key={index}
-		    		ref={ref}
-		    		value={marker}
-		    		onMouseover={() => this.openModal(marker)}
-		    		>
-		    			{marker.showInfo ? this.renderInfoWindow(ref, marker) : null }
+				   	{this.state.markers.map((marker, index) => {
+		    			let position = {
+		    				lat: Number(marker.latitude),
+		    				lng: Number(marker.longitude)
+		    			}
+		    			const ref = `marker_${index}`;
+		    			return (
+		    			<Marker
+			    		icon='../media/BonFire.png'
+			    		position={position}
+			    		defaultAnimation={2}
+			    		key={index}
+			    		ref={ref}
+			    		value={marker}
+			    		onMouseover={() => this.openModal(marker)}
+			    		>
+			    			{marker.showInfo ? this.renderInfoWindow(ref, marker) : null }
 
-		    		</Marker>
-	    		)
-	    		})}
+			    		</Marker>
+		    		)
+		    		})}
 
-						<BonfireModal />
-			    </GoogleMap>
-		  	}
-			/>
-    )
+							<BonfireModal />
+				    </GoogleMap>
+			  	}
+				/>
+	    )
+		} else {
+			return (
+			  <div className="spinner">
+	        <div className="double-bounce1"></div>
+	        <div className="double-bounce2"></div>
+	      </div>
+      )
+		}
 	}
 }
 

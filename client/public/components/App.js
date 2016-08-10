@@ -18,6 +18,7 @@ class App extends Component {
 	}
 
   componentWillMount() {
+    this.props.getCurrentUser();
     this.props.getLocation();
   }
 
@@ -36,7 +37,8 @@ const mapStateToProps = state => {
   return {
     markers: state.markers,
     users: state.users,
-    location: state.location
+    location: state.location,
+    facebook: state.facebook
   }
 }
 

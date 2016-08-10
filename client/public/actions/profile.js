@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const GET_USER_BONFIRES = 'GET_USER_BONFIRES';
+export const UPDATE_USER_BIO = 'UPDATE_USER_BIO';
 
 export function getUserBonfires(userId){
   const grabBonfiresDB = axios.get('/bonfire/join_bonfire/' + userId);
@@ -10,6 +11,24 @@ export function getUserBonfires(userId){
         type: GET_USER_BONFIRES,
         payload: {
           bonfires: response.data
+        }
+      })
+    })
+  }
+}
+
+export function updateUserBio(userId, bio){
+  const data = {
+    userId: userId,
+    bio: bio
+  }
+  const updateUserBioDB = axios.put('/user/' + userId, data);
+  return (dispatch) => {
+    return updateUserBioDB.then((response) => {
+      dispatch({
+        type: UPDATE_USER_BIO,
+        payload: {
+          userId
         }
       })
     })

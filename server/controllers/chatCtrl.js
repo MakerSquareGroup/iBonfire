@@ -11,7 +11,7 @@ module.exports = {
 
       Chat.addMessage(newMessage)
         .then((message) => {
-            let chatIDs = {
+            const chatIDs = {
               id_Bonfires: req.body.id_Bonfires,
               id_Messages: message.id
             }

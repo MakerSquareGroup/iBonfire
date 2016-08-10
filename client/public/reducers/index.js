@@ -10,6 +10,7 @@ import facebookReducer from './facebookReducer';
 import currentMarkerReducer from './currentMarkerReducer';
 import hoverMarkerReducer from './hoverMarkerReducer';
 import bonfireReducer from './bonfireReducer';
+import updateUserReducer from './updateUserReducer';
 
 const rootReducer = combineReducers({
   markers: markerReducer,
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
   facebook: facebookReducer,
   currMarker: currentMarkerReducer,
   hoverMarker: hoverMarkerReducer,
-  bonfire: bonfireReducer
+  bonfire: bonfireReducer,
+  updateUser: updateUserReducer
 });
 
 export default rootReducer;

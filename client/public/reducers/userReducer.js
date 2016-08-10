@@ -1,5 +1,6 @@
 import { ADD_USER }from '../actions/index';
 import { USER_DATA } from '../actions/index';
+import { UPDATE_USER_INFO } from '../actions/profile';
 
 const initialState = {
   users: [],

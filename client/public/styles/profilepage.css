@@ -6,7 +6,7 @@ Profile Page
 	background-color: #DF584C;
 	width:100%;
 	height:100%;
-  position: absolute;
+  	position: absolute;
 }
 
 .ProfilePageTop {
@@ -32,12 +32,12 @@ Profile Page
 	align-items: center;
 	justify-content: center;
 	font-family: 'Raleway', sans-serif;
-  font-weight: 300;
-  color: white;
-  font-size: 30px;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: white;
+	font-weight: 300;
+	color: white;
+	font-size: 30px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: white;
 }
 
 .ProfilePageUserInfo {
@@ -47,12 +47,42 @@ Profile Page
 	align-items: center;
 	justify-content: center;
 	font-family: 'Raleway', sans-serif;
-  font-weight: 300;
-  color: white;
-  font-size: 15px;
-  text-align: center;
-  padding-top: 40px;
-  box-sizing: border-box;
+	font-weight: 300;
+	color: white;
+	font-size: 15px;
+	text-align: center;
+	padding-top: 40px;
+	box-sizing: border-box;
+	word-break:break-all;
+}
+
+.ProfileInfoPlainText {
+	background: transparent;
+	width:100%;
+	height: 100%;
+	text-align: center;
+
+}
+
+.ProfileInfoTextArea {
+	resize: none;
+	border-style: dashed;
+	border-width: 1px;
+	border-color: white;
+	width: 100%;
+	height: 100%;
+	color:white;
+	background: transparent;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 300;
+	color: white;
+	font-size: 15px;
+	overflow: hidden;
+}
+
+.ProfileInfoTextArea:focus {
+	outline: 0;
+
 }
 
 
@@ -63,15 +93,44 @@ Profile Page
 	border-radius: 100%;
 	box-shadow:rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
 	margin-top: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .ProfilePageMiddle img {
   border-radius: 100%;
   width:300px;
   height: 100%;
+}
+
+.ProfilePageMiddle img:hover {
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+  cursor: pointer;
+}
+
+.EditProfileHeader {
+	position: absolute;
+	top:22.5%;
+	left:50%;
+	transform:translateX(-50%) translateY(-50%);
+	font-family: 'Raleway', sans-serif;
+	font-weight: 300;
+	color: white;
+	font-size: 24px;
+	pointer-events: none;
+}
+
+.show {
+	visibility: visible;
+}
+
+.hide {
+	visibility: hidden;
 }
 
 .ProfilePageRight {
@@ -95,13 +154,13 @@ Profile Page
 	justify-content: center;
 	align-items: center;
 	font-family: 'Raleway', sans-serif;
-  font-weight: 300;
-  color: white;
-  font-size: 30px;
-  text-align: center;
-  border-top-style: solid;
-  border-top-color: white;
-  border-top-width: 1px;
+	font-weight: 300;
+	color: white;
+	font-size: 30px;
+	text-align: center;
+	border-top-style: solid;
+	border-top-color: white;
+	border-top-width: 1px;
 }
 
 
@@ -126,10 +185,10 @@ Profile Page
 }
 
 .MapImageSmall {
-  width: 100%;
-  height: 100%;
-  border-radius: 100%;
-  box-shadow:rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
+	width: 100%;
+	height: 100%;
+	border-radius: 100%;
+	box-shadow:rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
 }
 
 .MapImageSmallAnimation {

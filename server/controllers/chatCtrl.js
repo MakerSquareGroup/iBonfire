@@ -1,4 +1,5 @@
 const Chat = require('../models/chatModel.js');
+const User_Bonfire = require('../models/user_bonfireModel.js')
 
 module.exports = {
   '/': {
@@ -36,5 +37,25 @@ module.exports = {
           res.send(message)
         });
     }
+  },
+    '/:bonfire_id': {
+      get: (req, res) => {
+        // pass in params from client side that has the chat id
+        console.log(req.params, 'req.params in chatCtrl')
+        // var chat_id = req.params.chat_id;
+        User_Bonfire.findBonfireChatMessages(req.params.bonfire_id)
+          .then((result) => {
+            console.log(result, 'result');
+            Chat.getAllChatMessages(result.id)
+              .then((result) => {
+                console.log(result);
+                res.send(result)
+              })
+          })
+      },
+      post: function() {},
+      put: function() {},
+      delete: function() {},
+
   }
 }

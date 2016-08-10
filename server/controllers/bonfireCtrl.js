@@ -54,15 +54,17 @@ module.exports = {
 										id_Bonfires: result.id
 									})
 									.then((result) => {
+										let markerResult = result;
 										Chat.createChatRoom({
 											id_Bonfires: result.id_Bonfires
 										})
 											.then((result) => {
-												console.log("Result from bonfire controller in createChatRoom ", result);
+												markerResult.chat = result
+												console.log("Result from bonfire controller in createChatRoom ", markerResult);
 												// User_Bonfire.findJoinTable(result.id_Users)
 												// 	.then((result) => {
 												// 		console.log("Result from bonfire controller in findJoinTable ", result);
-														res.send(result);
+														res.send(markerResult);
 													// })
 													// .catch((err) => {
 													// 	console.log('Error inside findJoinTable ', err);

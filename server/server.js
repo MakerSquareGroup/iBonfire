@@ -45,7 +45,7 @@ app.use('/tag', tagRoutes);
 app.use('/user', userRoutes);
 app.use('/bonfire', bonfireRoutes);
 app.use('/bonfire/join_bonfire', bonfireJoinRoutes);
-app.use('/bonfireChat', chatRoutes);
+app.use('/chat', chatRoutes);
 
 // Route for API endpoint
 // app.use('/api/bonfire/location', bonfireApiRoutes);

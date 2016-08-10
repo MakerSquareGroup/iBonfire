@@ -2,9 +2,9 @@ const db = require('../db/db.js');
 
 const Chat = module.exports;
 
-Chat.getAllChatMessages = (bonfireID) => {
-  return db('Chats').where({
-    id_Bonfires: bonfireID
+Chat.getAllChatMessages = (id_Chat) => {
+  return db('Messages').where({
+    Chats_id: id_Chat
   })
   .then((rows) => {
     return rows;

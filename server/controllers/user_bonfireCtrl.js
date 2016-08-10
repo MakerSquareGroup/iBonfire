@@ -3,17 +3,17 @@ const Helpers = require('../helpers/ctrl_helpers.js');
 const Chat = require('../models/chatModel.js');
 
 module.exports = {
-  '/:chat_id': {
-    get: function(req, res) {
-      // pass in params from client side that has the chat id
-      var chat_id = req.params.chat_id;
-      User_Bonfire.findBonfireChatMessages(chat_id)
-    },
-    post: function() {},
-    put: function() {},
-    delete: function() {},
+  // '/chat/:chat_id': {
+  //   get: function(req, res) {
+  //     // pass in params from client side that has the chat id
+  //     var chat_id = req.params.chat_id;
+  //     User_Bonfire.findBonfireChatMessages(chat_id)
+  //   },
+  //   post: function() {},
+  //   put: function() {},
+  //   delete: function() {},
 
-  },
+  // },
   '/:passed_ids': {
     get: function(req, res) {
       console.log("Received GET at /bonfire/join_bonfire");

@@ -60,12 +60,14 @@ User_Bonfire.findUserBonfires = (userId) => {
 };
 
 
-User_Bonfire.findBonfireChatMessages = (Chats_id) => {
-	return db('Messages').where({
-			Chats_id: Chats_id
+User_Bonfire.findBonfireChatMessages = (id_Bonfires) => {
+	console.log(id_Bonfires, 'wehre are you bitch')
+	return db('Chats').where({
+			id_Bonfires: id_Bonfires
 		})
 		.then((rows) => {
-			return rows;
+			console.log(rows, 'rows in user model')
+			return rows[0];
 		})
 };
 

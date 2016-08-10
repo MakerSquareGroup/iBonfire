@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../actions/profile';
+import * as profileActions from '../../actions/profile';
+import * as indexActions from '../../actions/index';
+
+const allActions = {...indexActions, ...profileActions}
 
 export default class ProfilePage extends React.Component {
 	constructor(props){
@@ -18,6 +21,7 @@ export default class ProfilePage extends React.Component {
 		this.renderProfileInfoTextArea = this.renderProfileInfoTextArea.bind(this);
 		this.renderProfileInfoPlainText = this.renderProfileInfoPlainText.bind(this);
 		this.handleProfileInfoTextAreaChange = this.handleProfileInfoTextAreaChange.bind(this);
+		this.handleLogout = this.handleLogout.bind(this);
 	}
 
 	componentWillMount() {
@@ -41,7 +45,6 @@ export default class ProfilePage extends React.Component {
 
 	handleProfilePictureClick(){
 		if(this.state.edit){
-			console.log('EXECUTE');
 			var profileInfoPlainText = this.renderProfileInfoPlainText();
 			this.setState({profileInfoView: 'plainText'})
 			this.props.updateUserBio(this.props.facebook.currUser.id,this.state.profileInfoText);
@@ -62,6 +65,10 @@ export default class ProfilePage extends React.Component {
 
 	handleProfileInfoTextAreaChange(e){
 		this.setState({profileInfoText: e.target.value});
+	}
+
+	handleLogout(){
+		this.props.facebookLogout();
 	}
 
 	renderFires(bonfires){
@@ -122,6 +129,9 @@ export default class ProfilePage extends React.Component {
 				<div className="MapButtonSmall" onClick={this.props.renderMap}>
 					<img  className="MapImageSmall MapImageSmallAnimation" src='http://www.appelsiini.net/assets/2008/5/26/tartu.png'/>
 				</div>
+				<div className="LogoutButton" onClick={this.handleLogout}>
+					<img src="../../media/logout.png" className="LogoutImage"/>
+				</div>
 			</div>
 		)
 	}
@@ -134,4 +144,4 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps, actions)(ProfilePage);
+export default connect(mapStateToProps, allActions)(ProfilePage);

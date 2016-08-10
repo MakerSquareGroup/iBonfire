@@ -2,7 +2,8 @@ const Bonfire = require('../models/bonfireModel.js');
 const User = require('../models/userModel.js');
 const User_Bonfire = require('../models/user_bonfireModel.js');
 const Helpers = require('../helpers/ctrl_helpers.js');
-const Tag = require('../models/tagModel.js')
+const Tag = require('../models/tagModel.js');
+const Chat = require('../models/chatModel.js');
 
 module.exports = {
 	'/': {
@@ -53,15 +54,23 @@ module.exports = {
 										id_Bonfires: result.id
 									})
 									.then((result) => {
-										console.log("Result from bonfire controller in joinBonfire ", result);
-										User_Bonfire.findJoinTable(result.id_Users)
+										Chat.createChatRoom({
+											id_Bonfires: result.id_Bonfires
+										})
 											.then((result) => {
-												console.log("Result from bonfire controller in findJoinTable ", result);
-												res.send(result);
+												console.log("Result from bonfire controller in createChatRoom ", result);
+												// User_Bonfire.findJoinTable(result.id_Users)
+												// 	.then((result) => {
+												// 		console.log("Result from bonfire controller in findJoinTable ", result);
+														res.send(result);
+													// })
+													// .catch((err) => {
+													// 	console.log('Error inside findJoinTable ', err);
+													// });
 											})
 											.catch((err) => {
-												console.log('Error inside findJoinTable ', err);
-											});
+												console.log('Error inside createChatRoom', err);
+											})
 									})
 									.catch((err) => {
 										console.log('Error inside createJoinTable ', err);

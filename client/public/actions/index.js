@@ -255,6 +255,7 @@ export function sendDescription(modalObj) {
   const sendModal = axios.post('/bonfire', modalObj)
   return (dispatch) => {
     return sendModal.then((response) => {
+      console.log(response.data, 'response.data inside of index.js')
       dispatch({ type: ADD_MARKER, payload: response.data})
     })
     .catch((err) => {

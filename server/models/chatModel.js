@@ -21,13 +21,20 @@ Chat.addMessage = (attr) => {
   });
 };
 
+// should happen when the bonfire is made. 
+
 Chat.createChatRoom = (attr) => {
   console.log(attr, 'attr')
   return new Promise((resolve, reject) => {
     return db('Chats').insert(attr)
       .then((result) => {
+        console.log(result, 'ARE YOU ON LINE 29????')
         attr.id = result[0];
         resolve(attr)
-      });
+      })
+      .catch((err) => {
+        console.log(err, ': error on line 36 in createChatroomModel')
+      })
+
   });
 }

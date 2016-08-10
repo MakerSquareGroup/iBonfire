@@ -13,6 +13,7 @@ User_Bonfire.createJoinTable = (attr) => {
 };
 
 User_Bonfire.findJoinTable = (bonfireId) => {
+	console.log(bonfireId, 'what is bonfrieID on line 16')
 	return db('Users_Bonfires').where({
 			id_Bonfires: bonfireId
 		}).limit(1)
@@ -57,6 +58,17 @@ User_Bonfire.findUserBonfires = (userId) => {
 			return rows;
 		})
 };
+
+
+User_Bonfire.findBonfireChatMessages = (Chats_id) => {
+	return db('Messages').where({
+			Chats_id: Chats_id
+		})
+		.then((rows) => {
+			return rows;
+		})
+};
+
 
 User_Bonfire.findBonfiresById = (bonfireId) => {
 	return db('Users_Bonfires').where({

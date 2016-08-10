@@ -20,8 +20,8 @@ class BonfireMap extends Component {
 		this.state = {
 			windowOpen: this.props.hoverMarker.windowOpen,
 			location: {
-				lat: this.props.location.lat, 
-				lng: this.props.location.lng
+				lat: Number(this.props.users.userData.latitude), 
+				lng: Number(this.props.users.userData.longitude)
 			},
 			markers: this.props.markers
 		}

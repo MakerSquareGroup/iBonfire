@@ -18,7 +18,18 @@ class App extends Component {
 	}
 
   componentWillMount() {
-    this.props.getLocation();
+    this.props.getCurrentUser();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(this.props.facebook !== nextProps.facebook) {
+      this.props.getLocation(nextProps.facebook.currUser.id);
+    }
+
+    if(nextProps.facebook.currUser.id !== this.props.facebook.currUser.id) {
+      console.log("Triggered");
+      this.props.getUserDB(nextProps.facebook.currUser.id);
+    }
   }
 
   render() {
@@ -36,7 +47,8 @@ const mapStateToProps = state => {
   return {
     markers: state.markers,
     users: state.users,
-    location: state.location
+    location: state.location,
+    facebook: state.facebook
   }
 }
 

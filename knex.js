@@ -6,7 +6,7 @@ module.exports = {
 	development: {
 		client: 'mysql',
 		connection: {
-			host: 'ibonfire.ryanmorrisj.com',
+			host: '50.62.209.194',
 			user: process.env.db_username,
 			password: process.env.db_password,
 			database: 'ibonfire',

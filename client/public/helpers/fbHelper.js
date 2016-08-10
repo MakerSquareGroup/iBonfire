@@ -1,5 +1,5 @@
 import { browserHistory } from 'react-router';
-import * as actions from '../actions/index';
+import * as actionCreators from '../actions/index';
 
 export const facebookInit = () => {
   window.isLoaded = false;
@@ -40,7 +40,8 @@ export const checkLoginStatus = () => {
 const statusChangeCallBack = (response) => {
     if(response.status === 'connected') {
       browserHistory.push('/Home');
-      actions.statusLoggedIn();
+      actionCreators.getUserDB(response.authResponse.userID);
+      actionCreators.statusLoggedIn();
     } else if (response.status === 'not authorized' || !response.authResponse) {
       console.log('Please login to Facebook');
       browserHistory.push('/');

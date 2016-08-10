@@ -47,6 +47,15 @@ User.createUser = (attr) => {
 	});
 };
 
+User.updateUser = (attr) => {
+	return db('Users').where({
+			FB_id: attr.FB_id
+		}).update(attr)
+		.then((result) => {
+			return attr;
+	});
+}
+
 User.deleteUser = (id) => {
 	return db('Users').where({
 			FB_id: id

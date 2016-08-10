@@ -271,6 +271,9 @@ export function getLocation(fbId) {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
+
+        localStorage.setItem('latitude', position.coords.latitude);
+        localStorage.setItem('longitude', position.coords.longitude);
         resolve(pos);
       });
     });

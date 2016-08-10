@@ -54,10 +54,15 @@ module.exports = {
 										id_Bonfires: result.id
 									})
 									.then((result) => {
+<<<<<<< b137ae68c6e4207b6ce36aa9ef63a28cc4da68db
 										var markerResult = result;
 										Chat.createChatRoom({
 											id_Bonfires: result.id_Bonfires
 										})
+=======
+										console.log("Result from bonfire controller in joinBonfire ", result);
+										User_Bonfire.findJoinTable(result.id_Bonfires)
+>>>>>>> [Pull] Working on google maps feature
 											.then((result) => {
 												markerResult.chat = result
 												console.log("Result from bonfire controller in createChatRoom ", markerResult);

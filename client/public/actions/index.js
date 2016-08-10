@@ -95,7 +95,9 @@ export function addMarker(data) {
 
 export function joinBonfire(bonId, userId) {
   const join = axios.put('/bonfire/join_bonfire/' + userId + '&'+ bonId)
-
+  const getChats = axios.get('/chat/' + bonId);
+  // const getBonfires = axios.get('/bonfire/' + bonId)
+console.log(bonId, 'bonId')
   return (dispatch) => {
     return join
     .then((response) => {
@@ -108,6 +110,15 @@ export function joinBonfire(bonId, userId) {
           allMembers: response.data
         }
       })
+
+        return getChats
+        .then((response) => {
+          console.log(response, 'response inside of joinBonfire')
+        })
+        // return getChats
+        // .then((response) => {
+        //   console.log(response, 'response inside of joinbonfire')
+        // })
       // browserHistoryPush('/ChatPage');
     });
   };
@@ -255,8 +266,21 @@ export function sendDescription(modalObj) {
   const sendModal = axios.post('/bonfire', modalObj)
   return (dispatch) => {
     return sendModal.then((response) => {
-      dispatch({ type: ADD_MARKER, payload: response.data})
+      const chatID = response.data.chat.id;
+      console.log(response, 'response object')
+      console.log(response.data.chat.id, 'response.data inside of index.js')
+      dispatch({ type: ADD_MARKER, payload: response.data })
     })
+    // .then((chatID) => {
+    //   console.log(chatID, 'what is response');
+    //    const getChats = axios.get('/chat' + chatID)
+    //    return getChats.then((response) => {
+    //      console.log(response, 'response id')
+    //    })
+    //    .catch((err) => {
+    //     console.log(err, 'error in getting chats from chatID')
+    //    })
+     // })
     .catch((err) => {
       console.log(err, 'error in sendDescription action');
     })

@@ -55,6 +55,7 @@ module.exports = {
 		},
 		put: (req, res) => {
 			console.log("Received PUT at /user/");
+			
 			res.end("Received PUT at /user");
 		},
 		delete: (req, res) => {
@@ -142,11 +143,14 @@ module.exports = {
 		},
 		put: (req, res) => {
 			console.log('Received PUT at /user/');
+			console.log(req.body.bio, "bio");
+			console.log(req.params.user_specs, "specs")
 			var updateUser = {
 				latitude: req.body.latitude,
 				longitude: req.body.longitude,
 				cityState: req.body.cityState,
-				FB_id: req.params.user_specs
+				FB_id: req.params.user_specs,
+				bio: req.body.bio
 			};
 			
 			User.findUserById(req.params.user_specs)

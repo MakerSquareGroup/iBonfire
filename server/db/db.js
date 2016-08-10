@@ -38,6 +38,7 @@ knex.ensureSchema = () => {
 				knex.schema.createTable('Users', (table) => {
 						table.increments('id').primary();
 						table.string('name', 50);
+						table.string('bio', 200);
 						table.string('latitude', 50);
 						table.string('longitude', 50);
 						table.string('cityState', 50);

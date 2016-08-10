@@ -6,19 +6,62 @@ export default class ProfilePage extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			newBonfires: []
+			newBonfires: [],
+			edit: false,
+			editProfileHeaderClass: 'EditProfileHeader hide',
+			profileInfoView: '',
+			profileInfoText: ''
 		}
+		this.handleProfilePictureClick = this.handleProfilePictureClick.bind(this);
+		this.handleProfilePictureMouseOver = this.handleProfilePictureMouseOver.bind(this);
+		this.handleProfilePictureMouseOut = this.handleProfilePictureMouseOut.bind(this);
+		this.renderProfileInfoTextArea = this.renderProfileInfoTextArea.bind(this);
+		this.renderProfileInfoPlainText = this.renderProfileInfoPlainText.bind(this);
+		this.handleProfileInfoTextAreaChange = this.handleProfileInfoTextAreaChange.bind(this);
 	}
 
 	componentWillMount() {
 		var currentUser = this.props.facebook.currUser;
-		
-		this.props.getUserBonfires('10153814997135687');
+		this.props.getUserBonfires(currentUser.id);
+	}
 
+	componentDidMount() {
+		this.setState({
+			edit: false,
+			editProfileHeaderClass: 'EditProfileHeader hide',
+			profileInfoView: this.renderProfileInfoPlainText(),
+			profileInfoText: ''
+		})
 	}
 
 	componentWillReceiveProps(nextProps) {
 		this.renderFires(nextProps.bonfire.bonfires);
+	}
+
+
+	handleProfilePictureClick(){
+		if(this.state.edit){
+			console.log('EXECUTE');
+			var profileInfoPlainText = this.renderProfileInfoPlainText();
+			this.setState({profileInfoView: 'plainText'})
+			this.props.updateUserBio(this.props.facebook.currUser.id,this.state.profileInfoText);
+		} else {
+			var profileInfoTextArea = this.renderProfileInfoTextArea();
+			this.setState({profileInfoView: 'textArea'})
+		}
+		this.setState({edit : !this.state.edit });
+	}
+
+	handleProfilePictureMouseOver(){
+		this.setState({editProfileHeaderClass: 'EditProfileHeader show'})
+	}
+	
+	handleProfilePictureMouseOut(){
+		this.setState({editProfileHeaderClass: 'EditProfileHeader hide'})
+	}
+
+	handleProfileInfoTextAreaChange(e){
+		this.setState({profileInfoText: e.target.value});
 	}
 
 	renderFires(bonfires){
@@ -31,10 +74,23 @@ export default class ProfilePage extends React.Component {
 		})
 		this.setState({newBonfires: bonfires});
 	}
-	
+
+	renderProfileInfoPlainText(){
+		return (
+			<h className="ProfileInfoPlainText">{this.state.profileInfoText}</h>
+		)
+	}
+
+	renderProfileInfoTextArea(){
+		return (
+			<textArea className="ProfileInfoTextArea" value={this.state.profileInfoText} onChange={this.handleProfileInfoTextAreaChange}>
+			</textArea>
+		)
+	}
+
 	render(){
 		
-		var latinText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+		
 
 		return(
 			<div>
@@ -44,11 +100,12 @@ export default class ProfilePage extends React.Component {
 							Dailen Spencer
 						</div>
 						<div className="ProfilePageUserInfo">
-							{latinText}
+							{this.state.edit ? this.renderProfileInfoTextArea() : this.renderProfileInfoPlainText() }
 						</div>
 					</div>
 					<div className="ProfilePageMiddle">
-						<img src={`http://graph.facebook.com/${this.props.facebook.currUser.id}/picture?type=large`}/>
+						<img className="ProfilePagePicture"  onClick={this.handleProfilePictureClick} onMouseOver={this.handleProfilePictureMouseOver} onMouseOut={this.handleProfilePictureMouseOut} src={`http://graph.facebook.com/${this.props.facebook.currUser.id}/picture?type=large`}/>
+						<h className={this.state.editProfileHeaderClass}>{this.state.edit ? 'Save Profile' : 'Edit Profile'}</h>
 					</div>
 					<div className="ProfilePageRight">
 						<div className="ProfilePageStats">
@@ -72,7 +129,8 @@ export default class ProfilePage extends React.Component {
 const mapStateToProps = state => {
 	return {
 		bonfire: state.bonfire,
-		facebook: state.facebook
+		facebook: state.facebook,
+		updateUser: state.updateUser
 	}
 }
 

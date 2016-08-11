@@ -6,8 +6,9 @@
 }
 
 .chatMessages {
-	/*display: flex;
+	display: flex;
+	justify-content: flex-end;
 	min-height: 100vh;
-	background-color: white;*/
+	background-color: white;
 	/*z-index: 1002;*/
 }

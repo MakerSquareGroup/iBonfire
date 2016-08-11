@@ -20,13 +20,13 @@ class ChatPage extends Component {
   //   }
   // }
 
-  componentWillReceiveProps(nextProps) {
-    if(this.props.facebook.currUser === '') {
-      console.log(this.props.facebook.currUser, 'this.props.facebook.currUser')
-      console.log(nextProps.facebook.currUser, 'nextProps.facebook.currUser')
-      // this.props.getCurrentUser();
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if(this.props.facebook.currUser === '') {
+  //     console.log(this.props.facebook.currUser, 'this.props.facebook.currUser')
+  //     console.log(nextProps.facebook.currUser, 'nextProps.facebook.currUser')
+  //     // this.props.getCurrentUser();
+  //   }
+  // }
 
   componentDidMount() {
     this.socket = io()
@@ -35,16 +35,18 @@ class ChatPage extends Component {
         messages: [msg, ...this.state.messages]
       })
     })
-    console.log(this.props)
+    // console.log(this.props)
   }
 
   postMessage(msg) {
     if(this.props.facebook.currUser === '') {
       window.setTimeout(2000);
     }
+    // console.log(this.props)
     return this.state.messages.map((msg, index) => {
       return(
-        <p className='messages' key={index}>{msg}</p>
+        <p className='messages' key={index}><img src={this.props.facebook.picture} alt=""/>{this.props.facebook.currUser.name}: {msg}</p>
+        
       )   
     })
   }

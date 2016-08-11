@@ -94,14 +94,12 @@ export function addMarker(data) {
 }
 
 export function joinBonfire(bonId, userId) {
-  const join = axios.put('/bonfire/join_bonfire/' + userId + '&'+ bonId)
-  const getChats = axios.get('/chat/' + bonId);
-  // const getBonfires = axios.get('/bonfire/' + bonId)
-console.log(bonId, 'bonId')
+  const join = axios.put('/bonfire/join_bonfire/' + userId + '&'+ bonId);
+
   return (dispatch) => {
     return join
     .then((response) => {
-      console.log("You've joined the bonfire, time to get weird!", response);
+      console.log("You've joined the bonfire!", response);
       dispatch({
         type: JOIN_BONFIRE,
         payload: {
@@ -110,16 +108,6 @@ console.log(bonId, 'bonId')
           allMembers: response.data
         }
       })
-
-        return getChats
-        .then((response) => {
-          console.log(response, 'response inside of joinBonfire')
-        })
-        // return getChats
-        // .then((response) => {
-        //   console.log(response, 'response inside of joinbonfire')
-        // })
-      // browserHistoryPush('/ChatPage');
     });
   };
 }

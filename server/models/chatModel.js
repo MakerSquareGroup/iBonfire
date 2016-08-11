@@ -8,33 +8,33 @@ Chat.getAllChatMessages = (id_Chat) => {
   })
   .then((rows) => {
     return rows;
-  })
-}
-
-Chat.addMessage = (attr) => {
-  return new Promise((resolve, reject) => {
-    return db('Messages').insert(attr)
-      .then((result) => {
-        attr.id = result[0];
-        resolve(attr)
-      });
   });
 };
 
-// should happen when the bonfire is made. 
-
-Chat.createChatRoom = (attr) => {
-  console.log(attr, 'attr')
-  return new Promise((resolve, reject) => {
-    return db('Chats').insert(attr)
-      .then((result) => {
-        console.log(result, 'ARE YOU ON LINE 29????')
-        attr.id = result[0];
-        resolve(attr)
-      })
-      .catch((err) => {
-        console.log(err, ': error on line 36 in createChatroomModel')
-      })
-
+Chat.addMessage = (attr) => {
+  return db('Messages').insert(attr)
+    .then((result) => {
+      attr.id = result[0];
+      return result;
   });
-}
+};
+
+Chat.createChatRoom = (bonId) => {
+  return db('Chats').insert({ id_Bonfires: bonId })
+    .then((result) => {
+      return result;
+    })
+    .catch((err) => {
+      console.log(err, 'Error creating chat room!');
+  });
+};
+
+Chat.findChatId = (bonId) => {
+  return db('Chats').where({ id_Bonfires: bonId })
+    .then((result) => {
+      return result;
+    })
+    .catch((err) => {
+      console.log(err, "Error finding chatId!")
+    })
+};

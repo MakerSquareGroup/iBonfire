@@ -59,24 +59,6 @@ class BonfireMap extends Component {
 			}
 		}
 
-		// if(nextUser.latitude !== this.state.location.lat || nextUser.longitude !== this.state.location.lng) {
-		// 	return this.setState({
-		// 		location: {
-		// 			lat: nextUser.latitude,
-		// 			lng: nextUser.longitude
-		// 		}
-		// 	});
-		// }
-
-		// if(location.lat !== nextLocation.lat || location.lng !== nextLocation.lng) {
-		// 	this.setState({
-		// 		location: {
-		// 			lat: nextLocation.lat,
-		// 			lng: nextLocation.lng
-		// 		}
-		// 	});
-		// }
-
 		if(search.latitude !== nextSearch.latitude || search.longitude !== nextSearch.longitude) {
 			this.setState({
 				location: {

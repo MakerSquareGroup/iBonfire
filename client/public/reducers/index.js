@@ -11,6 +11,7 @@ import currentMarkerReducer from './currentMarkerReducer';
 import hoverMarkerReducer from './hoverMarkerReducer';
 import bonfireReducer from './bonfireReducer';
 import updateUserReducer from './updateUserReducer';
+import chatReducer from './chatReducer';
 
 const rootReducer = combineReducers({
   markers: markerReducer,
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
   currMarker: currentMarkerReducer,
   hoverMarker: hoverMarkerReducer,
   bonfire: bonfireReducer,
-  updateUser: updateUserReducer
+  updateUser: updateUserReducer,
+  chat: chatReducer
 });
 
 export default rootReducer;

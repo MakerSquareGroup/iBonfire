@@ -5,35 +5,9 @@ module.exports = {
   '/': {
     post: (req, res) => {
       console.log('Received POST at /bonfireChat')
-      const newMessage = {
-        messages: req.body.messages,
-        id_Users: req.body.id_Users,
-        Chats_id: req.body.Chats_id
-      }
-
-      Chat.addMessage(newMessage)
-        .then((message) => {
-            const chatIDs = {
-              id_Bonfires: req.body.id_Bonfires,
-              id_Messages: message.id
-            }
-            // Chat.createChatRoom(chatIDs)
-            //   .then((response) => {
-            //     console.log('Chat Room with id of: ', response.id, ' has been created');
-            //     res.send(response)
-            //   })
-            //   .catch((err) => {
-            //     console.log(err, ': error inside of addMessage model')
-            //   })
-          })
     },
     get: (req,res) => {
       console.log('Received GET at /chat')
-      Chat.getAllChatMessages(12342523)
-        .then((bonfireChat) => {
-          console.log(bonfireChat)
-          res.send(message)
-        });
     },
     put: (req, res) => {
       console.log("Received PUT at /chat");
@@ -42,29 +16,73 @@ module.exports = {
       console.log("Received DELETE at /chat!")
     }
   },
-    '/:bonfire_id': {
-      get: (req, res) => {
-        // pass in params from client side that has the chat id
-        console.log(req.params, 'req.params in chatCtrl')
-        // var chat_id = req.params.chat_id;
-        User_Bonfire.findBonfireChatMessages(req.params.bonfire_id)
+  '/:bonfire_id': {
+    get: (req, res) => {
+      console.log('Received GET at /chat/:bonfire_id');
+    },
+    post: (req, res) => {
+      console.log('Received POST at /chat/:bonfire_id');
+      Chat.createChatRoom(req.params.bonfire_id)
+        .then((result) => {
+          const chatId = result[0];
+          return chatId;
+        })
+        .then((chatId) => {
+          Chat.getAllChatMessages(chatId)
           .then((result) => {
-            console.log(result, 'result');
-            Chat.getAllChatMessages(result.id)
-              .then((result) => {
-                console.log(result);
-                res.send(result)
-              })
+            console.log(result, "result of getting messages")
+            res.send(result);
           })
-      },
-      post: (req, rest) => {
-        console.log("Hnnng");
-      },
-      put: (req, res) => {
-        console.log("Hnnng?")
-      },
-      delete: (req, res) => {
-        console.log("HngGng");
-      },
+        })
+    },
+    put: (req, res) => {
+      console.log("Received put at /chat/:bonfire_id");
+    },
+    delete: (req, res) => {
+      console.log("Received DELETE at /chat/:bonfire_id");
+    }
+  },
+  '/messages/:bonfire_id': {
+    get: (req, res) => {
+      console.log("Received GET at /chat/messages/:bonfire_id");
+        Chat.findChatId(req.params.bonfire_id)
+        .then((chatObj) => {
+          const chatId = chatObj[0].id;
+          Chat.getAllChatMessages(chatId)
+          .then((messages) => {
+            res.send(messages);
+          })
+        })
+    },
+    post: (req, res) => {
+      console.log("Received POST at /chat/messages/:bonfire_id");
+      const message = req.body.message;
+      const userId = req.body.FB_id;
+      if(req.body.chatId) {
+        const chatId = req.body.chatId;
+        Chat.addMessage({ Chats_id: chatId, id_Users: userId, messages: message })
+        .then((response) => {
+          res.send(response);
+        })
+        .catch((err) => {
+          console.log(err, "Error adding message!");
+        })
+      } else {
+        Chat.findChatId(req.params.bonfire_id)
+        .then((chatObj) => {
+          let chatId = chatObj[0].id;
+          Chat.addMessage({ Chats_id: chatId, id_Users: userId, messages: message })
+          .then((response) => {
+            res.send(response);
+          })
+        })
+      }
+    },
+    put: (req, res) => {
+      console.log("Received PUT at /chat/messages/:bonfire_id");
+    },
+    delete: (req, res) => {
+      console.log("Received DELETE at /chat/messages/:bonfire_id");
+    }
   }
 }

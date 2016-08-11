@@ -12,7 +12,7 @@ class MarkerModal extends Component {
 
   joinBonfire(bonId, userId) {
     this.props.joinBonfire(userId, bonId);
-    this.props.createChatRoom();
+    this.props.createChatRoom(bonId);
   }
 
   render() {

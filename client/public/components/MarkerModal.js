@@ -11,13 +11,9 @@ class MarkerModal extends Component {
   }
 
   joinBonfire(bonId, userId) {
-    console.log("joining bonfire!");
     this.props.joinBonfire(userId, bonId);
+    this.props.createChatRoom();
   }
-
-          //   {hoverMarker.joinedUsers.map((user) => {
-          //   console.log(user);
-          // })}
 
   render() {
     const hoverMarker = this.props.hoverMarker;

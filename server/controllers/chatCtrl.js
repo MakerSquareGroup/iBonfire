@@ -13,12 +13,10 @@ module.exports = {
 
       Chat.addMessage(newMessage)
         .then((message) => {
-
             const chatIDs = {
               id_Bonfires: req.body.id_Bonfires,
               id_Messages: message.id
             }
-            console.log(chatIDs, 'what is chatIDs')
             // Chat.createChatRoom(chatIDs)
             //   .then((response) => {
             //     console.log('Chat Room with id of: ', response.id, ' has been created');
@@ -28,14 +26,20 @@ module.exports = {
             //     console.log(err, ': error inside of addMessage model')
             //   })
           })
-      },
+    },
     get: (req,res) => {
-      console.log('Received GET at /bonfireChat')
+      console.log('Received GET at /chat')
       Chat.getAllChatMessages(12342523)
         .then((bonfireChat) => {
           console.log(bonfireChat)
           res.send(message)
         });
+    },
+    put: (req, res) => {
+      console.log("Received PUT at /chat");
+    },
+    delete: (req, res) => {
+      console.log("Received DELETE at /chat!")
     }
   },
     '/:bonfire_id': {
@@ -53,9 +57,14 @@ module.exports = {
               })
           })
       },
-      post: function() {},
-      put: function() {},
-      delete: function() {},
-
+      post: (req, rest) => {
+        console.log("Hnnng");
+      },
+      put: (req, res) => {
+        console.log("Hnnng?")
+      },
+      delete: (req, res) => {
+        console.log("HngGng");
+      },
   }
 }

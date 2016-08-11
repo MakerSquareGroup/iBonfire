@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { facebookInit, checkLoginStatus } from '../../helpers/fbHelper';
+import * as actions from '../../actions/index';
+import FBLogin from '../FBLogin';
 
-export default (CheckedComponent) => {
+const Wrapper = (CheckedComponent) => {
   return class InitFB extends Component {
     componentWillMount() {
       if(!window.isLoaded) {
@@ -19,9 +21,15 @@ export default (CheckedComponent) => {
     }
 
     render() {
-      if(window.isLoaded) {
+      if(this.props.facebook.loggedIn) {
         return <CheckedComponent {...this.props} />
-      } else {
+      }
+
+      if(window.isLoaded && window.statusChecked && !this.props.facebook.loggedIn) {
+        return <FBLogin {...this.props} />
+      }
+
+      if(!window.isLoaded || !window.statusChecked) {
         return (
           <div className="spinner">
             <div className="double-bounce1"></div>
@@ -32,3 +40,18 @@ export default (CheckedComponent) => {
     }
   }
 };
+
+const mapStateToProps = state => {
+  return {
+    markers: state.markers,
+    users: state.users,
+    location: state.location,
+    facebook: state.facebook
+  }
+}
+
+const WrappedComponent = (CheckedComponent) => (
+  connect(mapStateToProps, actions)(Wrapper(CheckedComponent))
+  )
+
+export default WrappedComponent;

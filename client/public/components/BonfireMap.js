@@ -110,7 +110,7 @@ class BonfireMap extends Component {
 		const changed = this.props.changeClass.changed;
 
 		if(this.state.windowOpen) {
-			return;
+			return this.closeModal(this.state.markers[this.state.markerIndex]);
 		}
 		
 		if(changed.bonfireModal !== 'hidden') {
@@ -151,8 +151,10 @@ class BonfireMap extends Component {
 
 	openModal(target) {
 		const bonfireModal = this.props.changeClass.changed.bonfireModal;
+		const latProp = this.props.users.userData.latitude;
+		const lngProp = this.props.users.userData.longitude;
 
-		if(bonfireModal !== 'hidden' || this.props.hoverMarker.windowOpen) {
+		if(bonfireModal !== 'hidden' || this.props.hoverMarker.windowOpen || window.gettingLocation) {
 			return;
 		}
 

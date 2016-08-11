@@ -19,7 +19,9 @@ class App extends Component {
 
   componentWillMount() {
     this.props.getCurrentUser();
-    this.props.getLocation();
+    if(!window.gettingLocation) {
+      this.props.getLocation();
+    }
   }
 
   render() {

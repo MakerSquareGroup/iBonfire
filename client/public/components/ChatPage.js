@@ -8,15 +8,20 @@ export default class ChatPage extends Component {
     super(props);
     this.state = {
       value: '',
-      socket: io()
+      messages: []
     }
   }
 
   componentDidMount() {
-    // const socket= io()
+    this.socket = io()
     // console.log(socket, 'this is socket')
-  addChatMessage()
-    .then((response) )
+    this.socket.on('receive-message', (msg) => {
+      this.setState({
+        messages: [msg, ...this.state.messages]
+      })
+    })
+  // addChatMessage()
+  //   .then((response) )
   }
 
   // componentWillMount() {
@@ -24,21 +29,22 @@ export default class ChatPage extends Component {
   // }
 
   postMessage(msg) {
-    this.setState({
-      newMsg: <li>{msg}</li>
+    return this.state.messages.map((msg, index) => {
+      return(
+        <li>{msg}</li>
+      )   
     })
   }
 
   handleSubmit(e) {
     e.preventDefault()
-      this.state.socket.emit('new message', this.state.value);
-    this.setState({
+      this.socket.emit('new message', this.state.value);
+      this.setState({
+        messages: [this.state.value, ...this.state.messages],
+        value: ''
+      }, () => this.setState({
       value: ''
-    })
-
-    this.state.socket.on('receive-message', (msg)  => {
-      this.postMessage(msg)
-    })
+      }))
   }
 
   handleChange(e) {
@@ -49,17 +55,16 @@ export default class ChatPage extends Component {
 
   render() {
     return(
-      <div>
-        <div className='chat'>
-        <div className="chatMessages">
+      <div  className='chat'>
+        <div>
           <ul>
-            {this.state.newMsg}
+            {this.postMessage()}
           </ul>
         </div>
           <form onSubmit={this.handleSubmit.bind(this)}>
-            <input id="m" value={this.state.value} onChange={this.handleChange.bind(this)} type='text'/>
+            <input value={this.state.value} onChange={this.handleChange.bind(this)} type='text'/>
           </form>
-        </div>
+
       </div>
     )
   }

@@ -289,12 +289,17 @@ export function sendDescription(modalObj) {
 
 export function getLocation(fbId) {
   if (navigator.geolocation) {
+    window.gettingLocation = true;
     const location = new Promise((resolve, reject) => {
       return navigator.geolocation.getCurrentPosition((position) => {
         let pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
+
+        localStorage.setItem('latitude', position.coords.latitude);
+        localStorage.setItem('longitude', position.coords.longitude);
+        window.gettingLocation = false;
         resolve(pos);
       });
     });

@@ -8,8 +8,6 @@ import * as actions from '../actions/index';
 class Login extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
-
     this.handleLoginClick = this.handleLoginClick.bind(this);
   }
 
@@ -17,9 +15,10 @@ class Login extends Component {
     this.props.facebookLogin();
   }
 
-
-  componentWillReceiveProps(nextProps) {
-
+  componentDidMount() {
+    if(!window.gettingLocation) {
+      this.props.getLocation();
+    }
   }
 
   render() {

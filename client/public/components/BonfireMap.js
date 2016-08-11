@@ -20,8 +20,8 @@ class BonfireMap extends Component {
 		this.state = {
 			windowOpen: this.props.hoverMarker.windowOpen,
 			location: {
-				lat: this.props.users.userData.latitude, 
-				lng: this.props.users.userData.longitude
+				lat: Number(localStorage.getItem('latitude')) || this.props.users.userData.latitude, 
+				lng: Number(localStorage.getItem('longitude')) || this.props.users.userData.longitude
 			},
 			markers: this.props.markers
 		}
@@ -48,23 +48,34 @@ class BonfireMap extends Component {
 		const nextSearch = nextProps.search.searchCoords;
 		const nextUser = nextProps.users.userData
 
-		if(nextUser.latitude !== this.state.location.latitude || nextUser.longitude !== this.state.location.longitude) {
-			return this.setState({
-				location: {
-					lat: nextUser.latitude,
-					lng: nextUser.longitude
-				}
-			});
+		if(!this.state.location.lat || !this.state.location.lng) {
+			if(nextLocation.lat && nextLocation.lng) {
+				return this.setState({
+					location: {
+						lat: nextLocation.location.lat,
+						lng: nextLocation.location.lng
+					}
+				});
+			}
 		}
 
-		if(location.lat !== nextLocation.lat || location.lng !== nextLocation.lng) {
-			this.setState({
-				location: {
-					lat: nextLocation.lat,
-					lng: nextLocation.lng
-				}
-			});
-		}
+		// if(nextUser.latitude !== this.state.location.lat || nextUser.longitude !== this.state.location.lng) {
+		// 	return this.setState({
+		// 		location: {
+		// 			lat: nextUser.latitude,
+		// 			lng: nextUser.longitude
+		// 		}
+		// 	});
+		// }
+
+		// if(location.lat !== nextLocation.lat || location.lng !== nextLocation.lng) {
+		// 	this.setState({
+		// 		location: {
+		// 			lat: nextLocation.lat,
+		// 			lng: nextLocation.lng
+		// 		}
+		// 	});
+		// }
 
 		if(search.latitude !== nextSearch.latitude || search.longitude !== nextSearch.longitude) {
 			this.setState({
@@ -99,7 +110,7 @@ class BonfireMap extends Component {
 		const changed = this.props.changeClass.changed;
 
 		if(this.state.windowOpen) {
-			return;
+			return this.closeModal(this.state.markers[this.state.markerIndex]);
 		}
 		
 		if(changed.bonfireModal !== 'hidden') {
@@ -140,8 +151,10 @@ class BonfireMap extends Component {
 
 	openModal(target) {
 		const bonfireModal = this.props.changeClass.changed.bonfireModal;
+		const latProp = this.props.users.userData.latitude;
+		const lngProp = this.props.users.userData.longitude;
 
-		if(bonfireModal !== 'hidden' || this.props.hoverMarker.windowOpen) {
+		if(bonfireModal !== 'hidden' || this.props.hoverMarker.windowOpen || window.gettingLocation) {
 			return;
 		}
 

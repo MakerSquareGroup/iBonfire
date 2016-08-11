@@ -1,8 +1,14 @@
 import { browserHistory } from 'react-router';
 import * as actionCreators from '../actions/index';
+import axios from 'axios';
+import { USER_DATA } from '../actions/index';
+import { store } from '../../index';
+import { LOGIN_SUCCESSFUL } from '../actions/index';
+import { LOG_OUT } from '../actions/index';
 
 export const facebookInit = () => {
   window.isLoaded = false;
+  window.statusChecked = false;
   window.fbAsyncInit = () => {
     console.log("Facebook SDK initialized");
     FB.init({
@@ -39,11 +45,27 @@ export const checkLoginStatus = () => {
 
 const statusChangeCallBack = (response) => {
     if(response.status === 'connected') {
-      browserHistory.push('/Home');
-      actionCreators.getUserDB(response.authResponse.userID);
-      actionCreators.statusLoggedIn();
+      window.statusChecked = true;
+      axios.get('/user/' + response.authResponse.userID).then((response) => {
+        store.dispatch({
+          type: USER_DATA, 
+          payload: { 
+            user: response.data 
+          }
+        })
+      })
+      .then(() => {
+        store.dispatch({
+          type: LOGIN_SUCCESSFUL,
+          loggedIn: true
+        })
+      });
     } else if (response.status === 'not authorized' || !response.authResponse) {
       console.log('Please login to Facebook');
-      browserHistory.push('/');
+      window.statusChecked = true;
+      store.dispatch({
+        type: LOG_OUT,
+        loggedIn: false
+      })
     }
 }

@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import * as profileActions from '../../actions/profile';
 import * as indexActions from '../../actions/index';
+import ProfilePageBonfire from './ProfilePageBonfire';
+import ProfilePageBonfirePopUp from './ProfilePageBonfirePopUp';
 
-const allActions = {...indexActions, ...profileActions}
+export const allActions = {...indexActions, ...profileActions}
 
-export default class ProfilePage extends React.Component {
+export default class ProfilePage extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
@@ -73,10 +75,9 @@ export default class ProfilePage extends React.Component {
 
 	renderFires(bonfires){
 		var bonfires = bonfires.map((bonfire, index) => {
+
 			return (
-				<div className="BonfireEntry" key={index}>
-					<img className="BonfireEntryImage" src="../../media/Bonfire_2.png"/>
-				</div>
+				<ProfilePageBonfire key={index} data={bonfire}/>
 			)
 		})
 		this.setState({newBonfires: bonfires});
@@ -97,8 +98,6 @@ export default class ProfilePage extends React.Component {
 
 	render(){
 		
-		
-
 		return(
 			<div>
 				<div className="ProfilePageTop">
@@ -132,6 +131,7 @@ export default class ProfilePage extends React.Component {
 				<div className="LogoutButton" onClick={this.handleLogout}>
 					<img src="../../media/logout.png" className="LogoutImage"/>
 				</div>
+				<ProfilePageBonfirePopUp/>
 			</div>
 		)
 	}
@@ -140,7 +140,7 @@ const mapStateToProps = state => {
 	return {
 		bonfire: state.bonfire,
 		facebook: state.facebook,
-		updateUser: state.updateUser
+		profile: state.updateUser
 	}
 }
 

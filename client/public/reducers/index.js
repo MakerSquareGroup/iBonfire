@@ -14,6 +14,7 @@ import updateUserReducer from './updateUserReducer';
 import chatReducer from './chatReducer';
 import userInfo from './profileButton';
 import userBonfires from './profileButton';
+import profileReducer from './updateUserReducer';
 
 const rootReducer = combineReducers({
   markers: markerReducer,
@@ -30,7 +31,8 @@ const rootReducer = combineReducers({
   updateUser: updateUserReducer,
   userBonfires: userBonfires,
   userInfo: userInfo,
-  chat: chatReducer
+  chat: chatReducer,
+  profile: profileReducer
 });
 
 export default rootReducer;

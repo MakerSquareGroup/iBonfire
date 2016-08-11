@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const GET_USER_BONFIRES = 'GET_USER_BONFIRES';
 export const UPDATE_USER_BIO = 'UPDATE_USER_BIO';
+export const CHANGE_POPUP_DATA = 'CHANGE_POPUP_DATA';
 
 export function getUserBonfires(userId){
   const grabBonfiresDB = axios.get('/bonfire/join_bonfire/' + userId);
@@ -32,5 +33,14 @@ export function updateUserBio(userId, bio){
         }
       })
     })
+  }
+}
+
+export function changePopupData(bonfireData){
+  return {
+    type: CHANGE_POPUP_DATA,
+    payload: {
+      bonfireData
+    }
   }
 }

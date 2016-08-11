@@ -14,37 +14,31 @@ export default class ChatPage extends Component {
 
   componentDidMount() {
     this.socket = io()
-    // console.log(socket, 'this is socket')
     this.socket.on('receive-message', (msg) => {
       this.setState({
         messages: [msg, ...this.state.messages]
       })
     })
-  // addChatMessage()
-  //   .then((response) )
   }
-
-  // componentWillMount() {
-  //   axios.get('bonfireChats')
-  // }
 
   postMessage(msg) {
     return this.state.messages.map((msg, index) => {
       return(
-        <li>{msg}</li>
+        <p className='messages' key={index}>{msg}</p>
       )   
     })
   }
 
   handleSubmit(e) {
+    let chatWindow = document.getElementsByClassName('messageField');
     e.preventDefault()
       this.socket.emit('new message', this.state.value);
       this.setState({
-        messages: [this.state.value, ...this.state.messages],
+        messages: [...this.state.messages, this.state.value],
         value: ''
       }, () => this.setState({
       value: ''
-      }))
+      }, () => chatWindow[0].scrollTop = chatWindow[0].scrollHeight))
   }
 
   handleChange(e) {
@@ -55,16 +49,18 @@ export default class ChatPage extends Component {
 
   render() {
     return(
-      <div  className='chat'>
-        <div>
-          <ul>
-            {this.postMessage()}
-          </ul>
-        </div>
-          <form onSubmit={this.handleSubmit.bind(this)}>
-            <input value={this.state.value} onChange={this.handleChange.bind(this)} type='text'/>
+      <div  className='chatPage'>
+        <div className='chatBox'>
+          <h1 className='ChatPageh1'>Chat Page</h1>
+          <div className='messageField'>
+            <ul>
+              {this.postMessage()}
+            </ul>
+          </div>
+          <form className='formBox' onSubmit={this.handleSubmit.bind(this)}>
+            <input className='inputBox' value={this.state.value} onChange={this.handleChange.bind(this)} type='text'/>
           </form>
-
+        </div>
       </div>
     )
   }

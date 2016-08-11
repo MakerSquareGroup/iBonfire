@@ -4,6 +4,8 @@ import { browserHistory } from 'react-router';
 import { facebookInit, checkLoginStatus } from '../../helpers/fbHelper';
 import * as actions from '../../actions/index';
 import FBLogin from '../FBLogin';
+import App from '../App';
+import Home from '../Home';
 
 const Wrapper = (CheckedComponent) => {
   return class InitFB extends Component {

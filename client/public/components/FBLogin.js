@@ -15,6 +15,12 @@ class Login extends Component {
     this.props.facebookLogin();
   }
 
+  componentWillMount() {
+    if(this.props.facebook.loggedIn) {
+      browserHistory.push('/Home')
+    }
+  }
+
   componentDidMount() {
     if(!window.gettingLocation) {
       this.props.getLocation();

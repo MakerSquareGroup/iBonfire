@@ -2,13 +2,27 @@ import React, { Component } from 'react';
 import socket from 'socket.io-client';
 import axios from 'axios';
 import { addChatMessage } from '../helpers/chatHelper';
+import { connect } from 'react-redux';
+import * as actions from 'react-redux';
 
-export default class ChatPage extends Component {
+class ChatPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       value: '',
       messages: []
+    }
+  }
+
+  componentWillMount() {
+    if(this.props.facebook.currUser === '') {
+      this.props.getCurrentUser();
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(this.props.facebook.currUser !== nextProps.facebook.currUser) {
+      this.props.getCurrentUser();
     }
   }
 
@@ -19,6 +33,8 @@ export default class ChatPage extends Component {
         messages: [msg, ...this.state.messages]
       })
     })
+
+    console.log(this.props, 'this.props')
   }
 
   postMessage(msg) {
@@ -65,3 +81,12 @@ export default class ChatPage extends Component {
     )
   }
 }
+
+const mapStatetoProps = state => {
+  return {
+    facebook: state.facebook
+  }
+}
+
+export default connect(mapStatetoProps, actions)(ChatPage)
+

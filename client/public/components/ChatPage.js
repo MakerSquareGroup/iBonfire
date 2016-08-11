@@ -14,15 +14,17 @@ class ChatPage extends Component {
     }
   }
 
-  componentWillMount() {
-    if(this.props.facebook.currUser === '') {
-      this.props.getCurrentUser();
-    }
-  }
+  // componentWillMount() {
+  //   if(this.props.facebook.currUser === '') {
+  //     this.props.getCurrentUser();
+  //   }
+  // }
 
   componentWillReceiveProps(nextProps) {
-    if(this.props.facebook.currUser !== nextProps.facebook.currUser) {
-      this.props.getCurrentUser();
+    if(this.props.facebook.currUser === '') {
+      console.log(this.props.facebook.currUser, 'this.props.facebook.currUser')
+      console.log(nextProps.facebook.currUser, 'nextProps.facebook.currUser')
+      // this.props.getCurrentUser();
     }
   }
 
@@ -33,11 +35,13 @@ class ChatPage extends Component {
         messages: [msg, ...this.state.messages]
       })
     })
-
-    console.log(this.props, 'this.props')
+    console.log(this.props)
   }
 
   postMessage(msg) {
+    if(this.props.facebook.currUser === '') {
+      window.setTimeout(2000);
+    }
     return this.state.messages.map((msg, index) => {
       return(
         <p className='messages' key={index}>{msg}</p>

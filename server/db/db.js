@@ -18,10 +18,10 @@ knex.wipeDatabase = () => {
       return knex('Chats').truncate();
     })
     .then(() => {
-      return knex('Users_Chats').truncate();
+      return knex('Tags').truncate();
     })
     .then(() => {
-      return knex('Tags').truncate();
+      return knex('Messages').truncate();
     })
     .then(() => {
       return knex('Bonfires_Tags').truncate();

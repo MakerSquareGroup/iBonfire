@@ -42,9 +42,11 @@ class ChatPage extends Component {
   }
 
   postMessage() {
-    if(this.props.facebook.currUser === '') {
-      window.setTimeout(2000);
-    }
+    let flag = true;
+    // if(this.props.facebook.currUser === '') {
+    //   window.setTimeout(2000);
+    // }
+    
     if(!this.state.messages) {
       return;
     }

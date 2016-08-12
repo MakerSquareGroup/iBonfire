@@ -111,6 +111,7 @@ knex.ensureSchema = () => {
             table.increments('id').primary();
             table.string('id_Users').references('FB_id').inTable('Users');
             table.string('Chats_id').references('id').inTable('Chats');
+            table.string('name');
             table.string('messages');
             table.timestamp('created_by_User_at').defaultTo(knex.fn.now());
           })

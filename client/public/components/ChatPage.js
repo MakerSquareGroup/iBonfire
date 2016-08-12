@@ -17,9 +17,11 @@ class ChatPage extends Component {
 
   componentWillMount() {
     this.props.getMessages(this.props.bonfire.bonfireId)
+    window.flag = true;
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps.chat.messages)
     if(this.props.chat.messages !== nextProps.chat.messages && !this.state.messages) {
       let chatWindow = document.getElementsByClassName('messageField');
       // chatWindow[0].scrollTop = chatWindow[0].scrollHeight
@@ -42,7 +44,6 @@ class ChatPage extends Component {
   }
 
   postMessage() {
-    let flag = true;
     // if(this.props.facebook.currUser === '') {
     //   window.setTimeout(2000);
     // }
@@ -51,19 +52,27 @@ class ChatPage extends Component {
     if(!this.state.messages) {
       return;
     }
-    console.log(this.props.chat.messages, 'this.props')
 
-    if(flag && this.props.chat.messages.length) {
-      return this.props.chat.messages((msg, index) => {
+    if(!this.props.chat.messages){
+      return;
+    }
+    // console.log(this.props.chat.messages, 'this.props')
+
+    if(window.flag && this.props.chat.messages.length) {
+      window.flag = false
+      console.log('inside the if')
+      console.log(this.props.chat.messages, 'what are you messages')
+      return this.props.chat.messages.map((msg, index) => {
         return(
-          <p className='messages' key={index}><img src={msg.picture} alt=""/>{msg.name}: {msg.messages}</p>
+          <p className='messages' key={index}><img src={`http://graph.facebook.com/${msg.id_Users}/picture?type=small`} alt=""/>{msg.name}: {msg.messages}</p>
         )   
       })
-      flag = false
     }
     
-    if(!flag) {
+    if(!window.flag) {
       return this.state.messages.map((msg, index) => {
+        console.log(this.props.facebook.picture, 'picture');
+        console.log(this.props.facebook.currUser.name, 'name')
         return(
           <p className='messages' key={index}><img src={this.props.facebook.picture} alt=""/>{this.props.facebook.currUser.name}: {msg.messages}</p>
         )   
@@ -76,7 +85,6 @@ class ChatPage extends Component {
       bonfireId: this.props.bonfire.bonfireId,
       message: this.state.value,
       FB_id: this.props.facebook.currUser.id,
-      FB_pic: this.props.facebook.picture,
       name: this.props.facebook.currUser.name 
     })
     let chatWindow = document.getElementsByClassName('messageField');

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions/index';
+import { allActions } from './App';
 import { InfoWindow } from 'react-google-maps';
 import Infinite  from 'react-infinite';
 import axios from 'axios';
@@ -12,7 +12,7 @@ class MarkerModal extends Component {
 
   joinBonfire(bonId, userId) {
     this.props.joinBonfire(userId, bonId);
-    this.props.createChatRoom(bonId);
+    // this.props.getMessages(bonId);
   }
 
   render() {
@@ -48,4 +48,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, actions)(MarkerModal);
+export default connect(mapStateToProps, allActions)(MarkerModal);

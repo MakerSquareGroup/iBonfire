@@ -7,26 +7,29 @@ module.exports = knex;
 
 // Wipes every table and clears DB but leaves tables intact. 
 knex.wipeDatabase = () => {
-  return knex('Users').truncate()
-    .then(() => {
-      return knex('Bonfires').truncate();
-    })
-    .then(() => {
-      return knex('Users_Bonfires').truncate();
-    })
-    .then(() => {
-      return knex('Chats').truncate();
-    })
-    .then(() => {
-      return knex('Tags').truncate();
-    })
-    .then(() => {
-      return knex('Messages').truncate();
-    })
-    .then(() => {
-      return knex('Bonfires_Tags').truncate();
-    });
-  console.log("Welp, you done did it now...No more data")
+	return knex('Users').truncate()
+		.then(() => {
+			return knex('Bonfires').truncate();
+		})
+		.then(() => {
+			return knex('Users_Bonfires').truncate();
+		})
+		.then(() => {
+			return knex('Chats').truncate();
+		})
+		.then(() => {
+			return knex('Users_Chats').truncate();
+		})
+		.then(() => {
+			return knex('Tags').truncate();
+		})
+		.then(() => {
+			return knex('Bonfires_Tags').truncate();
+		})
+		.then(() => {
+			return knex('Messages').truncate();
+		});
+	console.log("Whelp, you done did it now...No more data")
 };
 
 // The ensureSchema function builds the schema for the db

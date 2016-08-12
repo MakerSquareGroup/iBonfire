@@ -50,9 +50,9 @@ module.exports = {
       Chat.createChatRoom(req.params.bonfire_id)
         .then((result) => {
           const chatId = result[0];
-          return chatId;
-        })
-        .then((chatId) => {
+          // return chatId;
+        // })
+        // .then((chatId) => {
           Chat.getAllChatMessages(chatId)
           .then((result) => {
             console.log(result, "result of getting messages")
@@ -95,6 +95,7 @@ module.exports = {
       } else {
         Chat.findChatId(req.params.bonfire_id)
         .then((chatObj) => {
+          console.log(chatObj, 'chatObj')
           let chatId = chatObj[0].id;
           Chat.addMessage({ Chats_id: chatId, id_Users: userId, messages: message })
           .then((response) => {

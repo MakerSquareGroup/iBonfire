@@ -108,6 +108,7 @@ export function joinBonfire(bonId, userId) {
           allMembers: response.data
         }
       })
+    browserHistory.push('/ChatPage')
     });
   };
 }
@@ -225,7 +226,7 @@ export function changeBonfireModalClassName(animation) {
 
 }
 
-export function addUser(user, picture) {
+export function addUser(user, picture, dispatch) {
   const userObject = {
     name: user.name,
     FB_id: user.id,
@@ -426,10 +427,12 @@ export function getCurrentUser() {
   return (dispatch) => {
     return FB.api('/me', 'get', { fields:'id,name,gender,link'}, (response) => {
       let picture = `http://graph.facebook.com/${response.id}/picture?type=large`;
-      addUser(response, picture);
+      let msgPicture = `http://graph.facebook.com/${response.id}/picture?type=small`;
+      addUser(response, picture, dispatch);
       dispatch({
         type: CURRENT_USER,
-        user: response
+        user: response,
+        picture: msgPicture
       })
     });
   }

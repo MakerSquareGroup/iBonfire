@@ -40,10 +40,8 @@ module.exports = {
     },
     put: function(req, res) {
       console.log("Received PUT at /bonfire/join_bonfire");
-
       let paramIds = Helpers.seperateParams(req.params.passed_ids);
-
-      User_Bonfire.findJoinTable(paramIds[0])
+      User_Bonfire.findJoinTable(paramIds[1])
         .then((joinTable) => {
           if (!joinTable) {
             console.log("There is no join table with a bonfire ID of " + paramIds[0]);

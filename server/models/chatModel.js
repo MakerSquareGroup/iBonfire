@@ -32,6 +32,7 @@ Chat.createChatRoom = (bonId) => {
 Chat.findChatId = (bonId) => {
   return db('Chats').where({ id_Bonfires: bonId })
     .then((result) => {
+      console.log(result, 'result')
       return result;
     })
     .catch((err) => {

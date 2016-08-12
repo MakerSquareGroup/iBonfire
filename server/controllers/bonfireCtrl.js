@@ -55,6 +55,7 @@ module.exports = {
 									})
 									.then((result) => {
 										let markerResult = result;
+										console.log(result, 'this is a specific result console.log')
 										Chat.createChatRoom({
 											id_Bonfires: result.id_Bonfires
 										})

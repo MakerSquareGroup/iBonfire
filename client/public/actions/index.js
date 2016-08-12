@@ -108,6 +108,7 @@ export function joinBonfire(bonId, userId) {
           allMembers: response.data
         }
       })
+    browserHistory.push('/ChatPage')
     });
   };
 }

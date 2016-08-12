@@ -54,36 +54,6 @@ app.get('/*', function(req,res){
   res.sendFile(path.resolve('client', 'index.html'));
 })
 
-//Scraping
-// var fs = require('fs');
-// var request = require('request');
-// var cheerio = require('cheerio');
-
-
-// app.get('/scrape', function(req, res){
-	
-// 	url = 'https://www.facebook.com/SeanMichaeLester/friends?ref=br_rs&source_ref=pb_friends_tl';
-//     request(url, function(error, response, html){
-		
-// 		if(!error){
-
-//            var $ = cheerio.load(html);
-//            $('div').each(function(index){
-//            		console.log(index, "div index");
-//            })
-//            $('.fsl').each(function(index){
-//            	console.log(index, "index");
-//            })
-//            $('div.fsl.fwb.fcb').each(function(index){
-//            		console.log('heres a element');
-//            })
-         
-       
-//         }
-//     })
-  
-// })
-
 app.set('port', process.env.PORT || 8080);
 
 http.listen(app.get('port'), () => {

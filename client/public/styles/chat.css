@@ -2,6 +2,7 @@
 	display: flex;
 	min-height: 100vh;
 	background-color: blue;
+	/*flex-direction: column;*/
 	/*z-index: 1000;*/
 }
 
@@ -11,16 +12,21 @@
 	flex-direction: column;
 	min-width: 100%;
 	/*min-height: 100vh;*/
-	background-color: white;
+	background-color: orange;
 }
 
 .messageField {
 	display: flex;
 	background-color: red;
-	justify-content: flex-start center;
-	justify-content: center;
-	max-height: calc(100vh - 210px);
+	justify-content: flex-start;
+	/*justify-content: center;*/
+	max-height: calc(100vh - 150px);
   overflow-y: auto;
+}
+
+.chatName {
+	display: flex;
+	justify-content: flex-start;
 }
 
 .ChatPageh1 {

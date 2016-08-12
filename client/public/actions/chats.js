@@ -5,20 +5,25 @@ export const CREATE_ROOM = 'CREATE_ROOM';
 export const ADD_MESSAGE = 'ADD_MESSAGE';
 export const GET_MESSAGES = 'GET_MESSAGES';
 
-export function createChatRoom(bonId) {
-  const createRoom = axios.post('/chat/' + bonId);
+// export function joinChatRoom(bonId) {
+//   const createRoom = axios.post('/chat/' + bonId);
 
-  return (dispatch) => {
-    return createRoom.then((response) => {
-      dispatch({
-        type: CREATE_ROOM,
-        payload: {
-          roomId: response.id
-        }
-      })
-    })
-  }
-}
+//   return (dispatch) => {
+//     return createRoom.then((response) => {
+//       console.log(response, 'response')
+//       dispatch({
+//         type: CREATE_ROOM,
+//         payload: {
+//           roomId: response.id
+//         }
+//       })
+//     })
+//   }
+// }
+
+// export function setChatId (bonfireId) {
+  
+// }
 
 // takes in an object containing FB_id, message, bonfireId and optionally chatId
 // example: 
@@ -55,7 +60,7 @@ export function getMessages(bonId) {
         dispatch({
           type: GET_MESSAGES,
           payload: {
-            messages: response
+            messages: response.data
           }
         })
       })

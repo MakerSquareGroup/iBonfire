@@ -3,64 +3,71 @@ import socket from 'socket.io-client';
 import axios from 'axios';
 import { addChatMessage } from '../helpers/chatHelper';
 import { connect } from 'react-redux';
-import * as actions from 'react-redux';
+import { allActions } from './App';
 
 class ChatPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       value: '',
-      messages: []
+      messages: null
     }
+    // console.log(this.props.bonfire.bonfireId)
   }
 
-  // componentWillMount() {
-  //   if(this.props.facebook.currUser === '') {
-  //     this.props.getCurrentUser();
-  //   }
-  // }
+  componentWillMount() {
+    this.props.getMessages(this.props.bonfire.bonfireId)
+  }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if(this.props.facebook.currUser === '') {
-  //     console.log(this.props.facebook.currUser, 'this.props.facebook.currUser')
-  //     console.log(nextProps.facebook.currUser, 'nextProps.facebook.currUser')
-  //     // this.props.getCurrentUser();
-  //   }
-  // }
+  componentWillReceiveProps(nextProps) {
+    if(this.props.chat.messages !== nextProps.chat.messages && !this.state.messages) {
+      let chatWindow = document.getElementsByClassName('messageField');
+      // chatWindow[0].scrollTop = chatWindow[0].scrollHeight
+      this.setState({
+        messages: nextProps.chat.messages
+      }, () => {
+        this.postMessage()
+        chatWindow[0].scrollTop = chatWindow[0].scrollHeight
+      })
+    }
+  }
 
   componentDidMount() {
     this.socket = io()
     this.socket.on('receive-message', (msg) => {
       this.setState({
-        messages: [msg, ...this.state.messages]
+        messages: [...this.state.messages, {messages: msg}]
       })
     })
-    // console.log(this.props)
   }
 
-  postMessage(msg) {
+  postMessage() {
     if(this.props.facebook.currUser === '') {
       window.setTimeout(2000);
     }
-    // console.log(this.props)
+    if(!this.state.messages) {
+      return;
+    }
     return this.state.messages.map((msg, index) => {
       return(
-        <p className='messages' key={index}><img src={this.props.facebook.picture} alt=""/>{this.props.facebook.currUser.name}: {msg}</p>
-        
+        <p className='messages' key={index}><img src={this.props.facebook.picture} alt=""/>{this.props.facebook.currUser.name}: {msg.messages}</p>
       )   
     })
   }
 
   handleSubmit(e) {
+    this.props.addMessage({
+      bonfireId: this.props.bonfire.bonfireId,
+      message: this.state.value,
+      FB_id: this.props.facebook.currUser.id 
+    })
     let chatWindow = document.getElementsByClassName('messageField');
     e.preventDefault()
       this.socket.emit('new message', this.state.value);
       this.setState({
-        messages: [...this.state.messages, this.state.value],
+        messages: [...this.state.messages, {messages: this.state.value}],
         value: ''
-      }, () => this.setState({
-      value: ''
-      }, () => chatWindow[0].scrollTop = chatWindow[0].scrollHeight))
+      }, () => chatWindow[0].scrollTop = chatWindow[0].scrollHeight)
   }
 
   handleChange(e) {
@@ -73,7 +80,6 @@ class ChatPage extends Component {
     return(
       <div  className='chatPage'>
         <div className='chatBox'>
-          <h1 className='ChatPageh1'>Chat Page</h1>
           <div className='messageField'>
             <ul>
               {this.postMessage()}
@@ -90,9 +96,11 @@ class ChatPage extends Component {
 
 const mapStatetoProps = state => {
   return {
-    facebook: state.facebook
+    facebook: state.facebook,
+    bonfire: state.bonfire,
+    chat: state.chat
   }
 }
 
-export default connect(mapStatetoProps, actions)(ChatPage)
+export default connect(mapStatetoProps, allActions)(ChatPage)
 

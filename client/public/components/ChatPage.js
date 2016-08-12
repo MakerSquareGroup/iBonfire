@@ -10,7 +10,7 @@ class ChatPage extends Component {
     super(props);
     this.state = {
       value: '',
-      messages: []
+      messages: null
     }
     // console.log(this.props.bonfire.bonfireId)
   }
@@ -20,7 +20,7 @@ class ChatPage extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(this.props.chat.messages !== nextProps.chat.messages && this.state.messages.length < 1) {
+    if(this.props.chat.messages !== nextProps.chat.messages && !this.state.messages) {
       let chatWindow = document.getElementsByClassName('messageField');
       // chatWindow[0].scrollTop = chatWindow[0].scrollHeight
       this.setState({
@@ -46,22 +46,38 @@ class ChatPage extends Component {
     // if(this.props.facebook.currUser === '') {
     //   window.setTimeout(2000);
     // }
-    
+
+
     if(!this.state.messages) {
       return;
     }
-    return this.state.messages.map((msg, index) => {
-      return(
-        <p className='messages' key={index}><img src={this.props.facebook.picture} alt=""/>{this.props.facebook.currUser.name}: {msg.messages}</p>
-      )   
-    })
+    console.log(this.props.chat.messages, 'this.props')
+
+    if(flag && this.props.chat.messages.length) {
+      return this.props.chat.messages((msg, index) => {
+        return(
+          <p className='messages' key={index}><img src={msg.picture} alt=""/>{msg.name}: {msg.messages}</p>
+        )   
+      })
+      flag = false
+    }
+    
+    if(!flag) {
+      return this.state.messages.map((msg, index) => {
+        return(
+          <p className='messages' key={index}><img src={this.props.facebook.picture} alt=""/>{this.props.facebook.currUser.name}: {msg.messages}</p>
+        )   
+      })
+    }
   }
 
   handleSubmit(e) {
     this.props.addMessage({
       bonfireId: this.props.bonfire.bonfireId,
       message: this.state.value,
-      FB_id: this.props.facebook.currUser.id 
+      FB_id: this.props.facebook.currUser.id,
+      FB_pic: this.props.facebook.picture,
+      name: this.props.facebook.currUser.name 
     })
     let chatWindow = document.getElementsByClassName('messageField');
     e.preventDefault()

@@ -23,7 +23,7 @@ module.exports = {
 		post: (req, res) => {
 			console.log("Received POST at /user/");
 
-			var newUser = {
+			let newUser = {
 				name: req.body.name,
 				latitude: req.body.latitude,
 				longitude: req.body.longitude,
@@ -79,10 +79,10 @@ module.exports = {
 			console.log("Received GET at /user/");
 
 
-			var matchParams = req.params.user_specs;
+			let matchParams = req.params.user_specs;
 
 			// This function checks for '=' to determine search field for user bonfires
-			var userBonfires = Helpers.checkParamsUserBonfires(req.params.user_specs);
+			let userBonfires = Helpers.checkParamsUserBonfires(req.params.user_specs);
 
 			if (matchParams.match("=")) {
 				User.findUserBonfires(userBonfires.createdBy)
@@ -103,7 +103,7 @@ module.exports = {
 			}
 
 			// This function checks the props to return a user by either location or FB ID
-			var getParams = Helpers.checkParamsUser(req.params.user_specs);
+			let getParams = Helpers.checkParamsUser(req.params.user_specs);
 
 			if (matchParams.match("&")) {
 				User.findUserByLocation(getParams[0], getParams[1])
@@ -173,7 +173,7 @@ module.exports = {
 		delete: (req, res) => {
 			console.log("Received DELETE at /user/");
 
-			var userId = req.params.user_specs;
+			let userId = req.params.user_specs;
 
 			User.findUserById(userId)
 				.then((user) => {

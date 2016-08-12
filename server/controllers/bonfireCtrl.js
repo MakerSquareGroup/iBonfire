@@ -54,7 +54,7 @@ module.exports = {
 										id_Bonfires: result.id
 									})
 									.then((result) => {
-										let markerResult = result;
+										var markerResult = result;
 										Chat.createChatRoom({
 											id_Bonfires: result.id_Bonfires
 										})

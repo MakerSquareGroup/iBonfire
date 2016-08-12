@@ -18,7 +18,7 @@ module.exports = {
     get: function(req, res) {
       console.log("Received GET at /bonfire/join_bonfire");
 
-      var paramIds = Helpers.seperateParams(req.params.passed_ids);
+      let paramIds = Helpers.seperateParams(req.params.passed_ids);
 
       User_Bonfire.findUserBonfires(paramIds[0])
         .then((joinTable) => {
@@ -41,7 +41,7 @@ module.exports = {
     put: function(req, res) {
       console.log("Received PUT at /bonfire/join_bonfire");
 
-      var paramIds = Helpers.seperateParams(req.params.passed_ids);
+      let paramIds = Helpers.seperateParams(req.params.passed_ids);
 
       User_Bonfire.findJoinTable(paramIds[0])
         .then((joinTable) => {

@@ -31,7 +31,7 @@ module.exports = {
 		post: (req, res) => {
 			console.log('Recieved POST at bonfire');
 
-			var newBonfire = {
+			let newBonfire = {
 				tags: req.body.tags,
 				description: req.body.description,
 				latitude: req.body.latitude,
@@ -58,6 +58,8 @@ module.exports = {
 										Chat.createChatRoom({
 											id_Bonfires: result.id_Bonfires
 										})
+										console.log("Result from bonfire controller in joinBonfire ", result);
+										User_Bonfire.findJoinTable(result.id_Bonfires)
 											.then((result) => {
 												markerResult.chat = result
 												console.log("Result from bonfire controller in createChatRoom ", markerResult);
@@ -100,7 +102,7 @@ module.exports = {
 		get: (req, res) => {
 			console.log('Recieved GET at /users_bonfires');
 
-			var bonfireId = req.params.bonfireId;
+			let bonfireId = req.params.bonfireId;
 
 			User_Bonfire.findAllUsers(bonfireId)
 			.then((bonfires) => {
@@ -145,7 +147,7 @@ module.exports = {
 			console.log(req.params, 'This is the params object in bonfires');
 
 			// This function checks for the type of prop you are searching for
-			var getParams = Helpers.checkParamsBonfire(req.params.bonfire_specs);
+			let getParams = Helpers.checkParamsBonfire(req.params.bonfire_specs);
 
 			if (Array.isArray(getParams)) {
 				Bonfire.findBonfireByLocation(getParams[0], getParams[1])

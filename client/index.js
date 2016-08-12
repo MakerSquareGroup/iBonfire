@@ -10,7 +10,8 @@ import rootReducer from './public/reducers/index';
 import App from './public/components/App';
 import Login from './public/components/FBLogin';
 import Home from './public/components/Home';
-import ChatPage from './public/components/ChatPage'
+import ChatPage from './public/components/ChatPage';
+
 
 import InitFB from './public/components/auth/InitFB';
 

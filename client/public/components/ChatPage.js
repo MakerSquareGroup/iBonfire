@@ -10,9 +10,8 @@ class ChatPage extends Component {
     super(props);
     this.state = {
       value: '',
-      messages: null
+      messages: this.props.chat.messages || null
     }
-    // console.log(this.props.bonfire.bonfireId)
   }
 
   componentWillMount() {
@@ -22,13 +21,13 @@ class ChatPage extends Component {
 
   componentWillReceiveProps(nextProps) {
     console.log(nextProps.chat.messages)
-    if(this.props.chat.messages !== nextProps.chat.messages && !this.state.messages) {
+    console.log(this.state.messages, 'before if statement')
+    if(this.state.messages.length < 1 && nextProps.chat.messages) {
+      console.log(this.state.messages, 'state.messages')
       let chatWindow = document.getElementsByClassName('messageField');
-      // chatWindow[0].scrollTop = chatWindow[0].scrollHeight
       this.setState({
         messages: nextProps.chat.messages
       }, () => {
-        this.postMessage()
         chatWindow[0].scrollTop = chatWindow[0].scrollHeight
       })
     }
@@ -38,17 +37,12 @@ class ChatPage extends Component {
     this.socket = io()
     this.socket.on('receive-message', (msg) => {
       this.setState({
-        messages: [...this.state.messages, {messages: msg}]
+        messages: [...this.state.messages, {messages: msg.messages, name: msg.name, id_Users: msg.id_Users}]
       })
     })
   }
 
   postMessage() {
-    // if(this.props.facebook.currUser === '') {
-    //   window.setTimeout(2000);
-    // }
-
-
     if(!this.state.messages) {
       return;
     }
@@ -56,27 +50,38 @@ class ChatPage extends Component {
     if(!this.props.chat.messages){
       return;
     }
-    // console.log(this.props.chat.messages, 'this.props')
 
     if(window.flag && this.props.chat.messages.length) {
       window.flag = false
-      console.log('inside the if')
-      console.log(this.props.chat.messages, 'what are you messages')
+      
       return this.props.chat.messages.map((msg, index) => {
-        return(
-          <p className='messages' key={index}><img src={`http://graph.facebook.com/${msg.id_Users}/picture?type=small`} alt=""/>{msg.name}: {msg.messages}</p>
-        )   
+        // console.log(msg, 'are you here')
+        // return(
+        //   <p className='messages' key={index}><img src={`http://graph.facebook.com/${msg.id_Users}/picture?type=small`} alt=""/>{msg.name}: {msg.messages}</p>
+        // ) 
+        return <div>Hhi</div>
       })
+      console.log(mappedMessage, 'mappedMessage')
+      // return mappedMessage
     }
     
     if(!window.flag) {
-      return this.state.messages.map((msg, index) => {
-        console.log(this.props.facebook.picture, 'picture');
-        console.log(this.props.facebook.currUser.name, 'name')
-        return(
-          <p className='messages' key={index}><img src={this.props.facebook.picture} alt=""/>{this.props.facebook.currUser.name}: {msg.messages}</p>
-        )   
-      })
+      console.log(this.state, 'after initial get')
+      console.log(this.props.chat, 'chat state')
+      console.log(this.state.messages, 'messages')
+      // this.setState({
+      //   messages: [...this.state.messages, {id_Users: this.props.facebook.id, name: this.props.facebook.name, messages: this.state.value}]
+      // })
+      // return(
+      //   <p className='messages'><img src={`http://graph.facebook.com/${this.state.messages[message.length -1].id_Users}/picture?type=small`} alt=""/>{this.state.messages[message.length -1].name}: {this.state.messages[message.length -1].messages}</p>
+      // )
+      // return this.state.messages.map((msg, index) => {
+      //   console.log(this.props.facebook.picture, 'picture');
+      //   console.log(this.props.facebook.currUser.name, 'name')
+      //   return(
+      //     <p className='messages' key={index}><img src={this.props.facebook.picture} alt=""/>{this.props.facebook.currUser.name}: {msg.messages}</p>
+      //   )   
+      // })
     }
   }
 
@@ -91,9 +96,10 @@ class ChatPage extends Component {
     e.preventDefault()
       this.socket.emit('new message', this.state.value);
       this.setState({
-        messages: [...this.state.messages, {messages: this.state.value}],
+        messages: [...this.state.messages, {messages: this.state.value, name: this.props.facebook.currUser.name, id_Users: this.props.facebook.currUser.id}],
         value: ''
       }, () => chatWindow[0].scrollTop = chatWindow[0].scrollHeight)
+      // this.postMessage()
   }
 
   handleChange(e) {
@@ -103,12 +109,18 @@ class ChatPage extends Component {
   }
 
   render() {
+    let mappedMessages = this.state.messages.map((msg, index) => {
+        // console.log(msg, 'are you here')
+        return(
+          <p className='messages' key={index}><img src={`http://graph.facebook.com/${msg.id_Users}/picture?type=small`} alt=""/>{msg.name}: {msg.messages}</p>
+        )
+      })
     return(
       <div  className='chatPage'>
         <div className='chatBox'>
           <div className='messageField'>
             <ul>
-              {this.postMessage()}
+              {mappedMessages}
             </ul>
           </div>
           <form className='formBox' onSubmit={this.handleSubmit.bind(this)}>

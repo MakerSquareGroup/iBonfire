@@ -10,7 +10,7 @@ class ChatPage extends Component {
     super(props);
     this.state = {
       value: '',
-      messages: null
+      messages: []
     }
     // console.log(this.props.bonfire.bonfireId)
   }
@@ -20,7 +20,7 @@ class ChatPage extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(this.props.chat.messages !== nextProps.chat.messages && !this.state.messages) {
+    if(this.props.chat.messages !== nextProps.chat.messages && this.state.messages.length < 1) {
       let chatWindow = document.getElementsByClassName('messageField');
       // chatWindow[0].scrollTop = chatWindow[0].scrollHeight
       this.setState({

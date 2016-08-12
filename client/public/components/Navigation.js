@@ -76,6 +76,7 @@ class Navigation extends Component {
 					    </IconMenu>
 				    </MuiThemeProvider>
 			    </div>
+
 			</div>
 		)
 	}

@@ -31,7 +31,7 @@ module.exports = {
 		post: (req, res) => {
 			console.log('Recieved POST at bonfire');
 
-			var newBonfire = {
+			let newBonfire = {
 				tags: req.body.tags,
 				description: req.body.description,
 				latitude: req.body.latitude,

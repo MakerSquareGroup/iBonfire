@@ -20,8 +20,9 @@ Chat.addMessage = (attr) => {
 };
 
 Chat.createChatRoom = (bonId) => {
-  return db('Chats').insert({ id_Bonfires: bonId })
+  return db('Chats').insert({ id_Bonfires: bonId.id_Bonfires })
     .then((result) => {
+
       return result;
     })
     .catch((err) => {
@@ -32,7 +33,6 @@ Chat.createChatRoom = (bonId) => {
 Chat.findChatId = (bonId) => {
   return db('Chats').where({ id_Bonfires: bonId })
     .then((result) => {
-      console.log(result, 'result')
       return result;
     })
     .catch((err) => {

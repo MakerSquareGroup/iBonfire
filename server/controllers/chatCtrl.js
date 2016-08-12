@@ -4,33 +4,8 @@ const User_Bonfire = require('../models/user_bonfireModel.js')
 module.exports = {
   '/': {
     post: (req, res) => {
-      console.log('Received POST at /bonfireChat')
-
-      const newMessage = {
-        messages: req.body.messages,
-        id_Users: req.body.id_Users,
-        Chats_id: req.body.Chats_id
-      }
-
-      Chat.addMessage(newMessage)
-        .then((message) => {
-
-            let chatIDs = {
-              id_Bonfires: req.body.id_Bonfires,
-              id_Messages: message.id
-            }
-            console.log(chatIDs, 'what is chatIDs')
-            // Chat.createChatRoom(chatIDs)
-            //   .then((response) => {
-            //     console.log('Chat Room with id of: ', response.id, ' has been created');
-            //     res.send(response)
-            //   })
-            //   .catch((err) => {
-            //     console.log(err, ': error inside of addMessage model')
-            //   })
-          })
-      },
-
+      console.log('Received POST at /chat')
+    },
     get: (req,res) => {
       console.log('Received GET at /chat')
     },
@@ -44,33 +19,7 @@ module.exports = {
   '/:bonfire_id': {
     get: (req, res) => {
       console.log('Received GET at /chat/:bonfire_id');
-    },
-    post: (req, res) => {
-      console.log('Received POST at /chat/:bonfire_id');
-      Chat.createChatRoom(req.params.bonfire_id)
-        .then((result) => {
-          const chatId = result[0];
-          // return chatId;
-        // })
-        // .then((chatId) => {
-          Chat.getAllChatMessages(chatId)
-          .then((result) => {
-            console.log(result, "result of getting messages")
-            res.send(result);
-          })
-        })
-    },
-    put: (req, res) => {
-      console.log("Received put at /chat/:bonfire_id");
-    },
-    delete: (req, res) => {
-      console.log("Received DELETE at /chat/:bonfire_id");
-    }
-  },
-  '/messages/:bonfire_id': {
-    get: (req, res) => {
-      console.log("Received GET at /chat/messages/:bonfire_id");
-        Chat.findChatId(req.params.bonfire_id)
+      Chat.findChatId(req.params.bonfire_id)
         .then((chatObj) => {
           const chatId = chatObj[0].id;
           Chat.getAllChatMessages(chatId)
@@ -80,7 +29,7 @@ module.exports = {
         })
     },
     post: (req, res) => {
-      console.log("Received POST at /chat/messages/:bonfire_id");
+      console.log('Received POST at /chat/:bonfire_id');
       const message = req.body.message;
       const userId = req.body.FB_id;
       if(req.body.chatId) {
@@ -95,7 +44,6 @@ module.exports = {
       } else {
         Chat.findChatId(req.params.bonfire_id)
         .then((chatObj) => {
-          console.log(chatObj, 'chatObj')
           let chatId = chatObj[0].id;
           Chat.addMessage({ Chats_id: chatId, id_Users: userId, messages: message })
           .then((response) => {
@@ -105,10 +53,10 @@ module.exports = {
       }
     },
     put: (req, res) => {
-      console.log("Received PUT at /chat/messages/:bonfire_id");
+      console.log("Received PUT at /chat/:bonfire_id");
     },
     delete: (req, res) => {
-      console.log("Received DELETE at /chat/messages/:bonfire_id");
+      console.log("Received DELETE at /chat/:bonfire_id");
     }
   }
 }

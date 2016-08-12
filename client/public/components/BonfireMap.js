@@ -121,6 +121,10 @@ class BonfireMap extends Component {
 		let lat = this.refs.googleMap.getCenter().lat();
 		let lng = this.refs.googleMap.getCenter().lng();
 
+		if(this.state.windowOpen) {
+			this.closeModal(this.state.markers[this.state.markerIndex]);
+		}
+
 		this.setState({
 			windowOpen: false,
 			location: {

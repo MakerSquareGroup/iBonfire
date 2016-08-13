@@ -10,7 +10,7 @@ class MarkerModal extends Component {
     super(props);
   }
 
-  joinBonfire(bonId, userId) {
+  joinBonfire(userId, bonId) {
     this.props.joinBonfire(userId, bonId);
     this.props.getMessages(bonId);
   }
@@ -21,21 +21,18 @@ class MarkerModal extends Component {
     const currUser = this.props.facebook.currUser;
     return (
       <div className='marker-modal'>
-        <Infinite elementHeight={60}
-        containerHeight={180}
-        >
-          <button onClick={() => this.props.closeModal(markerData)}>Close</button>
-          <h1>Tags: {markerData.tags}</h1>
-          <p>Bonfire ID: {markerData.id}</p>
-          <h2>Description: {markerData.description}</h2>
-          <img src={`http://graph.facebook.com/${this.props.facebook.currUser.id}/picture?type=small`}/>
-          <p>{markerData.cityState}</p>
-        </Infinite>
+        <h1>Tags: {markerData.tags}</h1>
+        <h2>Description: {markerData.description}</h2>
+        <img src={`http://graph.facebook.com/${markerData.createdBy}/picture?type=small`}/>
+        <p>{markerData.cityState}</p>
         <button id='join-bonfire' onClick={() => this.joinBonfire(currUser.id, markerData.id)}>Join</button>
       </div>
     )
   }
 }
+
+        // <button id='join-bonfire' onClick={() => this.props.closeModal(markerData)}>Close</button>
+
 
 function mapStateToProps(state) {
   return {

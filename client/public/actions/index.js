@@ -92,7 +92,7 @@ export function addMarker(data) {
   }
 }
 
-export function joinBonfire(bonId, userId) {
+export function joinBonfire(userId, bonId) {
   const join = axios.put('/bonfire/join_bonfire/' + userId + '&'+ bonId);
 
   return (dispatch) => {

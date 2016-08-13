@@ -18,7 +18,7 @@
 .messageField {
 	display: flex;
 	background-color: red;
-	justify-content: flex-start;
+	/*justify-content: flex-start;*/
 	/*justify-content: center;*/
 	max-height: calc(100vh - 150px);
   overflow-y: auto;
@@ -51,7 +51,17 @@
 }
 
 .messages {
+	display: flex;
 	background-color: pink;
 	border: 20px solid pink;
 	border-radius: 10%;
+}
+
+.yourMessages {
+	display: flex;
+	justify-content: center;
+	background-color: white;
+	border: 20px solid white;
+	border-radius: 10%;
+	/*float: right;*/
 }

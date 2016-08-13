@@ -4,6 +4,7 @@ import axios from 'axios';
 import { addChatMessage } from '../helpers/chatHelper';
 import { connect } from 'react-redux';
 import { allActions } from './App';
+import ReactDOM from 'react-dom';
 
 class ChatPage extends Component {
   constructor(props) {
@@ -34,12 +35,14 @@ class ChatPage extends Component {
   }
 
   componentDidMount() {
+    let chatWindow = document.getElementsByClassName('messageField');
     this.socket = io()
     this.socket.on('receive-message', (msg) => {
       this.setState({
         messages: [...this.state.messages, {messages: msg.messages, name: msg.name, id_Users: msg.id_Users}]
-      })
+      }, () => chatWindow[0].scrollTop = chatWindow[0].scrollHeight)
     })
+    chatWindow[0].scrollTop = chatWindow[0].scrollHeight
   }
 
   postMessage() {
@@ -99,7 +102,6 @@ class ChatPage extends Component {
         messages: [...this.state.messages, {messages: this.state.value, name: this.props.facebook.currUser.name, id_Users: this.props.facebook.currUser.id}],
         value: ''
       }, () => chatWindow[0].scrollTop = chatWindow[0].scrollHeight)
-      // this.postMessage()
   }
 
   handleChange(e) {
@@ -108,20 +110,35 @@ class ChatPage extends Component {
     })
   }
 
+  update() {
+    window.setTimeout(() => {
+      let chatWindow = document.getElementsByClassName('messageField');
+      chatWindow[0].scrollTop = chatWindow[0].scrollHeight  
+    }, 100) 
+  }
+
   render() {
+    let chatWindow = document.getElementsByClassName('messageField');
+  
     let mappedMessages = this.state.messages.map((msg, index) => {
-        // console.log(msg, 'are you here')
+      this.update()
+      if(this.props.facebook.currUser.id === msg.id_Users) {
         return(
-          <p className='messages' key={index}><img src={`http://graph.facebook.com/${msg.id_Users}/picture?type=small`} alt=""/>{msg.name}: {msg.messages}</p>
+        <p className='yourMessages' key={index}><img src={`http://graph.facebook.com/${msg.id_Users}/picture?type=small`} alt=""/>{msg.name}: {msg.messages}</p>
         )
-      })
+      }
+      return(
+        <p className='messages' key={index}><img src={`http://graph.facebook.com/${msg.id_Users}/picture?type=small`} alt=""/>{msg.name}: {msg.messages}</p>
+      )
+    })
+
     return(
       <div  className='chatPage'>
         <div className='chatBox'>
-          <div className='messageField'>
-            <ul>
+          <div className='messageField' ref='msg'>
+            <div>
               {mappedMessages}
-            </ul>
+            </div>
           </div>
           <form className='formBox' onSubmit={this.handleSubmit.bind(this)}>
             <input className='inputBox' value={this.state.value} onChange={this.handleChange.bind(this)} type='text'/>

@@ -13,8 +13,9 @@ class ProfileButton extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-  const userId = this.props.facebook.currUser.id;
-    if(userId !== nextProps.facebook.currUser.id) {
+  const FB = this.props.facebook.currUser;
+
+    if(FB !== nextProps.facebook.currUser) {
       this.props.getUserBonfires(nextProps.facebook.currUser.id);
     }
     if(this.props.userBonfires !== nextProps.userBonfires) {
@@ -38,32 +39,38 @@ class ProfileButton extends Component {
   }
 
   renderBonfires = () => {
+    console.log(this.state)
     let bonfires = this.state.bonfires;
     let bonfireArray = [];
-    console.log(bonfires, "CHECK OUT THIS BONFIRE")
+    console.log(bonfireArray, "1");
+
     if (bonfires) {
       for(var prop in bonfires) {
         bonfireArray.push(bonfires[prop]);
       }
-      return bonfireArray.map((bonfire) => {
-        return (
+      console.log(bonfireArray, "2E");
 
+    let mappedBonfires = bonfireArray[0].map((bonfire,index) => {
+        return (
+          <div id="mainbox" key={index}>
              <div className="card">
               <ul>
-                <li key={bonfire.id}>
+                <li>
                   <div>
-                    <img className='cardimg' src={this.props.facebook.currUser.FB_img} alt="http://media.npr.org/assets/news/2009/10/27/facebook1_sq-17f6f5e06d5742d8c53576f7c13d5cf7158202a9.jpg?s=16" />
+                    <img className='cardimg' src={this.state.FB_img} alt="http://media.npr.org/assets/news/2009/10/27/facebook1_sq-17f6f5e06d5742d8c53576f7c13d5cf7158202a9.jpg?s=16" />
                   </div>
                   <p className='cardp'><b>Created By: {bonfire.createdBy}</b></p>
+                  <p className='cardp'><b>Location: {bonfire.cityState}</b>
+                  </p>
                   <p className='cardp'>{bonfire.description}
                   </p>
-                  <p className='cardp'><b>Join Chat Room!</b></p>
                 </li>
               </ul>
             </div>
-
+          </div>
         );
-      })  
+      })
+      this.setState({mappedBonfires: mappedBonfires});
     }
   }
     
@@ -78,7 +85,7 @@ class ProfileButton extends Component {
         >
           <MenuItem onTouchTap={this.renderBonfires}>My Bonfires</MenuItem>
 
-          <div id="mainbox">{this.renderBonfires}</div>
+          <div>{this.state.mappedBonfires}</div>
           
         </Drawer>
 

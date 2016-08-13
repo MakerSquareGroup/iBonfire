@@ -1,11 +1,11 @@
 .card{
-width: 350px;
-border: 1px solid gray;
-box-shadow: 1px 1px 3px #888;
-border-top: 10px solid red;
-min-height: 250px;
-padding-: 10px;
-margin: 10px;
+  width: 350px;
+  border: 1px solid gray;
+  box-shadow: 1px 1px 3px #888;
+  border-top: 10px solid red;
+  min-height: 250px;
+  padding-: 10px;
+  margin: 10px;
 }
 
 .cardimg {
@@ -22,9 +22,23 @@ margin: 10px;
 }
 
 #mainbox{
+  height: auto;
   font-family: calibri;
   box-sizing: border-box;
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
+  display: flex;
+  vertical-align: middle;
+}
+#myBonfires{
+  height: 40%;
+  width: auto;
+  border: 13px solid #bed5cd;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+#drawerParent {
+  height: 100%;
 }

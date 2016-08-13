@@ -54,18 +54,11 @@ class ProfileButton extends Component {
         return (
           <div id="mainbox" key={index}>
              <div className="card">
-              <ul>
-                <li>
-                  <div>
-                    <img className='cardimg' src={this.state.FB_img} alt="http://media.npr.org/assets/news/2009/10/27/facebook1_sq-17f6f5e06d5742d8c53576f7c13d5cf7158202a9.jpg?s=16" />
-                  </div>
-                  <p className='cardp'><b>Created By: {bonfire.createdBy}</b></p>
+                  <p className='cardp'>{bonfire.tags}</p>
                   <p className='cardp'><b>Location: {bonfire.cityState}</b>
                   </p>
                   <p className='cardp'>{bonfire.description}
                   </p>
-                </li>
-              </ul>
             </div>
           </div>
         );
@@ -75,8 +68,10 @@ class ProfileButton extends Component {
   }
     
   render() {
+
+
     return (
-      <div>
+      <div id="drawerParent">
         <Drawer
           docked={true}
           width={350}
@@ -84,9 +79,10 @@ class ProfileButton extends Component {
           onRequestChange={(open) => this.setState({open})}
         >
           <MenuItem onTouchTap={this.renderBonfires}>My Bonfires</MenuItem>
+          <div id="myBonfires">{this.state.mappedBonfires}</div>
 
-          <div>{this.state.mappedBonfires}</div>
-          
+          <MenuItem onTouchTap={this.renderBonfires}>Joined Bonfires</MenuItem>
+          <div id="myBonfires">{this.state.mappedBonfires}</div>
         </Drawer>
 
         <div className="menu ProfileButtonSmall"onMouseEnter={this.handleToggle}>
@@ -106,7 +102,8 @@ function mapStateToProps(state) {
     users: state.users,
     location: state.location,
     facebook: state.facebook,
-    userBonfires: state.userBonfires
+    userBonfires: state.userBonfires,
+    userInfo: state.userInfo
   };
 }
 

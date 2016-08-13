@@ -7,7 +7,7 @@ export function getUserBonfires(userId) {
   return (dispatch) => {
     return userBonfires
     .then((response) => {
-      console.log(response, "AFTER PROMISE")
+      console.log(response, "DISPATCH")
       dispatch({
         type: MENU_BONFIRES,
         payload: {

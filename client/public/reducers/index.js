@@ -12,7 +12,7 @@ import hoverMarkerReducer from './hoverMarkerReducer';
 import bonfireReducer from './bonfireReducer';
 import updateUserReducer from './updateUserReducer';
 import chatReducer from './chatReducer';
-import getUserBonfires from './profileButton';
+import userBonfires from './profileButton';
 
 const rootReducer = combineReducers({
   markers: markerReducer,
@@ -27,7 +27,7 @@ const rootReducer = combineReducers({
   hoverMarker: hoverMarkerReducer,
   bonfire: bonfireReducer,
   updateUser: updateUserReducer,
-  getUserBonfires: getUserBonfires,
+  userBonfires: userBonfires,
   chat: chatReducer
 });
 

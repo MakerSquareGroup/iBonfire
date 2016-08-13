@@ -12,9 +12,16 @@ class ProfileButton extends Component {
     };
   }
 
-  componentDidMount() {
-    const userId = this.props.facebook.currUser.id;
-    const userBonfires = this.props.getUserBonfires(userId);
+  componentWillReceiveProps(nextProps) {
+  const userId = this.props.facebook.currUser.id;
+    if(userId !== nextProps.facebook.currUser.id) {
+      this.props.getUserBonfires(nextProps.facebook.currUser.id);
+    }
+    if(this.props.userBonfires !== nextProps.userBonfires) {
+      this.setState({bonfires: nextProps.userBonfires})
+    } 
+  }
+  
   // const items = document.querySelectorAll('.circle a');
   //     for(var i = 0, l = items.length; i < l; i++) {
   //       items[i].style.left = (50 - 35*Math.cos(-0.5 * Math.PI - 2*(1/l)*i*Math.PI)).toFixed(4) + "%";
@@ -25,14 +32,39 @@ class ProfileButton extends Component {
   //     document.querySelector('.menu-button').onclick = function(e) {
   //        e.preventDefault(); document.querySelector('.circle').classList.toggle('open');
   //     }
-  }
 
   handleToggle = () => {
     this.setState({open: !this.state.open});
   }
 
   renderBonfires = () => {
+    let bonfires = this.state.bonfires;
+    let bonfireArray = [];
+    console.log(bonfires, "CHECK OUT THIS BONFIRE")
+    if (bonfires) {
+      for(var prop in bonfires) {
+        bonfireArray.push(bonfires[prop]);
+      }
+      return bonfireArray.map((bonfire) => {
+        return (
 
+             <div className="card">
+              <ul>
+                <li key={bonfire.id}>
+                  <div>
+                    <img className='cardimg' src={this.props.facebook.currUser.FB_img} alt="http://media.npr.org/assets/news/2009/10/27/facebook1_sq-17f6f5e06d5742d8c53576f7c13d5cf7158202a9.jpg?s=16" />
+                  </div>
+                  <p className='cardp'><b>Created By: {bonfire.createdBy}</b></p>
+                  <p className='cardp'>{bonfire.description}
+                  </p>
+                  <p className='cardp'><b>Join Chat Room!</b></p>
+                </li>
+              </ul>
+            </div>
+
+        );
+      })  
+    }
   }
     
   render() {
@@ -44,19 +76,9 @@ class ProfileButton extends Component {
           open={this.state.open}
           onRequestChange={(open) => this.setState({open})}
         >
-          <MenuItem onTouchTap={this.getBonfires}>My Bonfires</MenuItem>
+          <MenuItem onTouchTap={this.renderBonfires}>My Bonfires</MenuItem>
 
-          <div id="mainbox">
-            <div className="card">
-            <div>
-              <img className='cardimg' src="http://media.npr.org/assets/news/2009/10/27/facebook1_sq-17f6f5e06d5742d8c53576f7c13d5cf7158202a9.jpg?s=16" alt="" />
-            </div>
-              <p className='cardp'><b>Created By: Rohit Falor</b></p>
-              <p className='cardp'>From the restored 540 K Streamliner to the all-new S65 AMG Coupe to the Concept Coupe SUV, last weekend in Monterey was a celebration of the Mercedes-Benz coupe.
-              </p>
-              <p className='cardp'><b>Join Chat Room!</b></p>
-            </div>
-          </div>
+          <div id="mainbox">{this.renderBonfires}</div>
           
         </Drawer>
 
@@ -76,7 +98,8 @@ function mapStateToProps(state) {
     markers: state.markers,
     users: state.users,
     location: state.location,
-    facebook: state.facebook
+    facebook: state.facebook,
+    userBonfires: state.userBonfires
   };
 }
 

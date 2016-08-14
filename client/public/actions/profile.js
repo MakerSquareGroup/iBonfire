@@ -63,3 +63,9 @@ export function getBonfireUsers(bonfireId){
     return resp;
   })
 }
+
+export function updateUserBio(userId, text){
+  return axios.put('/user/' + userId, {bio:text}).then((resp) => {
+    console.log(resp);
+  })
+}

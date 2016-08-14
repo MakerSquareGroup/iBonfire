@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import ProfilePageBonfire from './ProfilePageBonfire';
 import ProfilePageBonfirePopup from './ProfilePageBonfirePopUp';
 import { allActions } from '../App';
+import {updateUserBio} from '../../actions/profile';
 
 
 export default class ProfilePage extends Component {
@@ -48,7 +49,7 @@ export default class ProfilePage extends Component {
 		if(this.state.edit){
 			var profileInfoPlainText = this.renderProfileInfoPlainText();
 			this.setState({profileInfoView: 'plainText'})
-			// this.props.updateUserBio(this.props.facebook.currUser.id,this.state.profileInfoText);
+			updateUserBio(this.props.facebook.currUser.id,this.state.profileInfoText);
 		} else {
 			var profileInfoTextArea = this.renderProfileInfoTextArea();
 			this.setState({profileInfoView: 'textArea'})

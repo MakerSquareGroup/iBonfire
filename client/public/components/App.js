@@ -5,7 +5,6 @@ import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'react-redux';
 import * as actions from '../actions/index';
-
 import * as chatActions from '../actions/chats';
 import * as profileActions from '../actions/profile';
 import * as menuActions from '../actions/menuActions';
@@ -51,4 +50,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, actions)(App);
+export default connect(mapStateToProps, allActions)(App);

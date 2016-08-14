@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import * as profileActions from '../../actions/profile';
-import * as indexActions from '../../actions/index';
 import ProfilePageBonfire from './ProfilePageBonfire';
-import ProfilePageBonfirePopUp from './ProfilePageBonfirePopUp';
+import ProfilePageBonfirePopup from './ProfilePageBonfirePopUp';
+import { allActions } from '../App';
 
-export const allActions = {...indexActions, ...profileActions}
 
 export default class ProfilePage extends Component {
 	constructor(props){
@@ -15,7 +13,7 @@ export default class ProfilePage extends Component {
 			edit: false,
 			editProfileHeaderClass: 'EditProfileHeader hide',
 			profileInfoView: '',
-			profileInfoText: ''
+			profileInfoText: 'Hey my name is Dailen I like to surf and fuck hot chicks im a brooooo ya naw what i mean'
 		}
 		this.handleProfilePictureClick = this.handleProfilePictureClick.bind(this);
 		this.handleProfilePictureMouseOver = this.handleProfilePictureMouseOver.bind(this);
@@ -32,10 +30,11 @@ export default class ProfilePage extends Component {
 	}
 
 	componentDidMount() {
+		console.log('component did mount');
 		this.setState({
 			edit: false,
 			editProfileHeaderClass: 'EditProfileHeader hide',
-			profileInfoView: this.renderProfileInfoPlainText(),
+			// profileInfoView: this.renderProfileInfoPlainText(),
 			profileInfoText: ''
 		})
 	}
@@ -49,7 +48,7 @@ export default class ProfilePage extends Component {
 		if(this.state.edit){
 			var profileInfoPlainText = this.renderProfileInfoPlainText();
 			this.setState({profileInfoView: 'plainText'})
-			this.props.updateUserBio(this.props.facebook.currUser.id,this.state.profileInfoText);
+			// this.props.updateUserBio(this.props.facebook.currUser.id,this.state.profileInfoText);
 		} else {
 			var profileInfoTextArea = this.renderProfileInfoTextArea();
 			this.setState({profileInfoView: 'textArea'})
@@ -75,7 +74,6 @@ export default class ProfilePage extends Component {
 
 	renderFires(bonfires){
 		var bonfires = bonfires.map((bonfire, index) => {
-
 			return (
 				<ProfilePageBonfire key={index} data={bonfire}/>
 			)
@@ -131,7 +129,7 @@ export default class ProfilePage extends Component {
 				<div className="LogoutButton" onClick={this.handleLogout}>
 					<img src="../../media/logout.png" className="LogoutImage"/>
 				</div>
-				<ProfilePageBonfirePopUp/>
+				<ProfilePageBonfirePopup/>
 			</div>
 		)
 	}

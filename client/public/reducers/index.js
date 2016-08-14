@@ -16,6 +16,7 @@ import userInfo from './profileButton';
 import userBonfires from './profileButton';
 import profileReducer from './updateUserReducer';
 
+
 const rootReducer = combineReducers({
   markers: markerReducer,
   users: userReducer,

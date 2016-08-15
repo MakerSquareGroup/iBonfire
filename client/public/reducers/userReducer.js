@@ -4,7 +4,8 @@ import { UPDATE_USER_INFO } from '../actions/profile';
 
 const initialState = {
   users: [],
-  userData: {}
+  userData: {},
+  
 }
 
 export default (state = initialState, action) => {

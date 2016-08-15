@@ -14,6 +14,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 export const allActions = { ...actions, ...chatActions, ...profileActions, ...menuActions };
 
+
 injectTapEventPlugin();
 
 
@@ -49,4 +50,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, actions)(App);
+export default connect(mapStateToProps, allActions)(App);

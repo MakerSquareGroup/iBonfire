@@ -60,7 +60,7 @@ class ProfileButton extends Component {
     return (
       <div id="drawerParent">
         <Drawer
-          docked={false}
+          docked={true}
           width={350}
           open={this.state.open}
           onRequestChange={(open) => this.setState({open})}

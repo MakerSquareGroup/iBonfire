@@ -1,8 +1,12 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../actions/profile';
+import ProfilePageBonfire from './ProfilePageBonfire';
+import ProfilePageBonfirePopup from './ProfilePageBonfirePopUp';
+import { allActions } from '../App';
+import {updateUserBio, getUserData} from '../../actions/profile';
 
-export default class ProfilePage extends React.Component {
+
+export default class ProfilePage extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
@@ -18,18 +22,24 @@ export default class ProfilePage extends React.Component {
 		this.renderProfileInfoTextArea = this.renderProfileInfoTextArea.bind(this);
 		this.renderProfileInfoPlainText = this.renderProfileInfoPlainText.bind(this);
 		this.handleProfileInfoTextAreaChange = this.handleProfileInfoTextAreaChange.bind(this);
+		this.handleLogout = this.handleLogout.bind(this);
 	}
 
 	componentWillMount() {
 		var currentUser = this.props.facebook.currUser;
 		this.props.getUserBonfires(currentUser.id);
+		getUserData(this.props.facebook.currUser.id).then((resp) => {
+			console.log('get user data', resp);
+			this.setState({profileInfoText: resp.data.bio})
+		})
 	}
 
 	componentDidMount() {
+		console.log('component did mount');
 		this.setState({
 			edit: false,
 			editProfileHeaderClass: 'EditProfileHeader hide',
-			profileInfoView: this.renderProfileInfoPlainText(),
+			// profileInfoView: this.renderProfileInfoPlainText(),
 			profileInfoText: ''
 		})
 	}
@@ -41,10 +51,9 @@ export default class ProfilePage extends React.Component {
 
 	handleProfilePictureClick(){
 		if(this.state.edit){
-			console.log('EXECUTE');
 			var profileInfoPlainText = this.renderProfileInfoPlainText();
 			this.setState({profileInfoView: 'plainText'})
-			this.props.updateUserBio(this.props.facebook.currUser.id,this.state.profileInfoText);
+			updateUserBio(this.props.facebook.currUser.id,this.state.profileInfoText);
 		} else {
 			var profileInfoTextArea = this.renderProfileInfoTextArea();
 			this.setState({profileInfoView: 'textArea'})
@@ -64,12 +73,14 @@ export default class ProfilePage extends React.Component {
 		this.setState({profileInfoText: e.target.value});
 	}
 
+	handleLogout(){
+		this.props.facebookLogout();
+	}
+
 	renderFires(bonfires){
 		var bonfires = bonfires.map((bonfire, index) => {
 			return (
-				<div className="BonfireEntry" key={index}>
-					<img className="BonfireEntryImage" src="../../media/Bonfire_2.png"/>
-				</div>
+				<ProfilePageBonfire key={index} data={bonfire}/>
 			)
 		})
 		this.setState({newBonfires: bonfires});
@@ -90,8 +101,6 @@ export default class ProfilePage extends React.Component {
 
 	render(){
 		
-		
-
 		return(
 			<div>
 				<div className="ProfilePageTop">
@@ -122,6 +131,10 @@ export default class ProfilePage extends React.Component {
 				<div className="MapButtonSmall" onClick={this.props.renderMap}>
 					<img  className="MapImageSmall MapImageSmallAnimation" src='http://www.appelsiini.net/assets/2008/5/26/tartu.png'/>
 				</div>
+				<div className="LogoutButton" onClick={this.handleLogout}>
+					<img src="../../media/logout.png" className="LogoutImage"/>
+				</div>
+				<ProfilePageBonfirePopup/>
 			</div>
 		)
 	}
@@ -130,8 +143,8 @@ const mapStateToProps = state => {
 	return {
 		bonfire: state.bonfire,
 		facebook: state.facebook,
-		updateUser: state.updateUser
+		profile: state.updateUser
 	}
 }
 
-export default connect(mapStateToProps, actions)(ProfilePage);
+export default connect(mapStateToProps, allActions)(ProfilePage);

@@ -11,8 +11,8 @@ class MarkerModal extends Component {
   }
 
   joinBonfire(userId, bonId) {
-    this.props.joinBonfire(userId, bonId);
     this.props.getMessages(bonId);
+    this.props.joinBonfire(userId, bonId);
   }
 
   render() {

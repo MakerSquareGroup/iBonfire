@@ -37,12 +37,14 @@ export function getMessages(bonId) {
   return (dispatch) => {
     return getAll
       .then((response) => {
+      console.log('hsdskjfbsdkjsdf')
         dispatch({
           type: GET_MESSAGES,
           payload: {
             messages: response.data
           }
         })
+    browserHistory.push('/ChatPage/' + bonId);
       })
   }
 }

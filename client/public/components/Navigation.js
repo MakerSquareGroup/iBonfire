@@ -8,8 +8,6 @@ import MenuItem from 'material-ui/MenuItem';
 import { facebookLogout } from '../helpers/fbHelper';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
-import { ChatPage } from './ChatPage'
-// import { Link } from 'react-router';
 import {browserHistory} from 'react-router';
 
 class Navigation extends Component {
@@ -33,10 +31,6 @@ class Navigation extends Component {
 		facebookLogout();
 	}
 
-	goToChat() {
-		browserHistory.push('/ChatPage');
-	}
-
 	render() {
 		return (
 			<div id="Navigation">
@@ -58,8 +52,6 @@ class Navigation extends Component {
 			      </form>
 			    </div>
 
-
-
 			    <div id="DropDown">
 				    <MuiThemeProvider>
 					    <IconMenu
@@ -69,9 +61,6 @@ class Navigation extends Component {
 						>
 					    <MenuItem onClick={this.props.facebookLogout}>
 								Log Out
-							</MenuItem>
-							<MenuItem onClick={this.goToChat.bind(this)}>
-									Chat
 							</MenuItem>
 					    </IconMenu>
 				    </MuiThemeProvider>

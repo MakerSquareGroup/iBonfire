@@ -22,17 +22,6 @@ class ProfileButton extends Component {
       this.setState({bonfires: nextProps.userBonfires})
     } 
   }
-  
-  // const items = document.querySelectorAll('.circle a');
-  //     for(var i = 0, l = items.length; i < l; i++) {
-  //       items[i].style.left = (50 - 35*Math.cos(-0.5 * Math.PI - 2*(1/l)*i*Math.PI)).toFixed(4) + "%";
-        
-  //       items[i].style.top = (50 + 35*Math.sin(-0.5 * Math.PI - 2*(1/l)*i*Math.PI)).toFixed(4) + "%";
-  //     }
-
-  //     document.querySelector('.menu-button').onclick = function(e) {
-  //        e.preventDefault(); document.querySelector('.circle').classList.toggle('open');
-  //     }
 
   handleToggle = () => {
     this.setState({open: !this.state.open});
@@ -42,13 +31,11 @@ class ProfileButton extends Component {
     console.log(this.state)
     let bonfires = this.state.bonfires;
     let bonfireArray = [];
-    console.log(bonfireArray, "1");
 
     if (bonfires) {
       for(var prop in bonfires) {
         bonfireArray.push(bonfires[prop]);
       }
-      console.log(bonfireArray, "2E");
 
     let mappedBonfires = bonfireArray[0].map((bonfire,index) => {
         return (
@@ -73,7 +60,7 @@ class ProfileButton extends Component {
     return (
       <div id="drawerParent">
         <Drawer
-          docked={true}
+          docked={false}
           width={350}
           open={this.state.open}
           onRequestChange={(open) => this.setState({open})}

@@ -19,7 +19,6 @@ module.exports = {
       console.log("Received GET at /bonfire/join_bonfire");
 
       let paramIds = Helpers.seperateParams(req.params.passed_ids);
-
       User_Bonfire.findUserBonfires(paramIds[0])
         .then((joinTable) => {
           if (!joinTable) {
@@ -83,6 +82,40 @@ module.exports = {
     delete: function(req, res) {
       console.log("Received DELETE at /bonfire/join_bonfire");
       res.end("Received DELETE at /bonfire/join_bonfire");
+    }
+  },
+  '/get_all_users/:bonfire_id': {
+    get: function(req,res) {
+      console.log("Received GET at /get_all_users");
+
+      let bonfireId = req.params.bonfire_id;
+
+      User_Bonfire.findAllUsers(bonfireId)
+      .then((users) => {
+        if(!users) {
+          console.log("There is no bonfire with an id of " + bonfireId);
+          res.end("There is no bonfire with an id of " + bonfireId);
+        } else {
+        console.log("All users for bonfire " + bonfireId);
+        res.send(users);
+        }
+      })
+      .catch((err) => {
+        console.log('Error inside of findAllUsers: ', err);
+        res.end(err);
+      })
+    },
+    post: function(req, res) {
+      console.log("Received POST at /get_all_users");
+      res.end("Received POST at /get_all_users");
+    },
+    put: function(req, res) {
+      console.log("Received PUT at /get_all_users");
+      res.end("Received PUT at /get_all_users");
+    },
+    delete: function(req, res) {
+      console.log("Received DELETE at /get_all_users");
+      res.end("Received DELETE at /get_all_users");
     }
   }
 };

@@ -17,14 +17,10 @@ class ChatPage extends Component {
 
   componentWillMount() {
     this.props.getMessages(this.props.bonfire.bonfireId)
-    window.flag = true;
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.chat.messages)
-    console.log(this.state.messages, 'before if statement')
     if(this.state.messages.length < 1 && nextProps.chat.messages) {
-      console.log(this.state.messages, 'state.messages')
       let chatWindow = document.getElementsByClassName('messageField');
       this.setState({
         messages: nextProps.chat.messages
@@ -36,7 +32,7 @@ class ChatPage extends Component {
 
   componentDidMount() {
     let chatWindow = document.getElementsByClassName('messageField');
-    this.socket = io()
+    this.socket = io();
     this.socket.on('receive-message', (msg) => {
       this.setState({
         messages: [...this.state.messages, {messages: msg.messages, name: msg.name, id_Users: msg.id_Users}]
@@ -45,47 +41,10 @@ class ChatPage extends Component {
     chatWindow[0].scrollTop = chatWindow[0].scrollHeight
   }
 
-  postMessage() {
-    if(!this.state.messages) {
-      return;
-    }
-
-    if(!this.props.chat.messages){
-      return;
-    }
-
-    if(window.flag && this.props.chat.messages.length) {
-      window.flag = false
-      
-      return this.props.chat.messages.map((msg, index) => {
-        // console.log(msg, 'are you here')
-        // return(
-        //   <p className='messages' key={index}><img src={`http://graph.facebook.com/${msg.id_Users}/picture?type=small`} alt=""/>{msg.name}: {msg.messages}</p>
-        // ) 
-        return <div>Hhi</div>
-      })
-      console.log(mappedMessage, 'mappedMessage')
-      // return mappedMessage
-    }
-    
-    if(!window.flag) {
-      console.log(this.state, 'after initial get')
-      console.log(this.props.chat, 'chat state')
-      console.log(this.state.messages, 'messages')
-      // this.setState({
-      //   messages: [...this.state.messages, {id_Users: this.props.facebook.id, name: this.props.facebook.name, messages: this.state.value}]
-      // })
-      // return(
-      //   <p className='messages'><img src={`http://graph.facebook.com/${this.state.messages[message.length -1].id_Users}/picture?type=small`} alt=""/>{this.state.messages[message.length -1].name}: {this.state.messages[message.length -1].messages}</p>
-      // )
-      // return this.state.messages.map((msg, index) => {
-      //   console.log(this.props.facebook.picture, 'picture');
-      //   console.log(this.props.facebook.currUser.name, 'name')
-      //   return(
-      //     <p className='messages' key={index}><img src={this.props.facebook.picture} alt=""/>{this.props.facebook.currUser.name}: {msg.messages}</p>
-      //   )   
-      // })
-    }
+  componentWillUnmount() {
+    this.setState({
+      messages: null
+    });
   }
 
   handleSubmit(e) {

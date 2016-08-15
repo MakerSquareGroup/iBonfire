@@ -31,9 +31,6 @@ class MarkerModal extends Component {
   }
 }
 
-        // <button id='join-bonfire' onClick={() => this.props.closeModal(markerData)}>Close</button>
-
-
 function mapStateToProps(state) {
   return {
     markers: state.markers,

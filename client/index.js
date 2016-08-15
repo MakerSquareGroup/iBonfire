@@ -24,7 +24,9 @@ const router = (
       <Route path="/" component={InitFB(App)} >
         <IndexRoute component={InitFB(Login)} />
         <Route path="Home" component={InitFB(Home)} />
-        <Route path="ChatPage" component={InitFB(ChatPage)} />
+        <Route path="ChatPage" component={InitFB(ChatPage)}>
+          <Route path="/*" component={InitFB(ChatPage)} />
+        </Route>
       </Route>
     </Router>
   </Provider>

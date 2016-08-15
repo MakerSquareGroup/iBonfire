@@ -107,7 +107,7 @@ export function joinBonfire(userId, bonId) {
           allMembers: response.data
         }
       })
-    browserHistory.push('/ChatPage')
+    browserHistory.push('/ChatPage/' + bonId);
     });
   };
 }

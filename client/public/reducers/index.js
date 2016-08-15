@@ -10,11 +10,10 @@ import facebookReducer from './facebookReducer';
 import currentMarkerReducer from './currentMarkerReducer';
 import hoverMarkerReducer from './hoverMarkerReducer';
 import bonfireReducer from './bonfireReducer';
-import updateUserReducer from './updateUserReducer';
 import chatReducer from './chatReducer';
 import userInfo from './profileButton';
 import userBonfires from './profileButton';
-import profileReducer from './updateUserReducer';
+import profileReducer from './profileReducer';
 
 
 const rootReducer = combineReducers({
@@ -29,7 +28,6 @@ const rootReducer = combineReducers({
   currMarker: currentMarkerReducer,
   hoverMarker: hoverMarkerReducer,
   bonfire: bonfireReducer,
-  updateUser: updateUserReducer,
   userBonfires: userBonfires,
   userInfo: userInfo,
   chat: chatReducer,

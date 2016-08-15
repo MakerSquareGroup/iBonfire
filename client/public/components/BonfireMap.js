@@ -213,7 +213,6 @@ class BonfireMap extends Component {
 			        }}
 				    >
 
-
 				   	{this.state.markers.map((marker, index) => {
 		    			let position = {
 		    				lat: Number(marker.latitude),

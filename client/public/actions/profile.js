@@ -53,19 +53,21 @@ export function getBonfireData(bonfireId){
 
 export function getUserData(userId){
   return axios.get('/user/' + userId).then((resp) => {
+    console.log(resp);
     return resp;
   })
 }
 
 export function getBonfireUsers(bonfireId){
-  return axios.get('/users_bonfires/' + bonfireId).then((resp) => {
-    console.log('resp', resp);
+  return axios.get('/user_bonfires/' + bonfireId).then((resp) => {
+    console.log(resp);
     return resp;
   })
 }
 
 export function updateUserBio(userId, text){
   return axios.put('/user/' + userId, {bio:text}).then((resp) => {
-    console.log(resp);
+    return resp;
   })
 }
+

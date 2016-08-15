@@ -16,7 +16,7 @@ export default class ProfilePageBonfirePopup extends Component {
 			location: '',
 			description: '',
 			tags: '',
-			members: [1,2,3,4,5,6,7,8,9,4,2,2,2,2,2,3,4,3,2,3,4]
+			members: [1,2,3,4,5,6,7,8,9,4,2,2,2]
 		}
 
 		this.handleCancelClick = this.handleCancelClick.bind(this);
@@ -31,7 +31,6 @@ export default class ProfilePageBonfirePopup extends Component {
 				var fbImg = resp.data.FB_img;
 				var name = resp.data.name
 				getBonfireUsers(bonfireId).then((resp) => {
-					console.log('bonfire users', resp);
 					this.setState({
 						creatorImageSrc: fbImg,
 						creatorName: name,
@@ -45,12 +44,13 @@ export default class ProfilePageBonfirePopup extends Component {
 	}
 
 	createChips(){
-		return this.state.members.map((member) => {
+		return this.state.members.map((member, index) => {
 			return (
 				<Chip 
-				style={{'margin':'4','cursor':'pointer','backgroundColor':'#60DD94'}}
+				style={{'margin':'4px','cursor':'pointer','backgroundColor':'#60DD94'}}
 				labelColor='white'
-				>Dailen Spencer</Chip>
+				key={index}
+				>Place Holder Name</Chip>
 			)
 		})
 	}

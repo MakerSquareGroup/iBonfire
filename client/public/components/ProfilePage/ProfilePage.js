@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ProfilePageBonfire from './ProfilePageBonfire';
 import ProfilePageBonfirePopup from './ProfilePageBonfirePopUp';
 import { allActions } from '../App';
-import {updateUserBio} from '../../actions/profile';
+import {updateUserBio, getUserData} from '../../actions/profile';
 
 
 export default class ProfilePage extends Component {
@@ -14,7 +14,7 @@ export default class ProfilePage extends Component {
 			edit: false,
 			editProfileHeaderClass: 'EditProfileHeader hide',
 			profileInfoView: '',
-			profileInfoText: 'Hey my name is Dailen I like to surf and fuck hot chicks im a brooooo ya naw what i mean'
+			profileInfoText: ''
 		}
 		this.handleProfilePictureClick = this.handleProfilePictureClick.bind(this);
 		this.handleProfilePictureMouseOver = this.handleProfilePictureMouseOver.bind(this);
@@ -28,6 +28,10 @@ export default class ProfilePage extends Component {
 	componentWillMount() {
 		var currentUser = this.props.facebook.currUser;
 		this.props.getUserBonfires(currentUser.id);
+		getUserData(this.props.facebook.currUser.id).then((resp) => {
+			console.log('get user data', resp);
+			this.setState({profileInfoText: resp.data.bio})
+		})
 	}
 
 	componentDidMount() {

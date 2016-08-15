@@ -27,24 +27,22 @@ export default class ProfilePage extends Component {
 
 	componentWillMount() {
 		var currentUser = this.props.facebook.currUser;
-		this.props.getUserBonfires(currentUser.id);
+		this.props.getProfileUserBonfires(currentUser.id);
 		getUserData(this.props.facebook.currUser.id).then((resp) => {
-			console.log('get user data', resp);
 			this.setState({profileInfoText: resp.data.bio})
 		})
 	}
 
 	componentDidMount() {
-		console.log('component did mount');
 		this.setState({
 			edit: false,
 			editProfileHeaderClass: 'EditProfileHeader hide',
-			// profileInfoView: this.renderProfileInfoPlainText(),
 			profileInfoText: ''
 		})
 	}
 
 	componentWillReceiveProps(nextProps) {
+		console.log('component will receive props inside profile page top level', nextProps.bonfire.bonfires);
 		this.renderFires(nextProps.bonfire.bonfires);
 	}
 
@@ -78,6 +76,7 @@ export default class ProfilePage extends Component {
 	}
 
 	renderFires(bonfires){
+
 		var bonfires = bonfires.map((bonfire, index) => {
 			return (
 				<ProfilePageBonfire key={index} data={bonfire}/>
@@ -143,7 +142,7 @@ const mapStateToProps = state => {
 	return {
 		bonfire: state.bonfire,
 		facebook: state.facebook,
-		profile: state.updateUser
+		profile: state.profile
 	}
 }
 

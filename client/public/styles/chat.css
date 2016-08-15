@@ -1,67 +1,162 @@
-.chatPage {
+.ChatPage {
 	display: flex;
-	min-height: 100vh;
-	background-color: blue;
-	/*flex-direction: column;*/
-	/*z-index: 1000;*/
-}
-
-.chatBox {
-	display: flex;
-	justify-content: flex-end;
 	flex-direction: column;
-	min-width: 100%;
-	/*min-height: 100vh;*/
-	background-color: orange;
+	width: 100%;
+	height: 100%;
+	background-color: #E9EBEE;
+	position: absolute;
 }
 
-.messageField {
-	display: flex;
-	background-color: red;
-	/*justify-content: flex-start;*/
-	/*justify-content: center;*/
-	max-height: calc(100vh - 150px);
-  overflow-y: auto;
+
+.MessageField {
+	height: 100%;
+	overflow: scroll;
 }
 
-.chatName {
+.ChatProfileImage {
+	width: 50px;
+	height: 50px;
+	border-radius: 100%;
+	padding: 5px;
+}
+
+.TextHolder {
+	width: 100%;
+	height: 100%;
 	display: flex;
-	justify-content: flex-start;
+	flex-direction: column;
+	margin-top: 5px;
+}
+
+.MessageAuthor {
+	height: 30px;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 300;
+	color: gray;
+	font-size: 15px;
+	margin: 0px;
+}
+
+.MessageText {
+	width: 100%;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 300;
+	height: 30px;
+	color: gray;
+	font-size: 15px;
+	text-align: left;
+	margin: 0px;
+}
+
+
+
+
+
+.YourMessage {
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 30px;
+
+}
+
+.YourMessage img {
+	margin-right: 20px;
+}
+
+.YourMessage p {
+	text-align: right;
+}
+
+.OtherMessage {
+	display: flex;
+	flex-direction: row;
+}
+
+.OtherMessage p {
+	text-align: left;
+}
+
+.OtherMessages img {
+	margin-left: 10px;
+}
+
+
+
+
+.ChatName {
+	
 }
 
 .ChatPageh1 {
-	display: flex; 
-	justify-content: flex-start;
-	justify-content: center;
+	
 }
 
-.formBox {
-	display: flex;
-	justify-content: center;
-	min-width: 80%;
+.CancelButton {
+	width: 60px;
+	height: 100%;
+	border:none;
+	background: transparent;
+	margin-top: 8px;
+	cursor: pointer;
 }
 
-.inputBox {
+.CancelButton:focus{
+	outline:0;
+}
+
+.CancelButtonImage {
+	width: 25px;
+	height: 25px;
+	background-size: contain;
+}
+	
+
+.MessageCreator {
 	display: flex;
-	min-height: 40px;
-	min-width: 98%;
-	text-align: center;
+	flex-direction: row;
+	width: 100%;
+}
+
+.FormBox {
+	height:70px;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	padding: 0px 10px 20px 10px;
+	box-sizing: border-box;
+}
+
+.InputBox {
+	width: 100%;
+	border-radius: 30px;
+	border:none;
+	padding: 2px;
+	padding-right: 20px;
+	padding-left: 20px;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 300;
+	color: gray;
 	font-size: 20px;
-	margin: 8px 8px;
 }
 
-.messages {
-	display: flex;
-	background-color: pink;
-	border: 20px solid pink;
-	border-radius: 10%;
+.SendButton {
+	width: 60px;
+	height: 100%;
+	border-radius: 100%;
+	background-color: transparent;
+	border-color: transparent;
+	margin-right: 20px;
+	cursor: pointer;
 }
 
-.yourMessages {
-	display: flex;
-	justify-content: center;
-	background-color: white;
-	border: 20px solid white;
-	border-radius: 10%;
-	/*float: right;*/
+.SendButton:focus {
+	outline:0;
 }
+
+.SendButtonImage {
+	width: 100%;
+	height: 100%;
+	background-size: contain;
+}
+
+

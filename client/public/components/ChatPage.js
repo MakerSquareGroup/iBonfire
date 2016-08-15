@@ -5,6 +5,7 @@ import { addChatMessage } from '../helpers/chatHelper';
 import { connect } from 'react-redux';
 import { allActions } from './App';
 import ReactDOM from 'react-dom';
+import { browserHistory } from 'react-router';
 
 class ChatPage extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class ChatPage extends Component {
 
   componentWillReceiveProps(nextProps) {
     if(this.state.messages.length < 1 && nextProps.chat.messages) {
-      let chatWindow = document.getElementsByClassName('messageField');
+      let chatWindow = document.getElementsByClassName('MessageField');
       this.setState({
         messages: nextProps.chat.messages
       }, () => {
@@ -31,7 +32,7 @@ class ChatPage extends Component {
   }
 
   componentDidMount() {
-    let chatWindow = document.getElementsByClassName('messageField');
+    let chatWindow = document.getElementsByClassName('MessageField');
     this.socket = io();
     this.socket.on('receive-message', (msg) => {
       this.setState({
@@ -47,6 +48,10 @@ class ChatPage extends Component {
     });
   }
 
+  handleCancel(){
+     browserHistory.push('/Home')
+  }
+
   handleSubmit(e) {
     this.props.addMessage({
       bonfireId: this.props.bonfire.bonfireId,
@@ -54,7 +59,7 @@ class ChatPage extends Component {
       FB_id: this.props.facebook.currUser.id,
       name: this.props.facebook.currUser.name 
     })
-    let chatWindow = document.getElementsByClassName('messageField');
+    let chatWindow = document.getElementsByClassName('MessageField');
     e.preventDefault()
       this.socket.emit('new message', this.state.value);
       this.setState({
@@ -71,39 +76,57 @@ class ChatPage extends Component {
 
   update() {
     window.setTimeout(() => {
-      let chatWindow = document.getElementsByClassName('messageField');
+      let chatWindow = document.getElementsByClassName('MessageField');
       chatWindow[0].scrollTop = chatWindow[0].scrollHeight  
     }, 100) 
   }
 
   render() {
-    let chatWindow = document.getElementsByClassName('messageField');
+    let chatWindow = document.getElementsByClassName('MessageField');
   
     let mappedMessages = this.state.messages.map((msg, index) => {
       this.update()
       if(this.props.facebook.currUser.id === msg.id_Users) {
         return(
-        <p className='yourMessages' key={index}><img src={`http://graph.facebook.com/${msg.id_Users}/picture?type=small`} alt=""/>{msg.name}: {msg.messages}</p>
+          <div className='YourMessage'>
+            <div className="TextHolder" key={index}>
+              <p className="MessageAuthor" key={index}>{msg.name}</p>
+              <p className="MessageText">{msg.messages}</p>
+            </div>
+            <img className="ChatProfileImage" src={`http://graph.facebook.com/${msg.id_Users}/picture?type=small`} alt=""/>
+          </div>
+        
         )
       }
       return(
-        <p className='messages' key={index}><img src={`http://graph.facebook.com/${msg.id_Users}/picture?type=small`} alt=""/>{msg.name}: {msg.messages}</p>
+        <div className="OtherMessage">
+          <img className="ChatProfileImage" src={`http://graph.facebook.com/${msg.id_Users}/picture?type=small`} alt=""/>
+          <div className="TextHolder" key={index}>
+            <p className="MessageAuthor" key={index}>{msg.name}</p>
+            <p className="MessageText">{msg.messages}</p>
+          </div>
+        </div>
+        
       )
     })
 
     return(
-      <div  className='chatPage'>
-        <div className='chatBox'>
-          <div className='messageField' ref='msg'>
-            <div>
-              {mappedMessages}
-            </div>
+      <div  className='ChatPage'>
+          <div className='MessageField' ref='msg'>
+            {mappedMessages}
           </div>
-          <form className='formBox' onSubmit={this.handleSubmit.bind(this)}>
-            <input className='inputBox' value={this.state.value} onChange={this.handleChange.bind(this)} type='text'/>
-          </form>
-        </div>
-      </div>
+          <div className="MessageCreator">
+            <button className="CancelButton">
+              <img className="CancelButtonImage" src="../media/cancelThin.png" onClick={this.handleCancel.bind(this)}/>
+            </button>
+            <form className='FormBox' onSubmit={this.handleSubmit.bind(this)}>
+              <input className='InputBox' value={this.state.value} onChange={this.handleChange.bind(this)} type='text'/>
+            </form>
+            <button className="SendButton">
+              <img className="SendButtonImage" src="../media/up-arrow.png" onClick={this.handleSubmit.bind(this)}/>
+            </button>
+          </div>
+     </div>
     )
   }
 }

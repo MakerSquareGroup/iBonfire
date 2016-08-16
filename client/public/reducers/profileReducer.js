@@ -9,7 +9,6 @@ const initialState = {
 }
 
 export default(state = initialState, action) => {
-	
 	switch(action.type){
 		case UPDATE_USER_BIO:
 			return { ...state, bio: action.bio}

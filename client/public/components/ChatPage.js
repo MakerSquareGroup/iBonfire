@@ -16,7 +16,7 @@ class ChatPage extends Component {
   }
 
   componentWillMount() {
-    this.props.getMessages(this.props.bonfire.bonfireId)
+    this.props.getMessages(this.props.bonfire.bonfireId);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -38,7 +38,6 @@ class ChatPage extends Component {
         messages: [...this.state.messages, {messages: msg.messages, name: msg.name, id_Users: msg.id_Users}]
       }, () => chatWindow[0].scrollTop = chatWindow[0].scrollHeight)
     })
-    chatWindow[0].scrollTop = chatWindow[0].scrollHeight
   }
 
   componentWillUnmount() {
@@ -47,19 +46,21 @@ class ChatPage extends Component {
     });
   }
 
-  handleCancel(){
-     browserHistory.push('/Home')
+  handleCancel() {
+     browserHistory.push('/Home');
   }
 
   handleSubmit(e) {
-    this.props.addMessage({
+    e.preventDefault();
+    const messageObj = {
       bonfireId: this.props.bonfire.bonfireId,
       message: this.state.value,
       FB_id: this.props.facebook.currUser.id,
-      name: this.props.facebook.currUser.name 
-    })
+      name: this.props.facebook.currUser.name
+    }
+    
+    this.props.addMessage(messageObj);
     let chatWindow = document.getElementsByClassName('MessageField');
-    e.preventDefault()
       this.socket.emit('new message', this.state.value);
       this.setState({
         messages: [...this.state.messages, {messages: this.state.value, name: this.props.facebook.currUser.name, id_Users: this.props.facebook.currUser.id}],
@@ -70,7 +71,7 @@ class ChatPage extends Component {
   handleChange(e) {
     this.setState({
       value: e.target.value
-    })
+    });
   }
 
   update() {
@@ -87,9 +88,9 @@ class ChatPage extends Component {
       this.update()
       if(this.props.facebook.currUser.id === msg.id_Users) {
         return(
-          <div className='YourMessage'>
-            <div className="TextHolder" key={index}>
-              <p className="MessageAuthor" key={index}>{msg.name}</p>
+          <div className='YourMessage' key={index}>
+            <div className="TextHolder">
+              <p className="MessageAuthor">{msg.name}</p>
               <p className="MessageText">{msg.messages}</p>
             </div>
             <img className="ChatProfileImage" src={`http://graph.facebook.com/${msg.id_Users}/picture?type=small`} alt=""/>
@@ -98,10 +99,10 @@ class ChatPage extends Component {
         )
       }
       return(
-        <div className="OtherMessage">
+        <div className="OtherMessage" key={index}>
           <img className="ChatProfileImage" src={`http://graph.facebook.com/${msg.id_Users}/picture?type=small`} alt=""/>
-          <div className="TextHolder" key={index}>
-            <p className="MessageAuthor" key={index}>{msg.name}</p>
+          <div className="TextHolder">
+            <p className="MessageAuthor">{msg.name}</p>
             <p className="MessageText">{msg.messages}</p>
           </div>
         </div>

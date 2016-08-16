@@ -57,7 +57,7 @@
   border-radius: 100%;
 }
 
-/*.ProfileImageSmallAnimation {
+.ProfileImageSmallAnimation {
   animation: 3500ms pulse 1500ms ease-in-out infinite;
   -webkit-animation: 3500ms pulse 1500ms ease-in-out infinite;
 }
@@ -94,4 +94,4 @@
 .FadeOutMap {
 	animation: 1000ms fadeOut ease-in-out forwards;
   -webkit-animation: 1000ms fadeOut ease-in-out forwards;
-}*/
+}

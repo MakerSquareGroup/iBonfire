@@ -117,5 +117,38 @@ module.exports = {
       console.log("Received DELETE at /get_all_users");
       res.end("Received DELETE at /get_all_users");
     }
+  },
+  '/get_all_bonfires/:user_id': {
+    get: function(req,res) {
+      console.log("Received GET at /get_all_bonfires");
+
+      let userId = req.params.user_id;
+
+      User_Bonfire.findAllBonfires(userId)
+      .then((bonfires) => {
+        if(!bonfires) {
+          console.log('The user with an id of ' + userId + ' has not joined any bonfires!');
+          res.end('The user with an id of ' + userId + ' has not joined any bonfires!');
+        } else {
+          res.end('The user with an id of ' + userId + ' has joined: ', bonfires);
+        }
+      })
+      .catch((err) => {
+        console.log('Error in findAllBonfires: ', err);
+        res.end('Error in findAllBonfires: ', err)
+      })
+    },
+    post: function(req, res) {
+      console.log("Received POST at /get_all_bonfires");
+      res.end("Received POST at /get_all_bonfires");
+    },
+    put: function(req, res) {
+      console.log("Received PUT at /get_all_bonfires");
+      res.end("Received PUT at /get_all_bonfires");
+    },
+    delete: function(req, res) {
+      console.log("Received DELETE at /get_all_bonfires");
+      res.end("Received DELETE at /get_all_bonfires");
+    }
   }
 };

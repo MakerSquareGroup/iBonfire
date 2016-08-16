@@ -3,6 +3,7 @@
 	left:50%;
 	top:50%;
 	transform: translateX(-50%) translateY(-50%);
+	pointer-events: auto;
 }
 input {
 	outline: transparent;
@@ -24,9 +25,9 @@ input[type=search] {
 	border: solid 2px #eee;
 	width: 55px;
 	opacity: 0.85;
-	-webkit-border-radius: 10em;
-	-moz-border-radius: 10em;
-	border-radius: 10em;
+	-webkit-border-radius: 15em;
+	-moz-border-radius: 15em;
+	border-radius: 15em;
 
 	-webkit-transition: all .5s;
 	-moz-transition: all .5s;

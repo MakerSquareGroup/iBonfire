@@ -27,7 +27,7 @@ export default class ProfilePage extends Component {
 
 	componentWillMount() {
 		var currentUser = this.props.facebook.currUser;
-		this.props.getProfileUserBonfires(currentUser.id);
+		this.props.getUserBonfires(currentUser.id);
 		getUserData(this.props.facebook.currUser.id).then((resp) => {
 			this.setState({profileInfoText: resp.data.bio})
 		})

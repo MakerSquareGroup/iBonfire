@@ -62,7 +62,7 @@ class BonfireDrawer extends Component {
                   <p className='cardp'>{bonfire.description}
                   </p>
                   <p className='cardp'>
-                    Created on: {Moment(bonfire.created_by_User_at).format('MMMM Do YYYY, h:mm:ss a')}
+                    Bonfire lit: {Moment(bonfire.created_by_User_at).format('MMMM Do YYYY, h:mm:ss a')}
                   </p>
             </div>
           </div>

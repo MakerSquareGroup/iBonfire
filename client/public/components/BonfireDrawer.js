@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { allActions } from './App';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
+import Moment from 'moment';
 
 class BonfireDrawer extends Component {
   constructor(props) {
@@ -25,15 +26,13 @@ class BonfireDrawer extends Component {
       this.setState({
         currentCity: response.data.results
       }, () => {
-
         for(var j = 0; j < this.props.markers.length; j ++) {
           for(var i = 0; i < this.state.currentCity.length; i ++) {
             if(this.props.markers[j].cityState === this.state.currentCity[i].formatted_address) {
               this.state.bonfiresInYourCity.push(this.props.markers[j])
             }
           }
-        }
-      
+        } 
       })
     })
     .then(() => {
@@ -42,12 +41,8 @@ class BonfireDrawer extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-  const FB = this.props.facebook.currUser;
-  console.log(nextProps.currentCity, 'nextProps.currentCity')
-    if(nextProps.currentCity) {
-      console.log(nextProps.currentCity, 'what is nextProps.currentCity')
-    }
-    if(FB !== nextProps.facebook.currUser) {
+  const FbCurrUser = this.props.facebook.currUser;
+    if(FbCurrUser !== nextProps.facebook.currUser) {
       this.props.getUserBonfires(nextProps.facebook.currUser.id);
     }
   }
@@ -58,7 +53,6 @@ class BonfireDrawer extends Component {
 
   renderBonfires = () => {
     let mappedBonfires = this.state.bonfiresInYourCity.map((bonfire,index) => {
-      console.log(bonfire, 'bonfires')
         return (
           <div id="mainbox" key={index}>
              <div className="card">
@@ -66,6 +60,9 @@ class BonfireDrawer extends Component {
                   <p className='cardp'><b>Location: {bonfire.cityState}</b>
                   </p>
                   <p className='cardp'>{bonfire.description}
+                  </p>
+                  <p className='cardp'>
+                    Created on: {Moment(bonfire.created_by_User_at).format('MMMM Do YYYY, h:mm:ss a')}
                   </p>
             </div>
           </div>
@@ -86,12 +83,11 @@ class BonfireDrawer extends Component {
         >
           <MenuItem onTouchTap={this.renderBonfires}>Bonfires around you</MenuItem>
           <div id="myBonfires">{this.state.mappedBonfires}</div>
-
         </Drawer>
 
         <div className="menu ProfileButtonSmall"onMouseEnter={this.handleToggle}>
           <div className="btn trigger">
-               <a onClick={this.props.renderProfile}><img className="ProfileImageSmall" src={`http://graph.facebook.com/${this.props.facebook.currUser.id}/picture?type=large`}/></a>
+             <a onClick={this.props.renderProfile}><img className="ProfileImageSmall" src={`http://graph.facebook.com/${this.props.facebook.currUser.id}/picture?type=large`}/></a>
           </div>
         </div>
 

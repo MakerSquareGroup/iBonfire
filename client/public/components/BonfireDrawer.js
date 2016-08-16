@@ -4,23 +4,44 @@ import { allActions } from './App';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 
-class ProfileButton extends Component {
+class BonfireDrawer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      open: false,
+      location: {
+        lat: Number(localStorage.getItem('latitude')) || this.props.users.userData.latitude, 
+        lng: Number(localStorage.getItem('longitude')) || this.props.users.userData.longitude
+      },
+      bonfiresInYourCity: [],
+      currentCity: ''
     };
+  }
+
+  componentWillMount() {
+    const stringifiedLatLng = String(this.state.location.lat) + "," + String(this.state.location.lng);
+    this.props.convertCoordsToLocation(stringifiedLatLng)
+    .then((response) => {
+      this.setState({
+        currentCity: response.data.results[4].formatted_address
+      }, () => {
+        return this.props.markers.map((marker) => {
+          if(marker.cityState === this.state.currentCity) {
+            this.state.bonfiresInYourCity.push(marker)
+          }
+        })
+      })
+    })
+    .then(() => {
+      console.log(this.state.currentCity, this.state.bonfiresInYourCity, 'what is in here');
+    })
   }
 
   componentWillReceiveProps(nextProps) {
   const FB = this.props.facebook.currUser;
-
     if(FB !== nextProps.facebook.currUser) {
       this.props.getUserBonfires(nextProps.facebook.currUser.id);
     }
-    if(this.props.userBonfires !== nextProps.userBonfires) {
-      this.setState({bonfires: nextProps.userBonfires})
-    } 
   }
 
   handleToggle = () => {
@@ -28,16 +49,7 @@ class ProfileButton extends Component {
   }
 
   renderBonfires = () => {
-    console.log(this.state)
-    let bonfires = this.state.bonfires;
-    let bonfireArray = [];
-
-    if (bonfires) {
-      for(var prop in bonfires) {
-        bonfireArray.push(bonfires[prop]);
-      }
-
-    let mappedBonfires = bonfireArray[0].map((bonfire,index) => {
+    let mappedBonfires = this.state.bonfiresInYourCity.map((bonfire,index) => {
         return (
           <div id="mainbox" key={index}>
              <div className="card">
@@ -52,11 +64,9 @@ class ProfileButton extends Component {
       })
       this.setState({mappedBonfires: mappedBonfires});
     }
-  }
+  
     
   render() {
-
-
     return (
       <div id="drawerParent">
         <Drawer
@@ -65,11 +75,9 @@ class ProfileButton extends Component {
           open={this.state.open}
           onRequestChange={(open) => this.setState({open})}
         >
-          <MenuItem onTouchTap={this.renderBonfires}>My Bonfires</MenuItem>
+          <MenuItem onTouchTap={this.renderBonfires}>Bonfires around you</MenuItem>
           <div id="myBonfires">{this.state.mappedBonfires}</div>
 
-          <MenuItem onTouchTap={this.renderBonfires}>Joined Bonfires</MenuItem>
-          <div id="myBonfires">{this.state.mappedBonfires}</div>
         </Drawer>
 
         <div className="menu ProfileButtonSmall"onMouseEnter={this.handleToggle}>
@@ -94,4 +102,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, allActions)(ProfileButton);
+export default connect(mapStateToProps, allActions)(BonfireDrawer);

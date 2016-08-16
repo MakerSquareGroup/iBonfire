@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import BonfireMap from './BonfireMap';
 import Navigation from './Navigation';
 import BonfireDrawer from './BonfireDrawer';
-import DragAndDrop from './DragAndDrop';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
 
@@ -22,7 +21,6 @@ class Home extends Component {
   componentDidMount(){
     this.renderMap();
   }
-
 
   renderMap(){
     const map = (

@@ -276,10 +276,8 @@ export function getLocation(fbId) {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-
         localStorage.setItem('latitude', position.coords.latitude);
         localStorage.setItem('longitude', position.coords.longitude);
-        window.gettingLocation = false;
         resolve(pos);
       });
     });
@@ -290,12 +288,15 @@ export function getLocation(fbId) {
         let formatPosition = { latitude: String(position.lat), longitude: String(position.lng) };
         const updateLocation = axios.put('/user/' + fbId, formatPosition);
         console.log("Success!");
-        return updateLocation.then((response) => {
-          console.log("Updated location in database!")
-          dispatch({
+        window.gettingLocation = false;
+        dispatch({
             type: GET_LOCATION,
             position: position
-          })
+        })
+        return updateLocation.then((response) => {
+            console.log("Updated location in database!");
+        }).catch((err) => {
+          console.log(err, "Error dispatching!");
         })
       })
       .catch((err) => {

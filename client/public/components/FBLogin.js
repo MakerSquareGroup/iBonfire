@@ -17,12 +17,12 @@ class Login extends Component {
 
   componentWillMount() {
     if(this.props.facebook.loggedIn) {
-      browserHistory.push('/Home')
+      browserHistory.push('/Home');
     }
   }
 
   componentDidMount() {
-    if(!window.gettingLocation) {
+    if(!localStorage.getItem('latitude') || !localStorage.getItem('longitude') && !window.gettingLocation) {
       this.props.getLocation();
     }
   }

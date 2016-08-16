@@ -24,10 +24,13 @@ class App extends Component {
 	}
 
   componentWillMount() {
-    this.props.getCurrentUser();
-    if(!window.gettingLocation) {
-      this.props.getLocation();
+    if(!this.props.facebook.currUser.id) {
+      this.props.getCurrentUser();
     }
+
+    // if(!localStorage.getItem('latitude') || !localStorage.getItem('longitude') && !window.gettingLocation) {
+    //   this.props.getLocation();
+    // }
   }
 
   render() {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import socket from 'socket.io-client';
 import axios from 'axios';
-import { addChatMessage } from '../helpers/chatHelper';
 import { connect } from 'react-redux';
 import { allActions } from './App';
 import ReactDOM from 'react-dom';

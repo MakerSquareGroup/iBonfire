@@ -29,6 +29,10 @@ const Wrapper = (CheckedComponent) => {
     }
 
     render() {
+      if(window.isLoaded && window.statusChecked && !this.props.facebook.loggedIn) {
+        return <FBLogin {...this.props} />
+      }
+
       if(!window.isLoaded || !window.statusChecked || window.gettingLocation) {
         return (
           <div className="spinner">
@@ -40,10 +44,6 @@ const Wrapper = (CheckedComponent) => {
 
       if(this.props.facebook.loggedIn) {
         return <CheckedComponent {...this.props} />
-      }
-
-      if(window.isLoaded && window.statusChecked && !this.props.facebook.loggedIn && !this.props.location.lat) {
-        return <FBLogin {...this.props} />
       }
     }
   }

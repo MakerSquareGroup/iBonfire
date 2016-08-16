@@ -104,7 +104,7 @@ export default class ProfilePage extends Component {
 				<div className="ProfilePageTop">
 					<div className="ProfilePageLeft">
 						<div className="ProfilePageName">
-							Dailen Spencer
+							{this.props.facebook.currUser.name}
 						</div>
 						<div className="ProfilePageUserInfo">
 							{this.state.edit ? this.renderProfileInfoTextArea() : this.renderProfileInfoPlainText() }
@@ -116,10 +116,13 @@ export default class ProfilePage extends Component {
 					</div>
 					<div className="ProfilePageRight">
 						<div className="ProfilePageStats">
-							
+							<h>Bonfires Joined : 6</h>
+							<h>Bonfires Created : 13</h>
+							<h>Messages Sent : 1,245</h>
 						</div>
 						<div className="ProfilePagePoints">
-							67,536
+							<p>Player Points</p>
+							<h>67,536</h>
 						</div>
 					</div>
 				</div>

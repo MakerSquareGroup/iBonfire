@@ -20,6 +20,7 @@ export default class ProfilePageBonfirePopup extends Component {
 		}
 
 		this.handleCancelClick = this.handleCancelClick.bind(this);
+		this.handeJoinClick = this.handleJoinClick.bind(this);
 	}
 
 	componentWillReceiveProps(nextProps){
@@ -35,7 +36,8 @@ export default class ProfilePageBonfirePopup extends Component {
 						creatorImageSrc: fbImg,
 						creatorName: name,
 						timeAgo: timeAgo,
-						location: location
+						location: location,
+						bonfireId: bonfireId
 					});
 				})
 			})
@@ -60,6 +62,10 @@ export default class ProfilePageBonfirePopup extends Component {
 		$('.ProfilePageBonfirePopup').removeClass('animateUp');
 	}
 
+	handleJoinClick(){
+		this.props.joinBonfire(this.props.facebook.currUser.id, this.state.bonfireId);
+	}
+
 
 	render() {
 		
@@ -80,6 +86,9 @@ export default class ProfilePageBonfirePopup extends Component {
 				</div>
 				<div className="ProfilePagePopupCancelButton" onClick={this.handleCancelClick}>
 					<img className="ProfilePagePopupCancelButtonImage" src="../../media/Cancel.png"/>
+				</div>
+				<div className="ProfilePagePopupJoinButton" onClick={this.handleJoinClick}>
+					<img className="ProfilePagePopupJoinButtonImage" src="../../media/right-arrow.png"/>
 				</div>
 			</div>
 		)

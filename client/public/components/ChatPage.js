@@ -176,7 +176,7 @@ class ChatPage extends Component {
               <img className="CancelButtonImage" src="../media/cancelThin.png" onClick={this.handleCancel.bind(this)}/>
             </button>
             <form className='FormBox' onSubmit={this.handleSubmit.bind(this)}>
-              <input className='InputBox' value={this.state.value} onChange={this.handleChange.bind(this)} type='text'/>
+              <input className='InputBox' placeholder="Enter Message" value={this.state.value} onChange={this.handleChange.bind(this)} type='text'/>
             </form>
             <button className="SendButton">
               <img className="SendButtonImage" src="../media/up-arrow.png" onClick={this.handleSubmit.bind(this)}/>

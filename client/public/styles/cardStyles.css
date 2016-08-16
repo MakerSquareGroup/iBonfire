@@ -32,7 +32,9 @@
   vertical-align: middle;
 }
 #myBonfires{
-  height: 40%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   width: auto;
   border: 13px solid #bed5cd;
   overflow-x: hidden;

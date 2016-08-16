@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router';
 export const CREATE_ROOM = 'CREATE_ROOM';
 export const ADD_MESSAGE = 'ADD_MESSAGE';
 export const GET_MESSAGES = 'GET_MESSAGES';
+export const SET_CHAT_ID = 'SET_CHAT_ID';
 
 // takes in an object containing FB_id, message, bonfireId and optionally chatId
 // example: 
@@ -43,7 +44,15 @@ export function getMessages(bonId) {
             messages: response.data
           }
         })
-    browserHistory.push('/ChatPage/' + bonId);
+  browserHistory.push('/chat/' + bonId);
       })
+  }
+}
+
+export function setChatId(bonId) {
+  console.log('Setting chat ID to ', bonId);
+  return {
+    type: SET_CHAT_ID,
+    payload: bonId
   }
 }

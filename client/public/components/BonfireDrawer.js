@@ -23,22 +23,27 @@ class BonfireDrawer extends Component {
     this.props.convertCoordsToLocation(stringifiedLatLng)
     .then((response) => {
       this.setState({
-        currentCity: response.data.results[4].formatted_address
+        currentCity: response.data.results
       }, () => {
-        return this.props.markers.map((marker) => {
-          if(marker.cityState === this.state.currentCity) {
-            this.state.bonfiresInYourCity.push(marker)
+
+        for(var j = 0; j < this.props.markers.length; j ++) {
+          for(var i = 0; i < this.state.currentCity.length; i ++) {
+            if(this.props.markers[j].cityState === this.state.currentCity[i].formatted_address) {
+              this.state.bonfiresInYourCity.push(this.props.markers[j])
+            }
           }
-        })
+        }
+      
       })
-    })
-    .then(() => {
-      console.log(this.state.currentCity, this.state.bonfiresInYourCity, 'what is in here');
-    })
+   })
   }
 
   componentWillReceiveProps(nextProps) {
   const FB = this.props.facebook.currUser;
+  console.log(nextProps.currentCity, 'nextProps.currentCity')
+    if(nextProps.currentCity) {
+      console.log(nextProps.currentCity, 'what is nextProps.currentCity')
+    }
     if(FB !== nextProps.facebook.currUser) {
       this.props.getUserBonfires(nextProps.facebook.currUser.id);
     }
@@ -50,6 +55,7 @@ class BonfireDrawer extends Component {
 
   renderBonfires = () => {
     let mappedBonfires = this.state.bonfiresInYourCity.map((bonfire,index) => {
+      console.log(bonfire, 'bonfires')
         return (
           <div id="mainbox" key={index}>
              <div className="card">

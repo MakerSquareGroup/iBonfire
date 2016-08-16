@@ -147,6 +147,17 @@ class BonfireModal extends Component {
             <MenuItem className='dropDownList' style={{color: 'black'}} value={3} primaryText="#sports" />
             <MenuItem className='dropDownList' style={{color: 'black'}} value={4} primaryText="#politics" />
             <MenuItem className='dropDownList' style={{color: 'black'}} value={5} primaryText="#random" />
+            <MenuItem className='dropDownList' style={{color: 'black'}} value={6} primaryText="#fashion" />
+            <MenuItem className='dropDownList' style={{color: 'black'}} value={7} primaryText="#medicine" />
+            <MenuItem className='dropDownList' style={{color: 'black'}} value={8} primaryText="#tech" />
+            <MenuItem className='dropDownList' style={{color: 'black'}} value={9} primaryText="#environement" />
+            <MenuItem className='dropDownList' style={{color: 'black'}} value={10} primaryText="#adult" />
+            <MenuItem className='dropDownList' style={{color: 'black'}} value={11} primaryText="#phil" />
+            <MenuItem className='dropDownList' style={{color: 'black'}} value={12} primaryText="#dictators" />
+            <MenuItem className='dropDownList' style={{color: 'black'}} value={13} primaryText="#males" />
+            <MenuItem className='dropDownList' style={{color: 'black'}} value={14} primaryText="#jayKwerrie" />
+            <MenuItem className='dropDownList' style={{color: 'black'}} value={15} primaryText="#cats" />
+            <MenuItem className='dropDownList' style={{color: 'black'}} value={16} primaryText="#social" />
           </DropDownMenu>
         </div>
         <div id="CreateBonfireImage">

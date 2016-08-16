@@ -19,6 +19,7 @@ class MarkerModal extends Component {
     const hoverMarker = this.props.hoverMarker;
     const markerData = hoverMarker.markerData;
     const currUser = this.props.facebook.currUser;
+
     return (
       <div className='marker-modal'>
         <h1 className='marker-tag'>{markerData.tags}</h1>

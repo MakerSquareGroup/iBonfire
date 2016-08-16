@@ -4,6 +4,7 @@ import { allActions } from './App';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import Moment from 'moment';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class BonfireDrawer extends Component {
   constructor(props) {
@@ -77,7 +78,7 @@ class BonfireDrawer extends Component {
                   <p className='cardp'>
                     Bonfire lit: {Moment(bonfire.created_by_User_at).format('MMMM Do YYYY, h:mm:ss a')}
                   </p>
-              <button id='join-bonfire' onClick={() => this.joinBonfire(currUser.id, bonfireId)}>Join</button>
+              <RaisedButton id='join-bonfire' onTouchTap={() => this.joinBonfire(currUser.id, bonfireId)}>Join</RaisedButton>
             </div>
           </div>
         );
@@ -95,7 +96,9 @@ class BonfireDrawer extends Component {
           open={this.state.open}
           onRequestChange={(open) => this.setState({open})}
         >
-          <MenuItem onTouchTap={this.renderBonfires}>Bonfires around you</MenuItem>
+          <MenuItem onTouchTap={this.renderBonfires}>
+            <h2 className="cardTitle">Bonfires around you</h2>
+          </MenuItem>
           <div id="myBonfires">{this.state.mappedBonfires}</div>
         </Drawer>
 

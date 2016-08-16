@@ -73,7 +73,6 @@ class Navigation extends Component {
 
 const mapStateToProps = state => {
 	return {
-		term: state.term,
 		facebook: state.facebook
 	}
 }

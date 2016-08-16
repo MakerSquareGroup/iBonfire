@@ -20,19 +20,25 @@ class BonfireMap extends Component {
 		this.state = {
 			windowOpen: this.props.hoverMarker.windowOpen,
 			location: {
-				lat: Number(localStorage.getItem('latitude')) || this.props.users.userData.latitude, 
-				lng: Number(localStorage.getItem('longitude')) || this.props.users.userData.longitude
+				lat: this.props.location.lat || Number(localStorage.getItem('latitude')), 
+				lng: this.props.location.lng || Number(localStorage.getItem('longitude'))
 			},
 			markers: this.props.markers
 		}
+
 		this.openModal = this.openModal.bind(this);
 		this.closeModal = this.closeModal.bind(this);
 		this.renderInfoWindow = this.renderInfoWindow.bind(this);
 	}
 
 	componentWillMount() {
-		this.props.getCurrentUser();
-		this.props.getMarkers();
+		if(!this.props.facebook.currUser.id) {
+			this.props.getCurrentUser();
+		}
+
+		if(!this.props.markers) {
+			this.props.getMarkers();
+		}
 	}
 
 	componentDidMount() {
@@ -219,19 +225,19 @@ class BonfireMap extends Component {
 	    			}
 	    			const ref = `marker_${index}`;
 	    			return (
-	    			<Marker
-		    		icon='../media/BonFire.png'
-		    		position={position}
-		    		defaultAnimation={2}
-		    		key={index}
-		    		ref={ref}
-		    		value={marker}
-		    		onMouseover={() => this.openModal(marker)}
-		    		>
-		    			{marker.showInfo ? this.renderInfoWindow(ref, marker) : null }
+		    			<Marker
+				    		icon='../media/BonFire.png'
+				    		position={position}
+				    		defaultAnimation={2}
+				    		key={index}
+				    		ref={ref}
+				    		value={marker}
+				    		onMouseover={() => this.openModal(marker)}
+			    		>
+		    				{marker.showInfo ? this.renderInfoWindow(ref, marker) : null }
 
-		    		</Marker>
-	    		)
+		    			</Marker>
+	    			)
 	    		})}
 
 						<BonfireModal />

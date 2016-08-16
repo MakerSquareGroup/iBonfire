@@ -20,24 +20,30 @@ const Wrapper = (CheckedComponent) => {
       if(window.isLoaded) {
         checkLoginStatus();
       }
+
+      if(!localStorage.getItem('latitude') || !localStorage.getItem('longitude') && !window.gettingLocation) {
+        this.props.getLocation();
+      }
+
+      this.props.getMarkers();
     }
 
     render() {
-      if(this.props.facebook.loggedIn) {
-        return <CheckedComponent {...this.props} />
-      }
-
-      if(window.isLoaded && window.statusChecked && !this.props.facebook.loggedIn) {
-        return <FBLogin {...this.props} />
-      }
-
-      if(!window.isLoaded || !window.statusChecked) {
+      if(!window.isLoaded || !window.statusChecked || window.gettingLocation) {
         return (
           <div className="spinner">
             <div className="double-bounce1"></div>
             <div className="double-bounce2"></div>
           </div>
         )
+      }
+
+      if(this.props.facebook.loggedIn) {
+        return <CheckedComponent {...this.props} />
+      }
+
+      if(window.isLoaded && window.statusChecked && !this.props.facebook.loggedIn && !this.props.location.lat) {
+        return <FBLogin {...this.props} />
       }
     }
   }

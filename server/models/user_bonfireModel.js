@@ -13,7 +13,6 @@ User_Bonfire.createJoinTable = (attr) => {
 };
 
 User_Bonfire.findJoinTable = (bonfireId) => {
-	console.log(bonfireId, 'what is bonfrieID on line 16')
 	return db('Users_Bonfires').where({
 			id_Bonfires: bonfireId
 		}).limit(1)
@@ -23,36 +22,34 @@ User_Bonfire.findJoinTable = (bonfireId) => {
 };
 
 User_Bonfire.checkIfUserExists = (userId, bonfireId) => {
-	console.log(userId, "USERID IN MODEL")
 	return db('Users_Bonfires').where({
 			id_Bonfires: bonfireId
 		}).where({
 			id_Users: userId
 		})
 		.then((rows) => {
-			console.log(rows)
 			return rows;
 		})
 };
 
 User_Bonfire.joinBonfire = (userId, bonfireId) => {
-	return new Promise((resolve, reject) => {
-		return db('Users_Bonfires').where({
-				id_Bonfires: bonfireId
-			}).insert({
-				id_Users: userId,
-				id_Bonfires: bonfireId
-			})
-			.then((response) => {
-				resolve(response)
-				return response;
-			})
-	})
+	return db('Users_Bonfires').where({
+			id_Bonfires: bonfireId
+		}).insert({
+			id_Users: userId,
+			id_Bonfires: bonfireId
+		})
+		.then((response) => {
+			resolve(response)
+			return response;
+		})
 };
 
+// Updated this function to return all bonfires that the user has joined, not just the bonfires the user has created, easily reverted to older
+
 User_Bonfire.findUserBonfires = (userId) => {
-	return db('Bonfires').where({
-			createdBy: userId
+	return db('Users_Bonfires').where({
+			id_Users: userId
 		})
 		.then((rows) => {
 			return rows;

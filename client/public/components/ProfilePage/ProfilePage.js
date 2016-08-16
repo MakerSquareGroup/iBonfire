@@ -42,7 +42,6 @@ export default class ProfilePage extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		console.log('component will receive props inside profile page top level', nextProps.bonfire.bonfires);
 		this.renderFires(nextProps.bonfire.bonfires);
 	}
 

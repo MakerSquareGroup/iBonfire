@@ -107,7 +107,7 @@ export function joinBonfire(userId, bonId) {
           allMembers: response.data
         }
       })
-    browserHistory.push('/ChatPage/' + bonId);
+    browserHistory.push('/chat/' + bonId);
     });
   };
 }
@@ -382,7 +382,7 @@ export function facebookLogin() {
   return (dispatch) => {
     return FB.login((response) => {
       if(response.authResponse) {
-        browserHistory.push('/Home');
+        browserHistory.push('/home');
         dispatch({
           type: LOGIN_SUCCESSFUL,
           loggedIn: true

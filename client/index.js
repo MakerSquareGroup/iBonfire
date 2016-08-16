@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
+import { Router, Route, Link, browserHistory, IndexRoute, hashHistory } from 'react-router';
 import { combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -23,10 +23,8 @@ const router = (
     <Router history={browserHistory}>
       <Route path="/" component={InitFB(App)} >
         <IndexRoute component={InitFB(Login)} />
-        <Route path="Home" component={InitFB(Home)} />
-        <Route path="ChatPage" component={InitFB(ChatPage)}>
-          <Route path="/*" component={InitFB(ChatPage)} />
-        </Route>
+        <Route path="home" component={InitFB(Home)} />
+        <Route path="chat/:bonId" component={InitFB(ChatPage)} />
       </Route>
     </Router>
   </Provider>

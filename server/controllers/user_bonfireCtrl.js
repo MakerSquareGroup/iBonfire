@@ -25,7 +25,7 @@ module.exports = {
             console.log("There is no join table with a user ID of " + paramIds[0]);
             res.end("There is no join table with a user ID of " + paramIds[0])
           } else {
-            console.log('Resuslt from user_bonfire controller in findUserBonfires', joinTable);
+            console.log('Results from user_bonfire controller in findUserBonfires', joinTable);
             res.send(joinTable);
           }
         })
@@ -46,7 +46,6 @@ module.exports = {
             console.log("There is no join table with a bonfire ID of " + paramIds[0]);
             res.end("There is no join table with a bonfire ID of " + paramIds[0])
           } else {
-            console.log(paramIds[0],paramIds[1], "JOINTABLE INSIDE PUT");
             User_Bonfire.checkIfUserExists(paramIds[0], paramIds[1])
               .then((result) => {
                 if (result.length === 0) {

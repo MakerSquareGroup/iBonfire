@@ -35,7 +35,10 @@ class BonfireDrawer extends Component {
         }
       
       })
-   })
+    })
+    .then(() => {
+      return;
+    })
   }
 
   componentWillReceiveProps(nextProps) {

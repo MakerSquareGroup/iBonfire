@@ -1,5 +1,5 @@
 import { JOIN_BONFIRE } from '../actions/index';
-import {GET_USER_BONFIRES } from '../actions/profile.js';
+import { GET_USER_BONFIRES } from '../actions/profile.js';
 
 const initialState = {
   bonfireId: "",

@@ -6,16 +6,6 @@ export const ADD_MESSAGE = 'ADD_MESSAGE';
 export const GET_MESSAGES = 'GET_MESSAGES';
 export const SET_CHAT_ID = 'SET_CHAT_ID';
 
-// takes in an object containing FB_id, message, bonfireId and optionally chatId
-// example: 
-// data = {
-//   bonfireId: bonfireId,
-//   message: "Some eloquently written string",
-//   FB_id: FB_id,
-//   (optional)
-//   Chats_id: chatId
-// }
-
 export function addMessage(data) {
   const add = axios.post('/chat/' + data.bonfireId, data);
 
@@ -28,6 +18,9 @@ export function addMessage(data) {
             messageData: data
           }
         })
+      })
+      .catch((err) => {
+        console.log(err);
       })
   }
 }
@@ -45,6 +38,9 @@ export function getMessages(bonId) {
           }
         })
   browserHistory.push('/chats/' + bonId);
+      })
+      .catch((err) => {
+        console.log(err);
       })
   }
 }

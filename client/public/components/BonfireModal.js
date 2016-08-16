@@ -134,7 +134,7 @@ class BonfireModal extends Component {
             <TextField
               underlineFocusStyle={{borderColor: 'red'}}
               hintStyle={this.props.changeClass.changed.textColor}
-              inputStyle={{color:'white',fontFamily:'raleway',fontWeight:'300'}}
+              inputStyle={{color:'black',fontFamily:'raleway',fontWeight:'300'}}
               hintText={this.props.changeClass.changed.textHint}
               value={this.state.description}
               onChange={e => this.setState({description: e.target.value})}

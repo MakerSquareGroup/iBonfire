@@ -26,7 +26,29 @@
   flex-direction: column;
 }
 
+h1 {
+	font-family: 'Raleway', sans-serif !important;
+}
 
+p {
+	font-family: 'Raleway', sans-serif !important;
+}
+
+h2 {
+	font-family: 'Raleway', sans-serif !important;
+}
+
+button {
+	font-family: 'Raleway', sans-serif !important;
+}
+
+div {
+	font-family: 'Raleway', sans-serif !important;
+}
+
+b {
+	font-family: 'Raleway', sans-serif !important;
+}
 
 .Top {
   z-index: 100;

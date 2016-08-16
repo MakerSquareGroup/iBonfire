@@ -124,10 +124,10 @@ export function changeBonfireModalClassName(animation) {
             modelTextBox: 'modelTextBox',
             showModal: 'showModal',
             textColor: {
-              color: 'white'
+              color: 'black'
             },
             dropDownColor: {
-              color: 'white'
+              color: 'black'
             },
             textHint: 'Description'
           }
@@ -146,10 +146,10 @@ export function changeBonfireModalClassName(animation) {
             modelTextBox: 'hidden',
             showModal: 'hidden',
             textColor: {
-              color: 'white'
+              color: 'black'
             },
             dropDownColor: {
-              color: 'white'
+              color: 'black'
             },
             textHint: 'Description'
           }
@@ -168,7 +168,7 @@ export function changeBonfireModalClassName(animation) {
             modelTextBox: 'modelTextBox',
             showModal: 'showModal',
             textColor: {
-              color: 'white'
+              color: 'black'
             },
             dropDownColor: {
               color: 'red'
@@ -190,10 +190,10 @@ export function changeBonfireModalClassName(animation) {
             modelTextBox: 'modelTextBox',
             showModal: 'showModal',
             textColor: {
-              color: 'white'
+              color: 'black'
             },
             dropDownColor: {
-              color: 'white'
+              color: 'black'
             },
             textHint: 'Your description must be larger than 3 characters'
           }
@@ -212,7 +212,7 @@ export function changeBonfireModalClassName(animation) {
             modelTextBox: 'modelTextBox',
             showModal: 'showModal',
             textColor: {
-              color: 'white'
+              color: 'black'
             },
             dropDownColor: {
               color: 'red'

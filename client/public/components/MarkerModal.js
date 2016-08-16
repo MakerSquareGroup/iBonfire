@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { allActions } from './App';
 import { InfoWindow } from 'react-google-maps';
-import Infinite  from 'react-infinite';
+import RaisedButton from 'material-ui/RaisedButton';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import axios from 'axios';
 
 class MarkerModal extends Component {
@@ -24,7 +25,9 @@ class MarkerModal extends Component {
         <h2>Description: {markerData.description}</h2>
         <img src={`http://graph.facebook.com/${markerData.createdBy}/picture?type=small`}/>
         <p>{markerData.cityState}</p>
-        <button id='join-bonfire' onClick={() => this.joinBonfire(currUser.id, markerData.id)}>Join</button>
+        <MuiThemeProvider>
+          <RaisedButton id='join-bonfire' label="Join Bonfire" onTouchTap={() => this.joinBonfire(currUser.id, markerData.id)}></RaisedButton>
+        </MuiThemeProvider>
       </div>
     )
   }

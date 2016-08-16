@@ -21,10 +21,20 @@ class ChatPage extends Component {
 
   componentWillMount() {
     this.props.getMessages(this.props.params.bonId);
-    this.props.getUserBonfires(this.props.facebook.currUser.id);
+    if(!this.props.facebook.currUser.id) {
+      return this.props.getCurrentUser();
+    }
+
+    if(this.props.facebook.currUser.id) {
+      this.props.getUserBonfires(this.props.facebook.currUser.id);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
+    if(this.props.facebook.currUser.id !== nextProps.facebook.currUser.id) {
+      this.props.getUserBonfires(nextProps.facebook.currUser.id);
+    }
+
     if(this.state.messages.length < 1 && nextProps.chat.messages.length >= 1) {
       let chatWindow = document.getElementsByClassName('MessageField');
       this.setState({
@@ -37,7 +47,7 @@ class ChatPage extends Component {
 
   componentDidMount() {
     let chatWindow = document.getElementsByClassName('MessageField');
-    socket.emit('joinChat', this.props.bonfire.bonfireId);
+    socket.emit('joinChat', this.props.params.bonId);
     socket.on('Received socket id of: ', (socketId) => {
       // console.log('Received a socket id of: ', socketId);
     });

@@ -106,7 +106,7 @@ class BonfireModal extends Component {
           return this.props.sendDescription({
             description: this.state.copyDescription,
             tags: this.state.tag,
-            cityState: response.data.results[1].formatted_address,
+            cityState: response.data.results[4].formatted_address,
             latitude: String(this.props.currentMarker.lat),
             longitude: String(this.props.currentMarker.lng),
             createdBy: this.props.facebook.currUser.id

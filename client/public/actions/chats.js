@@ -37,7 +37,6 @@ export function getMessages(bonId) {
   return (dispatch) => {
     return getAll
       .then((response) => {
-      console.log('hsdskjfbsdkjsdf')
         dispatch({
           type: GET_MESSAGES,
           payload: {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import BonfireMap from './BonfireMap';
 import Navigation from './Navigation';
-import ProfileButton from './ProfileButton';
+import BonfireDrawer from './BonfireDrawer';
 import DragAndDrop from './DragAndDrop';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
@@ -29,7 +29,7 @@ class Home extends Component {
       <div className="Map">
         <Navigation/>
         <BonfireMap/>
-        <ProfileButton renderProfile={this.renderProfile}/>
+        <BonfireDrawer renderProfile={this.renderProfile}/>
       </div>
     )
     this.setState({visibleComponent: map})

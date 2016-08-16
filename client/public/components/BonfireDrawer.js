@@ -51,8 +51,21 @@ class BonfireDrawer extends Component {
     this.setState({open: !this.state.open});
   }
 
+  joinBonfire(userId, bonId) {
+    if(bonId) {
+      this.props.setChatId(bonId);
+      this.props.getMessages(bonId);
+      this.props.joinBonfire(userId, bonId);
+    }
+  }
+
   renderBonfires = () => {
+    const hoverMarker = this.props.hoverMarker;
+    const markerData = hoverMarker.markerData;
+    const currUser = this.props.facebook.currUser;
+
     let mappedBonfires = this.state.bonfiresInYourCity.map((bonfire,index) => {
+    const bonfireId = bonfire.id
         return (
           <div id="mainbox" key={index}>
              <div className="card">
@@ -64,6 +77,7 @@ class BonfireDrawer extends Component {
                   <p className='cardp'>
                     Bonfire lit: {Moment(bonfire.created_by_User_at).format('MMMM Do YYYY, h:mm:ss a')}
                   </p>
+              <button id='join-bonfire' onClick={() => this.joinBonfire(currUser.id, bonfireId)}>Join</button>
             </div>
           </div>
         );
@@ -103,6 +117,7 @@ function mapStateToProps(state) {
     location: state.location,
     facebook: state.facebook,
     userBonfires: state.userBonfires,
+    hoverMarker: state.hoverMarker,
     userInfo: state.userInfo
   };
 }

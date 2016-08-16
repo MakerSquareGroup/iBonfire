@@ -15,7 +15,7 @@
 #CreateBonfireHeader {
 	font-family: 'Raleway', sans-serif;
   font-weight: 300;
-  color: white;
+  color: Black;
   font-size: 40px;
 }
 
@@ -52,12 +52,11 @@
 @keyframes fadeIn {
     0% {
     		visibility: hidden;
-        background: rgba(0,0,0,0.0);
+			  background-color: rgba(255,255,255,.8);
     }
    
     100% {
     		visibility: visible;
-        background: rgba(0,0,0,0.5);
-
+			  background-color: rgba(255,255,255,.8);
     }
 }

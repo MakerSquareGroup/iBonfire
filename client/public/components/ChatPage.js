@@ -25,6 +25,7 @@ class ChatPage extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log('Refreshing may trigger this');
     if(this.state.messages.length < 1 && nextProps.chat.messages.length >= 1) {
       let chatWindow = document.getElementsByClassName('MessageField');
       this.setState({
@@ -91,15 +92,15 @@ class ChatPage extends Component {
     });
   }
 
-  changeChatRoom(event, index, value) {
+  changeChatRoom(event, index, room) {
     this.setState({
       messages: [],
-      chatRoom: value
+      chatRoom: room
     });
 
     socket.emit('leaveChat', this.props.params.bonId);
-    socket.emit('joinChat', value);
-    this.props.getMessages(value);
+    socket.emit('joinChat', room);
+    this.props.getMessages(room);
   }
 
   update() {

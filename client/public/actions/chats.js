@@ -44,7 +44,7 @@ export function getMessages(bonId) {
             messages: response.data
           }
         })
-  browserHistory.push('/chat/' + bonId);
+  browserHistory.push('/chats/' + bonId);
       })
   }
 }

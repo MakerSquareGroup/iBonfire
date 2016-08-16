@@ -226,7 +226,7 @@ class BonfireMap extends Component {
 	    			const ref = `marker_${index}`;
 	    			return (
 		    			<Marker
-				    		icon='../media/BonFire.png'
+				    		icon='../media/newBonfire.png'
 				    		position={position}
 				    		defaultAnimation={2}
 				    		key={index}

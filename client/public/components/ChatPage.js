@@ -123,8 +123,16 @@ class ChatPage extends Component {
     let chatWindow = document.getElementsByClassName('MessageField');
 
     let mappedChats = this.props.bonfire.bonfires.map((bonfire, index) => {
+      let description = '';
+      for(let i = 0; i < this.props.markers.length; i++) {
+        if(Number(bonfire.id_Bonfires) === Number(this.props.markers[i].id)) {
+          description = this.props.markers[i].description;
+          break;
+        }
+      }
+
       return (
-        <MenuItem className='dropDownList' key={index} style={{color: 'black'}} value={bonfire.id_Bonfires} primaryText={bonfire.id_Bonfires} />
+        <MenuItem className='dropDownList' key={index} style={{color: 'black'}} value={bonfire.id_Bonfires} primaryText={description || bonfire.id_Bonfires} />
       )
     });
   

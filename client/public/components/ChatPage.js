@@ -79,7 +79,7 @@ class ChatPage extends Component {
     e.preventDefault();
     let chatWindow = document.getElementsByClassName('MessageField');
     const messageObj = {
-      bonfireId: this.props.bonfire.bonfireId,
+      bonfireId: this.props.params.bonId,
       message: this.state.value,
       FB_id: this.props.facebook.currUser.id,
       name: this.props.facebook.currUser.name
@@ -87,7 +87,7 @@ class ChatPage extends Component {
     
     this.props.addMessage(messageObj);
     
-    socket.emit('newMessage', { messages: this.state.value, name: this.props.facebook.currUser.name, room: 'Room' + this.props.bonfire.bonfireId });
+    socket.emit('newMessage', { messages: this.state.value, name: this.props.facebook.currUser.name, room: 'Room' + this.props.params.bonId });
 
     this.setState({
       messages: [...this.state.messages, { messages: this.state.value, name: this.props.facebook.currUser.name, id_Users: this.props.facebook.currUser.id,  }],

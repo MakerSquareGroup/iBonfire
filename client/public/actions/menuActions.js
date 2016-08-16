@@ -3,7 +3,7 @@ import axios from 'axios';
 export const MENU_BONFIRES = 'MENU_BONFIRES';
 export const USER_INFO = 'USER_INFO';
 
-export function getUserBonfires(userId) {
+export function getUserBonfiresDrawer(userId) {
   const userBonfires = axios.get('bonfire/join_bonfire/' + userId);
   return (dispatch) => {
     return userBonfires

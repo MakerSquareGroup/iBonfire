@@ -4,6 +4,7 @@
 	height:65px;
 	position:absolute;
 	z-index: 4;
+	pointer-events: none;
 }
 
 #NavLogo {

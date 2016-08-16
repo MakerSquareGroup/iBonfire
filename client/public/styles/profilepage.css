@@ -3,99 +3,99 @@ Profile Page
 ***********************************/
 
 .ProfilePage {
-	background-color: #DF584C;
-	width:100%;
-	height:100%;
-  	position: absolute;
+  background-color: #DF584C;
+  width:100%;
+  height:100%;
+    position: absolute;
 }
 
 .ProfilePageTop {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	height: 300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 300px;
 }
 
 .ProfilePageLeft {
-	height:100%;
-	background-color: transparent;
-	width:300px;
-	display: inline-block;
+  height:100%;
+  background-color: transparent;
+  width:300px;
+  display: inline-block;
 }
 
 .ProfilePageName {
-	color:white;
-	background-color: transparent;
-	width: 100%;
-	height:80px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-family: 'Raleway', sans-serif;
-	font-weight: 300;
-	color: white;
-	font-size: 30px;
-	border-bottom-style: solid;
-	border-bottom-width: 1px;
-	border-bottom-color: white;
+  color:white;
+  background-color: transparent;
+  width: 100%;
+  height:80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  color: white;
+  font-size: 30px;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: white;
 }
 
 .ProfilePageUserInfo {
-	width: 100%;
-	height: 200px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-family: 'Raleway', sans-serif;
-	font-weight: 300;
-	color: white;
-	font-size: 20px;
-	text-align: center;
-	padding-top: 40px;
-	box-sizing: border-box;
-	word-break:break-all;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  padding-top: 40px;
+  box-sizing: border-box;
+  word-break:break-all;
 }
 
 .ProfileInfoPlainText {
-	background: transparent;
-	width:100%;
-	height: 100%;
-	text-align: center;
-	overflow-wrap: break-word;
+  background: transparent;
+  width:100%;
+  height: 100%;
+  text-align: center;
+  overflow-wrap: break-word;
 }
 
 .ProfileInfoTextArea {
-	resize: none;
-	border-style: dashed;
-	border-width: 1px;
-	border-color: white;
-	width: 100%;
-	height: 100%;
-	color:white;
-	background: transparent;
-	font-family: 'Raleway', sans-serif;
-	font-weight: 300;
-	color: white;
-	font-size: 20px;
-	overflow: hidden;
+  resize: none;
+  border-style: dashed;
+  border-width: 1px;
+  border-color: white;
+  width: 100%;
+  height: 100%;
+  color:white;
+  background: transparent;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  color: white;
+  font-size: 20px;
+  overflow: hidden;
 }
 
 .ProfileInfoTextArea:focus {
-	outline: 0;
+  outline: 0;
 
 }
 
 
 .ProfilePageMiddle {
-	height:100%;
-	background-color: white;
-	width:300px;
-	border-radius: 100%;
-	box-shadow:rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
-	margin-top: 10px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  height:100%;
+  background-color: white;
+  width:300px;
+  border-radius: 100%;
+  box-shadow:rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .ProfilePageMiddle img {
@@ -114,81 +114,81 @@ Profile Page
 }
 
 .EditProfileHeader {
-	position: absolute;
-	top:22.5%;
-	left:50%;
-	transform:translateX(-50%) translateY(-50%);
-	font-family: 'Raleway', sans-serif;
-	font-weight: 300;
-	color: white;
-	font-size: 24px;
-	pointer-events: none;
+  position: absolute;
+  top:22.5%;
+  left:50%;
+  transform:translateX(-50%) translateY(-50%);
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  color: white;
+  font-size: 24px;
+  pointer-events: none;
 }
 
 .show {
-	visibility: visible;
+  visibility: visible;
 }
 
 .hide {
-	visibility: hidden;
+  visibility: hidden;
 }
 
 .ProfilePageRight {
-	height:100%;
-	background-color: transparent;
-	width:300px;
-	display: inline-block;
+  height:100%;
+  background-color: transparent;
+  width:300px;
+  display: inline-block;
 }
 
 .ProfilePageStats {
-	width: 100%;
-	height: 200px;
-	background-color: transparent;
+  width: 100%;
+  height: 200px;
+  background-color: transparent;
 }
 
 .ProfilePagePoints {
-	height:110px;
-	width: 100%;
-	background-color: transparent;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-family: 'Raleway', sans-serif;
-	font-weight: 300;
-	color: white;
-	font-size: 30px;
-	text-align: center;
-	border-top-style: solid;
-	border-top-color: white;
-	border-top-width: 1px;
+  height:110px;
+  width: 100%;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  color: white;
+  font-size: 30px;
+  text-align: center;
+  border-top-style: solid;
+  border-top-color: white;
+  border-top-width: 1px;
 }
 
 
 
 .MapButtonSmall {
-	width: 80px;
-	height: 80px;
-	position: absolute;
-	border-radius: 100%;
-	background-color: transparent;
-	bottom: 20px;
-	left:50%;
-	transform: translateX(-50%);
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  border-radius: 100%;
+  background-color: transparent;
+  bottom: 20px;
+  left:50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
 }
 
 .MapButtonSmall:hover {
-	opacity:0.7;
+  opacity:0.7;
 }
 
 .MapImageSmall {
-	width: 100%;
-	height: 100%;
-	border-radius: 100%;
-	box-shadow:rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  box-shadow:rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
 }
 
 .MapImageSmallAnimation {
@@ -197,42 +197,42 @@ Profile Page
 }
 
 .LogoutButton {
-	width:50px;
-	height: 50px;
-	position: absolute;
-	right: 30px;
-	bottom: 30px;
-	background: transparent;
-	cursor:pointer;
+  width:50px;
+  height: 50px;
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  background: transparent;
+  cursor:pointer;
 }
 
 .LogoutImage {
-	width:100%;
-	height: 100%;
+  width:100%;
+  height: 100%;
 }
 
 .BonfireHolder {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	background-color: white;
-	width: 100%;
-	height: 175px;
-	bottom: 130px;
-	position: absolute;
-	background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: white;
+  width: 100%;
+  height: 175px;
+  bottom: 130px;
+  position: absolute;
+  background-color: transparent;
 
 }
 
 .BonfireEntry {
-	width: 150px;
-	height: 150px;
-	background-color: transparent;
-	cursor: pointer;
+  width: 150px;
+  height: 150px;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .BonfireEntryImage {
-	width: 100%;
+  width: 100%;
 }
 
 
@@ -242,86 +242,85 @@ Profile Page Bonfire Pop Up
 ***************************/
 
 .ProfilePageBonfirePopup {
-	width: 400px;
-	height: 400px;
-	left:50%;
-	position: absolute;
-	transform: translateX(-50%);
-	bottom: -400px;
-	background-color: black;
-	background-color: rgba(0,0,0,0.7);
-	border-radius: 2%;
-	display: flex;
-	flex-direction: column;
+  width: 400px;
+  height: 400px;
+  left:50%;
+  position: absolute;
+  transform: translateX(-50%);
+  bottom: -400px;
+  background-color: black;
+  background-color: rgba(0,0,0,0.7);
+  border-radius: 2%;
+  display: flex;
+  flex-direction: column;
 }
 
 .ProfilePageBonfirePopupTop {
-	display: flex;
-	height: 120px;
-	widows: 100%;
-	flex-direction: row;
+  display: flex;
+  height: 120px;
+  widows: 100%;
+  flex-direction: row;
 }
 
 .ProfilePageBonfirePopupTopLeft {
-	width:30%;
+  width:30%;
 }
 
 
 
 .ProfilePageBonfirePopupTopRight {
-	width: 70%;
-	display: flex;
-	flex-direction: column;
-	align-content: center;
-	justify-content: center;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
 
 }
 
 .BonfirePopupCreatedAt{
-	font-family: 'Raleway', sans-serif;
-	font-weight: 300;
-	color: white;
-	font-size: 25px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  color: white;
+  font-size: 25px;
 }
 
 .BonfirePopupCreatedBy, .BonfirePopupLocation {
-	margin: 5px;
-	font-family: 'Raleway', sans-serif;
-	font-weight: 300;
-	color: white;
-	font-size: 18px;
+  margin: 5px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  color: white;
+  font-size: 18px;
 }
 
 .ProfilePageBonfirePopupImage {
-	width:110px;
-	height: 110px;
-	border-radius: 100%;
-	margin-top: 5px;
-	margin-left: 5px;
+  width:110px;
+  height: 110px;
+  border-radius: 100%;
+  margin-top: 5px;
+  margin-left: 5px;
 }
 
 .ProfilePageBonfirePopupMembers {
-	width: 100%;
-	overflow: scroll;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	margin-top:10px;
-	height: 200px;
+  width: 100%;
+  overflow: scroll;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top:10px;
+  height: 200px;
 }
 
 .ProfilePagePopupCancelButton {
-	width: 40px;
-	height: 40px;
-	position: absolute;
-	left:50%;
-	transform: translateX(-50%);
-	bottom: 15px;
-	cursor: pointer;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left:50%;
+  transform: translateX(-50%);
+  bottom: 15px;
+  cursor: pointer;
 }
 
 .ProfilePagePopupCancelButtonImage {
-	width: 40px;
-	height: 40px;
+  width: 40px;
+  height: 40px;
 }
-

@@ -69,8 +69,17 @@ User_Bonfire.findBonfiresById = (bonfireId) => {
 };
 
 User_Bonfire.findAllUsers = (bonfireId) => {
-	return db("Users_Bonfires").where({
+	return db('Users_Bonfires').where({
 		id_Bonfires: bonfireId
+	})
+	.then((rows) => {
+		return rows;
+	})
+};
+
+User_Bonfire.findAllBonfires = (userId) => {
+	return db('Users_Bonfires').where({
+		id_Users: userId
 	})
 	.then((rows) => {
 		return rows;

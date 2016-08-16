@@ -25,7 +25,7 @@ class Home extends Component {
   renderMap(){
     const map = (
       <div className="Map">
-        <Navigation/>
+        <Navigation renderProfile={this.renderProfile}/>
         <BonfireMap/>
         <BonfireDrawer renderProfile={this.renderProfile}/>
       </div>

@@ -7,7 +7,7 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import { facebookLogout } from '../helpers/fbHelper';
 import { connect } from 'react-redux';
-import * as actions from '../actions/index';
+import { allActions } from './App';
 import {browserHistory} from 'react-router';
 
 class Navigation extends Component {
@@ -16,6 +16,7 @@ class Navigation extends Component {
 		this.state = {
 			searchBox: ""
 		}
+		console.log(props)
 	}
 
 	handleSubmit(event) {
@@ -37,7 +38,7 @@ class Navigation extends Component {
 
 				<div id="NavLogo">
         			<img src="../media/iBonfireLogo.png"/>
-      			</div>
+      	</div>
 
 		   		<div id="SearchBar">
 			      <form id="demo-2"
@@ -51,21 +52,15 @@ class Navigation extends Component {
 							/>
 			      </form>
 			    </div>
-
-			    <div id="DropDown">
-				    <MuiThemeProvider>
-					    <IconMenu
-					      iconButtonElement={<IconButton><DownArrowIcon style={{'width':'100px','height':'100px'}} color={'#DF584C'}/></IconButton>}
-					      anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-					      targetOrigin={{horizontal: 'right', vertical: 'top'}}
-						>
-					    <MenuItem onClick={this.props.facebookLogout}>
-								Log Out
-							</MenuItem>
-					    </IconMenu>
-				    </MuiThemeProvider>
-			    </div>
-
+				    <nav id='menu'>
+						  <h1 className='mainBtn'>Menu</h1>
+						  <ol>
+						    <li><a className='menuBtns'>Nearby</a></li>
+						    <li onClick={this.props.renderProfile}><a className='menuBtns'>Profile</a></li>
+						    <li><a className='menuBtns'>About</a></li>
+						    <li onClick={this.props.facebookLogout}><a className='menuBtns'>Logout</a></li>
+						  </ol>
+						</nav>
 			</div>
 		)
 	}
@@ -73,8 +68,11 @@ class Navigation extends Component {
 
 const mapStateToProps = state => {
 	return {
-		facebook: state.facebook
+		facebook: state.facebook,
+		term: state.term,
+		facebook: state.facebook,
+		users: state.users
 	}
 }
 
-export default connect(mapStateToProps, actions)(Navigation);
+export default connect(mapStateToProps, allActions)(Navigation);

@@ -20,8 +20,8 @@
   top: -.75em;
   right: -.5em;
   margin: 0;
-  background-color: #DF584C;
-  color: #DF584C;
+  background-color: #C3B1AB;
+  color: #C3B1AB;
   z-index: 1;
   font-size: 2em;
   line-height: 100%;
@@ -59,7 +59,7 @@
   position: absolute;
   top: -10em;
   right: 0em;
-  background-color: #008B8B;
+  background-color: #A2B59C;
   border-radius: 4em;
   border: .15em solid #fff;
   padding: 1.5em 0;
@@ -84,7 +84,7 @@ a:link, a:hover, a:focus, a:active, a:visited {
 }
 
 a:hover, a:focus, a:active {
-  background-color: teal;
+  background-color: #5E8792;
   color: #fff;
   text-shadow: 0em 0em 0.2em rgba(255, 255, 255, 0.8);
 }

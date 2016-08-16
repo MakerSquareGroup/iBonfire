@@ -16,7 +16,6 @@ class Navigation extends Component {
 		this.state = {
 			searchBox: ""
 		}
-		console.log(props)
 	}
 
 	handleSubmit(event) {

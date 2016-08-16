@@ -28,7 +28,6 @@ class ProfileButton extends Component {
   }
 
   renderBonfires = () => {
-    console.log(this.state)
     let bonfires = this.state.bonfires;
     let bonfireArray = [];
 

@@ -6,13 +6,12 @@ import Infinite  from 'react-infinite';
 import axios from 'axios';
 
 class MarkerModal extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   joinBonfire(userId, bonId) {
-    this.props.getMessages(bonId);
-    this.props.joinBonfire(userId, bonId);
+    if(bonId) {
+      this.props.setChatId(bonId);
+      this.props.getMessages(bonId);
+      this.props.joinBonfire(userId, bonId);
+    }
   }
 
   render() {

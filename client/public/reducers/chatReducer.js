@@ -1,11 +1,13 @@
 import { CREATE_ROOM } from '../actions/chats';
 import { ADD_MESSAGE } from '../actions/chats';
 import { GET_MESSAGES } from '../actions/chats';
+import { SET_CHAT_ID } from '../actions/chats';
 
 const initialState = {
   roomId: "",
   messageData: "",
-  messages: []
+  messages: [],
+  chatId: ''
 }
 
 export default (state = initialState, action) => {
@@ -25,6 +27,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         messages: action.payload.messages
+      }
+    case SET_CHAT_ID:
+      return {
+        ...state,
+        chatId: action.bonId
       }
   };
   return state;

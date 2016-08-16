@@ -4,6 +4,8 @@ export const GET_USER_BONFIRES = 'GET_USER_BONFIRES';
 export const UPDATE_USER_BIO = 'UPDATE_USER_BIO';
 export const CHANGE_BONFIRE_POPUP_DATA = 'CHANGE_BONFIRE_POPUP_DATA';
 
+// Updated the end point to return all bonfires that the user has joined, not just the bonfires the user has created
+
 export function getUserBonfires(userId){
   const grabBonfiresDB = axios.get('/bonfire/join_bonfire/' + userId);
   return (dispatch) => {

@@ -23,19 +23,14 @@ export default class ProfilePageBonfirePopup extends Component {
 	}
 
 	componentWillReceiveProps(nextProps){
-		console.log('component will receive props pop up');
-		console.log(nextProps, "next props");
 		var bonfireId = nextProps.profile.popupData.id;
 		getBonfireData(bonfireId).then((resp) => {
-			console.log(resp, 'resp');
 			var location = resp.data.cityState
 			var timeAgo = moment(resp.data.created_by_User_at).fromNow()
 			getUserData(resp.data.createdBy).then((resp) => {
-				console.log(resp, 'resp');
 				var fbImg = resp.data.FB_img;
 				var name = resp.data.name
 				getBonfireUsers(bonfireId).then((resp) => {
-					console.log('set state', fbImg, name, timeAgo, location);
 					this.setState({
 						creatorImageSrc: fbImg,
 						creatorName: name,

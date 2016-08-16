@@ -29,9 +29,14 @@ export function getMarkers() {
   const grabMarkersDB = axios.get('/bonfire');
   return (dispatch) => {
     return grabMarkersDB.then((response) => {
+      let markers = response.data;
+      markers.forEach(marker => {
+        marker.showInfo = false;
+      });
+
       dispatch({
         type: GET_MARKER,
-        markers: response.data
+        markers: markers
       })
     })
   }

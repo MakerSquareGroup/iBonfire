@@ -65,6 +65,7 @@ class ChatPage extends Component {
     this.setState({
       messages: []
     });
+    this.props.getMarkers();
   }
 
   handleCancel() {

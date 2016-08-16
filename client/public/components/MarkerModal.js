@@ -19,6 +19,19 @@ class MarkerModal extends Component {
     const hoverMarker = this.props.hoverMarker;
     const markerData = hoverMarker.markerData;
     const currUser = this.props.facebook.currUser;
+    const style = {
+      // "display": "inline-block",
+      // "margin": "1em 0 0 0",
+      // // "padding": "0.4em 2em",
+      // "fontSize": "1.6em",
+      // "background": "rgba(223, 88, 76, 1)",
+      "color": "rgba(223, 88, 76, .6)"
+      // "textShadow": "1px 1px 0 rgba(255,255,255,0.1)",
+      // "textDecoration": "none",
+      // "border": "solid 1px rgba(223, 88, 76, 1)",
+      // "borderRadius": ".5px",
+      // "boxShadow": "inset 1px 1px 1px rgba(255,255,255,0.05), inset 0 0 35px rgba(0,0,0,0.6), 0 5px 5px -4px rgba(0,0,0,0.8)"
+    }
     return (
       <div className='marker-modal'>
         <h1>Tags: {markerData.tags}</h1>
@@ -26,7 +39,7 @@ class MarkerModal extends Component {
         <img src={`http://graph.facebook.com/${markerData.createdBy}/picture?type=small`}/>
         <p>{markerData.cityState}</p>
         <MuiThemeProvider>
-          <RaisedButton id='join-bonfire' label="Join Bonfire" onTouchTap={() => this.joinBonfire(currUser.id, markerData.id)}></RaisedButton>
+          <RaisedButton id='join-bonfire' style={style} label="Join Bonfire" onTouchTap={() => this.joinBonfire(currUser.id, markerData.id)}></RaisedButton>
         </MuiThemeProvider>
       </div>
     )

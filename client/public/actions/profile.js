@@ -4,7 +4,7 @@ export const GET_USER_BONFIRES = 'GET_USER_BONFIRES';
 export const UPDATE_USER_BIO = 'UPDATE_USER_BIO';
 export const CHANGE_BONFIRE_POPUP_DATA = 'CHANGE_BONFIRE_POPUP_DATA';
 
-export function getProfileUserBonfires(userId){
+export function getUserBonfires(userId){
   const grabBonfiresDB = axios.get('/bonfire/join_bonfire/' + userId);
   return (dispatch) => {
     return grabBonfiresDB.then((response) => {

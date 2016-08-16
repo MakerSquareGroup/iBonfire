@@ -444,5 +444,3 @@ export function getUserDB(id) {
     })
   }
 }
-
-

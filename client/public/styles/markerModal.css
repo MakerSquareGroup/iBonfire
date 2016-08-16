@@ -22,10 +22,10 @@
   text-align: center;
 }*/
 
-/*#join-bonfire {
+.join-bonfire-btn {
   display: inline-block;
-  margin: 1em 0 0 0;
-  padding: 0.4em 2em;
+  /*margin: 1em 0 0 0;*/
+  /*padding: 0.4em 2em;*/
   font-size: 1.6em;
   background: rgba(223, 88, 76, 1);
   color: rgba(223, 88, 76, 1);
@@ -34,7 +34,21 @@
   border: solid 1px rgba(223, 88, 76, 1);
   border-radius: .5px;
   box-shadow: inset 1px 1px 1px rgba(255,255,255,0.05), inset 0 0 35px rgba(0,0,0,0.6), 0 5px 5px -4px rgba(0,0,0,0.8);
+}
+
+/*.marker-modal-picture {
+  border-radius: 100px;
 }*/
+
+.marker-description {
+  padding: 0em;
+  margin: 5px;
+}
+
+.marker-tag {
+  padding: 0em;
+  margin: 5px;
+}
 
 /*#join-bonfire:hover {
   background: rgba(255,255,255,0.09);

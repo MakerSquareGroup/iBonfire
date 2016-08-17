@@ -103,8 +103,14 @@ class BonfireModal extends Component {
       this.props.changeBonfireModalClassName("fadeOut")
         return sendLocation
         .then((response) => {
+          let descriptionArr = this.state.copyDescription.split(' ');
+          let words = [];
+          descriptionArr.forEach((word) => {
+            let newWord = word.replace(/(.{36})/g, "$1\n");
+            words.push(newWord);
+          });
           return this.props.sendDescription({
-            description: this.state.copyDescription,
+            description: words.join(' '),
             tags: this.state.tag,
             cityState: response.data.results[4].formatted_address,
             latitude: String(this.props.currentMarker.lat),

@@ -49,11 +49,9 @@ class ChatPage extends Component {
     let chatWindow = document.getElementsByClassName('MessageField');
     socket.emit('joinChat', this.props.params.bonId);
     socket.on('Received socket id of: ', (socketId) => {
-      // console.log('Received a socket id of: ', socketId);
     });
 
     socket.on('message', (msg) => {
-      // console.log('New message: ', msg);
       this.setState({
         messages: [...this.state.messages, { messages: msg.messages, name: msg.name, id_Users: msg.id_Users, msg: msg.created_by_User_at }]
       }, () => chatWindow[0].scrollTop = chatWindow[0].scrollHeight);

@@ -70,7 +70,7 @@ class BonfireDrawer extends Component {
         return (
           <div id="mainbox" key={index}>
              <div className="card">
-                  <p className='cardp'>{bonfire.tags}</p>
+                  <p className='cardp' id='tags'>{bonfire.tags}</p>
                   <p className='cardp'><b>Location: {bonfire.cityState}</b>
                   </p>
                   <p className='cardp'>{bonfire.description}
@@ -78,7 +78,7 @@ class BonfireDrawer extends Component {
                   <p className='cardp'>
                     Bonfire lit: {Moment(bonfire.created_by_User_at).format('MMMM Do YYYY, h:mm:ss a')}
                   </p>
-              <RaisedButton id='join-bonfire' onTouchTap={() => this.joinBonfire(currUser.id, bonfireId)}>Join</RaisedButton>
+              <RaisedButton className='join-bonfire-btn' onTouchTap={() => this.joinBonfire(currUser.id, bonfireId)}>Join</RaisedButton>
             </div>
           </div>
         );

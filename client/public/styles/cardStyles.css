@@ -3,7 +3,7 @@
   border: 1px solid #CBA89B;
   box-shadow: 1px 1px 3px #888;
   min-height: 250px;
-  padding-: 10px;
+  padding: 10px;
   margin: 10px;
   text-align: center;
   background: whitesmoke;
@@ -17,7 +17,6 @@
 
 .cardp {
   margin: 10px;
-  font-family: segoe ui;
   line-height: 1.4em;
   font-size: 1.2em;
 }
@@ -26,9 +25,12 @@
   text-align: center;
 }
 
+#tags {
+  font-size: 25px;
+}
+
 #mainbox{
   height: auto;
-  font-family: calibri;
   box-sizing: border-box;
   justify-content: center;
   display: flex;
@@ -42,7 +44,7 @@
   justify-content: center;
   flex-direction: column;
   width: auto;
-  border: 13px solid #bed5cd;
+  border: 13px solid #A2B59C;
   overflow-x: hidden;
   overflow-y: scroll;
 }

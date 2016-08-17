@@ -153,12 +153,25 @@ class BonfireModal extends Component {
               <MenuItem className='dropDownList' style={{color: 'black'}} value={8} primaryText="#tech" />
               <MenuItem className='dropDownList' style={{color: 'black'}} value={9} primaryText="#environment" />
               <MenuItem className='dropDownList' style={{color: 'black'}} value={10} primaryText="#adult" />
-              <MenuItem className='dropDownList' style={{color: 'black'}} value={11} primaryText="#phil" />
+              <MenuItem className='dropDownList' style={{color: 'black'}} value={11} primaryText="#coffee" />
               <MenuItem className='dropDownList' style={{color: 'black'}} value={12} primaryText="#dictators" />
-              <MenuItem className='dropDownList' style={{color: 'black'}} value={13} primaryText="#males" />
+              <MenuItem className='dropDownList' style={{color: 'black'}} value={13} primaryText="#hats" />
               <MenuItem className='dropDownList' style={{color: 'black'}} value={14} primaryText="#jayKwerrie" />
               <MenuItem className='dropDownList' style={{color: 'black'}} value={15} primaryText="#cats" />
-              <MenuItem className='dropDownList' style={{color: 'black'}} value={16} primaryText="#social" />
+              <MenuItem className='dropDownList' style={{color: 'black'}} value={17} primaryText="#gambling" />
+              <MenuItem className='dropDownList' style={{color: 'black'}} value={18} primaryText="#dogs" />
+              <MenuItem className='dropDownList' style={{color: 'black'}} value={19} primaryText="#travel" />
+              <MenuItem className='dropDownList' style={{color: 'black'}} value={20} primaryText="#student" />
+              <MenuItem className='dropDownList' style={{color: 'black'}} value={21} primaryText="#food" />
+              <MenuItem className='dropDownList' style={{color: 'black'}} value={22} primaryText="#agingTerribly" />
+              <MenuItem className='dropDownList' style={{color: 'black'}} value={23} primaryText="#music" />
+              <MenuItem className='dropDownList' style={{color: 'black'}} value={24} primaryText="#dancing" />
+              <MenuItem className='dropDownList' style={{color: 'black'}} value={25} primaryText="#runnnig" />
+              <MenuItem className='dropDownList' style={{color: 'black'}} value={26} primaryText="#fire" />
+              <MenuItem className='dropDownList' style={{color: 'black'}} value={27} primaryText="#fitness" />
+              <MenuItem className='dropDownList' style={{color: 'black'}} value={28} primaryText="#hotdogs" />
+              <MenuItem className='dropDownList' style={{color: 'black'}} value={29} primaryText="#murica" />
+              <MenuItem className='dropDownList' style={{color: 'black'}} value={30} primaryText="#drumCircle" />
 
           </DropDownMenu>
         </div>

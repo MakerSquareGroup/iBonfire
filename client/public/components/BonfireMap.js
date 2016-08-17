@@ -143,7 +143,6 @@ class BonfireMap extends Component {
 				lng: lng
 			}
 		});
-
 	}
 
 	openModal(target) {
@@ -183,9 +182,14 @@ class BonfireMap extends Component {
 		const markers = this.state.markers;
 		const index = this.state.markerIndex;
 		let targetMarker = markers[index]
-		if(!targetMarker) {
-			return;
+		if(!targetMarker && this.props.hoverMarker.markerData) {
+			this.setState({
+				windowOpen: false,
+				markers: markers
+			});
+			return this.props.hideHoverModal(this.props.hoverMarker.markerData);
 		}
+
 		targetMarker.showInfo = false;
 		this.setState({
 			windowOpen: false,

@@ -26,12 +26,14 @@ export default class ProfilePageBonfirePopup extends Component {
 	componentWillReceiveProps(nextProps){
 		var bonfireId = nextProps.profile.popupData.id;
 		getBonfireData(bonfireId).then((resp) => {
+			console.log(resp, 'resp');
 			var location = resp.data.cityState
 			var timeAgo = moment(resp.data.created_by_User_at).fromNow()
 			getUserData(resp.data.createdBy).then((resp) => {
 				var fbImg = resp.data.FB_img;
 				var name = resp.data.name
 				getBonfireUsers(bonfireId).then((resp) => {
+					console.log(fbImg, name, timeAgo, location, bonfireId);
 					this.setState({
 						creatorImageSrc: fbImg,
 						creatorName: name,
@@ -49,7 +51,7 @@ export default class ProfilePageBonfirePopup extends Component {
 		return this.state.members.map((member, index) => {
 			return (
 				<Chip 
-				style={{'margin':'4px','cursor':'pointer','backgroundColor':'#60DD94'}}
+				style={{'margin':'4px','cursor':'pointer','backgroundColor':'gray'}}
 				labelColor='white'
 				key={index}
 				>Place Holder Name</Chip>

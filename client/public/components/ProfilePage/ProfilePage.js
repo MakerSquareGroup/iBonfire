@@ -120,10 +120,6 @@ export default class ProfilePage extends Component {
 							<h>Bonfires Created : 13</h>
 							<h>Messages Sent : 1,245</h>
 						</div>
-						<div className="ProfilePagePoints">
-							<p>Player Points</p>
-							<h>67,536</h>
-						</div>
 					</div>
 				</div>
 				<div className="BonfireHolder">

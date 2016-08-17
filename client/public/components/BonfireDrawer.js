@@ -42,7 +42,7 @@ class BonfireDrawer extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-  const FbCurrUser = this.props.facebook.currUser;
+    const FbCurrUser = this.props.facebook.currUser;
     if(FbCurrUser !== nextProps.facebook.currUser) {
       this.props.getUserBonfires(nextProps.facebook.currUser.id);
     }
@@ -62,7 +62,7 @@ class BonfireDrawer extends Component {
     }
   }
 
-  renderBonfires = () => {
+  renderBonfires() {
     const currUser = this.props.facebook.currUser;
 
     let mappedBonfires = this.state.bonfiresInYourCity.map((bonfire,index) => {

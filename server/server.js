@@ -48,8 +48,8 @@ app.use(helmet());
 app.use(helmet.xssFilter());
 app.use(helmet.frameguard());
 app.use(helmet.hidePoweredBy());
-app.use(helmet.ieNoOpen())
-app.use(helmet.noSniff())
+app.use(helmet.ieNoOpen());
+app.use(helmet.noSniff());
 
 // End of security middleware.
 

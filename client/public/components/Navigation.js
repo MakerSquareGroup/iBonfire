@@ -61,6 +61,7 @@ class Navigation extends Component {
 						    <li onClick={this.showDrawer.bind(this)}><a className='menuBtns'>Nearby</a></li>
 						    <li onClick={this.props.renderProfile}><a className='menuBtns'>Profile</a></li>
 						    <li><a className='menuBtns'>About</a></li>
+						    <li><a className='menuBtns'>Help</a></li>
 						    <li onClick={this.props.facebookLogout}><a className='menuBtns'>Logout</a></li>
 						  </ol>
 						</nav>

@@ -387,7 +387,7 @@ export function facebookLogin() {
   return (dispatch) => {
     return FB.login((response) => {
       if(response.authResponse) {
-        browserHistory.push('/home');
+        browserHistory.push('/');
         dispatch({
           type: LOGIN_SUCCESSFUL,
           loggedIn: true
@@ -411,7 +411,7 @@ export function facebookLogout() {
   return (dispatch) => {
     return FB.logout((response) => {
       console.log("Logging out...", response);
-      browserHistory.push('/');
+      browserHistory.push('/login');
       dispatch({
         type: LOG_OUT,
         loggedIn: false

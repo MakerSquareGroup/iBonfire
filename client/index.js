@@ -23,8 +23,8 @@ const router = (
     <Router history={browserHistory}>
       <Route path="/about" component={About} />
       <Route path="/" component={InitFB(App)} >
-        <IndexRoute component={InitFB(Login)} />
-        <Route path="home" component={InitFB(Home)} />
+        <IndexRoute component={InitFB(Home)} />
+        <Route path="login" component={InitFB(Login)} />
         <Route path="chats/:bonId" component={InitFB(ChatPage)} />
       </Route>
     </Router>

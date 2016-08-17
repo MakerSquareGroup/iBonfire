@@ -22,7 +22,7 @@ export const facebookInit = () => {
 
     FB.getLoginStatus((response) => {
       if(!response.authResponse) {
-        browserHistory.push('/');
+        browserHistory.push('/login');
       }
       statusChangeCallBack(response);
     });

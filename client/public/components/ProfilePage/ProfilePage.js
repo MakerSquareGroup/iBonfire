@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ProfilePageBonfire from './ProfilePageBonfire';
 import ProfilePageBonfirePopup from './ProfilePageBonfirePopUp';
 import { allActions } from '../App';
-import {updateUserBio, getUserData} from '../../actions/profile';
+import {updateUserBio, getUserData, getCreatedBonfires} from '../../actions/profile';
 
 
 export default class ProfilePage extends Component {
@@ -14,7 +14,9 @@ export default class ProfilePage extends Component {
 			edit: false,
 			editProfileHeaderClass: 'EditProfileHeader hide',
 			profileInfoView: '',
-			profileInfoText: ''
+			profileInfoText: '',
+			bonfiresJoined: '',
+			bonfiresCreated: ''
 		}
 		this.handleProfilePictureClick = this.handleProfilePictureClick.bind(this);
 		this.handleProfilePictureMouseOver = this.handleProfilePictureMouseOver.bind(this);
@@ -27,13 +29,17 @@ export default class ProfilePage extends Component {
 
 	componentWillMount() {
 		var currentUser = this.props.facebook.currUser;
-		this.props.getUserBonfires(currentUser.id);
+		this.props.getUserBonfires(currentUser.id)
 		getUserData(this.props.facebook.currUser.id).then((resp) => {
 			this.setState({profileInfoText: resp.data.bio})
+		})
+		getCreatedBonfires(currentUser.id).then((resp) => {
+			this.setState({bonfiresCreated: resp.data.length})
 		})
 	}
 
 	componentDidMount() {
+
 		this.setState({
 			edit: false,
 			editProfileHeaderClass: 'EditProfileHeader hide',
@@ -81,7 +87,10 @@ export default class ProfilePage extends Component {
 				<ProfilePageBonfire key={index} data={bonfire}/>
 			)
 		})
-		this.setState({newBonfires: bonfires});
+		this.setState({
+			newBonfires: bonfires,
+			bonfiresJoined: bonfires.length
+		});
 	}
 
 	renderProfileInfoPlainText(){
@@ -116,9 +125,8 @@ export default class ProfilePage extends Component {
 					</div>
 					<div className="ProfilePageRight">
 						<div className="ProfilePageStats">
-							<h>Bonfires Joined : 6</h>
-							<h>Bonfires Created : 13</h>
-							<h>Messages Sent : 1,245</h>
+							<h>Bonfires Joined : {this.state.bonfiresJoined}</h>
+							<h>Bonfires Created : {this.state.bonfiresCreated}</h>
 						</div>
 					</div>
 				</div>

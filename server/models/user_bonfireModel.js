@@ -56,6 +56,16 @@ User_Bonfire.findUserBonfires = (userId) => {
 		})
 };
 
+User_Bonfire.findCreatedBonfires = (userId) => {
+	console.log(userId, 'THIS IS THE USER ID *********_WE)(FU _)@#_)@#*R_)*#R @_#)R*#_@)*R #@_)R*_)@#R')
+	return db('Bonfires').where({
+			createdBy: userId
+		})
+		.then((rows) => {
+			return rows;
+		})
+};
+
 User_Bonfire.findBonfiresById = (bonfireId) => {
 	return db('Users_Bonfires').where({
 			id_Bonfires: bonfireId

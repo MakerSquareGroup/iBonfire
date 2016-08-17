@@ -19,7 +19,23 @@ module.exports = {
       console.log("Received GET at /bonfire/join_bonfire");
 
       let paramIds = Helpers.seperateParams(req.params.passed_ids);
-      User_Bonfire.findUserBonfires(paramIds[0])
+
+      if(paramIds[0] === 'created'){
+        User_Bonfire.findCreatedBonfires(paramIds[1])
+        .then((bonfires) => {
+          if(!bonfires) {
+            console.log('The user with an id of ' + userId + ' has not joined any bonfires!');
+            res.end('The user with an id of ' + userId + ' has not joined any bonfires!');
+          } else {
+            res.send(bonfires);
+          }
+        })
+        .catch((err) => {
+          console.log('Error in findAllBonfires: ', err);
+          res.end('Error in findAllBonfires: ', err)
+        })
+      } else {
+        User_Bonfire.findUserBonfires(paramIds[0])
         .then((joinTable) => {
           if (!joinTable) {
             console.log("There is no join table with a user ID of " + paramIds[0]);
@@ -32,6 +48,7 @@ module.exports = {
         .catch((err) => {
             console.log('Error inside findUserBonfires ', err);
         });
+      }
     },
     post: function(req, res) {
       console.log("Received POST at /bonfire/join_bonfire");
@@ -119,23 +136,8 @@ module.exports = {
   },
   '/get_all_bonfires/:user_id': {
     get: function(req,res) {
-      console.log("Received GET at /get_all_bonfires");
-
       let userId = req.params.user_id;
-
-      User_Bonfire.findAllBonfires(userId)
-      .then((bonfires) => {
-        if(!bonfires) {
-          console.log('The user with an id of ' + userId + ' has not joined any bonfires!');
-          res.end('The user with an id of ' + userId + ' has not joined any bonfires!');
-        } else {
-          res.end('The user with an id of ' + userId + ' has joined: ', bonfires);
-        }
-      })
-      .catch((err) => {
-        console.log('Error in findAllBonfires: ', err);
-        res.end('Error in findAllBonfires: ', err)
-      })
+      console.log("Received GET at /get_all_bonfires", userId);
     },
     post: function(req, res) {
       console.log("Received POST at /get_all_bonfires");

@@ -5,6 +5,7 @@ import {allActions} from '../App';
 import Chip from 'material-ui/Chip';
 import {getBonfireData, getUserData, getBonfireUsers} from '../../actions/profile';
 
+
 export default class ProfilePageBonfirePopup extends Component {
 	constructor(props) {
 		
@@ -16,26 +17,32 @@ export default class ProfilePageBonfirePopup extends Component {
 			location: '',
 			description: '',
 			tags: '',
-			members: [1,2,3,4,5,6,7,8,9,4,2,2,2]
+			members: []
 		}
 
-		this.handleCancelClick = this.handleCancelClick.bind(this);
+		this.handleCancelClick = this.handleCancelClick.bind(this)
+		this.handeJoinClick = this.handleJoinClick.bind(this)
+		this.getUserNames = this.getUserNames.bind(this)
 	}
 
+	
+
 	componentWillReceiveProps(nextProps){
-		var bonfireId = nextProps.profile.popupData.id;
+		var bonfireId = nextProps.profile.popupData.id_Bonfires;
 		getBonfireData(bonfireId).then((resp) => {
 			var location = resp.data.cityState
 			var timeAgo = moment(resp.data.created_by_User_at).fromNow()
 			getUserData(resp.data.createdBy).then((resp) => {
-				var fbImg = resp.data.FB_img;
+				var fbImg = resp.data.FB_img
 				var name = resp.data.name
 				getBonfireUsers(bonfireId).then((resp) => {
+					var userNames = this.getUserNames(resp.data)
 					this.setState({
 						creatorImageSrc: fbImg,
 						creatorName: name,
 						timeAgo: timeAgo,
-						location: location
+						location: location,
+						bonfireId: bonfireId
 					});
 				})
 			})
@@ -43,21 +50,42 @@ export default class ProfilePageBonfirePopup extends Component {
 		
 	}
 
+	getUserNames(users){
+		this.setState({members: []})
+		var userNames = []
+		console.log(users.length)
+		var userNames = users.map((user) => {
+			getUserData(user.id_Users).then((resp) => {
+
+				this.setState({
+					members: [...this.state.members, resp.data.name ]
+				})
+			})
+		})
+	}
+
 	createChips(){
 		return this.state.members.map((member, index) => {
-			return (
-				<Chip 
-				style={{'margin':'4px','cursor':'pointer','backgroundColor':'#60DD94'}}
-				labelColor='white'
-				key={index}
-				>Place Holder Name</Chip>
-			)
+			if(member){
+				return (
+					<Chip 
+					style={{'margin':'4px','cursor':'pointer','backgroundColor':'gray','height':'33px'}}
+					labelColor='white'
+					key={index}
+					>{member}</Chip>
+				)
+			}
+			
 		})
 	}
 
 	handleCancelClick(){
-		$('.ProfilePageBonfirePopup').addClass('animateDown');
-		$('.ProfilePageBonfirePopup').removeClass('animateUp');
+		$('.ProfilePageBonfirePopup').addClass('animateDown')
+		$('.ProfilePageBonfirePopup').removeClass('animateUp')
+	}
+
+	handleJoinClick(){
+		this.props.getMessages(this.state.bonfireId)
 	}
 
 
@@ -80,6 +108,9 @@ export default class ProfilePageBonfirePopup extends Component {
 				</div>
 				<div className="ProfilePagePopupCancelButton" onClick={this.handleCancelClick}>
 					<img className="ProfilePagePopupCancelButtonImage" src="../../media/Cancel.png"/>
+				</div>
+				<div className="ProfilePagePopupJoinButton" onClick={this.handleJoinClick}>
+					<img className="ProfilePagePopupJoinButtonImage" src="../../media/right-arrow.png"/>
 				</div>
 			</div>
 		)

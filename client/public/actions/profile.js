@@ -6,7 +6,7 @@ export const CHANGE_BONFIRE_POPUP_DATA = 'CHANGE_BONFIRE_POPUP_DATA';
 
 // Updated the end point to return all bonfires that the user has joined, not just the bonfires the user has created
 
-export function getUserBonfires(userId){
+export function getUserBonfires(userId) {
   const grabBonfiresDB = axios.get('/bonfire/join_bonfire/' + userId);
   return (dispatch) => {
     return grabBonfiresDB.then((response) => {
@@ -20,7 +20,13 @@ export function getUserBonfires(userId){
   }
 }
 
-export function updateUserBio(userId, bio){
+export function getCreatedBonfires(userId) {
+  return axios.get('/bonfire/join_bonfire/created&' + userId).then((resp) => {
+    return resp;
+  })
+}
+
+export function updateUserBio(userId, bio) {
   const data = {
     userId: userId,
     bio: bio
@@ -38,7 +44,7 @@ export function updateUserBio(userId, bio){
   }
 }
 
-export function changeBonfirePopupData(bonfireData){
+export function changeBonfirePopupData(bonfireData) {
   return {
     type: CHANGE_BONFIRE_POPUP_DATA,
     payload: {
@@ -47,27 +53,26 @@ export function changeBonfirePopupData(bonfireData){
   }
 }
 
-export function getBonfireData(bonfireId){
+export function getBonfireData(bonfireId) {
   return axios.get('/bonfire/' + bonfireId).then((resp) => {
     return resp;
   })
 }
 
-export function getUserData(userId){
+export function getUserData(userId) {
   return axios.get('/user/' + userId).then((resp) => {
-    console.log(resp);
     return resp;
   })
 }
 
-export function getBonfireUsers(bonfireId){
-  return axios.get('/user_bonfires/' + bonfireId).then((resp) => {
-    console.log(resp);
+
+export function getBonfireUsers(bonfireId) {
+  return axios.get('/bonfire/users_bonfires/' + bonfireId).then((resp) => {
     return resp;
   })
 }
 
-export function updateUserBio(userId, text){
+export function updateUserBio(userId, text) {
   return axios.put('/user/' + userId, {bio:text}).then((resp) => {
     return resp;
   })

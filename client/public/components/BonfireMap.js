@@ -9,7 +9,7 @@ import { default as InfoBox } from '../../../node_modules/react-google-maps/lib/
 import BonfireModal from './BonfireModal';
 import MarkerModal from './MarkerModal';
 import { connect } from 'react-redux';
-import * as actions from '../actions/index';
+import { allActions } from './App';
 import { Provider } from 'react-redux';
 
 import { store } from '../../index';
@@ -96,6 +96,11 @@ class BonfireMap extends Component {
 			position: { lat: lat, lng: long }
 		}
 		const changed = this.props.changeClass.changed;
+		
+		if(this.props.showDrawer) {
+			this.props.drawerToggle(!this.props.showDrawer);
+			return;
+		}
 
 		if(this.state.windowOpen) {
 			return this.closeModal(this.state.markers[this.state.markerIndex]);
@@ -185,7 +190,6 @@ class BonfireMap extends Component {
 				targetMarker, ...markers.slice(index + 1)
 			]
 		});
-
 		this.props.hideHoverModal(target);
 	}
 
@@ -257,8 +261,9 @@ const mapStateToProps = state => {
 		facebook: state.facebook,
 		search: state.search,
 		currentMarker: state.currMarker,
-		hoverMarker: state.hoverMarker
+		hoverMarker: state.hoverMarker,
+		showDrawer: state.showDrawer
 	}
 }
 
-export default connect(mapStateToProps, actions)(BonfireMap);
+export default connect(mapStateToProps, allActions)(BonfireMap);

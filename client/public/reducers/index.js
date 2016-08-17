@@ -14,6 +14,7 @@ import chatReducer from './chatReducer';
 import userInfo from './profileButton';
 import userBonfires from './profileButton';
 import profileReducer from './profileReducer';
+import showDrawerReducer from './showDrawerReducer';
 
 
 const rootReducer = combineReducers({
@@ -31,7 +32,8 @@ const rootReducer = combineReducers({
   userBonfires: userBonfires,
   userInfo: userInfo,
   chat: chatReducer,
-  profile: profileReducer
+  profile: profileReducer,
+  showDrawer: showDrawerReducer
 });
 
 export default rootReducer;

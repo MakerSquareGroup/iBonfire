@@ -132,7 +132,7 @@ class BonfireModal extends Component {
         <h id="CreateBonfireHeader">Create New Bonfire</h>
         <div id={this.props.changeClass.changed.modelTextBox}>
             <TextField
-              underlineFocusStyle={{borderColor: 'red'}}
+              underlineFocusStyle={{borderColor: '#C3B1AB'}}
               hintStyle={this.props.changeClass.changed.textColor}
               inputStyle={{color:'black',fontFamily:'raleway',fontWeight:'300'}}
               hintText={this.props.changeClass.changed.textHint}
@@ -151,7 +151,7 @@ class BonfireModal extends Component {
               <MenuItem className='dropDownList' style={{color: 'black'}} value={6} primaryText="#fashion" />
               <MenuItem className='dropDownList' style={{color: 'black'}} value={7} primaryText="#medicine" />
               <MenuItem className='dropDownList' style={{color: 'black'}} value={8} primaryText="#tech" />
-              <MenuItem className='dropDownList' style={{color: 'black'}} value={9} primaryText="#environement" />
+              <MenuItem className='dropDownList' style={{color: 'black'}} value={9} primaryText="#environment" />
               <MenuItem className='dropDownList' style={{color: 'black'}} value={10} primaryText="#adult" />
               <MenuItem className='dropDownList' style={{color: 'black'}} value={11} primaryText="#phil" />
               <MenuItem className='dropDownList' style={{color: 'black'}} value={12} primaryText="#dictators" />
@@ -162,7 +162,7 @@ class BonfireModal extends Component {
 
           </DropDownMenu>
         </div>
-        <div id="CreateBonfireImage">
+        <div id="CreateBonfireImage" onClick={() => { this.props.changeBonfireModalClassName('fadeOut'); }}>
         </div>
       </div>
     )

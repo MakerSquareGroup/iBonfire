@@ -12,6 +12,7 @@ import hoverMarkerReducer from './hoverMarkerReducer';
 import bonfireReducer from './bonfireReducer';
 import chatReducer from './chatReducer';
 import profileReducer from './profileReducer';
+import showDrawerReducer from './showDrawerReducer';
 
 
 const rootReducer = combineReducers({
@@ -27,7 +28,8 @@ const rootReducer = combineReducers({
   hoverMarker: hoverMarkerReducer,
   bonfire: bonfireReducer,
   chat: chatReducer,
-  profile: profileReducer
+  profile: profileReducer,
+  showDrawer: showDrawerReducer
 });
 
 export default rootReducer;

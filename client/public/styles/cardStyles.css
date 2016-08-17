@@ -1,11 +1,12 @@
 .card{
   width: 350px;
-  border: 1px solid gray;
+  border: 1px solid #CBA89B;
   box-shadow: 1px 1px 3px #888;
-  border-top: 10px solid teal;
   min-height: 250px;
   padding-: 10px;
   margin: 10px;
+  text-align: center;
+  background: whitesmoke;
 }
 
 .cardimg {
@@ -21,6 +22,10 @@
   font-size: 1.2em;
 }
 
+.cardTitle {
+  text-align: center;
+}
+
 #mainbox{
   height: auto;
   font-family: calibri;
@@ -30,6 +35,7 @@
   flex-wrap: wrap;
   display: flex;
   vertical-align: middle;
+  background-color: white;
 }
 #myBonfires{
   display: flex;
@@ -43,4 +49,5 @@
 
 #drawerParent {
   height: 100%;
+  background-image: url('http://data.whicdn.com/images/82279184/original.png');
 }

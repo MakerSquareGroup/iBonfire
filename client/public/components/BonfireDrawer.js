@@ -4,24 +4,25 @@ import { allActions } from './App';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import Moment from 'moment';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class BonfireDrawer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false,
       location: {
-        lat: Number(localStorage.getItem('latitude')) || this.props.users.userData.latitude, 
-        lng: Number(localStorage.getItem('longitude')) || this.props.users.userData.longitude
+        lat: localStorage.getItem('latitude') || this.props.users.userData.latitude, 
+        lng: localStorage.getItem('longitude') || this.props.users.userData.longitude
       },
       bonfiresInYourCity: [],
       currentCity: ''
     };
+  window.addEventListener("keydown", this.hideDrawerOnEsc.bind(this));
   }
 
   componentWillMount() {
-    const stringifiedLatLng = String(this.state.location.lat) + "," + String(this.state.location.lng);
-    this.props.convertCoordsToLocation(stringifiedLatLng)
+    const LatLng = this.state.location.lat + "," + this.state.location.lng;
+    this.props.convertCoordsToLocation(LatLng)
     .then((response) => {
       this.setState({
         currentCity: response.data.results
@@ -36,7 +37,7 @@ class BonfireDrawer extends Component {
       })
     })
     .then(() => {
-      return;
+       this.renderBonfires();
     })
   }
 
@@ -47,10 +48,6 @@ class BonfireDrawer extends Component {
     }
   }
 
-  handleToggle = () => {
-    this.setState({open: !this.state.open});
-  }
-
   joinBonfire(userId, bonId) {
     if(bonId) {
       this.props.setChatId(bonId);
@@ -59,9 +56,13 @@ class BonfireDrawer extends Component {
     }
   }
 
+  hideDrawerOnEsc() {
+    if(event.keyCode === 27 && this.props.showDrawer) {
+      this.props.drawerToggle(!this.props.showDrawer);
+    }
+  }
+
   renderBonfires = () => {
-    const hoverMarker = this.props.hoverMarker;
-    const markerData = hoverMarker.markerData;
     const currUser = this.props.facebook.currUser;
 
     let mappedBonfires = this.state.bonfiresInYourCity.map((bonfire,index) => {
@@ -77,7 +78,7 @@ class BonfireDrawer extends Component {
                   <p className='cardp'>
                     Bonfire lit: {Moment(bonfire.created_by_User_at).format('MMMM Do YYYY, h:mm:ss a')}
                   </p>
-              <button id='join-bonfire' onClick={() => this.joinBonfire(currUser.id, bonfireId)}>Join</button>
+              <RaisedButton id='join-bonfire' onTouchTap={() => this.joinBonfire(currUser.id, bonfireId)}>Join</RaisedButton>
             </div>
           </div>
         );
@@ -92,18 +93,18 @@ class BonfireDrawer extends Component {
         <Drawer
           docked={true}
           width={350}
-          open={this.state.open}
-          onRequestChange={(open) => this.setState({open})}
+          open={this.props.showDrawer}
         >
-          <MenuItem onTouchTap={this.renderBonfires}>Bonfires around you</MenuItem>
           <div id="myBonfires">{this.state.mappedBonfires}</div>
         </Drawer>
 
-        <div className="menu ProfileButtonSmall"onMouseEnter={this.handleToggle}>
+
+        <div className="menu ProfileButtonSmall">
           <div className="btn trigger">
              <a onClick={this.props.renderProfile}><img className="ProfileImageSmall" src={`http://graph.facebook.com/${this.props.facebook.currUser.id}/picture?type=large`}/></a>
           </div>
         </div>
+
 
       </div>
     );
@@ -118,7 +119,8 @@ function mapStateToProps(state) {
     facebook: state.facebook,
     userBonfires: state.userBonfires,
     hoverMarker: state.hoverMarker,
-    userInfo: state.userInfo
+    userInfo: state.userInfo,
+    showDrawer: state.showDrawer
   };
 }
 

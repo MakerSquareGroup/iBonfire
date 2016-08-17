@@ -183,6 +183,9 @@ class BonfireMap extends Component {
 		const markers = this.state.markers;
 		const index = this.state.markerIndex;
 		let targetMarker = markers[index]
+		if(!targetMarker) {
+			return;
+		}
 		targetMarker.showInfo = false;
 		this.setState({
 			windowOpen: false,

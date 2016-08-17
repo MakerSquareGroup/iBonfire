@@ -27,7 +27,7 @@ class MarkerModal extends Component {
         <img className='marker-modal-pic' src={`http://graph.facebook.com/${markerData.createdBy}/picture?type=normal`}/>
         <p>{markerData.cityState}</p>
         <MuiThemeProvider>
-          <RaisedButton className='join-bonfire-btn' label="Join Bonfire" onTouchTap={() => this.joinBonfire(currUser.id, markerData.id)}></RaisedButton>
+          <RaisedButton className='join-bonfire-btn' label="Join Bonfire" onClick={() => this.joinBonfire(currUser.id, markerData.id)}></RaisedButton>
         </MuiThemeProvider>
       </div>
     )

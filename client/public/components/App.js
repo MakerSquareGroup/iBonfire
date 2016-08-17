@@ -7,17 +7,14 @@ import { bindActionCreators } from 'react-redux';
 import * as actions from '../actions/index';
 import * as chatActions from '../actions/chats';
 import * as profileActions from '../actions/profile';
-import * as menuActions from '../actions/menuActions';
-import * as drawer from '../actions/drawer';
+import * as drawerActions from '../actions/drawer';
 import { facebookInit } from '../helpers/fbHelper';
 import injectTapEventPlugin from "react-tap-event-plugin";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-export const allActions = { ...actions, ...chatActions, ...profileActions, ...menuActions, ...drawer };
-
+export const allActions = { ...actions, ...chatActions, ...profileActions, ...drawerActions };
 
 injectTapEventPlugin();
-
 
 class App extends Component {
 	constructor(props) {

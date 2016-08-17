@@ -27,6 +27,10 @@ class Navigation extends Component {
 		});
 	}
 
+	showDrawer() {
+    this.props.drawerToggle(!this.props.showDrawer);
+	}
+
 	logout() {
 		facebookLogout();
 	}
@@ -36,7 +40,7 @@ class Navigation extends Component {
 			<div id="Navigation">
 
 				<div id="NavLogo">
-        			<img src="../media/iBonfireLogo.png"/>
+        	<img src="../media/iBonfireLogo.png"/>
       	</div>
 
 		   		<div id="SearchBar">
@@ -54,7 +58,7 @@ class Navigation extends Component {
 				    <nav id='menu'>
 						  <h1 className='mainBtn'>Menu</h1>
 						  <ol>
-						    <li><a className='menuBtns'>Nearby</a></li>
+						    <li onClick={this.showDrawer.bind(this)}><a className='menuBtns'>Nearby</a></li>
 						    <li onClick={this.props.renderProfile}><a className='menuBtns'>Profile</a></li>
 						    <li><a className='menuBtns'>About</a></li>
 						    <li onClick={this.props.facebookLogout}><a className='menuBtns'>Logout</a></li>
@@ -70,7 +74,8 @@ const mapStateToProps = state => {
 		facebook: state.facebook,
 		term: state.term,
 		facebook: state.facebook,
-		users: state.users
+		users: state.users,
+		showDrawer: state.showDrawer
 	}
 }
 

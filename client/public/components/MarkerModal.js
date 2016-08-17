@@ -19,15 +19,6 @@ class MarkerModal extends Component {
     const hoverMarker = this.props.hoverMarker;
     const markerData = hoverMarker.markerData;
     const currUser = this.props.facebook.currUser;
-    // const descriptionArray = markerData.description.split(' ');
-    // const description = [];
-    // descriptionArray.forEach((word) => {
-    //   let newWord = word.replace(/(.{34})/g, "$1\n");
-    //   description.push(newWord);
-    // })
-    // // markerData.description.replace(/(.{34})/g, "$1\n");
-    // // console.log(descriptionArray, "DESCRIPTORS");
-
     return (
       <div className='marker-modal'>
         <h1 className='marker-tag'>{markerData.tags}</h1>

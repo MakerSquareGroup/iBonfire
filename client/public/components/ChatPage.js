@@ -71,7 +71,7 @@ class ChatPage extends Component {
       messages: []
     });
 
-    browserHistory.push('/home');
+    browserHistory.push('/');
   }
 
   handleSubmit(e) {

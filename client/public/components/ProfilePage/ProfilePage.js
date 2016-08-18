@@ -111,33 +111,40 @@ export default class ProfilePage extends Component {
 		return(
 			<div>
 				<div className="ProfilePageTop">
-					<div className="ProfilePageLeft">
-						<div className="ProfilePageName">
+					<div className="ProfilePageTopLeft">
+						<div className="ProfilePageTopName">
 							{this.props.facebook.currUser.name}
 						</div>
-						<div className="ProfilePageUserInfo">
+						<div className="ProfilePageTopUserInfo">
 							{this.state.edit ? this.renderProfileInfoTextArea() : this.renderProfileInfoPlainText() }
 						</div>
 					</div>
-					<div className="ProfilePageMiddle">
-						<img className="ProfilePagePicture"  onClick={this.handleProfilePictureClick} onMouseOver={this.handleProfilePictureMouseOver} onMouseOut={this.handleProfilePictureMouseOut} src={`http://graph.facebook.com/${this.props.facebook.currUser.id}/picture?type=large`}/>
+					<div className="ProfilePageTopMiddle">
+						<img className="ProfilePageTopPicture"  onClick={this.handleProfilePictureClick} onMouseOver={this.handleProfilePictureMouseOver} onMouseOut={this.handleProfilePictureMouseOut} src={`http://graph.facebook.com/${this.props.facebook.currUser.id}/picture?type=large`}/>
 						<h className={this.state.editProfileHeaderClass}>{this.state.edit ? 'Save Profile' : 'Edit Profile'}</h>
 					</div>
-					<div className="ProfilePageRight">
-						<div className="ProfilePageStats">
+					<div className="ProfilePageTopRight">
+						<div className="ProfilePageTopStats">
 							<h>Bonfires Joined : {this.state.bonfiresJoined}</h>
 							<h>Bonfires Created : {this.state.bonfiresCreated}</h>
 						</div>
 					</div>
 				</div>
 				<div className="BonfireHolder">
-					{this.state.newBonfires}
 				</div>
 				<div className="MapButtonSmall" onClick={this.props.renderMap}>
 					<img  className="MapImageSmall MapImageSmallAnimation" src='http://www.appelsiini.net/assets/2008/5/26/tartu.png'/>
 				</div>
 				<div className="LogoutButton" onClick={this.handleLogout}>
 					<img src="../../media/logout.png" className="LogoutImage"/>
+				</div>
+				<div className="ProfilePageMiddle">
+					<div className="ProfilePageMiddleMiddle">
+						<h1 className="myBonfiresBox">My Bonfires</h1>
+							<div className="BonfireHolder">
+								{this.state.newBonfires}
+							</div>
+					</div>
 				</div>
 				<ProfilePageBonfirePopup/>
 			</div>

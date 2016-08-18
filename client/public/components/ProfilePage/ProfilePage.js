@@ -11,38 +11,17 @@ export default class ProfilePage extends Component {
 		super(props);
 		this.state = {
 			newBonfires: [],
-			edit: false,
-			editProfileHeaderClass: 'EditProfileHeader hide',
-			profileInfoView: '',
-			profileInfoText: '',
 			bonfiresJoined: '',
 			bonfiresCreated: ''
 		}
-		this.handleProfilePictureClick = this.handleProfilePictureClick.bind(this);
-		this.handleProfilePictureMouseOver = this.handleProfilePictureMouseOver.bind(this);
-		this.handleProfilePictureMouseOut = this.handleProfilePictureMouseOut.bind(this);
-		this.renderProfileInfoTextArea = this.renderProfileInfoTextArea.bind(this);
-		this.renderProfileInfoPlainText = this.renderProfileInfoPlainText.bind(this);
-		this.handleProfileInfoTextAreaChange = this.handleProfileInfoTextAreaChange.bind(this);
 		this.handleLogout = this.handleLogout.bind(this);
 	}
 
 	componentWillMount() {
 		var currentUser = this.props.facebook.currUser;
 		this.props.getUserBonfires(currentUser.id)
-		getUserData(this.props.facebook.currUser.id).then((resp) => {
-			this.setState({profileInfoText: resp.data.bio})
-		})
 		getCreatedBonfires(currentUser.id).then((resp) => {
 			this.setState({bonfiresCreated: resp.data.length})
-		})
-	}
-
-	componentDidMount() {
-		this.setState({
-			edit: false,
-			editProfileHeaderClass: 'EditProfileHeader hide',
-			profileInfoText: ''
 		})
 	}
 
@@ -54,37 +33,11 @@ export default class ProfilePage extends Component {
 		this.renderFires(nextProps.bonfire.bonfires);
 	}
 
-
-	handleProfilePictureClick(){
-		if(this.state.edit){
-			var profileInfoPlainText = this.renderProfileInfoPlainText();
-			this.setState({profileInfoView: 'plainText'})
-			updateUserBio(this.props.facebook.currUser.id,this.state.profileInfoText);
-		} else {
-			var profileInfoTextArea = this.renderProfileInfoTextArea();
-			this.setState({profileInfoView: 'textArea'})
-		}
-		this.setState({edit : !this.state.edit });
-	}
-
-	handleProfilePictureMouseOver(){
-		this.setState({editProfileHeaderClass: 'EditProfileHeader show'})
-	}
-	
-	handleProfilePictureMouseOut(){
-		this.setState({editProfileHeaderClass: 'EditProfileHeader hide'})
-	}
-
-	handleProfileInfoTextAreaChange(e){
-		this.setState({profileInfoText: e.target.value});
-	}
-
 	handleLogout(){
 		this.props.facebookLogout();
 	}
 
 	renderFires(bonfires){
-
 		var bonfires = bonfires.map((bonfire, index) => {
 			return (
 				<ProfilePageBonfire key={index} data={bonfire}/>
@@ -96,19 +49,6 @@ export default class ProfilePage extends Component {
 		});
 	}
 
-	renderProfileInfoPlainText(){
-		return (
-			<h className="ProfileInfoPlainText">{this.state.profileInfoText}</h>
-		)
-	}
-
-	renderProfileInfoTextArea(){
-		return (
-			<textArea className="ProfileInfoTextArea" value={this.state.profileInfoText} onChange={this.handleProfileInfoTextAreaChange}>
-			</textArea>
-		)
-	}
-
 	render(){
 		
 		return(
@@ -118,13 +58,9 @@ export default class ProfilePage extends Component {
 						<div className="ProfilePageTopName">
 							{this.props.facebook.currUser.name}
 						</div>
-						<div className="ProfilePageTopUserInfo">
-							{this.state.edit ? this.renderProfileInfoTextArea() : this.renderProfileInfoPlainText() }
-						</div>
 					</div>
 					<div className="ProfilePageTopMiddle">
-						<img className="ProfilePageTopPicture"  onClick={this.handleProfilePictureClick} onMouseOver={this.handleProfilePictureMouseOver} onMouseOut={this.handleProfilePictureMouseOut} src={`https://graph.facebook.com/${this.props.facebook.currUser.id}/picture?type=large`}/>
-						<h className={this.state.editProfileHeaderClass}>{this.state.edit ? 'Save Profile' : 'Edit Profile'}</h>
+						<img className="ProfilePageTopPicture" src={`https://graph.facebook.com/${this.props.facebook.currUser.id}/picture?type=large`}/>
 					</div>
 					<div className="ProfilePageTopRight">
 						<div className="ProfilePageTopStats">
@@ -133,10 +69,8 @@ export default class ProfilePage extends Component {
 						</div>
 					</div>
 				</div>
-				<div className="BonfireHolder">
-				</div>
 				<div className="MapButtonSmall" onClick={this.props.renderMap}>
-					<img  className="MapImageSmall MapImageSmallAnimation" src='https://www.appelsiini.net/assets/2008/5/26/tartu.png'/>
+					<img  className="MapImageSmall MapImageSmallAnimation" src='../../media/googleMap.png'/>
 				</div>
 				<div className="LogoutButton" onClick={this.handleLogout}>
 					<img src="../../media/logout.png" className="LogoutImage"/>
@@ -144,12 +78,12 @@ export default class ProfilePage extends Component {
 				<div className="ProfilePageMiddle">
 					<div className="ProfilePageMiddleMiddle">
 						<h1 className="myBonfiresBox">My Bonfires</h1>
-							<div className="BonfireHolder">
-								{this.state.newBonfires}
-							</div>
+						<div className="BonfireHolder">
+							{this.state.newBonfires}
+						</div>
+						<ProfilePageBonfirePopup/>
 					</div>
 				</div>
-				<ProfilePageBonfirePopup/>
 			</div>
 		)
 	}

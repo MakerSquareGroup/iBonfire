@@ -4,7 +4,7 @@ import ProfilePageBonfire from './ProfilePageBonfire';
 import ProfilePageBonfirePopup from './ProfilePageBonfirePopUp';
 import { allActions } from '../App';
 import {updateUserBio, getUserData, getCreatedBonfires} from '../../actions/profile';
-
+import { browserHistory } from 'react-router';
 
 export default class ProfilePage extends Component {
 	constructor(props){
@@ -39,12 +39,15 @@ export default class ProfilePage extends Component {
 	}
 
 	componentDidMount() {
-
 		this.setState({
 			edit: false,
 			editProfileHeaderClass: 'EditProfileHeader hide',
 			profileInfoText: ''
 		})
+	}
+
+	componentWillUnmount() {
+		browserHistory.push('/');
 	}
 
 	componentWillReceiveProps(nextProps) {

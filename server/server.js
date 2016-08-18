@@ -10,7 +10,7 @@ const contentLength = require('express-content-length-validator');
 
 const app = express();
 const https = require('https').Server(app);
-const io = require('socket.io')(http);
+const io = require('socket.io')(https);
 require('./sockets/socketHelper')(io);
 
 // For database access and creation.
@@ -37,8 +37,8 @@ app.use(express.static(__dirname + '/../client/public'));
 app.use(contentLength.validateMax());
 
 // Enforces HTTPs connections on incoming requests. Use when deployed.
-// app.enable('trust proxy');
-// app.use(express_enforces_ssl());
+app.enable('trust proxy');
+app.use(express_enforces_ssl());
 
 // Middleware for setting headers.
 app.use(cors());

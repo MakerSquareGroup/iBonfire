@@ -123,7 +123,7 @@ export default class ProfilePage extends Component {
 						</div>
 					</div>
 					<div className="ProfilePageTopMiddle">
-						<img className="ProfilePageTopPicture"  onClick={this.handleProfilePictureClick} onMouseOver={this.handleProfilePictureMouseOver} onMouseOut={this.handleProfilePictureMouseOut} src={`http://graph.facebook.com/${this.props.facebook.currUser.id}/picture?type=large`}/>
+						<img className="ProfilePageTopPicture"  onClick={this.handleProfilePictureClick} onMouseOver={this.handleProfilePictureMouseOver} onMouseOut={this.handleProfilePictureMouseOut} src={`https://graph.facebook.com/${this.props.facebook.currUser.id}/picture?type=large`}/>
 						<h className={this.state.editProfileHeaderClass}>{this.state.edit ? 'Save Profile' : 'Edit Profile'}</h>
 					</div>
 					<div className="ProfilePageTopRight">
@@ -136,7 +136,7 @@ export default class ProfilePage extends Component {
 				<div className="BonfireHolder">
 				</div>
 				<div className="MapButtonSmall" onClick={this.props.renderMap}>
-					<img  className="MapImageSmall MapImageSmallAnimation" src='http://www.appelsiini.net/assets/2008/5/26/tartu.png'/>
+					<img  className="MapImageSmall MapImageSmallAnimation" src='https://www.appelsiini.net/assets/2008/5/26/tartu.png'/>
 				</div>
 				<div className="LogoutButton" onClick={this.handleLogout}>
 					<img src="../../media/logout.png" className="LogoutImage"/>

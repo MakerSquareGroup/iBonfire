@@ -76,7 +76,6 @@ export default class ProfilePageBonfirePopup extends Component {
 					>{member}</Chip>
 				)
 			}
-			
 		})
 	}
 
@@ -86,9 +85,12 @@ export default class ProfilePageBonfirePopup extends Component {
 	}
 
 	handleJoinClick(){
-		// console.log(this.props.facebook.currUser.id, 'user')
-		console.log(this.state.bonfireId, 'bonfireId')
-		// this.props.joinBonfire(this.state.bonfireId, this.props.facebook.currUser.id)
+		const bonId = this.state.bonfireId;
+		const userId = this.props.facebook.currUser.id;
+
+		this.props.setChatId(bonId);
+    this.props.getMessages(bonId);
+    this.props.joinBonfire(userId, bonId);
 	}
 
 

@@ -9,8 +9,12 @@ const express_enforces_ssl = require('express-enforces-ssl');
 const contentLength = require('express-content-length-validator');
 
 const app = express();
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const http = require('http');
+const https = require('https');
+
+const server = https.createServer(app);
+const socketio = require('socket.io');
+const io = new socketio(server);
 require('./sockets/socketHelper')(io);
 
 // For database access and creation.
@@ -66,7 +70,7 @@ app.get('*', (req,res) => {
 
 app.set('port', process.env.PORT || 8080);
 
-http.listen(app.get('port'), () => {
+server.listen(app.get('port'), () => {
   db.ensureSchema();
   console.log(moment().format('h:mm:ss a') + ': Server is Listening on port', app.get('port'));
 });

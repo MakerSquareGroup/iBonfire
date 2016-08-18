@@ -12,7 +12,7 @@ const app = express();
 const http = require('http');
 const https = require('https');
 
-const server = https.createServer(app);
+const server = http.createServer(app);
 const socketio = require('socket.io');
 const io = new socketio(server);
 require('./sockets/socketHelper')(io);
@@ -68,7 +68,7 @@ app.get('*', (req,res) => {
   res.sendFile(path.resolve('client', 'index.html'));
 });
 
-app.set('port', process.env.PORT || 443);
+app.set('port', process.env.PORT || 8080);
 
 server.listen(app.get('port'), () => {
   db.ensureSchema();

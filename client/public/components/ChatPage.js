@@ -52,7 +52,6 @@ class ChatPage extends Component {
     });
 
     socket.on('message', (msg) => {
-      console.log(msg, "message received");
       this.setState({
         messages: [...this.state.messages, { messages: msg.messages, name: msg.name, id_Users: msg.id_Users, msg: msg.created_by_User_at }]
       }, () => chatWindow[0].scrollTop = chatWindow[0].scrollHeight);
@@ -87,7 +86,7 @@ class ChatPage extends Component {
     
     this.props.addMessage(messageObj);
     
-    socket.emit('newMessage', { messages: this.state.value, name: this.props.facebook.currUser.name, room: 'Room' + this.props.params.bonId });
+    socket.emit('newMessage', { messages: this.state.value, name: this.props.facebook.currUser.name, room: 'Room' + this.props.params.bonId, id_Users: this.props.facebook.currUser.id });
 
     this.setState({
       messages: [...this.state.messages, { messages: this.state.value, name: this.props.facebook.currUser.name, id_Users: this.props.facebook.currUser.id,  }],

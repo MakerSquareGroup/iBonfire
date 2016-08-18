@@ -52,6 +52,7 @@ class ChatPage extends Component {
     });
 
     socket.on('message', (msg) => {
+      console.log(msg, "message received");
       this.setState({
         messages: [...this.state.messages, { messages: msg.messages, name: msg.name, id_Users: msg.id_Users, msg: msg.created_by_User_at }]
       }, () => chatWindow[0].scrollTop = chatWindow[0].scrollHeight);

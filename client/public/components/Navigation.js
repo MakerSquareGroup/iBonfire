@@ -9,6 +9,7 @@ import { facebookLogout } from '../helpers/fbHelper';
 import { connect } from 'react-redux';
 import { allActions } from './App';
 import {browserHistory} from 'react-router';
+import $ from 'jquery'; 
 
 class Navigation extends Component {
 	constructor(props) {
@@ -36,6 +37,7 @@ class Navigation extends Component {
 	}
 
 	routeToAbout() {
+		$('body#iBonfire').removeAttr('id');
 		browserHistory.push('/about');
 	}
 
@@ -65,7 +67,7 @@ class Navigation extends Component {
 						    <li onClick={this.showDrawer.bind(this)}><a className='menuBtns'>Nearby</a></li>
 						    <li onClick={this.props.renderProfile}><a className='menuBtns'>Profile</a></li>
 						    <li onClick={this.routeToAbout}><a className='menuBtns'>About</a></li>
-						    <li><a className='menuBtns'>Help</a></li>
+						    <li><a className='menuBtns' href="https://github.com/DiversityLLC/iBonfire">Repo</a></li>
 						    <li onClick={this.props.facebookLogout}><a className='menuBtns'>Logout</a></li>
 						  </ol>
 						</nav>

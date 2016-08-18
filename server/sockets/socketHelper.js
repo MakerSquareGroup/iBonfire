@@ -20,7 +20,7 @@ module.exports = (io) => {
     socket.on('newMessage', (msg) => {
       console.log('Message received ' + msg.messages);
       msg.created_by_User_at = moment().valueOf();
-      socket.broadcast.to('room' + msg.room).emit('message', msg);
+      socket.to(msg.room).emit('message', msg);
     });
   });
 }

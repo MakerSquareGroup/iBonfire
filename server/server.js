@@ -68,7 +68,7 @@ app.get('*', (req,res) => {
   res.sendFile(path.resolve('client', 'index.html'));
 });
 
-app.set('port', process.env.PORT || 8080);
+app.set('port', process.env.PORT || 443);
 
 server.listen(app.get('port'), () => {
   db.ensureSchema();

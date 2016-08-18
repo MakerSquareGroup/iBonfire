@@ -52,7 +52,9 @@ export default class ProfilePageBonfirePopup extends Component {
 
 	getUserNames(users){
 		var userNames = []
-		const lastUser = this.state.members[this.state.members.length - 1];
+		this.setState({
+			members: []
+		})
 		var userNames = users.map((user) => {
 			getUserData(user.id_Users).then((resp) => {
 				const userName = resp.data.name; 

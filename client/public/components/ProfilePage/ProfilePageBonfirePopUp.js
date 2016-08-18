@@ -28,25 +28,30 @@ export default class ProfilePageBonfirePopup extends Component {
 	
 
 	componentWillReceiveProps(nextProps){
-		var bonfireId = nextProps.profile.popupData.id_Bonfires;
-		getBonfireData(bonfireId).then((resp) => {
-			var location = resp.data.cityState
-			var timeAgo = moment(resp.data.created_by_User_at).fromNow()
-			getUserData(resp.data.createdBy).then((resp) => {
-				var fbImg = resp.data.FB_img
-				var name = resp.data.name
-				getBonfireUsers(bonfireId).then((resp) => {
-					var userNames = this.getUserNames(resp.data)
-					this.setState({
-						creatorImageSrc: fbImg,
-						creatorName: name,
-						timeAgo: timeAgo,
-						location: location,
-						bonfireId: bonfireId
-					});
+		const howManyTimes = 0;
+		if(this.props.profile.popupData.id_Bonfires !== nextProps.profile.popupData.id_Bonfires) {
+			this.howManyTimes ++;
+		console.log(howManyTimes, " times")
+			const bonfireId = nextProps.profile.popupData.id_Bonfires;
+			getBonfireData(bonfireId).then((resp) => {
+				const location = resp.data.cityState
+				const timeAgo = moment(resp.data.created_by_User_at).fromNow()
+				getUserData(resp.data.createdBy).then((resp) => {
+					const fbImg = resp.data.FB_img
+					const name = resp.data.name
+					getBonfireUsers(bonfireId).then((resp) => {
+						const userNames = this.getUserNames(resp.data)
+						this.setState({
+							creatorImageSrc: fbImg,
+							creatorName: name,
+							timeAgo: timeAgo,
+							location: location,
+							bonfireId: bonfireId
+						});
+					})
 				})
 			})
-		})
+		}
 		
 	}
 
@@ -72,8 +77,8 @@ export default class ProfilePageBonfirePopup extends Component {
 			if(member){
 				return (
 					<Chip 
-					style={{'margin':'4px','cursor':'pointer','backgroundColor':'gray','height':'33px'}}
-					labelColor='black'
+					style={{'margin':'4px','cursor':'pointer','backgroundColor':'#FF6F02','height':'33px'}}
+					labelColor='white'
 					key={index}
 					>{member}</Chip>
 				)
@@ -82,8 +87,8 @@ export default class ProfilePageBonfirePopup extends Component {
 	}
 
 	handleCancelClick(){
-		$('.ProfilePageBonfirePopup').addClass('animateDown')
-		$('.ProfilePageBonfirePopup').removeClass('animateUp')
+		$('.ProfilePageBonfirePopup').addClass('animateRight')
+		$('.ProfilePageBonfirePopup').removeClass('animateLeft')
 	}
 
 	handleJoinClick(){

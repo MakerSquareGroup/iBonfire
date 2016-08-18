@@ -73,32 +73,38 @@ html, body {
 }
 
 
-.animateUp {
-  -webkit-animation: animateUp 0.5s forwards ease-in-out;
-  animation: animateUp 0.5s forwards ease-in-out;
+.animateLeft {
+  -webkit-animation: animateLeft 0.5s forwards ease-in-out;
+  animation: animateLeft 0.5s forwards ease-in-out;
 }
 
-@keyframes animateUp {
+@keyframes animateLeft {
   0% {
-    bottom: -400px;
+    left: 700px;
+    visibility: hidden;
   }
 
   100% {
-    bottom: -5px;
+    left: 248px;
+    visibility: visible;
   }
 }
 
-.animateDown {
-  -webkit-animation: animateDown 0.5s forwards ease-in-out;
-  animation: animateDown 0.5s forwards ease-in-out;
+.animateRight {
+  -webkit-animation: animateRight 0.5s forwards ease-in-out;
+  animation: animateRight 0.5s forwards ease-in-out;
 }
 
-@keyframes animateDown {
+@keyframes animateRight {
   0% {
-    bottom: -5px;
+    left: 248px;
+    visibility: visible;
   }
 
   100% {
-    bottom: -400px;
+    left: 700px;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 2s, opacity 2s linear;
   }
 }

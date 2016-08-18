@@ -12,7 +12,7 @@ const app = express();
 const http = require('http');
 const https = require('https');
 
-const server = https.createServer(app);
+const server = http.createServer(app);
 const socketio = require('socket.io');
 const io = new socketio(server);
 require('./sockets/socketHelper')(io);

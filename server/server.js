@@ -9,7 +9,7 @@ const express_enforces_ssl = require('express-enforces-ssl');
 const contentLength = require('express-content-length-validator');
 
 const app = express();
-const http = require('http').Server(app);
+const https = require('https').Server(app);
 const io = require('socket.io')(http);
 require('./sockets/socketHelper')(io);
 

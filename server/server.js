@@ -66,7 +66,7 @@ app.get('*', (req,res) => {
 
 app.set('port', process.env.PORT || 8080);
 
-http.listen(app.get('port'), () => {
+https.listen(app.get('port'), () => {
   db.ensureSchema();
   console.log(moment().format('h:mm:ss a') + ': Server is Listening on port', app.get('port'));
 });

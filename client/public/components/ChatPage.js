@@ -145,14 +145,14 @@ class ChatPage extends Component {
               <p className="MessageText">{msg.messages}</p>
               <p className='TimePosted'>{moment(msg.created_by_User_at).format('MMMM Do YYYY, h:mm a')}</p>
             </div>
-            <img className="ChatProfileImage" src={`http://graph.facebook.com/${msg.id_Users}/picture?type=small`} alt=""/>
+            <img className="ChatProfileImage" src={`https://graph.facebook.com/${msg.id_Users}/picture?type=small`} alt=""/>
           </div>
         
         )
       }
       return(
         <div className="OtherMessage" key={index}>
-          <img className="ChatProfileImage" src={`http://graph.facebook.com/${msg.id_Users}/picture?type=small`} alt=""/>
+          <img className="ChatProfileImage" src={`https://graph.facebook.com/${msg.id_Users}/picture?type=small`} alt=""/>
           <div className="TextHolder">
             <p className="MessageAuthor">{msg.name}</p>
             <p className="MessageText">{msg.messages}</p>

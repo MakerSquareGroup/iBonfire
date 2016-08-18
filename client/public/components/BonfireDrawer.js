@@ -101,7 +101,7 @@ class BonfireDrawer extends Component {
 
         <div className="menu ProfileButtonSmall">
           <div className="btn trigger">
-             <a onClick={this.props.renderProfile}><img className="ProfileImageSmall" src={`http://graph.facebook.com/${this.props.facebook.currUser.id}/picture?type=large`}/></a>
+             <a onClick={this.props.renderProfile}><img className="ProfileImageSmall" src={`https://graph.facebook.com/${this.props.facebook.currUser.id}/picture?type=large`}/></a>
           </div>
         </div>
 

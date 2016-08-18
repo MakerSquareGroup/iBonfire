@@ -1,4 +1,7 @@
-
+body#iBonfire {
+  height: 100%;
+  overflow-y: hidden;
+}
 
 #Home {
 	position: absolute;

@@ -4,6 +4,7 @@ import { facebookInit, facebookLogin, checkLoginStatus } from '../helpers/fbHelp
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'react-redux';
 import * as actions from '../actions/index';
+import $ from 'jquery'; 
 
 class Login extends Component {
   constructor(props) {
@@ -13,6 +14,11 @@ class Login extends Component {
 
   handleLoginClick() {
     this.props.facebookLogin();
+  }
+
+  handleLearnMoreClick() {
+    $('body#iBonfire').removeAttr('id');
+    browserHistory.push('/about');
   }
 
   componentWillMount() {
@@ -34,7 +40,14 @@ class Login extends Component {
           <source src="../media/Open-Fire/MP4/Open-Fire.mp4" type="video/mp4"/>
           <source src="../media/Open-Fire/WEBM/Open-Fire.webm" type="video/webm"/>
         </video>
-        <button id="FacebookLoginButton" type="button" onClick={this.handleLoginClick}>Login</button>
+        <ul className="FrontPageBtns">
+          <li>
+            <button id="FacebookLoginButton" type="button" onClick={this.handleLoginClick}>Login</button>
+          </li>
+          <li>
+            <button id="LearnMoreButton" type="button" onClick={this.handleLearnMoreClick}>More Info</button>
+          </li>
+        </ul>
         <div id="Logo">
           <img src="../media/iBonfireLogo.png"/>
         </div>

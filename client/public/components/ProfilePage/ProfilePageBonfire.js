@@ -8,11 +8,11 @@ export default class ProfilePageBonfire extends Component {
 		this.state = {
 
 		}
-		this.handleBonfireClick = this.handleBonfireClick.bind(this);
+		this.handleBonfireMouse = this.handleBonfireMouse.bind(this);
 	}
 
 
-	handleBonfireClick(){
+	handleBonfireMouse(){
 		this.props.changeBonfirePopupData(this.props.data);
 		$('.ProfilePageBonfirePopup').addClass('animateUp');
 		$('.ProfilePageBonfirePopup').removeClass('animateDown');
@@ -21,8 +21,8 @@ export default class ProfilePageBonfire extends Component {
 
 	render(){
 		return (
-			<div className="BonfireEntry" onClick={this.handleBonfireClick}>
-				<img className="BonfireEntryImage" src="../../media/Bonfire_2.png"/>
+			<div className="BonfireEntry" onMouseOver={this.handleBonfireMouse}>
+				<img className="BonfireEntryImage" src="../../media/newBonfire.png"/>
 			</div>
 		)
 	}

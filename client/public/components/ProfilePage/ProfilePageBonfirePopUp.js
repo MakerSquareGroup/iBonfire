@@ -51,15 +51,16 @@ export default class ProfilePageBonfirePopup extends Component {
 	}
 
 	getUserNames(users){
-		this.setState({members: []})
 		var userNames = []
-		console.log(users.length)
+		const lastUser = this.state.members[this.state.members.length - 1];
 		var userNames = users.map((user) => {
 			getUserData(user.id_Users).then((resp) => {
-
-				this.setState({
-					members: [...this.state.members, resp.data.name ]
-				})
+				const userName = resp.data.name; 
+				if(this.state.members.indexOf(userName) === -1) {
+					this.setState({
+						members: [...this.state.members, resp.data.name ]
+					})
+				}
 			})
 		})
 	}
@@ -70,12 +71,11 @@ export default class ProfilePageBonfirePopup extends Component {
 				return (
 					<Chip 
 					style={{'margin':'4px','cursor':'pointer','backgroundColor':'gray','height':'33px'}}
-					labelColor='white'
+					labelColor='black'
 					key={index}
 					>{member}</Chip>
 				)
 			}
-			
 		})
 	}
 
@@ -85,7 +85,12 @@ export default class ProfilePageBonfirePopup extends Component {
 	}
 
 	handleJoinClick(){
-		this.props.getMessages(this.state.bonfireId)
+		const bonId = this.state.bonfireId;
+		const userId = this.props.facebook.currUser.id;
+
+		this.props.setChatId(bonId);
+    this.props.getMessages(bonId);
+    this.props.joinBonfire(userId, bonId);
 	}
 
 
@@ -109,7 +114,7 @@ export default class ProfilePageBonfirePopup extends Component {
 				<div className="ProfilePagePopupCancelButton" onClick={this.handleCancelClick}>
 					<img className="ProfilePagePopupCancelButtonImage" src="../../media/Cancel.png"/>
 				</div>
-				<div className="ProfilePagePopupJoinButton" onClick={this.handleJoinClick}>
+				<div className="ProfilePagePopupJoinButton" onClick={this.handleJoinClick.bind(this)}>
 					<img className="ProfilePagePopupJoinButtonImage" src="../../media/right-arrow.png"/>
 				</div>
 			</div>

@@ -47,15 +47,13 @@ class ChatPage extends Component {
 
   componentDidMount() {
     let chatWindow = document.getElementsByClassName('MessageField');
-    let joinedParams = {
-      bonId: this.props.params.bonId,
-      name: this.props.facebook.currUser.name
-    }
-    socket.emit('joinChat', joinedParams);
+
+    socket.emit('joinChat', this.props.params.bonId);
     socket.on('Received socket id of: ', (socketId) => {
     });
 
     socket.on('message', (msg) => {
+      console.log('Receiving messages');
       this.setState({
         messages: [...this.state.messages, { messages: msg.messages, name: msg.name, id_Users: msg.id_Users, msg: msg.created_by_User_at }]
       }, () => chatWindow[0].scrollTop = chatWindow[0].scrollHeight);
@@ -89,7 +87,7 @@ class ChatPage extends Component {
     }
     
     this.props.addMessage(messageObj);
-    
+
     socket.emit('newMessage', { messages: this.state.value, name: this.props.facebook.currUser.name, room: 'Room' + this.props.params.bonId, id_Users: this.props.facebook.currUser.id });
 
     this.setState({
@@ -140,7 +138,7 @@ class ChatPage extends Component {
     });
   
     let mappedMessages = this.state.messages.map((msg, index) => {
-      this.update();
+      this.update()
       if(this.props.facebook.currUser.id === msg.id_Users) {
         return(
           <div className='YourMessage' key={index}>
@@ -163,7 +161,6 @@ class ChatPage extends Component {
             <p className='TimePosted'>{moment(msg.created_by_User_at).format('MMMM Do YYYY, h:mm a')}</p>
           </div>
         </div>
-        
       )
     });
 
@@ -173,7 +170,7 @@ class ChatPage extends Component {
           {mappedChats}
         </DropDownMenu>
           <div className='MessageField' ref='messageField'>
-            {this.props.facebookmappedMessages}
+            {mappedMessages}
           </div>
           <div className="MessageCreator">
             <button className="CancelButton">

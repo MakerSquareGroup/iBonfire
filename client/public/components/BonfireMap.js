@@ -213,7 +213,6 @@ class BonfireMap extends Component {
 	render() {
     $('body').attr( 'id', 'iBonfire');
 		return (
-
 				<GoogleMapLoader
 				  containerElement={
 				    <div style={{ height: "100%" }}/>

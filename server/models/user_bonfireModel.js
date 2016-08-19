@@ -3,13 +3,11 @@ const db = require('../db/db.js');
 const User_Bonfire = module.exports;
 
 User_Bonfire.createJoinTable = (attr) => {
-	return new Promise((resolve, reject) => {
-		return db('Users_Bonfires').insert(attr)
-			.then((result) => {
-				attr.id = result[0];
-				resolve(attr);
-			});
-	})
+	return db('Users_Bonfires').insert(attr)
+		.then((result) => {
+			attr.id = result[0];
+			return attr;
+		});
 };
 
 User_Bonfire.findJoinTable = (bonfireId) => {
@@ -40,7 +38,6 @@ User_Bonfire.joinBonfire = (userId, bonfireId) => {
 			id_Bonfires: bonfireId
 		})
 		.then((response) => {
-			resolve(response)
 			return response;
 		})
 };

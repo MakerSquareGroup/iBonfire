@@ -181,3 +181,18 @@ footer {
         margin-left: 0;
     }
 }
+
+/* Carousel styles*/
+
+.tutorialContainer {
+    margin: 0 auto;
+    padding: 40px;
+    width: 80%;
+}
+
+.tutorialImgs {
+    width: 80%;
+    height: auto;
+}
+
+

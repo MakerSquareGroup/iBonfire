@@ -103,7 +103,7 @@ export function joinBonfire(userId, bonId) {
   return (dispatch) => {
     return join
     .then((response) => {
-      console.log("You've joined the bonfire!");
+      // console.log("You've joined the bonfire!");
       dispatch({
         type: JOIN_BONFIRE,
         payload: {
@@ -288,18 +288,18 @@ export function getLocation(fbId) {
     });
 
     return (dispatch) => {
-      console.log("Getting user location...");
+      // console.log("Getting user location...");
       return location.then((position) => {
         let formatPosition = { latitude: String(position.lat), longitude: String(position.lng) };
         const updateLocation = axios.put('/user/' + fbId, formatPosition);
-        console.log("Success!");
+        // console.log("Success!");
         window.gettingLocation = false;
         dispatch({
             type: GET_LOCATION,
             position: position
         })
         return updateLocation.then((response) => {
-            console.log("Updated location in database!");
+            // console.log("Updated location in database!");
         }).catch((err) => {
           console.log(err, "Error dispatching!");
         })
@@ -369,7 +369,7 @@ export function convertLocationToCoords(location) {
         }
       })
       .catch((response) => {
-        console.log(response, 'Error inside convertLocationToCoords in Actions');
+        console.log(response, 'Error converting location to coords');
       });
   });
 
@@ -399,7 +399,6 @@ export function facebookLogin() {
 
 export function statusLoggedIn() {
   return (dispatch) => {
-    console.log(dispatch, "dispatch");
     dispatch({
       type: LOGIN_SUCCESSFUL,
       loggedIn: true
@@ -410,7 +409,7 @@ export function statusLoggedIn() {
 export function facebookLogout() {
   return (dispatch) => {
     return FB.logout((response) => {
-      console.log("Logging out...", response);
+      // console.log("Logging out...", response);
       browserHistory.push('/login');
       dispatch({
         type: LOG_OUT,

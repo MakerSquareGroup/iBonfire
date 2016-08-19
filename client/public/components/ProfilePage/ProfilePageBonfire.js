@@ -3,25 +3,15 @@ import { connect } from 'react-redux';
 import { allActions } from '../App';
 
 export default class ProfilePageBonfire extends Component {
-	constructor(props){
-		super(props)
-		this.state = {
-
-		}
-		this.handleBonfireMouse = this.handleBonfireMouse.bind(this);
-	}
-
-
-	handleBonfireMouse(){
+	handleBonfireMouse() {
 		this.props.changeBonfirePopupData(this.props.data);
 		$('.ProfilePageBonfirePopup').addClass('animateLeft');
 		$('.ProfilePageBonfirePopup').removeClass('animateRight');
 	}
 
-
-	render(){
+	render() {
 		return (
-			<div className="BonfireEntry" onMouseOver={this.handleBonfireMouse}>
+			<div className="BonfireEntry" onMouseOver={this.handleBonfireMouse.bind(this)}>
 				<img className="BonfireEntryImage" src="../../media/newBonfire.png"/>
 			</div>
 		)
@@ -34,6 +24,6 @@ const mapStateToProps = state => {
 		facebook: state.facebook,
 		profile: state.updateUser
 	}
-}
+};
 
 export default connect(mapStateToProps, allActions)(ProfilePageBonfire);

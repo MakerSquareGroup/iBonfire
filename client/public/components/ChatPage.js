@@ -47,7 +47,11 @@ class ChatPage extends Component {
 
   componentDidMount() {
     let chatWindow = document.getElementsByClassName('MessageField');
-    socket.emit('joinChat', this.props.params.bonId);
+    let joinedParams = {
+      bonId: this.props.params.bonId,
+      name: this.props.facebook.currUser.name
+    }
+    socket.emit('joinChat', joinedParams);
     socket.on('Received socket id of: ', (socketId) => {
     });
 
@@ -136,7 +140,7 @@ class ChatPage extends Component {
     });
   
     let mappedMessages = this.state.messages.map((msg, index) => {
-      this.update()
+      this.update();
       if(this.props.facebook.currUser.id === msg.id_Users) {
         return(
           <div className='YourMessage' key={index}>
@@ -161,7 +165,7 @@ class ChatPage extends Component {
         </div>
         
       )
-    })
+    });
 
     return(
       <div className='ChatPage'>
@@ -169,7 +173,7 @@ class ChatPage extends Component {
           {mappedChats}
         </DropDownMenu>
           <div className='MessageField' ref='messageField'>
-            {mappedMessages}
+            {this.props.facebookmappedMessages}
           </div>
           <div className="MessageCreator">
             <button className="CancelButton">
@@ -193,7 +197,7 @@ const mapStatetoProps = state => {
     bonfire: state.bonfire,
     chat: state.chat
   }
-}
+};
 
 export default connect(mapStatetoProps, allActions)(ChatPage)
 

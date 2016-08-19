@@ -19,7 +19,7 @@ const INITIAL_STATE = {
   }
 }
 
-export default function(state = INITIAL_STATE, action) {
+export default (state = INITIAL_STATE, action) => {
   switch(action.type) {
     case LOAD_MODAL:
       return {...state, changed: action.payload.class};

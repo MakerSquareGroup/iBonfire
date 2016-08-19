@@ -7,7 +7,7 @@ const initialState = {
   bonfires: []
 };
 
-export default function(state = initialState, action) {
+export default (state = initialState, action) => {
   switch(action.type) {
     case JOIN_BONFIRE:
       return {...state, 

@@ -10,7 +10,7 @@ export const facebookInit = () => {
   window.isLoaded = false;
   window.statusChecked = false;
   window.fbAsyncInit = () => {
-    console.log("Facebook SDK initialized");
+    // console.log("Facebook SDK initialized");
     FB.init({
       appId: '708986855908181',
       xfbml: true,
@@ -61,7 +61,7 @@ const statusChangeCallBack = (response) => {
         })
       });
     } else if (response.status === 'not authorized' || !response.authResponse) {
-      console.log('Please login to Facebook');
+      // console.log('Please login to Facebook');
       window.statusChecked = true;
       store.dispatch({
         type: LOG_OUT,

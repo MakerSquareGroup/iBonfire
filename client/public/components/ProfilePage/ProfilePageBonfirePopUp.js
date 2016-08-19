@@ -8,7 +8,6 @@ import {getBonfireData, getUserData, getBonfireUsers} from '../../actions/profil
 
 export default class ProfilePageBonfirePopup extends Component {
 	constructor(props) {
-		
 		super(props);
 		this.state = {
 			creatorImageSrc: '',
@@ -18,29 +17,24 @@ export default class ProfilePageBonfirePopup extends Component {
 			description: '',
 			tags: '',
 			members: []
-		}
+		};
 
-		this.handleCancelClick = this.handleCancelClick.bind(this)
-		this.handeJoinClick = this.handleJoinClick.bind(this)
-		this.getUserNames = this.getUserNames.bind(this)
+		this.handleCancelClick = this.handleCancelClick.bind(this);
+		this.handeJoinClick = this.handleJoinClick.bind(this);
+		this.getUserNames = this.getUserNames.bind(this);
 	}
 
-	
-
-	componentWillReceiveProps(nextProps){
-		const howManyTimes = 0;
+	componentWillReceiveProps(nextProps) {
 		if(this.props.profile.popupData.id_Bonfires !== nextProps.profile.popupData.id_Bonfires) {
-			this.howManyTimes ++;
-		console.log(howManyTimes, " times")
 			const bonfireId = nextProps.profile.popupData.id_Bonfires;
 			getBonfireData(bonfireId).then((resp) => {
-				const location = resp.data.cityState
-				const timeAgo = moment(resp.data.created_by_User_at).fromNow()
+				const location = resp.data.cityState;
+				const timeAgo = moment(resp.data.created_by_User_at).fromNow();
 				getUserData(resp.data.createdBy).then((resp) => {
-					const fbImg = resp.data.FB_img
-					const name = resp.data.name
+					const fbImg = resp.data.FB_img;
+					const name = resp.data.name;
 					getBonfireUsers(bonfireId).then((resp) => {
-						const userNames = this.getUserNames(resp.data)
+						const userNames = this.getUserNames(resp.data);
 						this.setState({
 							creatorImageSrc: fbImg,
 							creatorName: name,
@@ -50,31 +44,30 @@ export default class ProfilePageBonfirePopup extends Component {
 						});
 					})
 				})
-			})
+			});
 		}
-		
 	}
 
-	getUserNames(users){
-		var userNames = []
+	getUserNames(users) {
+		let userNames = []
 		this.setState({
 			members: []
-		})
-		var userNames = users.map((user) => {
+		});
+		userNames = users.map((user) => {
 			getUserData(user.id_Users).then((resp) => {
-				const userName = resp.data.name; 
+				let userName = resp.data.name; 
 				if(this.state.members.indexOf(userName) === -1) {
 					this.setState({
 						members: [...this.state.members, resp.data.name ]
-					})
+					});
 				}
-			})
-		})
+			});
+		});
 	}
 
-	createChips(){
+	createChips() {
 		return this.state.members.map((member, index) => {
-			if(member){
+			if(member) {
 				return (
 					<Chip 
 					style={{'margin':'4px','cursor':'pointer','backgroundColor':'#FF6F02','height':'33px'}}
@@ -83,26 +76,23 @@ export default class ProfilePageBonfirePopup extends Component {
 					>{member}</Chip>
 				)
 			}
-		})
+		});
 	}
 
-	handleCancelClick(){
-		$('.ProfilePageBonfirePopup').addClass('animateRight')
-		$('.ProfilePageBonfirePopup').removeClass('animateLeft')
+	handleCancelClick() {
+		$('.ProfilePageBonfirePopup').addClass('animateRight');
+		$('.ProfilePageBonfirePopup').removeClass('animateLeft');
 	}
 
-	handleJoinClick(){
+	handleJoinClick() {
 		const bonId = this.state.bonfireId;
 		const userId = this.props.facebook.currUser.id;
-
 		this.props.setChatId(bonId);
     this.props.getMessages(bonId);
     this.props.joinBonfire(userId, bonId);
 	}
 
-
 	render() {
-		
 		return (
 			<div className="ProfilePageBonfirePopup">
 				<div className="ProfilePageBonfirePopupTop">

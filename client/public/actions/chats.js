@@ -46,7 +46,7 @@ export function getMessages(bonId) {
 }
 
 export function setChatId(bonId) {
-  console.log('Setting chat ID to ', bonId);
+  // console.log('Setting chat ID to ', bonId);
   return {
     type: SET_CHAT_ID,
     payload: bonId

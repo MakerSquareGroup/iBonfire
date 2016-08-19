@@ -9,7 +9,7 @@ const initialState = {
   joinedUsers: []
 };
 
-export default function(state = initialState, action) {
+export default (state = initialState, action) => {
   switch(action.type) {
     case HOVER_MARKER:
       return { ...state, markerData: action.payload};

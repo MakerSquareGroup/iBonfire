@@ -8,7 +8,7 @@ let initialState = {
   picture: ''
 };
 
-export default function(state = initialState, action) {
+export default (state = initialState, action) => {
   switch(action.type) {
     case CURRENT_USER:
       return { ...state, currUser: action.user,  picture: action.picture};

@@ -11,7 +11,7 @@ const Wrapper = (CheckedComponent) => {
   return class InitFB extends Component {
     componentWillMount() {
       if(!window.isLoaded) {
-        console.log("Loading Facebook SDK");
+        // console.log("Loading Facebook SDK");
         facebookInit();
       }
     }
@@ -19,6 +19,9 @@ const Wrapper = (CheckedComponent) => {
     componentDidMount() {
       if(window.isLoaded) {
         checkLoginStatus();
+        if(!this.props.facebook.currUser.id) {
+          this.props.getCurrentUser();
+        }
       }
 
       if(!localStorage.getItem('latitude') || !localStorage.getItem('longitude') && !window.gettingLocation) {

@@ -7,7 +7,7 @@ import {updateUserBio, getUserData, getCreatedBonfires} from '../../actions/prof
 import { browserHistory } from 'react-router';
 
 export default class ProfilePage extends Component {
-	constructor(props){
+	constructor(props) {
 		super(props);
 		this.state = {
 			newBonfires: [],
@@ -18,7 +18,7 @@ export default class ProfilePage extends Component {
 	}
 
 	componentWillMount() {
-		var currentUser = this.props.facebook.currUser;
+		const currentUser = this.props.facebook.currUser;
 		this.props.getUserBonfires(currentUser.id)
 		getCreatedBonfires(currentUser.id).then((resp) => {
 			this.setState({bonfiresCreated: resp.data.length})
@@ -33,25 +33,25 @@ export default class ProfilePage extends Component {
 		this.renderFires(nextProps.bonfire.bonfires);
 	}
 
-	handleLogout(){
+	handleLogout() {
 		this.props.facebookLogout();
 	}
 
-	renderFires(bonfires){
-		var bonfires = bonfires.map((bonfire, index) => {
+	renderFires(bonfires) {
+		bonfires = bonfires.map((bonfire, index) => {
 			return (
 				<ProfilePageBonfire key={index} data={bonfire}/>
 			)
-		})
+		});
+
 		this.setState({
 			newBonfires: bonfires,
 			bonfiresJoined: bonfires.length
 		});
 	}
 
-	render(){
-		
-		return(
+	render() {
+		return (
 			<div>
 				<div className="ProfilePageTop">
 					<div className="ProfilePageTopLeft">
@@ -88,12 +88,13 @@ export default class ProfilePage extends Component {
 		)
 	}
 }
+
 const mapStateToProps = state => {
 	return {
 		bonfire: state.bonfire,
 		facebook: state.facebook,
 		profile: state.profile
 	}
-}
+};
 
 export default connect(mapStateToProps, allActions)(ProfilePage);

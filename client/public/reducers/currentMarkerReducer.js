@@ -4,7 +4,7 @@ const initialState = {
   currMarker: ""
 };
 
-export default function(state = initialState, action) {
+export default (state = initialState, action) => {
   switch(action.type){
     case CURRENT_MARKER:
       return action.currMarker.position;

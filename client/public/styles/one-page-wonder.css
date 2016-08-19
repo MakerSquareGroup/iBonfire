@@ -14,7 +14,7 @@
     display: block;
     width: 100%;
     text-align: center;
-    background: url('media/bonfire_party.jgp') no-repeat center center scroll;
+    background: url('https://www.walldevil.com/wallpapers/w01/417388-beach-bonfire-campfire-fire-night-time-sand-sparks-sunset-water.jpg') no-repeat center center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -27,14 +27,16 @@
 
 .headline h1 {
     font-size: 130px;
-    background: #fff;
-    background: rgba(255,255,255,0.9);
+    background-color: rgba(196, 177, 171, 0.6);
+    border: 2px solid white;
+    border-radius: 5px;
 }
 
 .headline h2 {
     font-size: 77px;
-    background: #fff;
-    background: rgba(255,255,255,0.9);
+    background-color: rgba(196, 177, 171, 0.6);
+        border: 2px solid white;
+    border-radius: 5px;
 }
 
 .featurette-divider {

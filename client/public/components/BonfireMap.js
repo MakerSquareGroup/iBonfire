@@ -211,7 +211,7 @@ class BonfireMap extends Component {
 	}
 
 	render() {
-
+    $('body').attr( 'id', 'iBonfire');
 		return (
 
 				<GoogleMapLoader

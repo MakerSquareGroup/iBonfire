@@ -4,7 +4,6 @@ import Navigation from './Navigation';
 import BonfireDrawer from './BonfireDrawer';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
-
 import ProfilePage from './ProfilePage/ProfilePage';
 
 class Home extends Component {
@@ -18,11 +17,11 @@ class Home extends Component {
     this.renderProfile = this.renderProfile.bind(this);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.renderMap();
   }
 
-  renderMap(){
+  renderMap() {
     const map = (
       <div className="Map">
         <Navigation renderProfile={this.renderProfile}/>
@@ -33,24 +32,20 @@ class Home extends Component {
     this.setState({visibleComponent: map})
   }
 
-  renderProfile(){
+  renderProfile() {
     const profile =  (
       <div className="ProfilePage">
         <ProfilePage renderMap={this.renderMap}/>
       </div>
-
     )
     this.setState({visibleComponent: profile});
   }
-
-
 
 	render() {
     return (
       <div id="Home">
           {this.state.visibleComponent}
       </div>
-
     );
   }
 }
@@ -60,7 +55,7 @@ const mapStateToProps = state => {
     markers: state.markers,
     users: state.users,
     location: state.location
-  }
+  };
 }
 
 export default connect(mapStateToProps, actions)(Home);

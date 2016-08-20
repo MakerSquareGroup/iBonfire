@@ -7,6 +7,19 @@
 	position: absolute;
 }
 
+.chatButton {
+	top: 45%;
+	bottom: 45%;
+	left: 0%;
+	z-index: 900;
+	position: absolute;
+  width: 0; 
+  height: 0; 
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 30px solid #FF6E00;
+}
+
 .MessageField {
 	height: 100%;
 	overflow: scroll;

@@ -49,7 +49,7 @@ class Login extends Component {
           </li>
         </ul>
         <div id="Logo">
-          <img src="../media/iBonfireLogo.png"/>
+          <img src="../media/iBonfire.png"/>
         </div>
       </div>
     )

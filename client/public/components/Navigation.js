@@ -46,7 +46,7 @@ class Navigation extends Component {
 			<div id="Navigation">
 
 				<div id="NavLogo">
-        	<img src="../media/iBonfireLogo.png"/>
+        	<img src="../media/iBonfire.png"/>
       	</div>
 
 		   		<div id="SearchBar">

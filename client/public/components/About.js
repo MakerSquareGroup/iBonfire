@@ -1,8 +1,9 @@
 import $ from 'jquery'; 
+import TeamList from './TeamList';
 import React, { Component } from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
 import { browserHistory } from 'react-router';
 import TutorialCarousel from './TutorialCarousel';
+import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 export default class About extends Component {
@@ -56,8 +57,11 @@ export default class About extends Component {
                 </MuiThemeProvider>
             </div>
 
-            <hr className="featurette-divider"></hr>
-
+            <hr className="featurette-divider" ></hr>
+            <div className="teamCenter">
+                <h2 className="featurette-heading">Developers Extraordinaire!</h2>
+                <TeamList />
+            </div>
             <hr className="featurette-divider"></hr>
 
             <footer>

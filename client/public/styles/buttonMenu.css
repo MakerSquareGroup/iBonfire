@@ -73,43 +73,43 @@
   transition: all 0.2s ease-in; 
 }
 
-#menu:hover a {
+#menu:hover .menuBtns {
   display: block;
 }
 
-a:link, a:hover, a:focus, a:active, a:visited {
+.menuBtns:link, .menuBtns:hover, .menuBtns:focus, .menuBtns:active, .menuBtns:visited {
   text-decoration: none;
   color: #ddd;
   background-color: rgb(117, 163, 140); 
 }
 
-a:hover, a:focus, a:active {
+.menuBtns:hover, .menuBtns:focus, .menuBtns:active {
   background-color: #5E8792;
   color: #fff;
   text-shadow: 0em 0em 0.2em rgba(255, 255, 255, 0.8);
 }
 
-#menu:hover li:nth-child(1) a {
+#menu:hover li:nth-child(1) .menuBtns {
   right: 13.5em;
   top: .2em; 
 }
 
-#menu:hover li:nth-child(2) a {
+#menu:hover li:nth-child(2) .menuBtns {
   right: 12em;
   top: 4.75em; 
 }
 
-#menu:hover li:nth-child(3) a {
+#menu:hover li:nth-child(3) .menuBtns {
   right: 9.0em;
   top: 8.5em; 
 }
 
-#menu:hover li:nth-child(4) a {
+#menu:hover li:nth-child(4) .menuBtns {
   right: 4.75em;
   top: 11em; 
 }
 
-#menu:hover li:nth-child(5) a {
+#menu:hover li:nth-child(5) .menuBtns {
   right: 0;
   top: 12em; 
 }

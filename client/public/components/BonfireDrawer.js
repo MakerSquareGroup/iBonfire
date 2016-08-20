@@ -94,6 +94,7 @@ class BonfireDrawer extends Component {
           docked={true}
           width={350}
           open={this.props.showDrawer}
+          containerStyle={{"backgroundColor": "transparent"}}
         >
           <div id="myBonfires">{this.state.mappedBonfires}</div>
         </Drawer>

@@ -17,7 +17,8 @@ class BonfireDrawer extends Component {
       bonfiresInYourCity: [],
       currentCity: ''
     };
-  window.addEventListener("keydown", this.hideDrawerOnEsc.bind(this));
+
+    window.addEventListener("keydown", this.hideDrawerOnEsc.bind(this));
   }
 
   componentWillMount() {
@@ -38,7 +39,7 @@ class BonfireDrawer extends Component {
     })
     .then(() => {
        this.renderBonfires();
-    })
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -85,8 +86,7 @@ class BonfireDrawer extends Component {
       })
       this.setState({mappedBonfires: mappedBonfires});
     }
-  
-    
+
   render() {
     return (
       <div id="drawerParent">
@@ -98,20 +98,17 @@ class BonfireDrawer extends Component {
           <div id="myBonfires">{this.state.mappedBonfires}</div>
         </Drawer>
 
-
         <div className="menu ProfileButtonSmall">
           <div className="btn trigger">
              <a onClick={this.props.renderProfile}><img className="ProfileImageSmall" src={`https://graph.facebook.com/${this.props.facebook.currUser.id}/picture?type=large`}/></a>
           </div>
         </div>
-
-
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
     markers: state.markers,
     users: state.users,

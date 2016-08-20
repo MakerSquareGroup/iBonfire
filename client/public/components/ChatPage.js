@@ -8,6 +8,8 @@ import { browserHistory } from 'react-router';
 import moment from 'moment';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
+import ChatList from './ChatList';
+import SvgArrow from 'material-ui/svg-icons/navigation/arrow-drop-up';
 
 class ChatPage extends Component {
   constructor(props) {
@@ -15,8 +17,10 @@ class ChatPage extends Component {
     this.state = {
       value: '',
       messages: [],
-      chatRoom: this.props.params.bonId
+      chatRoom: this.props.params.bonId,
+      drawerOpen: false
     }
+    this.openChatList = this.openChatList.bind(this);
   }
 
   componentWillMount() {
@@ -53,7 +57,6 @@ class ChatPage extends Component {
     });
 
     socket.on('message', (msg) => {
-      console.log('Receiving messages');
       this.setState({
         messages: [...this.state.messages, { messages: msg.messages, name: msg.name, id_Users: msg.id_Users, msg: msg.created_by_User_at }]
       }, () => chatWindow[0].scrollTop = chatWindow[0].scrollHeight);
@@ -84,7 +87,7 @@ class ChatPage extends Component {
       message: this.state.value,
       FB_id: this.props.facebook.currUser.id,
       name: this.props.facebook.currUser.name
-    }
+    };
     
     this.props.addMessage(messageObj);
 
@@ -93,12 +96,13 @@ class ChatPage extends Component {
     this.setState({
       messages: [...this.state.messages, { messages: this.state.value, name: this.props.facebook.currUser.name, id_Users: this.props.facebook.currUser.id,  }],
       value: ''
-    }, () => chatWindow[0].scrollTop = chatWindow[0].scrollHeight)
+    }, () => chatWindow[0].scrollTop = chatWindow[0].scrollHeight);
   }
 
   handleChange(e) {
     this.setState({
-      value: e.target.value
+      value: e.target.value,
+      drawerOpen: false
     });
   }
 
@@ -117,7 +121,13 @@ class ChatPage extends Component {
     window.setTimeout(() => {
       let chatWindow = document.getElementsByClassName('MessageField');
       chatWindow[0].scrollTop = chatWindow[0].scrollHeight  
-    }, 100) 
+    }, 100);
+  }
+
+  openChatList() {
+    this.setState({
+      drawerOpen: true
+    });
   }
 
   render() {
@@ -138,9 +148,9 @@ class ChatPage extends Component {
     });
   
     let mappedMessages = this.state.messages.map((msg, index) => {
-      this.update()
+      this.update();
       if(this.props.facebook.currUser.id === msg.id_Users) {
-        return(
+        return (
           <div className='YourMessage' key={index}>
             <div className="TextHolder">
               <p className="MessageAuthor">{msg.name}</p>
@@ -149,10 +159,9 @@ class ChatPage extends Component {
             </div>
             <img className="ChatProfileImage" src={`https://graph.facebook.com/${msg.id_Users}/picture?type=small`} alt=""/>
           </div>
-        
         )
       }
-      return(
+      return (
         <div className="OtherMessage" key={index}>
           <img className="ChatProfileImage" src={`https://graph.facebook.com/${msg.id_Users}/picture?type=small`} alt=""/>
           <div className="TextHolder">
@@ -164,25 +173,29 @@ class ChatPage extends Component {
       )
     });
 
-    return(
-      <div className='ChatPage'>
-        <DropDownMenu value={this.state.chatRoom} onChange={this.changeChatRoom.bind(this)}>
-          {mappedChats}
-        </DropDownMenu>
-          <div className='MessageField' ref='messageField'>
-            {mappedMessages}
-          </div>
-          <div className="MessageCreator">
-            <button className="CancelButton">
-              <img className="CancelButtonImage" src="../media/cancelThin.png" onClick={this.handleCancel.bind(this)}/>
-            </button>
-            <form className='FormBox' onSubmit={this.handleSubmit.bind(this)}>
-              <input className='InputBox' placeholder="Enter Message" value={this.state.value} onChange={this.handleChange.bind(this)} type='text'/>
-            </form>
-            <button className="SendButton">
-              <img className="SendButtonImage" src="../media/up-arrow.png" onClick={this.handleSubmit.bind(this)}/>
-            </button>
-          </div>
+    return (
+      <div>
+        <div className='ChatPage'>
+          <DropDownMenu value={this.state.chatRoom} onChange={this.changeChatRoom.bind(this)}>
+            {mappedChats}
+          </DropDownMenu>
+            <div className='MessageField' ref='messageField'>
+              {mappedMessages}
+            </div>
+            <div className="MessageCreator">
+              <button className="CancelButton">
+                <img className="CancelButtonImage" src="../media/cancelThin.png" onClick={this.handleCancel.bind(this)}/>
+              </button>
+              <form className='FormBox' onSubmit={this.handleSubmit.bind(this)}>
+                <input className='InputBox' placeholder="Enter Message" value={this.state.value} onChange={this.handleChange.bind(this)} type='text'/>
+              </form>
+              <button className="SendButton">
+                <img className="SendButtonImage" src="../media/up-arrow.png" onClick={this.handleSubmit.bind(this)}/>
+              </button>
+            </div>
+       </div>
+       <div className='chatButton' onMouseOver={() => this.openChatList()}></div>
+       <ChatList drawerOpen={this.state.drawerOpen} />
      </div>
     )
   }

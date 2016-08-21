@@ -1,0 +1,38 @@
+.teamCenter {
+  text-align: center; 
+  left: 50%;
+  right:50%;
+}
+
+.teamContainer {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.member {
+  float: left;
+}
+
+.teamImgSize {
+  border-radius: 50%;
+  position: relative;
+  margin: 3em;
+  width: 200px;
+  height: 200px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.linkContainer {
+   display: inline-block;
+}
+
+.memberLinks img{
+  width: 15%;
+  height: 15%;
+  padding: 0.1em;
+}
+
+.teamImgSize:hover div:nth-child(1) { top:100%; }
+.teamImgSize:hover div:nth-child(2) { top:120%; }

@@ -51,8 +51,18 @@ class ChatPage extends Component {
 
   componentDidMount() {
     let chatWindow = document.getElementsByClassName('MessageField');
+    const facebook = this.props.facebook.currUser;
 
-    socket.emit('joinChat', this.props.params.bonId);
+    if(!facebook.id) {
+      return browserHistory.push('/');
+    }
+
+    let joinParams = {
+      name: facebook.name,
+      bonId: this.props.params.bonId
+    };
+
+    socket.emit('joinChat', joinParams);
     socket.on('Received socket id of: ', (socketId) => {
     });
 
@@ -91,7 +101,7 @@ class ChatPage extends Component {
     
     this.props.addMessage(messageObj);
 
-    socket.emit('newMessage', { messages: this.state.value, name: this.props.facebook.currUser.name, room: 'Room' + this.props.params.bonId, id_Users: this.props.facebook.currUser.id });
+    socket.emit('newMessage', { messages: this.state.value, name: this.props.facebook.currUser.name, room: this.props.params.bonId, id_Users: this.props.facebook.currUser.id });
 
     this.setState({
       messages: [...this.state.messages, { messages: this.state.value, name: this.props.facebook.currUser.name, id_Users: this.props.facebook.currUser.id,  }],
@@ -112,8 +122,13 @@ class ChatPage extends Component {
       chatRoom: room
     });
 
+    let joinObj = {
+      name: this.props.facebook.currUser.name,
+      bonId: room
+    };
+
     socket.emit('leaveChat', this.props.params.bonId);
-    socket.emit('joinChat', room);
+    socket.emit('joinChat', joinObj);
     this.props.getMessages(room);
   }
 
@@ -132,7 +147,6 @@ class ChatPage extends Component {
 
   render() {
     let chatWindow = document.getElementsByClassName('MessageField');
-
     let mappedChats = this.props.bonfire.bonfires.map((bonfire, index) => {
       let description = '';
       for(let i = 0; i < this.props.markers.length; i++) {
@@ -194,12 +208,15 @@ class ChatPage extends Component {
               </button>
             </div>
        </div>
-       <div className='chatButton' onMouseOver={() => this.openChatList()}></div>
-       <ChatList drawerOpen={this.state.drawerOpen} />
      </div>
     )
   }
 }
+
+/* This will be added below the chatPage closing div
+<div className='chatButton' onMouseOver={() => this.openChatList()}></div>
+<ChatList drawerOpen={this.state.drawerOpen} />
+*/
 
 const mapStatetoProps = state => {
   return {

@@ -2,7 +2,6 @@ const Bonfire = require('../models/bonfireModel.js');
 const User = require('../models/userModel.js');
 const User_Bonfire = require('../models/user_bonfireModel.js');
 const Helpers = require('../helpers/ctrl_helpers.js');
-const Tag = require('../models/tagModel.js');
 const Chat = require('../models/chatModel.js');
 
 module.exports = {

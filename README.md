@@ -26,7 +26,7 @@
 3. cd into the repo and open a terminal window
 4. Run npm install
 5. Open a terminal window and run ```webpack -w```
-6. Open another terminal window and run ```nodemon server/server.js``` or ```npm run webpack-watch``` which would combine steps 5 and 6
+6. Open another terminal window and run ```nodemon server/server.js``` or ```npm run dev``` which would combine steps 5 and 6
 7. Open your browser and navigate to localhost:8080
 8. Code!
 9. Commit changes and make a pull request
@@ -49,63 +49,71 @@
 
     src
     ├── actions
-    │   └── index.js
+    │   ├── chats.js
+    │   ├── drawer.js
+    │   ├── index.js
+    │   └── profile.js
     │
     ├── components
-    │   ├── app.js
-    │   ├── appDrawer.js
-    │   ├── appHeader.js
-    │   ├── foodItemInput.js
-    │   ├── foodItemTable.js
-    │   ├── foodItemTableEntry.js
-    │   ├── icebox.js
-    │   ├── iceboxList.js
-    │   ├── iceboxListItem.js
-    │   ├── landing.js
-    │   ├── main.js
-    │   ├── photoUploader.js
-    │   ├── recipeListItem.js
-    │   ├── recipes.js
-    │   ├── recipeSuggestionListItem.js
-    │   ├── resolveItemTable.js
-    │   ├── resolveItemTableEntry.js
-    │   ├── settingsConfirm.js
-    │   └── settingsEntry.js
+    │   ├── auth
+    │   |  └── InitFB.js
+    │   ├── ProfilePage
+    │   |  ├─ ProfilePage.js
+    |   |  ├- ProfilePageBonfire.js
+    │   |  └── ProfilePageBonfirePopup.js
+    │   ├── About.js
+    │   ├── App.js
+    │   ├── BonfieDrawer.js
+    │   ├── BonfireModal.js
+    │   ├── ChatList.js
+    │   ├── ChatPage.js
+    │   ├── FBLogin.js
+    │   ├── Home.js
+    │   ├── MarkerModal.js
+    │   ├── Navigation.js
+    │   ├── TeamList.js
+    │   └── TutorialCarousel.js
     │
-    ├── constants
-    │   ├── actions.js
-    │   └── sorts.js
+    ├── helpers
+    │   └── fbHelper.js
     │
-    ├── containers
-    │   ├── iceboxToolbar.js
-    │   ├── recipeList.js
-    │   ├── recipeSuggestionList.js
-    │   ├── settings.js
-    │   ├── signin.js
-    │   ├── signup.js
-    │   └── visibleIceboxList.js
+    ├── auth
+    │   └── InitFB.js
     │
     ├── reducers
-    │   ├── authReducer.js
-    │   ├── iceboxReducer.js
-    │   ├── iceboxSearchReducer.js
+    │   ├── bonfireReducer.js
+    │   ├── changeClassReducer.js
+    │   ├── chatReducer.js
+    │   ├── convertCoordsReducer.js
+    │   ├── convertLocationReducer.js
+    │   ├── currentMarkerReducer.js
+    │   ├── facebookReducer.js
+    │   ├── hoverMarkerReducer.js
+    │   ├── imageReducer.js
     │   ├── index.js
-    │   ├── loadingReducer.js
+    │   ├── locationReducer.js
+    │   ├── markerReducer.js
     │   ├── profileReducer.js
-    │   ├── recipesReducer.js
-    │   ├── sortByReducer.js
-    │   ├── sortOrderReducer.js
+    │   ├── searchUserInputReducer.js
+    │   ├── showDrawerReducer.js
     │   └── userReducer.js
     │
-    ├── state
-    │   ├── configureStore.js
-    │   └── localStorage.js
-    │
     ├── styles
-    │   ├── bootstrap.min.css
-    │   ├── icons.js
-    │   └── style.css
-    │
+    │   ├── animation.css
+    │   ├── bonfireModal.css
+    │   ├── buttonMenu.css
+    │   ├── cardStyles.css
+    │   ├── chat.css
+    │   ├── home.css
+    │   ├── login.css
+    │   ├── markerModal.css
+    │   ├── navigation.css
+    │   ├── one-page-wonder.css
+    │   ├── profilepage.css
+    │   ├── searchbar.css
+    │   └── TeamList.css
+    |
+    ├── index.html
     └── index.js
 
 ### Back-End 

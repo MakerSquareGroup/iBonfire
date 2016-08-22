@@ -109,7 +109,7 @@ export default class ProfilePageBonfirePopup extends Component {
           {this.createChips()}
         </div>
         <div className="ProfilePagePopupCancelButton" onClick={this.handleCancelClick}>
-          <img className="ProfilePagePopupCancelButtonImage" src="../../media/Cancel.png"/>
+          <img className="ProfilePagePopupCancelButtonImage" src="../../media/cancel.png"/>
         </div>
         <div className="ProfilePagePopupJoinButton" onClick={this.handleJoinClick.bind(this)}>
           <img className="ProfilePagePopupJoinButtonImage" src="../../media/right-arrow.png"/>

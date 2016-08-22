@@ -12,10 +12,10 @@ Helpers.seperateParams = (getParams) => {
 Helpers.checkParamsBonfire = (getParams) => {
   var reg = /[&]/g;
   if (getParams.match(reg)) {
-    console.log('This GET request is for a bonfire at a coordinate');
+    console.log("This GET request is for a bonfire at a coordinate");
     return seperateParams(getParams);
   } else {
-    console.log('This GET request finds a bonfire based on the bonfire id');
+    console.log("This GET request finds a bonfire based on the bonfire id");
     return getParams;
   }
 };
@@ -23,10 +23,10 @@ Helpers.checkParamsBonfire = (getParams) => {
 Helpers.checkParamsUser = (getParams) => {
   var reg = /[&]/;
   if (getParams.match(reg)) {
-    console.log('This GET request is for a user at a coordinate');
+    console.log("This GET request is for a user at a coordinate");
     return seperateParams(getParams);
   } else {
-    console.log('This GET request finds a user based on FB_id');
+    console.log("This GET request finds a user based on FB_id");
     return getParams;
   }
 };
@@ -38,7 +38,7 @@ Helpers.checkParamsUser = (getParams) => {
 Helpers.checkParamsUserBonfires = (userBonfires) => {
   var reg = /[=]/;
   if (userBonfires.match(reg)) {
-    console.log('This GET request is for returning all bonfires by user id');
+    console.log("This GET request is for returning all bonfires by user id");
     return (seperateUserBonfire(userBonfires));
   } else {
     return userBonfires;

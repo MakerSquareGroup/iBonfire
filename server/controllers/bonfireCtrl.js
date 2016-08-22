@@ -2,7 +2,6 @@ const Bonfire = require('../models/bonfireModel.js');
 const User = require('../models/userModel.js');
 const User_Bonfire = require('../models/user_bonfireModel.js');
 const Helpers = require('../helpers/ctrl_helpers.js');
-const Tag = require('../models/tagModel.js');
 const Chat = require('../models/chatModel.js');
 
 module.exports = {
@@ -25,7 +24,8 @@ module.exports = {
 					}
 				})
 				.catch((err) => {
-						console.log('Error inside findAllBonfires ', err);
+					console.log('Error inside findAllBonfires ', err);
+					res.end('Error inside findAllBonfires ', err);
 				});
 		},
 		post: (req, res) => {
@@ -64,30 +64,27 @@ module.exports = {
 											.then((result) => {
 												markerResult.chat = result
 												console.log("Result from bonfire controller in createChatRoom ", markerResult);
-												// User_Bonfire.findJoinTable(result.id_Users)
-												// 	.then((result) => {
-												// 		console.log("Result from bonfire controller in findJoinTable ", result);
-														res.send(markerResult);
-													// })
-													// .catch((err) => {
-													// 	console.log('Error inside findJoinTable ', err);
-													// });
+												res.send(markerResult);
 											})
 											.catch((err) => {
 												console.log('Error inside createChatRoom', err);
+												res.end('Error inside createChatRoom', err)
 											})
 									})
 									.catch((err) => {
 										console.log('Error inside createJoinTable ', err);
+										res.end('Error inside createJoinTable ', err)
 									});
 							})
 							.catch((err) => {
 								console.log('Error inside createBonfire ', err);
+								res.end('Error inside createBonfire ', err)
 							});
 					}
 				})
 				.catch((err) => {
-						console.log('Error inside findBonfireByLocation ', err);
+					console.log('Error inside findBonfireByLocation ', err);
+					res.end('Error inside findBonfireByLocation ', err);
 				});
 		},
 		put: (req, res) => {
@@ -106,18 +103,19 @@ module.exports = {
 			let bonfireId = req.params.bonfireId;
 
 			User_Bonfire.findAllUsers(bonfireId)
-			.then((bonfires) => {
-				if(!bonfires) {
-					console.log('There are no bonfires with an id of ', bonfireId);
-					res.end('There are no bonfires with an id of ', bonfireId);
-				} else {
-					console.log('Sending all the bonfires users in bonfire ', bonfireId);
-					res.send(bonfires);
-				}
-			})
-			.catch((err) => {
-						console.log('Error inside findAllUsers ', err);
-			});
+				.then((bonfires) => {
+					if (!bonfires) {
+						console.log('There are no bonfires with an id of ', bonfireId);
+						res.end('There are no bonfires with an id of ', bonfireId);
+					} else {
+						console.log('Sending all the bonfires users in bonfire ', bonfireId);
+						res.send(bonfires);
+					}
+				})
+				.catch((err) => {
+					console.log('Error inside findAllUsers ', err);
+					res.end('Error inside findAllUsers ', err);
+				});
 		},
 		post: (req, res) => {
 			console.log('Recieved POST at /users_bonfires');
@@ -130,7 +128,7 @@ module.exports = {
 		delete: (req, res) => {
 			console.log('Received DELETE at /users_bonfires/');
 			res.end('Received DELETE at /users_bonfires');
-		}	
+		}
 	},
 
 	// Bonfire specs can be in the form of bonfire id or latitude&longitude so that a user can be searched by either id or coordinates
@@ -163,7 +161,8 @@ module.exports = {
 					})
 					.catch((err) => {
 						console.log('Error inside findBonfireByLocation ', err);
-				});
+						res.end('Error inside findBonfireByLocation ', err)
+					});
 			} else {
 				Bonfire.findBonfireById(getParams)
 					.then((bonfire) => {
@@ -177,7 +176,8 @@ module.exports = {
 					})
 					.catch((err) => {
 						console.log('Error inside findBonfireById ', err);
-				});
+						res.end('Error inside findBonfireById ', err)
+					});
 			}
 		},
 		post: (req, res) => {
@@ -208,9 +208,9 @@ module.exports = {
 					}
 				})
 				.catch((err) => {
-						console.log('Error inside findBonfireById ', err);
+					console.log('Error inside findBonfireById ', err);
+					res.end('Error inside findBonfireById ', err)
 				});
 		}
 	}
 };
-

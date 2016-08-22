@@ -4,34 +4,6 @@ const knex = require('knex')(config[env]);
 
 module.exports = knex;
 
-
-// Wipes every table and clears DB but leaves tables intact. 
-knex.wipeDatabase = () => {
-	return knex('Users').truncate()
-		.then(() => {
-			return knex('Bonfires').truncate();
-		})
-		.then(() => {
-			return knex('Users_Bonfires').truncate();
-		})
-		.then(() => {
-			return knex('Chats').truncate();
-		})
-		.then(() => {
-			return knex('Users_Chats').truncate();
-		})
-		.then(() => {
-			return knex('Tags').truncate();
-		})
-		.then(() => {
-			return knex('Bonfires_Tags').truncate();
-		})
-		.then(() => {
-			return knex('Messages').truncate();
-		});
-	console.log("Whelp, you done did it now...No more data")
-};
-
 // The ensureSchema function builds the schema for the db
 knex.ensureSchema = () => {
   return Promise.all([
@@ -119,34 +91,6 @@ knex.ensureSchema = () => {
             console.log('Messages Table has been created.');
           });
       }
-    }),
-
-    knex.schema.hasTable('Tags')
-    .then((exists) => {
-      if (!exists) {
-        knex.schema.createTable('Tags', (table) => {
-            table.increments('id');
-            table.string('tag');
-          })
-          .then((table) => {
-            console.log('Tags Table has been created.');
-          });
-      }
-    }),
-
-    knex.schema.hasTable('Bonfires_Tags')
-    .then((exists) => {
-      if (!exists) {
-        knex.schema.createTable('Bonfires_Tags', (table) => {
-            table.increments('id');
-            table.string('id_Bonfires').references('id').inTable('Bonfires');
-            table.string('id_Tags').references('id').inTable('Tags');
-          })
-          .then((table) => {
-            console.log('Bonfires_Tags Tabel has been created.');
-          })
-      }
     })
-
   ]);
 };

@@ -2,20 +2,6 @@ const Chat = require('../models/chatModel.js');
 const User_Bonfire = require('../models/user_bonfireModel.js')
 
 module.exports = {
-  '/': {
-    post: (req, res) => {
-      console.log('Received POST at /chat')
-    },
-    get: (req, res) => {
-      console.log('Received GET at /chat')
-    },
-    put: (req, res) => {
-      console.log("Received PUT at /chat");
-    },
-    delete: (req, res) => {
-      console.log("Received DELETE at /chat!")
-    }
-  },
   '/:bonfire_id': {
     get: (req, res) => {
       console.log('Received GET at /chat/:bonfire_id');
@@ -33,7 +19,7 @@ module.exports = {
         })
         .catch((err) => {
           console.log("Error in findChatId at GET /chat/:bonfire_id", err)
-          res.end(err)
+          res.end("Error in findChatId at GET /chat/:bonfire_id", err)
         })
     },
     post: (req, res) => {
@@ -53,7 +39,8 @@ module.exports = {
             res.send(response);
           })
           .catch((err) => {
-            console.log(err, "Error adding message!");
+            console.log("Error adding message!", err);
+            res.end("Error adding message!", err)
           })
       } else {
         Chat.findChatId(req.params.bonfire_id)
@@ -70,20 +57,22 @@ module.exports = {
               })
               .catch((err) => {
                 console.log("Error in addMessage at POST /chat/:bonfire_id", err)
-                res.end(err)
+                res.end("Error in addMessage at POST /chat/:bonfire_id", err)
               })
           })
           .catch((err) => {
             console.log("Error in findChatId at POST /chat/:bonfire_id", err)
-            res.end(err)
+            res.end("Error in findChatId at POST /chat/:bonfire_id", err)
           })
       }
     },
     put: (req, res) => {
       console.log("Received PUT at /chat/:bonfire_id");
+      res.end("Received PUT at /chat/:bonfire_id")
     },
     delete: (req, res) => {
       console.log("Received DELETE at /chat/:bonfire_id");
+      res.end("Received DELETE at /chat/:bonfire_id")
     }
   }
 }

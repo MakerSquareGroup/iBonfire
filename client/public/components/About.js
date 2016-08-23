@@ -26,9 +26,9 @@ export default class About extends Component {
             <div className="featurette">
                 <img className="featurette-image img-circle img-responsive pull-right" src="http://p1cdn4static.sharpschool.com/UserFiles/Servers/Server_758978/Image/2013-14/Main%20Calendar%20Graphics/2013%20Homecoming%20Bonfire.gif"></img>
                 <h2 className="featurette-heading">Why iBonfire?
-                    <span className="text-muted"> Well, why the hell not.</span>
+                    <span className="text-muted"> Well, why not?</span>
                 </h2>
-                <p className="lead">iBonfire is designed so you, the user, can focus on what is important in life, bonfires. What are bonfires? Bonfires are places of greeting, socializing and change. Light a bonfire to signal other like minded bonfirees or join an existing one and let the living begin!</p>
+                <p className="lead">iBonfire is designed so you, the user, can focus on what is important in life, bonfires. What are bonfires? Bonfires are places of greeting, socializing and change. Light a bonfire to signal other like minded bonfires or join an existing one and let the living begin!</p>
             </div>
 
             <hr className="featurette-divider"></hr>
@@ -38,7 +38,7 @@ export default class About extends Component {
                     <span className="text-muted"> You should probably start here...</span>
 
                 </h2>
-                <p className="lead">Click on through the slide below to go through our super simple bonfire indoctrin.. *cough* guide and you will be a bonfire master in no time!</p>
+                <p className="lead">Click on through the slides below to go through our super simple bonfire indoctrin.. *cough* guide and you will be a bonfire master in no time!</p>
                 <div className="tutorialContainer">
                     <TutorialCarousel />
                 </div>   

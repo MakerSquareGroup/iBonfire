@@ -1,6 +1,8 @@
 # iBonfire
 
-// Description here **
+iBonfire was designed as an easy way for individuals to interact with other users in a specific area. The word bonfire denotes a relaxing social gathering, or as Wikipedia puts it, "part of a celebration", which is what we strove to convey in this application.
+
+iBonfire can be used as a tool to meet new, like-minded people, plan events and meetups while traveling, or locally, or even just to chat with strangers. The world is waiting, light a bonfire!
 
 ### Developer Documentation
 
@@ -25,27 +27,28 @@
 2. Clone down to your local machine.
 3. cd into the repo and open a terminal window
 4. Run npm install
-5. Open a terminal window and run ```webpack -w```
-6. Open another terminal window and run ```nodemon server/server.js``` or ```npm run dev``` which would combine steps 5 and 6
+5. If on Mac or other linux/unix-based system, run ```npm run dev``` and skip steps 6 and 7.
+6. Open a terminal window and run ```webpack -w```
+7. Open another terminal window and run ```nodemon server/server.js```
 7. Open your browser and navigate to localhost:8080
 8. Code!
 9. Commit changes and make a pull request
 
-### Front-end -- Mike/Sean**
+### Front-end
+The front-end structure/skeleton was implemented using React and Redux. Other core modules include React-Google-Maps for the main map view and socket.io-client for client-side handling of live chat. Each React component is modularized and the existing infrastructure can easily be expanded upon without impacting the core functionality of iBonfire.
+
+Client-side navigation is seamlessly handled using React-Router, with the chats route able to handle parameters in the URL. 
+
+Redux-Thunk is used to handle async action creators.
+
+Much of the styling involves at least some Material-UI, but there's also custom CSS for nearly every file.
 
 #### Client-Side Application Structure
-//Provide a brief explanation of file structure.
+Below is the client-side folder structure of iBonfire. All components have access to at least some part of Redux state, so we elected not to have a separate containers folder. 
 
-// Here is a brief example of an explanation of file structure:
+We initially set out to have one actions file, but soon realized that this would be unwieldy and hard to follow, so actions were split into four separate files, referencing the specific area of the app that they are pertinent to. 
 
-  "Below is the folder client-side folder structure. All 'smart' components that have
-  access to Redux state can be found in the containers folder. All other React class
-  and functional components can be found in the components folder. 
-
-  In the reducers folder, all reducers are combined in the index file and action specific
-  cases can be found in the individual reducer files."
-
-// Here you need to explain the file structure of the front end and change this diagram to reflect our current structure:
+In the reducers folder, all reducers are combined in the index file.
 
     src
     ├── actions
@@ -56,11 +59,11 @@
     │
     ├── components
     │   ├── auth
-    │   |  └── InitFB.js
+    │   │  └── InitFB.js
     │   ├── ProfilePage
-    │   |  ├─ ProfilePage.js
-    |   |  ├- ProfilePageBonfire.js
-    │   |  └── ProfilePageBonfirePopup.js
+    │   │  ├─ ProfilePage.js
+    │   │  ├- ProfilePageBonfire.js
+    │   │  └─ ProfilePageBonfirePopup.js
     │   ├── About.js
     │   ├── App.js
     │   ├── BonfieDrawer.js
@@ -112,7 +115,7 @@
     │   ├── profilepage.css
     │   ├── searchbar.css
     │   └── TeamList.css
-    |
+    │
     ├── index.html
     └── index.js
 
@@ -143,7 +146,7 @@
     └── server.js
 
 
-#### Server -- Ryan**
+#### Server
 The server was created using Node/Express and follows a modular design pattern for ease of scalability and flow control. Various middleware is used with Express for security concerns and socket helpers have been abstracted to handle socket operations. 
 
 #### REST/CRUD Outline:
@@ -205,9 +208,10 @@ DELETE:
 We used MySQL with Knex for our database. MySQL was used because of its ease of use and scalabilty which would allow us to handle more data efficently. Knex is a well documented and easy to use query builder that can be used with many different types of SQL. We also used Knex because of it's promisified feature which allows greater control over async operations.
 
 #### Sockets -- Mike/Sean**
-// Description of use of sockets
+We used web sockets, specifically socket.io, to implement server-side chat handling. The setup we're using is designed to handle multiple chat rooms and switching between rooms on the fly. Sockets are instantiated on server load, and there are methods to join chat, leave chat, and broadcast messages to specific rooms (bonfires).
 
 ### The Developers
 
 * [Ryan Morris](https://github.com/SPCMorris)
+* [Sean Lester](https://github.com/SeanML)
 // Fill in your names and github like mine above

@@ -214,4 +214,3 @@ We used web sockets, specifically socket.io, to implement server-side chat handl
 
 * [Ryan Morris](https://github.com/SPCMorris)
 * [Sean Lester](https://github.com/SeanML)
-// Fill in your names and github like mine above
